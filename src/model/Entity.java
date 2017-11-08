@@ -1,6 +1,13 @@
 package model;
 
+import javafx.scene.canvas.GraphicsContext;
+
 public abstract class Entity {
+	
+	private int x;
+	private int y;
+	private int width;
+	private int height;
 	
 	private int level = 1;
 	private String name;
@@ -25,8 +32,28 @@ public abstract class Entity {
 		this.attack = attack;
 		this.defense = defense;
 	}
+	
+	public void render(GraphicsContext gc) {
+		//TODO
+	}
 
 	// Getter
+	public int getX() {
+		return x;
+	}
+
+	public int getY() {
+		return y;
+	}
+
+	public int getWidth() {
+		return width;
+	}
+
+	public int getHeight() {
+		return height;
+	}
+	
 	public int getLevel() {
 		return level;
 	}
