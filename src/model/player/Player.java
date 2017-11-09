@@ -16,5 +16,8 @@ public abstract class Player extends Entity {
 		super(name,level,hp,mp,attack,defense);
 	}
 	
+	public void jumpDown() {
+		y += 5;
+	}
 	
 }

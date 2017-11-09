@@ -1,13 +1,17 @@
 package model;
 
-import javafx.scene.canvas.GraphicsContext;
+import javafx.scene.image.Image;
 
 public abstract class Entity {
 	
-	private int x;
-	private int y;
-	private int width;
-	private int height;
+	protected double x;
+	protected double y;
+	private double width;
+	private double height;
+	protected double velocityX;
+	protected double velocityY;
+	private boolean isJumping = false;
+	private Image img;
 	
 	private int level = 1;
 	private String name;
@@ -33,27 +37,52 @@ public abstract class Entity {
 		this.defense = defense;
 	}
 	
-	public void render(GraphicsContext gc) {
-		//TODO
+	public void jump() {
+		velocityY = -10;
+	}
+	
+	public void move() {
+		x += velocityX;
+		y += velocityY;
+	}
+
+	public void pushAccX(double accX) {
+		this.velocityX += accX;
+	}
+	
+	public void pushAccY(double accY) {
+		this.velocityY += accY;
 	}
 
 	// Getter
-	public int getX() {
+	public double getX() {
 		return x;
 	}
-
-	public int getY() {
+	
+	public double getY() {
 		return y;
 	}
 
-	public int getWidth() {
+	public double getWidth() {
 		return width;
 	}
 
-	public int getHeight() {
+	public double getHeight() {
 		return height;
 	}
 	
+	public double getVelocityX() {
+		return velocityX;
+	}
+
+	public double getVelocityY() {
+		return velocityY;
+	}
+
+	public boolean isJumping() {
+		return isJumping;
+	}
+
 	public int getLevel() {
 		return level;
 	}
@@ -78,7 +107,27 @@ public abstract class Entity {
 		return defense;
 	}
 
+	public Image getImg() {
+		return img;
+	}
+
 	// Setter
+	public void setX(double x) {
+		this.x = x;
+	}
+
+	public void setY(double y) {
+		this.y = y;
+	}
+	
+	public void setVelocityX(double velocityX) {
+		this.velocityX = velocityX;
+	}
+	
+	public void setVelocityY(double velocityY) {
+		this.velocityY = velocityY;
+	}
+	
 	public void setLevel(int level) {
 		this.level = level;
 	}
@@ -102,7 +151,5 @@ public abstract class Entity {
 	public void setDefense(int defense) {
 		this.defense = defense;
 	}
-
-	
 	
 }
