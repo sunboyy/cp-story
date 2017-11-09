@@ -1,5 +1,6 @@
 package model;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javafx.scene.canvas.GraphicsContext;
@@ -8,12 +9,11 @@ import model.player.Player;
 
 public class GameManager {
 	
-	private List<Map> maps;
+	private List<Map> maps = new ArrayList<>();
 	private Player player;
 	private Map currentMap;
 	
 	public GameManager() {
-		
 	}
 
 	public List<Map> getMaps() {
@@ -30,12 +30,20 @@ public class GameManager {
 	
 	public void render(GraphicsContext gc) {
 		currentMap.render(gc);
-		//TODO Render Status bar
 		gc.drawImage(player.getImg(), player.getX()-currentMap.getX(), player.getY()-currentMap.getY());
+		//TODO Render Status bar
 	}
 	
-	public void setMap(Map m) {
+	public void setPlayer(Player p) {
+		player = p;
+	}
+	
+	public void setCurrentMap(Map m) {
 		currentMap = m;
+	}
+	
+	public boolean shouldJumpDown() {
+		return currentMap.getStructure().collideWith(player) != null && currentMap.getStructure().collideWith(player).isPassable();
 	}
 	
 }

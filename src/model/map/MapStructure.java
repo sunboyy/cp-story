@@ -9,9 +9,11 @@ import model.Renderable;
 public class MapStructure extends ArrayList<StructureItem> {
 	
 	private static final long serialVersionUID = -4023100906130113189L;
+	private Map map;
 	
-	public MapStructure() {
+	public MapStructure(Map map) {
 		super();
+		this.map = map;
 	}
 	
 	public MapStructure(StructureItem...items) {
@@ -27,8 +29,11 @@ public class MapStructure extends ArrayList<StructureItem> {
 	}
 	
 	public void render(GraphicsContext gc) {
-		gc.setFill(Color.BLACK);
-		for (StructureItem i: this) gc.fillRect(i.getX(), i.getY(), i.getWidth(), i.getHeight());
+		
+		for (StructureItem i: this) {
+			gc.setFill(i.isPassable() ? Color.YELLOW : Color.RED);
+			gc.fillRect(i.getX()-map.getX(), i.getY()-map.getY(), i.getWidth(), i.getHeight());
+		}
 	}
 	
 }

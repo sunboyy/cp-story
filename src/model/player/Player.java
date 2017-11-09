@@ -1,5 +1,6 @@
 package model.player;
 
+import javafx.scene.image.Image;
 import model.Entity;
 import model.Movable;
 
@@ -7,6 +8,7 @@ public abstract class Player extends Entity implements Movable {
 	
 	private double velocityX;
 	private double velocityY;
+	private boolean isJumping = false;
 	
 	public Player() {
 		super("Player");
@@ -14,6 +16,10 @@ public abstract class Player extends Entity implements Movable {
 	
 	public Player(String name) {
 		super(name);
+	}
+	
+	public Player(Image img) {
+		super(img);
 	}
 	
 	public Player(String name,int level,int hp,int mp,int attack,int defense) {
@@ -34,7 +40,10 @@ public abstract class Player extends Entity implements Movable {
 	}
 	
 	public void jump() {
-		velocityY = -10;
+		if (!isJumping) {
+			velocityY = -10;
+			isJumping = true;
+		}
 	}
 	
 	public void jumpDown() {
@@ -50,6 +59,10 @@ public abstract class Player extends Entity implements Movable {
 		return velocityY;
 	}
 	
+	public boolean isJumping() {
+		return isJumping;
+	}
+	
 	// Setter
 	public void setVelocityX(double velocityX) {
 		this.velocityX = velocityX;
@@ -57,6 +70,10 @@ public abstract class Player extends Entity implements Movable {
 	
 	public void setVelocityY(double velocityY) {
 		this.velocityY = velocityY;
+	}
+	
+	public void setJumping(boolean isJumping) {
+		this.isJumping = isJumping;
 	}
 
 }

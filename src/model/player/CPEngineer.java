@@ -1,9 +1,11 @@
 package model.player;
 
+import javafx.scene.image.Image;
+
 public class CPEngineer extends Player {
 	
 	public CPEngineer() {
-		super("CP Student");
+		super(new Image("player.png"));
 	}
 	
 	public CPEngineer(String name) {

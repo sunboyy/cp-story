@@ -8,8 +8,7 @@ public abstract class Entity implements Renderable {
 	protected double y;
 	private double width;
 	private double height;
-	private boolean isJumping = false;
-	protected Image img;
+	private Image img;
 	
 	private int level = 1;
 	private String name;
@@ -24,6 +23,12 @@ public abstract class Entity implements Renderable {
 	
 	public Entity(String name) {
 		this.name = name;
+	}
+	
+	public Entity(Image img) {
+		this.img = img;
+		width = img.getWidth();
+		height=  img.getHeight();
 	}
 	
 	public Entity(String name,int level,int hp,int mp,int attack,int defense) {
@@ -50,10 +55,6 @@ public abstract class Entity implements Renderable {
 
 	public double getHeight() {
 		return height;
-	}
-	
-	public boolean isJumping() {
-		return isJumping;
 	}
 
 	public int getLevel() {
