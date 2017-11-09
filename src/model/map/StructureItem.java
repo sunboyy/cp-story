@@ -1,8 +1,8 @@
 package model.map;
 
-import model.Entity;
+import model.Renderable;
 
-public class StructureItem {
+public class StructureItem implements Renderable {
 	
 	private double x;
 	private double y;
@@ -23,7 +23,7 @@ public class StructureItem {
 		this.isPassable = isPassable;
 	}
 
-	public boolean isCollide(Entity e) {
+	public boolean isCollide(Renderable e) {
 		if (x < e.getX() + e.getWidth() && x + width > e.getX() && y < e.getY() + e.getHeight() && height + y > e.getY() + e.getHeight() - 2) return true;
 		return false;
 	}

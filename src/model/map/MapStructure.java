@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.paint.Color;
-import model.Entity;
+import model.Renderable;
 
 public class MapStructure extends ArrayList<StructureItem> {
 	
@@ -19,7 +19,7 @@ public class MapStructure extends ArrayList<StructureItem> {
 		for (StructureItem i: items) add(i);
 	}
 	
-	public StructureItem collideWith(Entity e) {
+	public StructureItem collideWith(Renderable e) {
 		for (StructureItem i: this) {
 			if (i.isCollide(e)) return i;
 		}

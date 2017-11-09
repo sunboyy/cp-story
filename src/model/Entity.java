@@ -2,16 +2,14 @@ package model;
 
 import javafx.scene.image.Image;
 
-public abstract class Entity {
+public abstract class Entity implements Renderable {
 	
 	protected double x;
 	protected double y;
 	private double width;
 	private double height;
-	protected double velocityX;
-	protected double velocityY;
 	private boolean isJumping = false;
-	private Image img;
+	protected Image img;
 	
 	private int level = 1;
 	private String name;
@@ -36,23 +34,6 @@ public abstract class Entity {
 		this.attack = attack;
 		this.defense = defense;
 	}
-	
-	public void jump() {
-		velocityY = -10;
-	}
-	
-	public void move() {
-		x += velocityX;
-		y += velocityY;
-	}
-
-	public void pushAccX(double accX) {
-		this.velocityX += accX;
-	}
-	
-	public void pushAccY(double accY) {
-		this.velocityY += accY;
-	}
 
 	// Getter
 	public double getX() {
@@ -71,14 +52,6 @@ public abstract class Entity {
 		return height;
 	}
 	
-	public double getVelocityX() {
-		return velocityX;
-	}
-
-	public double getVelocityY() {
-		return velocityY;
-	}
-
 	public boolean isJumping() {
 		return isJumping;
 	}
@@ -118,14 +91,6 @@ public abstract class Entity {
 
 	public void setY(double y) {
 		this.y = y;
-	}
-	
-	public void setVelocityX(double velocityX) {
-		this.velocityX = velocityX;
-	}
-	
-	public void setVelocityY(double velocityY) {
-		this.velocityY = velocityY;
 	}
 	
 	public void setLevel(int level) {

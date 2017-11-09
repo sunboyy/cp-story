@@ -6,9 +6,10 @@ import constants.Constants;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
 import model.Entity;
-import model.player.Player;
+import model.Movable;
+import model.Renderable;
 
-public abstract class Map {
+public abstract class Map implements Renderable {
 
 	private double x = 0;
 	private double y = 0;
@@ -26,11 +27,6 @@ public abstract class Map {
 	
 	private List<Entity> entities;
 	private MapStructure structure;
-	private Player currentPlayer;
-	
-	public Player getCurrentPlayer() {
-		return currentPlayer;
-	}
 
 	public Map(Image img) {
 		backgroundImage = img;
@@ -38,14 +34,14 @@ public abstract class Map {
 		height = img.getHeight();
 	}
 	
-	public void motion(Entity e) {
+	public void motion(Movable e) {
 		moveEntity(e);
 		pullGravity(e);
 		decelerate(e);
 		moveMap(e);
 	}
 	
-	private void moveMap(Entity e) {
+	private void moveMap(Renderable e) {
 		// Move map by object inside
 		if (e.getX() > Constants.MAP_WIDTH + x - e.getWidth() - 100) x += movementSpeed;
 		else if (e.getX() < x + 100) x -= movementSpeed;
@@ -59,7 +55,7 @@ public abstract class Map {
 		else if (y > height - Constants.MAP_HEIGHT) y = height - Constants.MAP_HEIGHT;
 	}
 	
-	private void moveEntity(Entity e) {
+	private void moveEntity(Movable e) {
 		e.move();
 		if (e.getX() < 0) e.setX(0);
 		else if (e.getX() + e.getWidth() > width) e.setX(width - e.getWidth());
@@ -67,7 +63,7 @@ public abstract class Map {
 		else if (e.getY() + e.getHeight() > height) e.setY(height - e.getHeight());
 	}
 	
-	public void pushAccX(Entity e, double accX) {
+	public void pushAccX(Movable e, double accX) {
 		if (accX > 0) accX += isOnFloor(e) ? groundFriction : airFriction;
 		else if (accX < 0) accX -= isOnFloor(e) ? groundFriction : airFriction;
 		
@@ -76,20 +72,20 @@ public abstract class Map {
 		else e.pushAccX(accX);
 	}
 	
-	private void pullGravity(Entity e) {
+	private void pullGravity(Movable e) {
 		if (isOnFloor(e)) return;
 		if (e.getVelocityY() + gravity > maxVelocityY) e.setVelocityY(maxVelocityY);
 		else e.pushAccY(gravity);
 	}
 	
-	private void decelerate(Entity e) {
+	private void decelerate(Movable e) {
 		double friction = isOnFloor(e) ? groundFriction : airFriction;
 		if (e.getVelocityX() > friction) e.pushAccX(-friction);
 		else if (e.getVelocityX() < -friction) e.pushAccX(friction);
 		else e.setVelocityX(0);
 	}
 	
-	private boolean isOnFloor(Entity e) {
+	private boolean isOnFloor(Renderable e) {
 		if (e.getY() + e.getHeight() >= height) return true;
 		if (structure.collideWith(e) != null) return true;
 		return false;
