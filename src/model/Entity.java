@@ -6,8 +6,6 @@ public abstract class Entity implements Renderable {
 	
 	protected double x;
 	protected double y;
-	private double width;
-	private double height;
 	private Image img;
 	
 	private int level = 1;
@@ -27,8 +25,6 @@ public abstract class Entity implements Renderable {
 	
 	public Entity(Image img) {
 		this.img = img;
-		width = img.getWidth();
-		height=  img.getHeight();
 	}
 	
 	public Entity(String name,int level,int hp,int mp,int attack,int defense) {
@@ -50,11 +46,11 @@ public abstract class Entity implements Renderable {
 	}
 
 	public double getWidth() {
-		return width;
+		return img.getWidth();
 	}
 
 	public double getHeight() {
-		return height;
+		return img.getHeight();
 	}
 
 	public int getLevel() {

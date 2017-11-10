@@ -1,7 +1,10 @@
 package model.player;
 
+import input.KeyInput;
 import javafx.scene.image.Image;
+import javafx.scene.input.KeyCode;
 import model.Entity;
+import model.GameManager;
 import model.Movable;
 
 public abstract class Player extends Entity implements Movable {
@@ -48,6 +51,21 @@ public abstract class Player extends Entity implements Movable {
 	
 	public void jumpDown() {
 		y += 5;
+	}
+	
+	public void update() {
+		//TODO
+		if (KeyInput.containsKey(KeyCode.LEFT)) {
+			GameManager.getInstance().getCurrentMap().pushAccX(GameManager.getInstance().getPlayer(), -0.5);
+		}
+		if (KeyInput.containsKey(KeyCode.RIGHT)) {
+			GameManager.getInstance().getCurrentMap().pushAccX(GameManager.getInstance().getPlayer(), 0.5);
+		};
+		if (KeyInput.containsKey(KeyCode.SPACE)) {
+			if (KeyInput.containsKey(KeyCode.DOWN) && GameManager.getInstance().shouldJumpDown()) jumpDown();
+			else jump();
+		}
+		
 	}
 	
 	// Getter

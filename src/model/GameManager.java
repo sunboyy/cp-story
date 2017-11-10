@@ -9,6 +9,8 @@ import model.player.Player;
 
 public class GameManager {
 	
+	private static final GameManager instance = new GameManager();
+	
 	private List<Map> maps = new ArrayList<>();
 	private Player player;
 	private Map currentMap;
@@ -44,6 +46,10 @@ public class GameManager {
 	
 	public boolean shouldJumpDown() {
 		return currentMap.getStructure().collideWith(player) != null && currentMap.getStructure().collideWith(player).isPassable();
+	}
+	
+	public static GameManager getInstance() {
+		return instance;
 	}
 	
 }

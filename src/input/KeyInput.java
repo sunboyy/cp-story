@@ -1,17 +1,24 @@
 package input;
 
-import testui.SimpleScene;
+import java.util.HashSet;
+import java.util.Set;
+
+import javafx.scene.input.KeyCode;
 
 public class KeyInput {
 	
-	public static void bindAll(SimpleScene scene) {
-		scene.setOnKeyPressed(e -> {
-			scene.getActiveKeys().add(e.getCode());
-		});
-		scene.setOnKeyReleased(e -> {
-			scene.getActiveKeys().remove(e.getCode());
-		});
-		
+	private static Set<KeyCode> activeKeys = new HashSet<>();
+	
+	public static void addKey(KeyCode code) {
+		activeKeys.add(code);
+	}
+	
+	public static void removeKey(KeyCode code) {
+		activeKeys.remove(code);
+	}
+	
+	public static boolean containsKey(KeyCode code) {
+		return activeKeys.contains(code);
 	}
 	
 }

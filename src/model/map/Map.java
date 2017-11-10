@@ -7,6 +7,7 @@ import constants.Constants;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
 import model.Entity;
+import model.GameManager;
 import model.Movable;
 import model.Renderable;
 import model.player.Player;
@@ -41,7 +42,7 @@ public abstract class Map implements Renderable {
 		moveEntity(e);
 		pullGravity(e);
 		decelerate(e);
-		moveMap(e);
+		moveMap();
 		if (e.getVelocityY() >= 0 && isOnFloor(e)) {
 			e.setVelocityY(0);
 			if (e instanceof Player) {
@@ -50,12 +51,22 @@ public abstract class Map implements Renderable {
 		}
 	}
 	
-	private void moveMap(Renderable e) {
+	public void motionAll() {
+		for (Entity i: entities) {
+			if (i instanceof Movable) {
+				motion((Movable) i);
+			}
+		}
+	}
+	
+	
+	private void moveMap() {
 		// Move map by object inside
-		if (e.getX() > Constants.MAP_WIDTH + x - e.getWidth() - 100) x += movementSpeed;
-		else if (e.getX() < x + 100) x -= movementSpeed;
-		if (e.getY() > Constants.MAP_HEIGHT + y - e.getHeight() - 100) y += movementSpeed;
-		else if (e.getY() < y + 100) y -= movementSpeed;
+		Player player = GameManager.getInstance().getPlayer();
+		if (player.getX() > Constants.MAP_WIDTH + x - player.getWidth() - 100) x += movementSpeed;
+		else if (player.getX() < x + 100) x -= movementSpeed;
+		if (player.getY() > Constants.MAP_HEIGHT + y - player.getHeight() - 100) y += movementSpeed;
+		else if (player.getY() < y + 100) y -= movementSpeed;
 		
 		// Map boundary
 		if (x < 0) x = 0;
@@ -72,13 +83,16 @@ public abstract class Map implements Renderable {
 		else if (e.getY() + e.getHeight() > height) e.setY(height - e.getHeight());
 	}
 	
-	public void pushAccX(Movable e, double accX) {
-		if (accX > 0) accX += isOnFloor(e) ? groundFriction : airFriction;
-		else if (accX < 0) accX -= isOnFloor(e) ? groundFriction : airFriction;
+	public void pushAccX(Entity e, double accX) {
+		if (!(e instanceof Movable)) return;
+		Movable m = (Movable) e;
+		double friction = getFriction(e);
+		if (accX > 0) accX += friction;
+		else if (accX < 0) accX -= friction;
 		
-		if (e.getVelocityX() + accX > maxVelocityX) e.setVelocityX(maxVelocityX);
-		else if (e.getVelocityX() + accX < -maxVelocityX) e.setVelocityX(-maxVelocityX);
-		else e.pushAccX(accX);
+		if (m.getVelocityX() + accX > maxVelocityX) m.setVelocityX(maxVelocityX);
+		else if (m.getVelocityX() + accX < -maxVelocityX) m.setVelocityX(-maxVelocityX);
+		else m.pushAccX(accX);
 	}
 	
 	private void pullGravity(Movable e) {
@@ -106,6 +120,10 @@ public abstract class Map implements Renderable {
 		for (Entity i: entities) gc.drawImage(i.getImg(), i.getX()-x, i.getY()-y);
 	}
 	
+	public double getFriction(Entity e) {
+		return isOnFloor(e) ? groundFriction : airFriction;
+	}
+
 	@Override
 	public double getX() {
 		return x;
@@ -128,6 +146,18 @@ public abstract class Map implements Renderable {
 	
 	public MapStructure getStructure() {
 		return structure;
+	}
+	
+	public List<Entity> getEntities() {
+		return entities;
+	}
+
+	public double getMaxVelocityX() {
+		return maxVelocityX;
+	}
+
+	public double getMaxVelocityY() {
+		return maxVelocityY;
 	}
 
 }

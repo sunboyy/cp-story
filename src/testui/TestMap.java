@@ -9,6 +9,7 @@ public class TestMap extends Map {
 		super(new Image("henesys.jpg"),
 				new StructureItem(0, 700, 200, 6, false),
 				new StructureItem(100, 650, 200, 6));
+		getEntities().add(new TestMonster());
 	}
 
 }
