@@ -12,6 +12,7 @@ public abstract class Player extends Entity implements Movable {
 	private double velocityX;
 	private double velocityY;
 	private boolean isJumping = false;
+	private double attackRange = 50;
 	
 	public Player() {
 		super("Player");
@@ -43,26 +44,31 @@ public abstract class Player extends Entity implements Movable {
 	}
 	
 	public void jump() {
-		if (!isJumping) {
+		if (!isJumping && GameManager.getInstance().getCurrentMap().isOnFloor(this)) {
 			velocityY = -10;
 			isJumping = true;
 		}
 	}
 	
 	public void jumpDown() {
-		y += 5;
+		if (!isJumping && GameManager.getInstance().getCurrentMap().isOnFloor(this)) {
+			y += 5;
+			isJumping = true;
+		}
 	}
 	
 	public void update() {
 		//TODO
-		if (KeyInput.containsKey(KeyCode.LEFT)) {
+		if (KeyInput.pressingKey(KeyCode.LEFT)) {
+			facing = LEFT;
 			GameManager.getInstance().getCurrentMap().pushAccX(GameManager.getInstance().getPlayer(), -0.5);
 		}
-		if (KeyInput.containsKey(KeyCode.RIGHT)) {
+		if (KeyInput.pressingKey(KeyCode.RIGHT)) {
+			facing = RIGHT;
 			GameManager.getInstance().getCurrentMap().pushAccX(GameManager.getInstance().getPlayer(), 0.5);
 		};
-		if (KeyInput.containsKey(KeyCode.SPACE)) {
-			if (KeyInput.containsKey(KeyCode.DOWN) && GameManager.getInstance().shouldJumpDown()) jumpDown();
+		if (KeyInput.pressingKey(KeyCode.SPACE)) {
+			if (KeyInput.pressingKey(KeyCode.DOWN) && GameManager.getInstance().shouldJumpDown()) jumpDown();
 			else jump();
 		}
 		
@@ -79,6 +85,10 @@ public abstract class Player extends Entity implements Movable {
 	
 	public boolean isJumping() {
 		return isJumping;
+	}
+	
+	public double getAttackRange() {
+		return attackRange;
 	}
 	
 	// Setter

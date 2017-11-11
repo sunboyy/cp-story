@@ -108,7 +108,7 @@ public abstract class Map implements Renderable {
 		else e.setVelocityX(0);
 	}
 	
-	private boolean isOnFloor(Renderable e) {
+	public boolean isOnFloor(Renderable e) {
 		if (e.getY() + e.getHeight() >= height) return true;
 		if (structure.collideWith(e) != null) return true;
 		return false;

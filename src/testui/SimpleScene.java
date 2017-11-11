@@ -22,8 +22,7 @@ public class SimpleScene extends Scene {
 		Canvas canvas = new Canvas(1000, 600);
 		root.getChildren().add(canvas);
 		
-		setOnKeyPressed(e -> KeyInput.addKey(e.getCode()));
-		setOnKeyReleased(e -> KeyInput.removeKey(e.getCode()));
+		KeyInput.bindScene(this);
 		
 		GameManager.getInstance().setCurrentMap(new TestMap());
 		GameManager.getInstance().getMaps().add(GameManager.getInstance().getCurrentMap());

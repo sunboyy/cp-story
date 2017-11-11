@@ -3,10 +3,14 @@ package model;
 import javafx.scene.image.Image;
 
 public abstract class Entity implements Renderable {
+
+	public static final int LEFT = 0;
+	public static final int RIGHT = 1;
 	
 	protected double x;
 	protected double y;
 	private Image img;
+	protected int facing = RIGHT;
 	
 	private int level = 1;
 	private String name;
@@ -53,6 +57,10 @@ public abstract class Entity implements Renderable {
 		return img.getHeight();
 	}
 
+	public int getFacing() {
+		return facing;
+	}
+	
 	public int getLevel() {
 		return level;
 	}
