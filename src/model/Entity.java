@@ -2,13 +2,13 @@ package model;
 
 import javafx.scene.image.Image;
 
-public abstract class Entity implements Renderable {
+public abstract class Entity extends Rectangle {
 
 	public static final int LEFT = 0;
 	public static final int RIGHT = 1;
 	
-	protected double x;
-	protected double y;
+	protected double velocityX;
+	protected double velocityY;
 	private Image img;
 	protected int facing = RIGHT;
 	
@@ -28,6 +28,7 @@ public abstract class Entity implements Renderable {
 	}
 	
 	public Entity(Image img) {
+		super(0, 0, img.getWidth(), img.getHeight());
 		this.img = img;
 	}
 	
@@ -39,28 +40,38 @@ public abstract class Entity implements Renderable {
 		this.attack = attack;
 		this.defense = defense;
 	}
-
-	// Getter
-	public double getX() {
-		return x;
+	
+	public void move(double x, double y) {
+		this.x += x;
+		this.y += y;
 	}
 	
-	public double getY() {
-		return y;
+	public void move() {
+		this.x += velocityX;
+		this.y += velocityY;
 	}
 
-	public double getWidth() {
-		return img.getWidth();
+	public void pushAccX(double accX) {
+		this.velocityX += accX;
 	}
-
-	public double getHeight() {
-		return img.getHeight();
+	
+	public void pushAccY(double accY) {
+		this.velocityY += accY;
 	}
-
+	
+	// Getter
 	public int getFacing() {
 		return facing;
 	}
 	
+	public double getVelocityX() {
+		return velocityX;
+	}
+
+	public double getVelocityY() {
+		return velocityY;
+	}
+
 	public int getLevel() {
 		return level;
 	}
@@ -90,16 +101,16 @@ public abstract class Entity implements Renderable {
 	}
 
 	// Setter
-	public void setX(double x) {
-		this.x = x;
-	}
-
-	public void setY(double y) {
-		this.y = y;
-	}
-	
 	public void setLevel(int level) {
 		this.level = level;
+	}
+
+	public void setVelocityX(double velocityX) {
+		this.velocityX = velocityX;
+	}
+
+	public void setVelocityY(double velocityY) {
+		this.velocityY = velocityY;
 	}
 
 	public void setName(String name) {

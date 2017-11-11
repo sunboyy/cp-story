@@ -5,14 +5,17 @@ import javafx.scene.image.Image;
 import javafx.scene.input.KeyCode;
 import model.Entity;
 import model.GameManager;
-import model.Movable;
+import model.Rectangle;
 
-public abstract class Player extends Entity implements Movable {
+public abstract class Player extends Entity {
 	
-	private double velocityX;
-	private double velocityY;
 	private boolean isJumping = false;
 	private double attackRange = 50;
+	private Rectangle attackArea;
+	private int attackTick = 30;
+	private int maxAttackTick = 30;
+	private int damageTick = 60;
+	private int maxDamageTick = 60;
 	
 	public Player() {
 		super("Player");
@@ -24,23 +27,11 @@ public abstract class Player extends Entity implements Movable {
 	
 	public Player(Image img) {
 		super(img);
+		attackArea = new Rectangle(x, y, width, height);
 	}
 	
 	public Player(String name,int level,int hp,int mp,int attack,int defense) {
 		super(name,level,hp,mp,attack,defense);
-	}
-	
-	public void pushAccX(double accX) {
-		this.velocityX += accX;
-	}
-	
-	public void pushAccY(double accY) {
-		this.velocityY += accY;
-	}
-	
-	public void move() {
-		x += velocityX;
-		y += velocityY;
 	}
 	
 	public void jump() {
@@ -52,7 +43,7 @@ public abstract class Player extends Entity implements Movable {
 	
 	public void jumpDown() {
 		if (!isJumping && GameManager.getInstance().getCurrentMap().isOnFloor(this)) {
-			y += 5;
+			move(0, 2);
 			isJumping = true;
 		}
 	}
@@ -71,18 +62,21 @@ public abstract class Player extends Entity implements Movable {
 			if (KeyInput.pressingKey(KeyCode.DOWN) && GameManager.getInstance().shouldJumpDown()) jumpDown();
 			else jump();
 		}
-		
+		if (KeyInput.pressingKey(KeyCode.CONTROL)) {
+			if (attackTick >= maxAttackTick && GameManager.getInstance().getCurrentMap().collideEntity(getAttackArea()) != null) {
+				attackTick = 0;
+				System.out.println("Attacked");
+			}
+		}
+		if (attackTick < maxAttackTick) attackTick++;
+		if (damageTick < maxDamageTick) damageTick++;
+		else if (GameManager.getInstance().getCurrentMap().collideEntity(this) != null) {
+			damageTick = 0;
+			System.out.println("Player HP decreased");
+		}
 	}
 	
 	// Getter
-	public double getVelocityX() {
-		return velocityX;
-	}
-
-	public double getVelocityY() {
-		return velocityY;
-	}
-	
 	public boolean isJumping() {
 		return isJumping;
 	}
@@ -91,15 +85,23 @@ public abstract class Player extends Entity implements Movable {
 		return attackRange;
 	}
 	
+	public Rectangle getAttackArea() {
+		if (facing == LEFT) {
+			attackArea.setX(x-attackRange);
+			attackArea.setY(y);
+			attackArea.setWidth(width+attackRange);
+			attackArea.setHeight(height);
+		}
+		else {
+			attackArea.setX(x);
+			attackArea.setY(y);
+			attackArea.setWidth(width+attackRange);
+			attackArea.setHeight(height);
+		}
+		return attackArea;
+	}
+	
 	// Setter
-	public void setVelocityX(double velocityX) {
-		this.velocityX = velocityX;
-	}
-	
-	public void setVelocityY(double velocityY) {
-		this.velocityY = velocityY;
-	}
-	
 	public void setJumping(boolean isJumping) {
 		this.isJumping = isJumping;
 	}

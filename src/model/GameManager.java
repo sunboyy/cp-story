@@ -33,12 +33,7 @@ public class GameManager {
 	public void render(GraphicsContext gc) {
 		currentMap.render(gc);
 		gc.drawImage(player.getImg(), player.getX()-currentMap.getX(), player.getY()-currentMap.getY());
-		if (player.getFacing() == Entity.LEFT) {
-			gc.strokeRect(player.getX()-currentMap.getX()-player.getAttackRange(), player.getY()-currentMap.getY(), player.getWidth()+player.getAttackRange(), player.getHeight());
-		}
-		else {
-			gc.strokeRect(player.getX()-currentMap.getX(), player.getY()-currentMap.getY(), player.getWidth()+player.getAttackRange(), player.getHeight());
-		}
+		gc.strokeRect(player.getAttackArea().getX()-currentMap.getX(), player.getAttackArea().getY()-currentMap.getY(), player.getAttackArea().getWidth(), player.getAttackArea().getHeight());
 		//TODO Render Status bar
 	}
 	
