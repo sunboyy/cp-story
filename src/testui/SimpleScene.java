@@ -5,6 +5,7 @@ import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
+import javafx.scene.image.Image;
 import javafx.scene.layout.StackPane;
 import javafx.util.Duration;
 import model.GameManager;
@@ -14,6 +15,8 @@ import model.player.CPEngineer;
 public class SimpleScene extends Scene {
 	
 	private StackPane root;
+	
+	private Image backgroundImg = new Image("background.png");
 	
 	public SimpleScene() {
 		super(new StackPane(), 1000, 600);
@@ -26,12 +29,13 @@ public class SimpleScene extends Scene {
 		
 		GameManager.getInstance().setCurrentMap(new TestMap());
 		GameManager.getInstance().getMaps().add(GameManager.getInstance().getCurrentMap());
-		GameManager.getInstance().setPlayer(new CPEngineer());
+		GameManager.getInstance().setPlayer(new CPEngineer(500, 550));
 		
 		KeyFrame kf = new KeyFrame(Duration.seconds(1./60), e -> {
 			GameManager.getInstance().getPlayer().update();
 			GameManager.getInstance().getCurrentMap().motion(GameManager.getInstance().getPlayer());
 			GameManager.getInstance().getCurrentMap().motionAll();
+			canvas.getGraphicsContext2D().drawImage(backgroundImg, 0, 0);
 			GameManager.getInstance().render(canvas.getGraphicsContext2D());
 		});
 		Timeline gameloop = new Timeline();

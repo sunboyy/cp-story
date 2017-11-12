@@ -3,11 +3,11 @@ package model.player;
 import input.KeyInput;
 import javafx.scene.image.Image;
 import javafx.scene.input.KeyCode;
-import model.Entity;
+import model.DamageableEntity;
 import model.GameManager;
 import model.Rectangle;
 
-public abstract class Player extends Entity {
+public abstract class Player extends DamageableEntity {
 	
 	private boolean isJumping = false;
 	private double attackRange = 50;
@@ -17,21 +17,13 @@ public abstract class Player extends Entity {
 	private int damageTick = 60;
 	private int maxDamageTick = 60;
 	
-	public Player() {
-		super("Player");
+	public Player(Image img, int hp, int mp, int atk) {
+		this(img, 0, 0, hp, mp, atk);
 	}
 	
-	public Player(String name) {
-		super(name);
-	}
-	
-	public Player(Image img) {
-		super(img);
+	public Player(Image img, double x, double y, int hp, int mp, int atk) {
+		super(img, x, y, hp, mp, atk);
 		attackArea = new Rectangle(x, y, width, height);
-	}
-	
-	public Player(String name,int level,int hp,int mp,int attack,int defense) {
-		super(name,level,hp,mp,attack,defense);
 	}
 	
 	public void jump() {
@@ -46,6 +38,16 @@ public abstract class Player extends Entity {
 			move(0, 2);
 			isJumping = true;
 		}
+	}
+	
+	public void attack(DamageableEntity e) {
+		if (e == null) return;
+		e.damage(getAttackDamage());
+		System.out.println(e);
+		if (e.isDead()) {
+			GameManager.getInstance().getCurrentMap().getEntities().remove(e);
+		}
+		attackTick = 0;
 	}
 	
 	public void update() {
@@ -63,16 +65,16 @@ public abstract class Player extends Entity {
 			else jump();
 		}
 		if (KeyInput.pressingKey(KeyCode.CONTROL)) {
-			if (attackTick >= maxAttackTick && GameManager.getInstance().getCurrentMap().collideEntity(getAttackArea()) != null) {
-				attackTick = 0;
-				System.out.println("Attacked");
+			if (attackTick >= maxAttackTick && GameManager.getInstance().getCurrentMap().collideDamageableEntity(getAttackArea()) != null) {
+				attack(GameManager.getInstance().getCurrentMap().collideDamageableEntity(getAttackArea()));
 			}
 		}
 		if (attackTick < maxAttackTick) attackTick++;
 		if (damageTick < maxDamageTick) damageTick++;
-		else if (GameManager.getInstance().getCurrentMap().collideEntity(this) != null) {
+		else if (GameManager.getInstance().getCurrentMap().collideDamageableEntity(this) != null) {
+			damage(GameManager.getInstance().getCurrentMap().collideDamageableEntity(this).getAttackDamage());
+			System.out.println(this);
 			damageTick = 0;
-			System.out.println("Player HP decreased");
 		}
 	}
 	

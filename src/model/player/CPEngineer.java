@@ -5,11 +5,11 @@ import javafx.scene.image.Image;
 public class CPEngineer extends Player {
 	
 	public CPEngineer() {
-		super(new Image("player.png"));
+		this(0, 0);
 	}
 	
-	public CPEngineer(String name) {
-		super(name);
+	public CPEngineer(double x, double y) {
+		super(new Image("player.png"), x, y, 100, 50, 5);
 	}
 	
 }

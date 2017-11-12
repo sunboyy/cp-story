@@ -1,20 +1,16 @@
 package model.monster;
 
 import javafx.scene.image.Image;
-import model.Entity;
+import model.DamageableEntity;
 
-public class Monster extends Entity {
+public class Monster extends DamageableEntity {
 	
-	public Monster() {
-		super("Monster");
+	public Monster(Image img, int hp, int mp, int atk) {
+		this(img, 0, 0, hp, mp, atk);
 	}
 	
-	public Monster(String name,int level,int hp,int mp,int attack,int defense) {
-		super(name,level,hp,mp,attack,defense);
-	}
-	
-	public Monster(Image img) {
-		super(img);
+	public Monster(Image img, double x, double y, int hp, int mp, int atk) {
+		super(img, x, y, hp, mp, atk);
 	}
 	
 }

@@ -6,6 +6,7 @@ import java.util.List;
 import constants.Constants;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
+import model.DamageableEntity;
 import model.Entity;
 import model.GameManager;
 import model.Rectangle;
@@ -54,10 +55,10 @@ public abstract class Map extends Rectangle {
 	private void moveMap() {
 		// Move map by object inside
 		Player player = GameManager.getInstance().getPlayer();
-		if (player.getX() > Constants.MAP_WIDTH + x - player.getWidth() - 100) x += movementSpeed;
-		else if (player.getX() < x + 100) x -= movementSpeed;
-		if (player.getY() > Constants.MAP_HEIGHT + y - player.getHeight() - 100) y += movementSpeed;
-		else if (player.getY() < y + 100) y -= movementSpeed;
+		if (player.getX() > Constants.MAP_WIDTH + x - player.getWidth() - 200) x += movementSpeed;
+		else if (player.getX() < x + 200) x -= movementSpeed;
+		if (player.getY() > Constants.MAP_HEIGHT + y - player.getHeight() - 150) y += movementSpeed;
+		else if (player.getY() < y + 150) y -= movementSpeed;
 		
 		// Map boundary
 		if (x < 0) x = 0;
@@ -106,6 +107,15 @@ public abstract class Map extends Rectangle {
 	public Entity collideEntity(Rectangle r) {
 		for (Entity i: entities) {
 			if (r.collideWith(i)) return i;
+		}
+		return null;
+	}
+	
+	public DamageableEntity collideDamageableEntity(Rectangle r) {
+		for (Entity i: entities) {
+			if (i instanceof DamageableEntity && r.collideWith(i)) {
+				return (DamageableEntity) i;
+			}
 		}
 		return null;
 	}

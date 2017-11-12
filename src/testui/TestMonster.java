@@ -5,8 +5,8 @@ import model.monster.Monster;
 
 public class TestMonster extends Monster {
 	
-	public TestMonster() {
-		super(new Image("orangemush.gif"));
+	public TestMonster(double x, double y) {
+		super(new Image("orangemush.gif"), x, y, 40, 20, 5);
 	}
 
 }
