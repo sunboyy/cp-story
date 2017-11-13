@@ -1,3 +1,4 @@
+
 package testui;
 
 import input.KeyInput;
@@ -13,6 +14,8 @@ import model.player.CPEngineer;
 
 // Simple scene for testing purpose
 public class SimpleScene extends Scene {
+	
+	public static Thread monsterGen;
 	
 	private StackPane root;
 	
@@ -32,17 +35,37 @@ public class SimpleScene extends Scene {
 		GameManager.getInstance().setPlayer(new CPEngineer(500, 550));
 		
 		KeyFrame kf = new KeyFrame(Duration.seconds(1./60), e -> {
-			GameManager.getInstance().getPlayer().update();
 			GameManager.getInstance().getCurrentMap().motion(GameManager.getInstance().getPlayer());
 			GameManager.getInstance().getCurrentMap().motionAll();
 			canvas.getGraphicsContext2D().drawImage(backgroundImg, 0, 0);
 			GameManager.getInstance().render(canvas.getGraphicsContext2D());
+			GameManager.getInstance().update();
 		});
 		Timeline gameloop = new Timeline();
 		gameloop.setCycleCount(Timeline.INDEFINITE);
 		gameloop.getKeyFrames().add(kf);
 		gameloop.play();
 		
+		Runnable runner = new Runnable() {
+			@Override
+			public void run() {
+				while (true) {
+					try {
+						Thread.sleep(5000);
+					} catch (InterruptedException e) {
+						e.printStackTrace();
+					}
+					if (GameManager.getInstance().getCurrentMap().getEntities().size() < 10) {
+						GameManager.getInstance().getCurrentMap().getEntities().add(new TestMonster(100+Math.random()*200, 550));
+					}
+					if (!GameManager.getInstance().isMonsterSpawning()) {
+						break;
+					}
+				}
+			}
+		};
+		monsterGen = new Thread(runner);
+		monsterGen.start();
 	}
 	
 }

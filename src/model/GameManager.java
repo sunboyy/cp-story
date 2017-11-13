@@ -11,6 +11,7 @@ public class GameManager {
 	
 	private static final GameManager instance = new GameManager();
 	
+	private boolean isMonsterSpawning = true;
 	private List<Map> maps = new ArrayList<>();
 	private Player player;
 	private Map currentMap;
@@ -32,9 +33,14 @@ public class GameManager {
 	
 	public void render(GraphicsContext gc) {
 		currentMap.render(gc);
-		gc.drawImage(player.getImg(), player.getX()-currentMap.getX(), player.getY()-currentMap.getY());
+		player.render(gc);
 		gc.strokeRect(player.getAttackArea().getX()-currentMap.getX(), player.getAttackArea().getY()-currentMap.getY(), player.getAttackArea().getWidth(), player.getAttackArea().getHeight());
 		//TODO Render Status bar
+	}
+	
+	public void update() {
+		currentMap.update();
+		player.update();
 	}
 	
 	public void setPlayer(Player p) {
@@ -51,6 +57,14 @@ public class GameManager {
 	
 	public static GameManager getInstance() {
 		return instance;
+	}
+
+	public boolean isMonsterSpawning() {
+		return isMonsterSpawning;
+	}
+
+	public void setMonsterSpawning(boolean isMonsterSpawning) {
+		this.isMonsterSpawning = isMonsterSpawning;
 	}
 	
 }

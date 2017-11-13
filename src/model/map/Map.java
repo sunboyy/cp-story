@@ -1,6 +1,7 @@
 package model.map;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
 import constants.Constants;
@@ -11,6 +12,7 @@ import model.Entity;
 import model.GameManager;
 import model.Rectangle;
 import model.player.Player;
+import particle.Particle;
 
 public abstract class Map extends Rectangle {
 
@@ -25,6 +27,7 @@ public abstract class Map extends Rectangle {
 	protected boolean allowMultipleJumps = false;
 	
 	private List<Entity> entities = new ArrayList<>();
+	private List<Particle> particles = new ArrayList<>();
 	private MapStructure structure = new MapStructure(this);
 
 	public Map(Image img, StructureItem...structureItems) {
@@ -123,7 +126,17 @@ public abstract class Map extends Rectangle {
 	public void render(GraphicsContext gc) {
 		gc.drawImage(backgroundImage, -x, -y);
 		structure.render(gc);
-		for (Entity i: entities) gc.drawImage(i.getImg(), i.getX()-x, i.getY()-y);
+		for (Entity i: entities) i.render(gc);
+		for (Particle i: particles) i.render(gc);
+	}
+	
+	public void update() {
+		Iterator<Particle> it = particles.iterator();
+		while (it.hasNext()) {
+			if (!it.next().isVisible()) {
+				it.remove();
+			}
+		}
 	}
 	
 	public double getFriction(Entity e) {
@@ -144,6 +157,10 @@ public abstract class Map extends Rectangle {
 
 	public double getMaxVelocityY() {
 		return maxVelocityY;
+	}
+	
+	public List<Particle> getParticles() {
+		return particles;
 	}
 
 }

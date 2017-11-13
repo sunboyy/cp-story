@@ -1,5 +1,6 @@
 package model;
 
+import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
 
 public abstract class Entity extends Rectangle {
@@ -37,6 +38,10 @@ public abstract class Entity extends Rectangle {
 	
 	public void pushAccY(double accY) {
 		this.velocityY += accY;
+	}
+	
+	public void render(GraphicsContext gc) {
+		gc.drawImage(getImg(), x-GameManager.getInstance().getCurrentMap().x, y-GameManager.getInstance().getCurrentMap().y);
 	}
 	
 	// Getter

@@ -1,6 +1,9 @@
 package model;
 
+import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
+import particle.Damage;
+import particle.HPBar;
 
 public abstract class DamageableEntity extends Entity {
 	
@@ -11,6 +14,7 @@ public abstract class DamageableEntity extends Entity {
 	private int mp;
 	private int attackDamage = 5;
 	private int defense = 5;
+	private HPBar hpBar;
 	
 	public DamageableEntity(Image img, int hp, int mp, int attackDamage) {
 		this(img, 0, 0, hp, mp, attackDamage);
@@ -23,6 +27,7 @@ public abstract class DamageableEntity extends Entity {
 		this.maxMp = mp;
 		this.mp = mp;
 		this.attackDamage = attackDamage;
+		hpBar = new HPBar(this);
 	}
 	
 //	public DamageableEntity(String name,int level,int hp,int mp,int attack,int defense) {
@@ -36,10 +41,17 @@ public abstract class DamageableEntity extends Entity {
 	
 	public void damage(int hp) {
 		this.hp -= hp;
+		hpBar.resetVisible();
+		GameManager.getInstance().getCurrentMap().getParticles().add(new Damage(hp, this.x+this.width/2, this.y));
 	}
 	
 	public boolean isDead() {
 		return hp <= 0;
+	}
+	
+	public void render(GraphicsContext gc) {
+		super.render(gc);
+		hpBar.render(gc);
 	}
 	
 	// Getter
