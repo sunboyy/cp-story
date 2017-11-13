@@ -12,21 +12,23 @@ public abstract class DamageableEntity extends Entity {
 	private int hp;
 	private int maxMp;
 	private int mp;
-	private int attackDamage = 5;
+	private int attackDamageLow = 4;
+	private int attackDamageHigh = 8;
 	private int defense = 5;
 	private HPBar hpBar;
 	
-	public DamageableEntity(Image img, int hp, int mp, int attackDamage) {
-		this(img, 0, 0, hp, mp, attackDamage);
+	public DamageableEntity(Image img, int hp, int mp, int attackDamageLow, int attackDamageHigh) {
+		this(img, 0, 0, hp, mp, attackDamageLow, attackDamageHigh);
 	}
 	
-	public DamageableEntity(Image img, double x, double y, int hp, int mp, int attackDamage) {
+	public DamageableEntity(Image img, double x, double y, int hp, int mp, int attackDamageLow, int attackDamageHigh) {
 		super(img, x, y);
 		this.maxHp = hp;
 		this.hp = hp;
 		this.maxMp = mp;
 		this.mp = mp;
-		this.attackDamage = attackDamage;
+		this.attackDamageLow = attackDamageLow;
+		this.attackDamageHigh = attackDamageHigh;
 		hpBar = new HPBar(this);
 	}
 	
@@ -76,7 +78,7 @@ public abstract class DamageableEntity extends Entity {
 	}
 
 	public int getAttackDamage() {
-		return attackDamage;
+		return (int) Math.floor(Math.random() * (attackDamageHigh-attackDamageLow)) + attackDamageLow;
 	}
 
 	public int getDefense() {
@@ -104,8 +106,12 @@ public abstract class DamageableEntity extends Entity {
 		this.mp = mp;
 	}
 
-	public void setAttackDamage(int attackDamage) {
-		this.attackDamage = attackDamage;
+	public void setAttackDamageLow(int attackDamageLow) {
+		this.attackDamageLow = attackDamageLow;
+	}
+
+	public void setAttackDamageHigh(int attackDamageHigh) {
+		this.attackDamageHigh = attackDamageHigh;
 	}
 
 	public void setDefense(int defense) {
