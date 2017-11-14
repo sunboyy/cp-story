@@ -16,7 +16,8 @@ import particle.Particle;
 
 public abstract class Map extends Rectangle {
 
-	private Image backgroundImage;
+	private Image img;
+	private Image backgroundImg = new Image("background.png");	
 	private double movementSpeed = 3.9;
 	
 	protected double gravity = 0.55;
@@ -26,13 +27,15 @@ public abstract class Map extends Rectangle {
 	protected double maxVelocityY = 6;
 	protected boolean allowMultipleJumps = false;
 	
+	private List<Portal> portals = new ArrayList<>();
 	private List<Entity> entities = new ArrayList<>();
 	private List<Particle> particles = new ArrayList<>();
 	private MapStructure structure = new MapStructure(this);
 
-	public Map(Image img, StructureItem...structureItems) {
+	public Map(Image img, Image bgImg, StructureItem...structureItems) {
 		super(0, 0, img.getWidth(), img.getHeight());
-		backgroundImage = img;
+		this.img = img;
+		this.backgroundImg = bgImg;
 		for (StructureItem i: structureItems) structure.add(i);
 	}
 	
@@ -123,10 +126,20 @@ public abstract class Map extends Rectangle {
 		return null;
 	}
 	
+	public Portal collidePortal(Rectangle r) {
+		for (Portal i: portals) {
+			if (i.collideWith(r)) return i;
+		}
+		return null;
+	}
+	
 	public void render(GraphicsContext gc) {
-		gc.drawImage(backgroundImage, -x, -y);
+		gc.drawImage(backgroundImg, 0, 0);
+		gc.drawImage(img, -x, -y);
 		structure.render(gc);
 		for (Entity i: entities) i.render(gc);
+		GameManager.getInstance().getPlayer().render(gc);
+		for (Portal i: portals) i.render(gc);
 		for (Particle i: particles) i.render(gc);
 	}
 	
@@ -161,6 +174,10 @@ public abstract class Map extends Rectangle {
 	
 	public List<Particle> getParticles() {
 		return particles;
+	}
+	
+	public List<Portal> getPortals() {
+		return portals;
 	}
 
 }

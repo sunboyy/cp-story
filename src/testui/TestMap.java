@@ -19,7 +19,7 @@ public class TestMap extends Map {
 //				new StructureItem(90, 450, 140, 5),
 //				new StructureItem(180, 255, 140, 5),
 //				new StructureItem(180, 190, 140, 5));
-		super(new Image("foreground.png"),
+		super(new Image("foreground.png"), new Image("background.png"),
 				new StructureItem(0, 695, 1500, 5, false),
 				
 				new StructureItem(640, 620, 50, 5),

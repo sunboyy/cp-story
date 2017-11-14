@@ -60,4 +60,8 @@ public class Rectangle {
 		return false;
 	}
 	
+	public String toString() {
+		return String.format("%s [x=%f, y=%f, width=%f, height=%f]", getClass().getSimpleName(), x, y, width, height);
+	}
+	
 }

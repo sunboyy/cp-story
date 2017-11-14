@@ -6,6 +6,7 @@ import javafx.scene.input.KeyCode;
 import model.DamageableEntity;
 import model.GameManager;
 import model.Rectangle;
+import model.map.Portal;
 
 public abstract class Player extends DamageableEntity {
 	
@@ -16,6 +17,8 @@ public abstract class Player extends DamageableEntity {
 	private int maxAttackTick = 30;
 	private int damageTick = 60;
 	private int maxDamageTick = 60;
+	private int warpTick = 60;
+	private int maxWarpTick = 60;
 	
 	public Player(Image img, int hp, int mp, int atkLow, int atkHigh) {
 		this(img, 0, 0, hp, mp, atkLow, atkHigh);
@@ -65,10 +68,21 @@ public abstract class Player extends DamageableEntity {
 			else jump();
 		}
 		if (KeyInput.pressingKey(KeyCode.CONTROL)) {
-			if (attackTick >= maxAttackTick && GameManager.getInstance().getCurrentMap().collideDamageableEntity(getAttackArea()) != null) {
-				attack(GameManager.getInstance().getCurrentMap().collideDamageableEntity(getAttackArea()));
+			DamageableEntity entity = GameManager.getInstance().getCurrentMap().collideDamageableEntity(getAttackArea());
+			if (attackTick >= maxAttackTick && entity != null) {
+				attack(entity);
 			}
 		}
+		if (KeyInput.pressingKey(KeyCode.UP)) {
+			Portal portal = GameManager.getInstance().getCurrentMap().collidePortal(this);
+			if (warpTick >= maxWarpTick && portal != null) {
+				GameManager.getInstance().setCurrentMap(portal.getDestination());
+				x = portal.getXDest()-width/2;
+				y = portal.getYDest()-height;
+				warpTick = 0;
+			}
+		}
+		if (warpTick < maxWarpTick) warpTick++;
 		if (attackTick < maxAttackTick) attackTick++;
 		if (damageTick < maxDamageTick) damageTick++;
 		else if (GameManager.getInstance().getCurrentMap().collideDamageableEntity(this) != null) {

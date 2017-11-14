@@ -5,7 +5,9 @@ import java.util.List;
 
 import javafx.scene.canvas.GraphicsContext;
 import model.map.Map;
+import model.map.Portal;
 import model.player.Player;
+import testui.TestMap;
 
 public class GameManager {
 	
@@ -17,6 +19,8 @@ public class GameManager {
 	private Map currentMap;
 	
 	public GameManager() {
+		generateMap();
+		bindPortal();
 	}
 
 	public List<Map> getMaps() {
@@ -33,7 +37,6 @@ public class GameManager {
 	
 	public void render(GraphicsContext gc) {
 		currentMap.render(gc);
-		player.render(gc);
 		gc.strokeRect(player.getAttackArea().getX()-currentMap.getX(), player.getAttackArea().getY()-currentMap.getY(), player.getAttackArea().getWidth(), player.getAttackArea().getHeight());
 		//TODO Render Status bar
 	}
@@ -41,6 +44,17 @@ public class GameManager {
 	public void update() {
 		currentMap.update();
 		player.update();
+	}
+	
+	private void generateMap() {
+		maps.add(new TestMap());
+		maps.add(new TestMap());
+		currentMap = maps.get(0);
+	}
+	
+	private void bindPortal() {
+		maps.get(0).getPortals().add(new Portal(1400, 690, maps.get(1), 100, 690));
+		maps.get(1).getPortals().add(new Portal(100, 690, maps.get(0), 1400, 690));
 	}
 	
 	public void setPlayer(Player p) {
