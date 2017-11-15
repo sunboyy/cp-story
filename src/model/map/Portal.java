@@ -39,10 +39,4 @@ public class Portal extends Rectangle {
 		return destination;
 	}
 	
-	public boolean collideWith(Rectangle r) {
-		System.out.println(r.toString());
-		System.out.println(toString());
-		return super.collideWith(r);
-	}
-	
 }

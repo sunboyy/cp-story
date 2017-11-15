@@ -8,7 +8,6 @@ import javafx.scene.canvas.Canvas;
 import javafx.scene.layout.StackPane;
 import javafx.util.Duration;
 import model.GameManager;
-import model.map.Garden;
 import model.player.CPEngineer;
 
 public class GameScene extends Scene {
@@ -25,9 +24,6 @@ public class GameScene extends Scene {
 		KeyInput.bindScene(this);
 		
 		GameManager.getInstance().setPlayer(new CPEngineer(500,550));
-		GameManager.getInstance().getMaps().add(new Garden());
-		
-		GameManager.getInstance().setCurrentMap(GameManager.getInstance().getMaps().get(2));
 		
 		KeyFrame kf = new KeyFrame(Duration.seconds(1./60),e -> {
 			GameManager.getInstance().getCurrentMap().motion(GameManager.getInstance().getPlayer());

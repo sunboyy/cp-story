@@ -3,7 +3,12 @@ package model;
 import java.util.ArrayList;
 import java.util.List;
 
+import constants.Constants;
 import javafx.scene.canvas.GraphicsContext;
+import javafx.scene.paint.Color;
+import javafx.scene.text.Font;
+import javafx.scene.text.TextAlignment;
+import model.map.Garden;
 import model.map.Map;
 import model.map.Portal;
 import model.player.Player;
@@ -39,6 +44,12 @@ public class GameManager {
 		currentMap.render(gc);
 		gc.strokeRect(player.getAttackArea().getX()-currentMap.getX(), player.getAttackArea().getY()-currentMap.getY(), player.getAttackArea().getWidth(), player.getAttackArea().getHeight());
 		//TODO Render Status bar
+		
+		// Temporary show experience
+		gc.setFill(Color.BLACK);
+		gc.setFont(Font.font("Helvetica", 24));
+		gc.setTextAlign(TextAlignment.CENTER);
+		gc.fillText(String.format("Level %d: %d/%d (%.2f%%)", player.getLevel()+1, player.getExperience(), Constants.LEVEL_EXPERIENCE[player.level], 100.*player.getExperience()/Constants.LEVEL_EXPERIENCE[player.getLevel()]), Constants.MAP_WIDTH/2, Constants.MAP_HEIGHT-20);
 	}
 	
 	public void update() {
@@ -48,7 +59,7 @@ public class GameManager {
 	
 	private void generateMap() {
 		maps.add(new TestMap());
-		maps.add(new TestMap());
+		maps.add(new Garden());
 		currentMap = maps.get(0);
 	}
 	

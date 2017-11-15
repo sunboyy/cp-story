@@ -11,6 +11,7 @@ import model.DamageableEntity;
 import model.Entity;
 import model.GameManager;
 import model.Rectangle;
+import model.monster.Monster;
 import model.player.Player;
 import particle.Particle;
 

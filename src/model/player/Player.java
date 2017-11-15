@@ -1,5 +1,6 @@
 package model.player;
 
+import constants.Constants;
 import input.KeyInput;
 import javafx.scene.image.Image;
 import javafx.scene.input.KeyCode;
@@ -48,6 +49,7 @@ public abstract class Player extends DamageableEntity {
 		e.damage(getAttackDamage());
 		System.out.println(e);
 		if (e.isDead()) {
+			addExperience(e.getExperience());
 			GameManager.getInstance().getCurrentMap().getEntities().remove(e);
 		}
 		attackTick = 0;
@@ -92,6 +94,14 @@ public abstract class Player extends DamageableEntity {
 		}
 	}
 	
+	public void addExperience(int experience) {
+		this.experience += experience;
+		while (Constants.LEVEL_EXPERIENCE[level] < this.experience) {
+			this.experience -= Constants.LEVEL_EXPERIENCE[level];
+			++level;
+		}
+	}
+
 	// Getter
 	public boolean isJumping() {
 		return isJumping;
@@ -120,6 +130,10 @@ public abstract class Player extends DamageableEntity {
 	// Setter
 	public void setJumping(boolean isJumping) {
 		this.isJumping = isJumping;
+	}
+
+	public int getExperience() {
+		return experience;
 	}
 
 }

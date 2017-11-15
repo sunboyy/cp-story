@@ -7,7 +7,8 @@ import particle.HPBar;
 
 public abstract class DamageableEntity extends Entity {
 	
-	protected int level = 1;
+	protected int level = 0;
+	protected int experience = 0;
 	private int maxHp;
 	private int hp;
 	private int maxMp;
@@ -59,6 +60,10 @@ public abstract class DamageableEntity extends Entity {
 	// Getter
 	public int getLevel() {
 		return level;
+	}
+	
+	public int getExperience() {
+		return experience;
 	}
 	
 	public int getMaxHp() {
