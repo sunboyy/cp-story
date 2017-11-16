@@ -1,5 +1,6 @@
 package model.map;
 
+import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
@@ -28,16 +29,19 @@ public abstract class Map extends Rectangle {
 	protected double maxVelocityY = 6;
 	protected boolean allowMultipleJumps = false;
 	
+	private List<Class<? extends Monster>> monsterTypes = new ArrayList<>();
 	private List<Portal> portals = new ArrayList<>();
 	private List<Entity> entities = new ArrayList<>();
 	private List<Particle> particles = new ArrayList<>();
-	private MapStructure structure = new MapStructure(this);
+	private MapStructure structure;
 
-	public Map(Image img, Image bgImg, StructureItem...structureItems) {
+	@SafeVarargs
+	public Map(Image img, Image bgImg, Class<? extends Monster>...monsterTypes) {
 		super(0, 0, img.getWidth(), img.getHeight());
 		this.img = img;
 		this.backgroundImg = bgImg;
-		for (StructureItem i: structureItems) structure.add(i);
+		structure = new MapStructure(this);
+		for (Class<? extends Monster> i: monsterTypes) this.monsterTypes.add(i);
 	}
 	
 	public void motion(Entity e) {
@@ -153,8 +157,19 @@ public abstract class Map extends Rectangle {
 		}
 	}
 	
+	public void spawnRandom() throws InstantiationException, IllegalAccessException, IllegalArgumentException, InvocationTargetException, NoSuchMethodException, SecurityException {
+		int rand = (int) Math.floor(Math.random() * monsterTypes.size());
+		double randX = Math.random() * 200 + 100;
+		Monster m = monsterTypes.get(rand).getConstructor(double.class, double.class).newInstance(randX, 550);
+		entities.add(m);
+	}
+	
 	public double getFriction(Entity e) {
 		return isOnFloor(e) ? groundFriction : airFriction;
+	}
+	
+	public List<Class<? extends Monster>> getMonsterTypes() {
+		return monsterTypes;
 	}
 	
 	public MapStructure getStructure() {

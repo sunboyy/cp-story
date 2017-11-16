@@ -1,6 +1,8 @@
 
 package testui;
 
+import java.lang.reflect.InvocationTargetException;
+
 import input.KeyInput;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
@@ -50,7 +52,12 @@ public class SimpleScene extends Scene {
 						e.printStackTrace();
 					}
 					if (GameManager.getInstance().getCurrentMap().getEntities().size() < 10) {
-						GameManager.getInstance().getCurrentMap().getEntities().add(new TestMonster(100+Math.random()*200, 550));
+						try {
+							GameManager.getInstance().getCurrentMap().spawnRandom();
+						} catch (InstantiationException | IllegalAccessException | IllegalArgumentException
+								| InvocationTargetException | NoSuchMethodException | SecurityException e) {
+							e.printStackTrace();
+						}
 					}
 					if (!GameManager.getInstance().isMonsterSpawning()) {
 						break;

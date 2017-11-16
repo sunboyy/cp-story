@@ -1,6 +1,7 @@
 package model.map;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.paint.Color;
@@ -16,8 +17,15 @@ public class MapStructure extends ArrayList<StructureItem> {
 		this.map = map;
 	}
 	
-	public MapStructure(StructureItem...items) {
+	public MapStructure(Map map, StructureItem...items) {
 		super();
+		this.map = map;
+		for (StructureItem i: items) add(i);
+	}
+	
+	public MapStructure(Map map, List<StructureItem> items) {
+		super();
+		this.map = map;
 		for (StructureItem i: items) add(i);
 	}
 	
@@ -26,6 +34,10 @@ public class MapStructure extends ArrayList<StructureItem> {
 			if (i.collideWith(other)) return i;
 		}
 		return null;
+	}
+	
+	public void addAll(StructureItem...items) {
+		for (StructureItem i: items) add(i);
 	}
 	
 	public void render(GraphicsContext gc) {

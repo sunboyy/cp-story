@@ -45,7 +45,7 @@ public class GameManager {
 		gc.strokeRect(player.getAttackArea().getX()-currentMap.getX(), player.getAttackArea().getY()-currentMap.getY(), player.getAttackArea().getWidth(), player.getAttackArea().getHeight());
 		//TODO Render Status bar
 		
-		// Temporary show experience
+		// Temporarily show experience
 		gc.setFill(Color.BLACK);
 		gc.setFont(Font.font("Helvetica", 24));
 		gc.setTextAlign(TextAlignment.CENTER);
