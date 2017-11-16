@@ -9,7 +9,7 @@ public class CPEngineer extends Player {
 	}
 	
 	public CPEngineer(double x, double y) {
-		super(new Image("player.png"), x, y, 450, 200, 40, 70);
+		super(new Image("player.png"), x, y, 40, 70);
 	}
 	
 }

@@ -21,12 +21,12 @@ public abstract class Player extends DamageableEntity {
 	private int warpTick = 60;
 	private int maxWarpTick = 60;
 	
-	public Player(Image img, int hp, int mp, int atkLow, int atkHigh) {
-		this(img, 0, 0, hp, mp, atkLow, atkHigh);
+	public Player(Image img, int atkLow, int atkHigh) {
+		this(img, 0, 0, atkLow, atkHigh);
 	}
 	
-	public Player(Image img, double x, double y, int hp, int mp, int atkLow, int atkHigh) {
-		super(img, x, y, hp, mp, atkLow, atkHigh);
+	public Player(Image img, double x, double y, int atkLow, int atkHigh) {
+		super(img, x, y, Constants.LEVEL_HP[0], Constants.LEVEL_MP[0], Constants.LEVEL_ATTACK_LOW[0], Constants.LEVEL_ATTACK_HIGH[0]);
 		attackArea = new Rectangle(x, y, width, height);
 	}
 	
@@ -95,10 +95,20 @@ public abstract class Player extends DamageableEntity {
 	}
 	
 	public void addExperience(int experience) {
+		if (level >= Constants.MAX_LEVEL) {
+			this.experience = 0;
+			return;
+		}
 		this.experience += experience;
-		while (Constants.LEVEL_EXPERIENCE[level] < this.experience) {
+		while (Constants.LEVEL_EXPERIENCE[level] <= this.experience) {
 			this.experience -= Constants.LEVEL_EXPERIENCE[level];
 			++level;
+			setMaxHp(Constants.LEVEL_HP[level]);
+			setHp(getMaxHp());
+			setMaxMp(Constants.LEVEL_MP[level]);
+			setMp(getMaxMp());
+			setAttackDamageHigh(Constants.LEVEL_ATTACK_HIGH[level]);
+			setAttackDamageLow(Constants.LEVEL_ATTACK_LOW[level]);
 		}
 	}
 
