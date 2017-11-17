@@ -6,7 +6,7 @@ import model.monster.ProgMeth;
 public class Garden extends Map {
 	
 	public Garden() {
-		super(Images.defaultBackground, Images.gardenBackground, ProgMeth.class);
+		super(Images.gardenBackground, ProgMeth.class);
 		getStructure().addAll(new StructureItem(0, 815, 1500, 5, false),
 				new StructureItem(735, 720, 60, 5),
 				new StructureItem(815, 645, 65, 5),

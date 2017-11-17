@@ -6,6 +6,7 @@ import java.util.Iterator;
 import java.util.List;
 
 import constants.Constants;
+import constants.Images;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
 import model.DamageableEntity;
@@ -19,7 +20,7 @@ import particle.Particle;
 public abstract class Map extends Rectangle {
 
 	private Image img;
-	private Image backgroundImg = new Image("file:default-background.jpg");
+	private Image backgroundImg = Images.defaultBackground;
 	private double movementSpeed = 3.9;
 
 	protected double gravity = 0.55;
