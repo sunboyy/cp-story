@@ -61,8 +61,8 @@ public class GameManager {
 	}
 	
 	private void generateMap() {
-		maps.add(new TestMap());
 		maps.add(new Garden());
+		maps.add(new TestMap());
 		currentMap = maps.get(0);
 	}
 	
