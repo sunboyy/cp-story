@@ -12,13 +12,15 @@ public abstract class Entity extends Rectangle {
 	protected double velocityY;
 	private Image img;
 	protected int facing = RIGHT;
+	private String name;
 	
-	public Entity(Image img) {
-		this(img, 0, 0);
+	public Entity(String name, Image img) {
+		this(name, img, 0, 0);
 	}
 	
-	public Entity(Image img, double x, double y) {
+	public Entity(String name, Image img, double x, double y) {
 		super(x, y, img.getWidth(), img.getHeight());
+		this.name = name;
 		this.img = img;
 	}
 	
@@ -55,6 +57,10 @@ public abstract class Entity extends Rectangle {
 
 	public double getVelocityY() {
 		return velocityY;
+	}
+	
+	public String getName() {
+		return name;
 	}
 
 	public Image getImg() {

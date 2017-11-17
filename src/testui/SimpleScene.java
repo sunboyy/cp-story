@@ -29,7 +29,7 @@ public class SimpleScene extends Scene {
 		
 		KeyInput.bindScene(this);
 		
-		GameManager.getInstance().setPlayer(new CPEngineer(500, 550));
+		GameManager.getInstance().setPlayer(new CPEngineer("Joetoken", 500, 550));
 		
 		KeyFrame kf = new KeyFrame(Duration.seconds(1./60), e -> {
 			GameManager.getInstance().getCurrentMap().motion(GameManager.getInstance().getPlayer());

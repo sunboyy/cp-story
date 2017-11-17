@@ -7,7 +7,7 @@ import particle.HPBar;
 
 public abstract class DamageableEntity extends Entity {
 	
-	protected int level = 0;
+	protected int level = 1;
 	protected int experience = 0;
 	private int maxHp;
 	private int hp;
@@ -18,12 +18,12 @@ public abstract class DamageableEntity extends Entity {
 	private int defense = 5;
 	private HPBar hpBar;
 	
-	public DamageableEntity(Image img, int hp, int mp, int attackDamageLow, int attackDamageHigh) {
-		this(img, 0, 0, hp, mp, attackDamageLow, attackDamageHigh);
+	public DamageableEntity(String name, Image img, int hp, int mp, int attackDamageLow, int attackDamageHigh) {
+		this(name, img, 0, 0, hp, mp, attackDamageLow, attackDamageHigh);
 	}
 	
-	public DamageableEntity(Image img, double x, double y, int hp, int mp, int attackDamageLow, int attackDamageHigh) {
-		super(img, x, y);
+	public DamageableEntity(String name, Image img, double x, double y, int hp, int mp, int attackDamageLow, int attackDamageHigh) {
+		super(name, img, x, y);
 		this.maxHp = hp;
 		this.hp = hp;
 		this.maxMp = mp;

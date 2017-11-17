@@ -21,12 +21,12 @@ public abstract class Player extends DamageableEntity {
 	private int warpTick = 60;
 	private int maxWarpTick = 60;
 	
-	public Player(Image img, int atkLow, int atkHigh) {
-		this(img, 0, 0, atkLow, atkHigh);
+	public Player(String name, Image img, int atkLow, int atkHigh) {
+		this(name, img, 0, 0, atkLow, atkHigh);
 	}
 	
-	public Player(Image img, double x, double y, int atkLow, int atkHigh) {
-		super(img, x, y, Constants.LEVEL_HP[0], Constants.LEVEL_MP[0], Constants.LEVEL_ATTACK_LOW[0], Constants.LEVEL_ATTACK_HIGH[0]);
+	public Player(String name, Image img, double x, double y, int atkLow, int atkHigh) {
+		super(name, img, x, y, Constants.LEVEL_HP[1], Constants.LEVEL_MP[1], Constants.LEVEL_ATTACK_LOW[1], Constants.LEVEL_ATTACK_HIGH[1]);
 		attackArea = new Rectangle(x, y, width, height);
 	}
 	
@@ -76,13 +76,7 @@ public abstract class Player extends DamageableEntity {
 			}
 		}
 		if (KeyInput.pressingKey(KeyCode.UP)) {
-			Portal portal = GameManager.getInstance().getCurrentMap().collidePortal(this);
-			if (warpTick >= maxWarpTick && portal != null) {
-				GameManager.getInstance().setCurrentMap(portal.getDestination());
-				x = portal.getXDest()-width/2;
-				y = portal.getYDest()-height;
-				warpTick = 0;
-			}
+			warp();
 		}
 		if (warpTick < maxWarpTick) warpTick++;
 		if (attackTick < maxAttackTick) attackTick++;
@@ -91,6 +85,16 @@ public abstract class Player extends DamageableEntity {
 			damage(GameManager.getInstance().getCurrentMap().collideDamageableEntity(this).getAttackDamage());
 			System.out.println(this);
 			damageTick = 0;
+		}
+	}
+	
+	public void warp() {
+		Portal portal = GameManager.getInstance().getCurrentMap().collidePortal(this);
+		if (warpTick >= maxWarpTick && portal != null) {
+			GameManager.getInstance().setCurrentMap(portal.getDestination());
+			x = portal.getXDest()-width/2;
+			y = portal.getYDest()-height;
+			warpTick = 0;
 		}
 	}
 	

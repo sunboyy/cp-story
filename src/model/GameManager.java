@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import constants.Constants;
+import javafx.geometry.VPos;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
@@ -49,10 +50,11 @@ public class GameManager {
 		gc.setFill(Color.BLACK);
 		gc.setFont(Font.font("Helvetica", 24));
 		gc.setTextAlign(TextAlignment.CENTER);
+		gc.setTextBaseline(VPos.BASELINE);
 		if (player.level < Constants.MAX_LEVEL)
-			gc.fillText(String.format("Level %d: %d/%d (%.2f%%)", player.getLevel()+1, player.getExperience(), Constants.LEVEL_EXPERIENCE[player.level], 100.*player.getExperience()/Constants.LEVEL_EXPERIENCE[player.getLevel()]), Constants.MAP_WIDTH/2, Constants.MAP_HEIGHT-20);
+			gc.fillText(String.format("Level %d: %d/%d (%.2f%%)", player.getLevel(), player.getExperience(), Constants.LEVEL_EXPERIENCE[player.level], 100.*player.getExperience()/Constants.LEVEL_EXPERIENCE[player.getLevel()]), Constants.MAP_WIDTH/2, Constants.MAP_HEIGHT-20);
 		else
-			gc.fillText(String.format("Level %d", player.getLevel()+1), Constants.MAP_WIDTH/2, Constants.MAP_HEIGHT-20);
+			gc.fillText(String.format("Level %d", player.getLevel()), Constants.MAP_WIDTH/2, Constants.MAP_HEIGHT-20);
 	}
 	
 	public void update() {
