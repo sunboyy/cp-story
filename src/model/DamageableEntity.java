@@ -1,7 +1,11 @@
 package model;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
+import model.item.Item;
 import particle.Damage;
 import particle.HPBar;
 
@@ -17,6 +21,7 @@ public abstract class DamageableEntity extends Entity {
 	private int attackDamageHigh = 8;
 	private int defense = 5;
 	private HPBar hpBar;
+	private List<Item> drops = new ArrayList<>();
 	
 	public DamageableEntity(String name, Image img, int hp, int mp, int attackDamageLow, int attackDamageHigh) {
 		this(name, img, 0, 0, hp, mp, attackDamageLow, attackDamageHigh);
@@ -46,6 +51,11 @@ public abstract class DamageableEntity extends Entity {
 		this.hp -= hp;
 		hpBar.resetVisible();
 		GameManager.getInstance().getCurrentMap().getParticles().add(new Damage(hp, this.x+this.width/2, this.y));
+	}
+	
+	public void heal(int hp) {
+		this.hp += hp;
+		if (hp > maxHp) this.hp = hp;
 	}
 	
 	public boolean isDead() {

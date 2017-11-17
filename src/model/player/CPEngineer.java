@@ -1,6 +1,6 @@
 package model.player;
 
-import javafx.scene.image.Image;
+import constants.Images;
 
 public class CPEngineer extends Player {
 	
@@ -9,7 +9,7 @@ public class CPEngineer extends Player {
 	}
 	
 	public CPEngineer(String name, double x, double y) {
-		super(name, new Image("player.png"), x, y, 40, 70);
+		super(name, Images.cpEngPlayer, x, y, 40, 70);
 	}
 	
 }

@@ -1,5 +1,8 @@
 package model.player;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import constants.Constants;
 import input.KeyInput;
 import javafx.scene.image.Image;
@@ -7,6 +10,7 @@ import javafx.scene.input.KeyCode;
 import model.DamageableEntity;
 import model.GameManager;
 import model.Rectangle;
+import model.item.Item;
 import model.map.Portal;
 
 public abstract class Player extends DamageableEntity {
@@ -20,6 +24,8 @@ public abstract class Player extends DamageableEntity {
 	private int maxDamageTick = 60;
 	private int warpTick = 60;
 	private int maxWarpTick = 60;
+	private List<Item> inventory = new ArrayList<>();
+	private int maxInventorySlots = 10;
 	
 	public Player(String name, Image img, int atkLow, int atkHigh) {
 		this(name, img, 0, 0, atkLow, atkHigh);
@@ -98,6 +104,19 @@ public abstract class Player extends DamageableEntity {
 		}
 	}
 	
+	public boolean collectItem(Item item) {
+		for (Item i: inventory) {
+			if (i.sameType(item) && i.add(1)) {
+				return true;
+			}
+		}
+		if (inventory.size() + 1 <= maxInventorySlots) {
+			inventory.add(item);
+			return true;
+		}
+		return false;
+	}
+	
 	public void addExperience(int experience) {
 		if (level >= Constants.MAX_LEVEL) {
 			this.experience = 0;
@@ -139,6 +158,10 @@ public abstract class Player extends DamageableEntity {
 			attackArea.setHeight(height);
 		}
 		return attackArea;
+	}
+	
+	public List<Item> getInventory() {
+		return inventory;
 	}
 	
 	// Setter
