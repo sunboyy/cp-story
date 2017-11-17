@@ -1,5 +1,8 @@
 package model.player;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import constants.Constants;
 import input.KeyInput;
 import javafx.scene.image.Image;
@@ -7,6 +10,7 @@ import javafx.scene.input.KeyCode;
 import model.DamageableEntity;
 import model.GameManager;
 import model.Rectangle;
+import model.item.Item;
 import model.map.Portal;
 
 public abstract class Player extends DamageableEntity {
@@ -20,13 +24,15 @@ public abstract class Player extends DamageableEntity {
 	private int maxDamageTick = 60;
 	private int warpTick = 60;
 	private int maxWarpTick = 60;
+	private List<Item> inventory = new ArrayList<>();
+	private int maxInventorySlots = 10;
 	
-	public Player(Image img, int atkLow, int atkHigh) {
-		this(img, 0, 0, atkLow, atkHigh);
+	public Player(String name, Image img, int atkLow, int atkHigh) {
+		this(name, img, 0, 0, atkLow, atkHigh);
 	}
 	
-	public Player(Image img, double x, double y, int atkLow, int atkHigh) {
-		super(img, x, y, Constants.LEVEL_HP[0], Constants.LEVEL_MP[0], Constants.LEVEL_ATTACK_LOW[0], Constants.LEVEL_ATTACK_HIGH[0]);
+	public Player(String name, Image img, double x, double y, int atkLow, int atkHigh) {
+		super(name, img, x, y, Constants.LEVEL_HP[1], Constants.LEVEL_MP[1], Constants.LEVEL_ATTACK_LOW[1], Constants.LEVEL_ATTACK_HIGH[1]);
 		attackArea = new Rectangle(x, y, width, height);
 	}
 	
@@ -76,13 +82,7 @@ public abstract class Player extends DamageableEntity {
 			}
 		}
 		if (KeyInput.pressingKey(KeyCode.UP)) {
-			Portal portal = GameManager.getInstance().getCurrentMap().collidePortal(this);
-			if (warpTick >= maxWarpTick && portal != null) {
-				GameManager.getInstance().setCurrentMap(portal.getDestination());
-				x = portal.getXDest()-width/2;
-				y = portal.getYDest()-height;
-				warpTick = 0;
-			}
+			warp();
 		}
 		if (warpTick < maxWarpTick) warpTick++;
 		if (attackTick < maxAttackTick) attackTick++;
@@ -92,6 +92,29 @@ public abstract class Player extends DamageableEntity {
 			System.out.println(this);
 			damageTick = 0;
 		}
+	}
+	
+	public void warp() {
+		Portal portal = GameManager.getInstance().getCurrentMap().collidePortal(this);
+		if (warpTick >= maxWarpTick && portal != null) {
+			GameManager.getInstance().setCurrentMap(portal.getDestination());
+			x = portal.getXDest()-width/2;
+			y = portal.getYDest()-height;
+			warpTick = 0;
+		}
+	}
+	
+	public boolean collectItem(Item item) {
+		for (Item i: inventory) {
+			if (i.sameType(item) && i.add(1)) {
+				return true;
+			}
+		}
+		if (inventory.size() + 1 <= maxInventorySlots) {
+			inventory.add(item);
+			return true;
+		}
+		return false;
 	}
 	
 	public void addExperience(int experience) {
@@ -135,6 +158,10 @@ public abstract class Player extends DamageableEntity {
 			attackArea.setHeight(height);
 		}
 		return attackArea;
+	}
+	
+	public List<Item> getInventory() {
+		return inventory;
 	}
 	
 	// Setter

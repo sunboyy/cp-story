@@ -1,15 +1,15 @@
 package model.player;
 
-import javafx.scene.image.Image;
+import constants.Images;
 
 public class CPEngineer extends Player {
 	
-	public CPEngineer() {
-		this(0, 0);
+	public CPEngineer(String name) {
+		this(name, 0, 0);
 	}
 	
-	public CPEngineer(double x, double y) {
-		super(new Image("player.png"), x, y, 40, 70);
+	public CPEngineer(String name, double x, double y) {
+		super(name, Images.cpEngPlayer, x, y, 40, 70);
 	}
 	
 }

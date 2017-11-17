@@ -1,13 +1,12 @@
 package model.map;
 
-import javafx.scene.image.Image;
+import constants.Images;
 import model.monster.ProgMeth;
 
 public class Garden extends Map {
 	
 	public Garden() {
-		super(new Image("garden-background.jpg",1300,900,false,false),
-				ProgMeth.class);
+		super(Images.defaultBackground, Images.gardenBackground, ProgMeth.class);
 		getStructure().addAll(new StructureItem(0, 815, 1500, 5, false),
 				new StructureItem(735, 720, 60, 5),
 				new StructureItem(815, 645, 65, 5),
@@ -28,6 +27,5 @@ public class Garden extends Map {
 				new StructureItem(925, 450, 290, 5),
 				new StructureItem(430, 595, 290, 5),
 				new StructureItem(430, 450, 290, 5));
-		getEntities().add(new ProgMeth(100, 550));
 	}
 }

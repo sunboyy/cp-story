@@ -187,7 +187,7 @@ public abstract class Map extends Rectangle {
 	public void update() {
 		Iterator<Particle> it = particles.iterator();
 		while (it.hasNext()) {
-			if (!it.next().isVisible()) {
+			if (it.next().isExpired()) {
 				it.remove();
 			}
 		}

@@ -5,12 +5,12 @@ import model.Entity;
 
 public class NPC extends Entity {
 
-	public NPC(Image img) {
-		super(img);
+	public NPC(String name, Image img) {
+		this(name, img, 0, 0);
 	}
 	
-	public NPC(Image img, double x, double y) {
-		super(img, x, y);
+	public NPC(String name, Image img, double x, double y) {
+		super(name, img, x, y);
 	}
 	
 }

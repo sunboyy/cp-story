@@ -1,5 +1,6 @@
 package particle;
 
+import javafx.geometry.VPos;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
@@ -28,6 +29,7 @@ public class Damage extends Particle {
 		gc.setFont(FONT);
 		gc.setFill(Color.ORANGE);
 		gc.setTextAlign(TextAlignment.CENTER);
+		gc.setTextBaseline(VPos.BASELINE);
 		gc.fillText(hp+"", x-GameManager.getInstance().getCurrentMap().getX(), y-GameManager.getInstance().getCurrentMap().getY());
 		gc.setStroke(Color.BLACK);
 		gc.strokeText(hp+"", x-GameManager.getInstance().getCurrentMap().getX(), y-GameManager.getInstance().getCurrentMap().getY());
@@ -38,6 +40,10 @@ public class Damage extends Particle {
 	
 	public boolean isVisible() {
 		return visibleTick < maxVisibleTick;
+	}
+	
+	public boolean isExpired() {
+		return visibleTick >= maxVisibleTick;
 	}
 	
 }

@@ -1,5 +1,6 @@
 package testui;
 
+import constants.Images;
 import javafx.scene.image.Image;
 import model.map.Map;
 import model.map.StructureItem;
@@ -7,7 +8,7 @@ import model.map.StructureItem;
 public class TestMap extends Map {
 	
 	public TestMap() {
-		super(new Image("foreground.png"), new Image("background.png"), TestMonster.class);
+		super(new Image("foreground.png"), Images.beachBackground, TestMonster.class);
 		getStructure().addAll(new StructureItem(0, 695, 1500, 5, false),
 				new StructureItem(640, 620, 50, 5),
 				new StructureItem(570, 550, 50, 5),
