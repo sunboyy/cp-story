@@ -202,6 +202,16 @@ public abstract class Map extends Rectangle {
 				it.remove();
 			}
 		}
+		Iterator<Entity> itEntity = entities.iterator();
+		while (itEntity.hasNext()) {
+			Entity entity = itEntity.next();
+			if (entity instanceof ItemEntity) {
+				((ItemEntity) entity).update();
+				if (((ItemEntity) entity).isExpired()) {
+					itEntity.remove();
+				}
+			}
+		}
 	}
 
 	public void spawnRandom() throws InstantiationException, IllegalAccessException, IllegalArgumentException,
