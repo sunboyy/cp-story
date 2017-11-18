@@ -11,8 +11,10 @@ public class RedPotion extends UsableItem {
 
 	@Override
 	public void use() {
-		GameManager.getInstance().getPlayer().heal(50);
-		--count;
+		if (count > 0) {
+			GameManager.getInstance().getPlayer().heal(50);
+			--count;
+		}
 	}
 
 }

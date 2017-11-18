@@ -6,7 +6,7 @@ public class ItemEntity extends Entity {
 
 	private Item item;
 	private int age = 0;
-	private int maxAge = 600;
+	private int maxAge = 3600;
 	
 	public ItemEntity(Item item, double x, double y) {
 		super(item.getName(), item.getImg(), x, y);

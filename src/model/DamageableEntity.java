@@ -57,7 +57,7 @@ public abstract class DamageableEntity extends Entity {
 	
 	public void heal(int hp) {
 		this.hp += hp;
-		if (hp > maxHp) this.hp = hp;
+		if (this.hp > maxHp) this.hp = maxHp;
 	}
 	
 	public boolean isDead() {

@@ -12,6 +12,7 @@ import model.GameManager;
 import model.ItemEntity;
 import model.Rectangle;
 import model.item.Item;
+import model.item.UsableItem;
 import model.map.Portal;
 
 public abstract class Player extends DamageableEntity {
@@ -91,6 +92,19 @@ public abstract class Player extends DamageableEntity {
 		}
 		if (KeyInput.pressingKey(KeyCode.UP)) {
 			warp();
+		}
+		while (KeyInput.digitAvailable()) {
+			int digit = KeyInput.pollDigitKey();
+			int index = (digit + 9) % 10;
+			if (GameManager.getInstance().getPlayer().getInventory().size() > index) {
+				Item item = GameManager.getInstance().getPlayer().getInventory().get(index);
+				if (item instanceof UsableItem) {
+					((UsableItem) item).use();
+					if (item.getCount() <= 0) {
+						inventory.remove(item);
+					}
+				}
+			}
 		}
 		if (warpTick < maxWarpTick) warpTick++;
 		if (attackTick < maxAttackTick) attackTick++;
