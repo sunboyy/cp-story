@@ -8,7 +8,9 @@ import javafx.geometry.VPos;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
+import javafx.scene.text.FontWeight;
 import javafx.scene.text.TextAlignment;
+import model.item.Item;
 import model.map.Garden;
 import model.map.Map;
 import model.map.Portal;
@@ -47,14 +49,33 @@ public class GameManager {
 		//TODO Render Status bar
 		
 		// Temporarily show experience
-		gc.setFill(Color.BLACK);
-		gc.setFont(Font.font("Helvetica", 24));
+		gc.setFill(Color.WHITE);
+		gc.setStroke(Color.BLACK);
+		gc.setFont(Font.font("Helvetica", FontWeight.BOLD, 30));
 		gc.setTextAlign(TextAlignment.CENTER);
 		gc.setTextBaseline(VPos.BASELINE);
-		if (player.level < Constants.MAX_LEVEL)
+		if (player.level < Constants.MAX_LEVEL) {
 			gc.fillText(String.format("Level %d: %d/%d (%.2f%%)", player.getLevel(), player.getExperience(), Constants.LEVEL_EXPERIENCE[player.level], 100.*player.getExperience()/Constants.LEVEL_EXPERIENCE[player.getLevel()]), Constants.MAP_WIDTH/2, Constants.MAP_HEIGHT-20);
-		else
+			gc.strokeText(String.format("Level %d: %d/%d (%.2f%%)", player.getLevel(), player.getExperience(), Constants.LEVEL_EXPERIENCE[player.level], 100.*player.getExperience()/Constants.LEVEL_EXPERIENCE[player.getLevel()]), Constants.MAP_WIDTH/2, Constants.MAP_HEIGHT-20);
+		}
+		else {
 			gc.fillText(String.format("Level %d", player.getLevel()), Constants.MAP_WIDTH/2, Constants.MAP_HEIGHT-20);
+			gc.strokeText(String.format("Level %d", player.getLevel()), Constants.MAP_WIDTH/2, Constants.MAP_HEIGHT-20);
+		}
+		
+		// Temporarily show inventory
+		List<Item> inventory = player.getInventory();
+		gc.setFont(Font.font("Helvetica", FontWeight.BOLD, 24));
+		gc.setTextAlign(TextAlignment.RIGHT);
+		gc.setTextBaseline(VPos.CENTER);
+		for (int i=0; i<inventory.size(); i++) {
+			gc.fillRect(Constants.MAP_WIDTH-55, 10+50*i, inventory.get(i).getImg().getWidth()+10, inventory.get(i).getImg().getHeight()+10);
+			if (inventory.get(i).getCount() > 1) {
+				gc.fillText(String.format("%dx", inventory.get(i).getCount()), Constants.MAP_WIDTH-60, 30+50*i);
+				gc.strokeText(String.format("%dx", inventory.get(i).getCount()), Constants.MAP_WIDTH-60, 30+50*i);
+			}
+			gc.drawImage(inventory.get(i).getImg(), Constants.MAP_WIDTH-50, 15+50*i);
+		}
 	}
 	
 	public void update() {
@@ -69,8 +90,8 @@ public class GameManager {
 	}
 	
 	private void bindPortal() {
-		maps.get(0).getPortals().add(new Portal(1400, 690, maps.get(1), 100, 690));
-		maps.get(1).getPortals().add(new Portal(100, 690, maps.get(0), 1400, 690));
+		maps.get(0).getPortals().add(new Portal(1000, 810, maps.get(1), 100, 690));
+		maps.get(1).getPortals().add(new Portal(100, 690, maps.get(0), 1000, 810));
 	}
 	
 	public void setPlayer(Player p) {

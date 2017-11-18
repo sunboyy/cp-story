@@ -9,6 +9,7 @@ import javafx.scene.image.Image;
 import javafx.scene.input.KeyCode;
 import model.DamageableEntity;
 import model.GameManager;
+import model.ItemEntity;
 import model.Rectangle;
 import model.item.Item;
 import model.map.Portal;
@@ -53,10 +54,10 @@ public abstract class Player extends DamageableEntity {
 	public void attack(DamageableEntity e) {
 		if (e == null) return;
 		e.damage(getAttackDamage());
-		System.out.println(e);
 		if (e.isDead()) {
 			addExperience(e.getExperience());
 			GameManager.getInstance().getCurrentMap().getEntities().remove(e);
+			GameManager.getInstance().getCurrentMap().getEntities().addAll(e.spawnLoot());
 		}
 		attackTick = 0;
 	}
@@ -75,10 +76,17 @@ public abstract class Player extends DamageableEntity {
 			if (KeyInput.pressingKey(KeyCode.DOWN) && GameManager.getInstance().shouldJumpDown()) jumpDown();
 			else jump();
 		}
-		if (KeyInput.pressingKey(KeyCode.CONTROL)) {
+		if (KeyInput.pressingKey(KeyCode.A)) {
 			DamageableEntity entity = GameManager.getInstance().getCurrentMap().collideDamageableEntity(getAttackArea());
 			if (attackTick >= maxAttackTick && entity != null) {
 				attack(entity);
+			}
+		}
+		if (KeyInput.pressingKey(KeyCode.C)) {
+			ItemEntity itemEntity = GameManager.getInstance().getCurrentMap().collideItemEntity(this);
+			if (itemEntity != null) {
+				if (collectItem(itemEntity.getItem()))
+					GameManager.getInstance().getCurrentMap().getEntities().remove(itemEntity);
 			}
 		}
 		if (KeyInput.pressingKey(KeyCode.UP)) {

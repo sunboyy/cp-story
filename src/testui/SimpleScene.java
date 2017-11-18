@@ -51,7 +51,7 @@ public class SimpleScene extends Scene {
 					} catch (InterruptedException e) {
 						e.printStackTrace();
 					}
-					if (GameManager.getInstance().getCurrentMap().getEntities().size() < 20) {
+					if (GameManager.getInstance().getCurrentMap().getEntities().size() < 10) {
 						try {
 							GameManager.getInstance().getCurrentMap().spawnRandom();
 						} catch (InstantiationException | IllegalAccessException | IllegalArgumentException

@@ -12,6 +12,7 @@ import javafx.scene.image.Image;
 import model.DamageableEntity;
 import model.Entity;
 import model.GameManager;
+import model.ItemEntity;
 import model.Rectangle;
 import model.monster.Monster;
 import model.player.Player;
@@ -159,6 +160,15 @@ public abstract class Map extends Rectangle {
 		for (Entity i : entities) {
 			if (i instanceof DamageableEntity && r.collideWith(i)) {
 				return (DamageableEntity) i;
+			}
+		}
+		return null;
+	}
+	
+	public ItemEntity collideItemEntity(Rectangle r) {
+		for (Entity i: entities) {
+			if (i instanceof ItemEntity && r.collideWith(i)) {
+				return (ItemEntity) i;
 			}
 		}
 		return null;

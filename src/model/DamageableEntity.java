@@ -1,7 +1,9 @@
 package model;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
@@ -21,7 +23,7 @@ public abstract class DamageableEntity extends Entity {
 	private int attackDamageHigh = 8;
 	private int defense = 5;
 	private HPBar hpBar;
-	private List<Item> drops = new ArrayList<>();
+	protected Map<Item, Double> drops = new HashMap<>();
 	
 	public DamageableEntity(String name, Image img, int hp, int mp, int attackDamageLow, int attackDamageHigh) {
 		this(name, img, 0, 0, hp, mp, attackDamageLow, attackDamageHigh);
@@ -62,6 +64,17 @@ public abstract class DamageableEntity extends Entity {
 		return hp <= 0;
 	}
 	
+	public List<ItemEntity> spawnLoot() {
+		List<ItemEntity> loot = new ArrayList<>();
+		for (Map.Entry<Item, Double> i: drops.entrySet()) {
+			double rand = Math.random();
+			if (rand <= i.getValue()) {
+				loot.add(new ItemEntity(i.getKey(), x, y));
+			}
+		}
+		return loot;
+	}
+	
 	public void render(GraphicsContext gc) {
 		super.render(gc);
 		hpBar.render(gc);
@@ -98,6 +111,10 @@ public abstract class DamageableEntity extends Entity {
 
 	public int getDefense() {
 		return defense;
+	}
+	
+	public Map<Item, Double> getDrops() {
+		return drops;
 	}
 
 	// Setter

@@ -14,7 +14,7 @@ public abstract class Item {
 		this.name = name;
 		this.img = img;
 		this.count = 1;
-		this.maxCount = 100;
+		this.maxCount = 50;
 	}
 	
 	public boolean add(int num) {
