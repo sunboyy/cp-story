@@ -6,12 +6,12 @@ import model.map.Map;
 
 public class NPC extends Entity {
 
-	public NPC(String name, Image img, Map map) {
-		this(name, img, map, 0, 0);
+	public NPC(String name, Image imgL, Image imgR, Map map) {
+		this(name, imgL, imgR, map, 0, 0);
 	}
 	
-	public NPC(String name, Image img, Map map, double x, double y) {
-		super(name, img, map, x, y);
+	public NPC(String name, Image imgL, Image imgR, Map map, double x, double y) {
+		super(name, imgL, imgR, map, x, y);
 	}
 	
 }

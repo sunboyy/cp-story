@@ -25,12 +25,12 @@ public abstract class DamageableEntity extends Entity {
 	private HPBar hpBar;
 	protected Map<Item, Double> drops = new HashMap<>();
 	
-	public DamageableEntity(String name, Image img, model.map.Map map, int hp, int mp, int attackDamageLow, int attackDamageHigh) {
-		this(name, img, map, 0, 0, hp, mp, attackDamageLow, attackDamageHigh);
+	public DamageableEntity(String name, Image imgL, Image imgR, model.map.Map map, int hp, int mp, int attackDamageLow, int attackDamageHigh) {
+		this(name, imgL, imgR, map, 0, 0, hp, mp, attackDamageLow, attackDamageHigh);
 	}
 	
-	public DamageableEntity(String name, Image img, model.map.Map map, double x, double y, int hp, int mp, int attackDamageLow, int attackDamageHigh) {
-		super(name, img, map, x, y);
+	public DamageableEntity(String name, Image imgL, Image imgR, model.map.Map map, double x, double y, int hp, int mp, int attackDamageLow, int attackDamageHigh) {
+		super(name, imgL, imgR, map, x, y);
 		this.maxHp = hp;
 		this.hp = hp;
 		this.maxMp = mp;

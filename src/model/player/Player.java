@@ -17,8 +17,6 @@ import model.map.Map;
 
 public abstract class Player extends DamageableEntity {
 	
-	private Image imageL;
-	private Image imageR;
 	private boolean isJumping = false;
 	private double attackRange = 50;
 	private Rectangle attackArea;
@@ -34,10 +32,8 @@ public abstract class Player extends DamageableEntity {
 	}
 	
 	public Player(String name, Image imgL, Image imgR, Map map, double x, double y, int atkLow, int atkHigh) {
-		super(name, imgR, map, x, y, Constants.LEVEL_HP[1], Constants.LEVEL_MP[1], Constants.LEVEL_ATTACK_LOW[1], Constants.LEVEL_ATTACK_HIGH[1]);
+		super(name, imgL, imgR, map, x, y, Constants.LEVEL_HP[1], Constants.LEVEL_MP[1], Constants.LEVEL_ATTACK_LOW[1], Constants.LEVEL_ATTACK_HIGH[1]);
 		attackArea = new Rectangle(x, y, width, height);
-		this.imageL = imgL;
-		this.imageR = imgR;
 		this.maxVelocityX = 4;
 	}
 	
@@ -69,13 +65,11 @@ public abstract class Player extends DamageableEntity {
 	public void update() {
 		//TODO
 		if (KeyInput.pressingKey(KeyCode.LEFT)) {
-			facing = LEFT;
-			setImage(imageL);
+			setFacing(LEFT);
 			GameManager.getInstance().getCurrentMap().pushAccX(GameManager.getInstance().getPlayer(), -0.5);
 		}
 		if (KeyInput.pressingKey(KeyCode.RIGHT)) {
-			facing = RIGHT;
-			setImage(imageR);
+			setFacing(RIGHT);
 			GameManager.getInstance().getCurrentMap().pushAccX(GameManager.getInstance().getPlayer(), 0.5);
 		};
 		if (KeyInput.pressingKey(KeyCode.SPACE)) {

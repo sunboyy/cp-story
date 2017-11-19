@@ -11,21 +11,31 @@ public abstract class Entity extends Rectangle {
 	
 	protected double velocityX;
 	protected double velocityY;
-	private Image image;
+	private Image image, imageL, imageR;
 	protected double maxVelocityX = 2;
-	protected int facing = RIGHT;
+	protected int facing;
 	private String name;
 	private Map map;
 	
-	public Entity(String name, Image img, Map map) {
-		this(name, img, map, 0, 0);
-	}
-	
-	public Entity(String name, Image img, Map map, double x, double y) {
+	public Entity(String name,Image img, Map map, double x, double y) {
 		super(x, y, img.getWidth(), img.getHeight());
 		this.name = name;
 		this.image = img;
+		imageL = null;
+		imageR = null;
+	}
+	
+	public Entity(String name, Image imgL, Image imgR, Map map) {
+		this(name, imgL, imgR, map, 0, 0);
+	}
+	
+	public Entity(String name, Image imgL, Image imgR, Map map, double x, double y) {
+		super(x, y, imgL.getWidth(), imgL.getHeight());
+		this.name = name;
+		this.imageL = imgL;
+		this.imageR = imgR;
 		this.map = map;
+		setFacing(RIGHT);
 	}
 	
 	public void move(double x, double y) {
@@ -98,6 +108,15 @@ public abstract class Entity extends Rectangle {
 	
 	public String toString() {
 		return getClass().getSimpleName();
+	}
+	
+	public void setFacing(int facing) {
+		this.facing = facing;
+		if(facing==LEFT) {
+			this.image = imageL;
+		} else {
+			this.image = imageR;
+		}
 	}
 
 }

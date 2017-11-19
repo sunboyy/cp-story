@@ -11,12 +11,12 @@ public class Monster extends DamageableEntity {
 	private int aggressiveTick = 300;
 	private int maxAggressiveTick = 300;
 	
-	public Monster(String name, Image img, Map map, int level, int hp, int mp, int atkLow, int atkHigh, int experience) {
-		this(name, img, map, 0, 0, level, hp, mp, atkLow, atkHigh, experience);
+	public Monster(String name, Image imgL, Image imgR, Map map, int level, int hp, int mp, int atkLow, int atkHigh, int experience) {
+		this(name, imgL, imgR, map, 0, 0, level, hp, mp, atkLow, atkHigh, experience);
 	}
 	
-	public Monster(String name, Image img, Map map, double x, double y, int level, int hp, int mp, int atkLow, int atkHigh, int experience) {
-		super(name, img, map, x, y, hp, mp, atkLow, atkHigh);
+	public Monster(String name, Image imgL, Image imgR, Map map, double x, double y, int level, int hp, int mp, int atkLow, int atkHigh, int experience) {
+		super(name, imgL, imgR, map, x, y, hp, mp, atkLow, atkHigh);
 		this.level = level;
 		this.experience = experience;
 		aiThread = new Thread(this::monsterAi);
@@ -40,6 +40,8 @@ public class Monster extends DamageableEntity {
 				if (x <= 0 || x + width >= getMap().getWidth()) {
 					direction *= -1;
 				}
+				if (direction < 0)	setFacing(LEFT);
+				else	setFacing(RIGHT);
 				GameManager.getInstance().getCurrentMap().pushAccX(this, direction*0.5);
 				try {
 					Thread.sleep(1000/60);
