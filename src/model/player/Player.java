@@ -115,7 +115,6 @@ public abstract class Player extends DamageableEntity {
 		if (damageTick < maxDamageTick) damageTick++;
 		else if (GameManager.getInstance().getCurrentMap().collideDamageableEntity(this) != null) {
 			damage(GameManager.getInstance().getCurrentMap().collideDamageableEntity(this).getAttackDamage());
-			System.out.println(this);
 			damageTick = 0;
 		}
 	}

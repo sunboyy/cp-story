@@ -8,6 +8,8 @@ import model.map.Map;
 public class Monster extends DamageableEntity {
 	
 	private Thread aiThread;
+	private int aggressiveTick = 300;
+	private int maxAggressiveTick = 300;
 	
 	public Monster(String name, Image img, Map map, int level, int hp, int mp, int atkLow, int atkHigh, int experience) {
 		this(name, img, map, 0, 0, level, hp, mp, atkLow, atkHigh, experience);
@@ -20,8 +22,12 @@ public class Monster extends DamageableEntity {
 		aiThread = new Thread(this::monsterAi);
 	}
 	
+	public boolean isAggressive() {
+		return aggressiveTick < maxAggressiveTick;
+	}
+	
 	private void monsterAi() {
-		while (!isDead() && GameManager.getInstance().isMonsterSpawning() && getMap() == GameManager.getInstance().getCurrentMap()) {
+		while (!isDead() && GameManager.getInstance().isGameRunning() && getMap() == GameManager.getInstance().getCurrentMap()) {
 			int delay = (int) Math.floor(Math.random()*8000)+500;
 			try {
 				Thread.sleep(delay);

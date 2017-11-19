@@ -12,7 +12,7 @@ public class ItemEntity extends Entity {
 	public ItemEntity(Item item, Map map, double x, double y) {
 		super(item.getName(), item.getImg(), map, x, y);
 		this.item = item;
-		this.velocityY = -10;
+		this.velocityY = -6;
 	}
 	
 	public Item getItem() {

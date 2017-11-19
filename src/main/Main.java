@@ -14,7 +14,7 @@ public class Main extends Application {
 	@Override
 	public void start(Stage stage) throws Exception {
 		stage.setOnCloseRequest(e -> {
-			GameManager.getInstance().setMonsterSpawning(false);
+			GameManager.getInstance().stopGame();
 		});
 		stage.setTitle("CP Story");
 		stage.setScene(new StartScene(stage));

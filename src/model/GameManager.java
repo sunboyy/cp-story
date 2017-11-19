@@ -1,5 +1,6 @@
 package model;
 
+import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -22,16 +23,19 @@ public class GameManager {
 	
 	private static final GameManager instance = new GameManager();
 	
-	private boolean isMonsterSpawning = true;
+	private boolean isGameRunning = true;
 	private List<Map> maps = new ArrayList<>();
 	private Player player;
 	private Map currentMap;
 	private int warpTick = 60;
 	private int maxWarpTick = 60;
+	private Thread monsterGenThread;
 	
 	public GameManager() {
 		generateMap();
 		bindPortal();
+		monsterGenThread = new Thread(this::monsterGen);
+		monsterGenThread.start();
 	}
 
 	public List<Map> getMaps() {
@@ -150,6 +154,24 @@ public class GameManager {
 		}
 	}
 	
+	private void monsterGen() {
+		while (isGameRunning) {
+			try {
+				Thread.sleep(5000);
+			} catch (InterruptedException e) {
+				e.printStackTrace();
+			}
+			if (currentMap.getEntities().size() < 20 && !isWarping()) {
+				try {
+					currentMap.spawnRandom();
+				} catch (InstantiationException | IllegalAccessException | IllegalArgumentException
+						| InvocationTargetException | NoSuchMethodException | SecurityException e) {
+					e.printStackTrace();
+				}
+			}
+		}
+	}
+	
 	public void setPlayer(Player p) {
 		player = p;
 	}
@@ -166,12 +188,12 @@ public class GameManager {
 		return instance;
 	}
 
-	public boolean isMonsterSpawning() {
-		return isMonsterSpawning;
+	public boolean isGameRunning() {
+		return isGameRunning;
 	}
 
-	public void setMonsterSpawning(boolean isMonsterSpawning) {
-		this.isMonsterSpawning = isMonsterSpawning;
+	public void stopGame() {
+		this.isGameRunning = false;
 	}
 	
 }

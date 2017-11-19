@@ -25,7 +25,7 @@ public class GameScene extends Scene {
 		
 		GameManager.getInstance().setPlayer(new CPEngineer("Joetoken", GameManager.getInstance().getCurrentMap(), 500,550));
 		
-		KeyFrame kf = new KeyFrame(Duration.seconds(1./60),e -> {
+		KeyFrame kf = new KeyFrame(Duration.seconds(1./60), e -> {
 			GameManager.getInstance().getCurrentMap().motion(GameManager.getInstance().getPlayer());
 			GameManager.getInstance().getCurrentMap().motionAll();
 			GameManager.getInstance().render(canvas.getGraphicsContext2D());
