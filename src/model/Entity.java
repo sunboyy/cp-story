@@ -76,6 +76,11 @@ public abstract class Entity extends Rectangle {
 		this.velocityY = velocityY;
 	}
 	
+	
+	public void setImg(Image img) {
+		this.img = img;
+	}
+	
 	public String toString() {
 		return getClass().getSimpleName();
 	}

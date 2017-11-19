@@ -9,7 +9,7 @@ public class CPEngineer extends Player {
 	}
 	
 	public CPEngineer(String name, double x, double y) {
-		super(name, Images.cpEngPlayer, x, y, 40, 70);
+		super(name, Images.cpEngPlayerL,Images.cpEngPlayerR, x, y, 40, 70);
 	}
 	
 }

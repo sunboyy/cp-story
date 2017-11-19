@@ -13,7 +13,8 @@ public class Images {
 	public static final Image orangeMushMonster = new Image("orangemush.gif");
 	public static final Image progMethMonster = new Image(ClassLoader.getSystemResource("monster/progmeth.png").toString());
 	
-	public static final Image cpEngPlayer = new Image("player.png");
+	public static final Image cpEngPlayerL = new Image("player/CPPlayerL.png",77.25,110,true,false);
+	public static final Image cpEngPlayerR = new Image("player/CPPlayerR.png",77.25,110,true,false);
 	
 	public static final Image redPotionItem = new Image("item/redpotion.png");
 	

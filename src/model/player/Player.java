@@ -17,6 +17,8 @@ import model.map.Portal;
 
 public abstract class Player extends DamageableEntity {
 	
+	private Image imgL;
+	private Image imgR;
 	private boolean isJumping = false;
 	private double attackRange = 50;
 	private Rectangle attackArea;
@@ -29,13 +31,15 @@ public abstract class Player extends DamageableEntity {
 	private List<Item> inventory = new ArrayList<>();
 	private int maxInventorySlots = 10;
 	
-	public Player(String name, Image img, int atkLow, int atkHigh) {
-		this(name, img, 0, 0, atkLow, atkHigh);
+	public Player(String name, Image imgL, Image imgR, int atkLow, int atkHigh) {
+		this(name, imgL, imgR, 0, 0, atkLow, atkHigh);
 	}
 	
-	public Player(String name, Image img, double x, double y, int atkLow, int atkHigh) {
-		super(name, img, x, y, Constants.LEVEL_HP[1], Constants.LEVEL_MP[1], Constants.LEVEL_ATTACK_LOW[1], Constants.LEVEL_ATTACK_HIGH[1]);
+	public Player(String name, Image imgL, Image imgR, double x, double y, int atkLow, int atkHigh) {
+		super(name, imgR, x, y, Constants.LEVEL_HP[1], Constants.LEVEL_MP[1], Constants.LEVEL_ATTACK_LOW[1], Constants.LEVEL_ATTACK_HIGH[1]);
 		attackArea = new Rectangle(x, y, width, height);
+		this.imgL = imgL;
+		this.imgR = imgR;
 	}
 	
 	public void jump() {
@@ -67,10 +71,12 @@ public abstract class Player extends DamageableEntity {
 		//TODO
 		if (KeyInput.pressingKey(KeyCode.LEFT)) {
 			facing = LEFT;
+			setImg(imgL);
 			GameManager.getInstance().getCurrentMap().pushAccX(GameManager.getInstance().getPlayer(), -0.5);
 		}
 		if (KeyInput.pressingKey(KeyCode.RIGHT)) {
 			facing = RIGHT;
+			setImg(imgR);
 			GameManager.getInstance().getCurrentMap().pushAccX(GameManager.getInstance().getPlayer(), 0.5);
 		};
 		if (KeyInput.pressingKey(KeyCode.SPACE)) {
