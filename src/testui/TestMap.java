@@ -20,7 +20,6 @@ public class TestMap extends Map {
 				new StructureItem(500, 105, 50, 5),
 				new StructureItem(720, 550, 50, 5),
 				new StructureItem(800, 480, 340, 5));
-		getEntities().add(new TestMonster(100, 550));
 	}
 
 }

@@ -13,6 +13,7 @@ import model.ItemEntity;
 import model.Rectangle;
 import model.item.Item;
 import model.item.UsableItem;
+import model.map.Map;
 
 public abstract class Player extends DamageableEntity {
 	
@@ -28,15 +29,16 @@ public abstract class Player extends DamageableEntity {
 	private List<Item> inventory = new ArrayList<>();
 	private int maxInventorySlots = 10;
 	
-	public Player(String name, Image imgL, Image imgR, int atkLow, int atkHigh) {
-		this(name, imgL, imgR, 0, 0, atkLow, atkHigh);
+	public Player(String name, Image imgL, Image imgR, Map map, int atkLow, int atkHigh) {
+		this(name, imgL, imgR, map, 0, 0, atkLow, atkHigh);
 	}
 	
-	public Player(String name, Image imgL, Image imgR, double x, double y, int atkLow, int atkHigh) {
-		super(name, imgR, x, y, Constants.LEVEL_HP[1], Constants.LEVEL_MP[1], Constants.LEVEL_ATTACK_LOW[1], Constants.LEVEL_ATTACK_HIGH[1]);
+	public Player(String name, Image imgL, Image imgR, Map map, double x, double y, int atkLow, int atkHigh) {
+		super(name, imgR, map, x, y, Constants.LEVEL_HP[1], Constants.LEVEL_MP[1], Constants.LEVEL_ATTACK_LOW[1], Constants.LEVEL_ATTACK_HIGH[1]);
 		attackArea = new Rectangle(x, y, width, height);
 		this.imageL = imgL;
 		this.imageR = imgR;
+		this.maxVelocityX = 4;
 	}
 	
 	public void jump() {

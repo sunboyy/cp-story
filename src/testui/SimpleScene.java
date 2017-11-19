@@ -29,7 +29,7 @@ public class SimpleScene extends Scene {
 		
 		KeyInput.bindScene(this);
 		
-		GameManager.getInstance().setPlayer(new CPEngineer("Joetoken", 500, 550));
+		GameManager.getInstance().setPlayer(new CPEngineer("Joetoken", GameManager.getInstance().getCurrentMap(), 500, 550));
 		
 		KeyFrame kf = new KeyFrame(Duration.seconds(1./60), e -> {
 			GameManager.getInstance().getCurrentMap().motion(GameManager.getInstance().getPlayer());
@@ -45,22 +45,19 @@ public class SimpleScene extends Scene {
 		Runnable runner = new Runnable() {
 			@Override
 			public void run() {
-				while (true) {
+				while (GameManager.getInstance().isMonsterSpawning()) {
 					try {
 						Thread.sleep(5000);
 					} catch (InterruptedException e) {
 						e.printStackTrace();
 					}
-					if (GameManager.getInstance().getCurrentMap().getEntities().size() < 20) {
+					if (GameManager.getInstance().getCurrentMap().getEntities().size() < 20 && !GameManager.getInstance().isWarping()) {
 						try {
 							GameManager.getInstance().getCurrentMap().spawnRandom();
 						} catch (InstantiationException | IllegalAccessException | IllegalArgumentException
 								| InvocationTargetException | NoSuchMethodException | SecurityException e) {
 							e.printStackTrace();
 						}
-					}
-					if (!GameManager.getInstance().isMonsterSpawning()) {
-						break;
 					}
 				}
 			}

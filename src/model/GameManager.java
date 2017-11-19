@@ -14,6 +14,7 @@ import model.item.Item;
 import model.map.Garden;
 import model.map.Map;
 import model.map.Portal;
+import model.monster.Monster;
 import model.player.Player;
 import testui.TestMap;
 
@@ -140,6 +141,12 @@ public class GameManager {
 			currentMap = portal.getDestination();
 			player.x = portal.getXDest()-player.width/2;
 			player.y = portal.getYDest()-player.height;
+			player.setMap(portal.getDestination());
+			for (Entity i: currentMap.getEntities()) {
+				if (i instanceof Monster) {
+					((Monster) i).getAiThread().start();
+				}
+			}
 		}
 	}
 	

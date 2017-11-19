@@ -2,6 +2,7 @@ package model;
 
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
+import model.map.Map;
 
 public abstract class Entity extends Rectangle {
 
@@ -11,17 +12,20 @@ public abstract class Entity extends Rectangle {
 	protected double velocityX;
 	protected double velocityY;
 	private Image image;
+	protected double maxVelocityX = 2;
 	protected int facing = RIGHT;
 	private String name;
+	private Map map;
 	
-	public Entity(String name, Image img) {
-		this(name, img, 0, 0);
+	public Entity(String name, Image img, Map map) {
+		this(name, img, map, 0, 0);
 	}
 	
-	public Entity(String name, Image img, double x, double y) {
+	public Entity(String name, Image img, Map map, double x, double y) {
 		super(x, y, img.getWidth(), img.getHeight());
 		this.name = name;
 		this.image = img;
+		this.map = map;
 	}
 	
 	public void move(double x, double y) {
@@ -36,6 +40,10 @@ public abstract class Entity extends Rectangle {
 
 	public void pushAccX(double accX) {
 		this.velocityX += accX;
+		if (velocityX > maxVelocityX)
+			velocityX = maxVelocityX;
+		else if (velocityX + accX < -maxVelocityX)
+			velocityX = -maxVelocityX;
 	}
 	
 	public void pushAccY(double accY) {
@@ -66,6 +74,10 @@ public abstract class Entity extends Rectangle {
 	public Image getImage() {
 		return image;
 	}
+	
+	public Map getMap() {
+		return map;
+	}
 
 	// Setter
 	public void setVelocityX(double velocityX) {
@@ -78,6 +90,10 @@ public abstract class Entity extends Rectangle {
 	
 	public void setImage(Image img) {
 		this.image = img;
+	}
+	
+	public void setMap(Map map) {
+		this.map = map;
 	}
 	
 	public String toString() {

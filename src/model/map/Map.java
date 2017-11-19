@@ -27,7 +27,6 @@ public abstract class Map extends Rectangle {
 	protected double gravity = 0.55;
 	protected double groundFriction = 0.4;
 	protected double airFriction = 0.1;
-	protected double maxVelocityX = 4;
 	protected double maxVelocityY = 6;
 	protected boolean allowMultipleJumps = false;
 
@@ -112,13 +111,7 @@ public abstract class Map extends Rectangle {
 			accX += friction;
 		else if (accX < 0)
 			accX -= friction;
-
-		if (e.getVelocityX() + accX > maxVelocityX)
-			e.setVelocityX(maxVelocityX);
-		else if (e.getVelocityX() + accX < -maxVelocityX)
-			e.setVelocityX(-maxVelocityX);
-		else
-			e.pushAccX(accX);
+		e.pushAccX(accX);
 	}
 
 	private void pullGravity(Entity e) {
@@ -218,8 +211,9 @@ public abstract class Map extends Rectangle {
 			InvocationTargetException, NoSuchMethodException, SecurityException {
 		int rand = (int) Math.floor(Math.random() * monsterTypes.size());
 		double randX = Math.random() * 200 + 100;
-		Monster m = monsterTypes.get(rand).getConstructor(double.class, double.class).newInstance(randX, 550);
+		Monster m = monsterTypes.get(rand).getConstructor(Map.class, double.class, double.class).newInstance(this, randX, 550);
 		entities.add(m);
+		m.getAiThread().start();
 	}
 
 	public double getFriction(Entity e) {
@@ -236,10 +230,6 @@ public abstract class Map extends Rectangle {
 
 	public List<Entity> getEntities() {
 		return entities;
-	}
-
-	public double getMaxVelocityX() {
-		return maxVelocityX;
 	}
 
 	public double getMaxVelocityY() {

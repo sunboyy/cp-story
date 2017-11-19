@@ -25,12 +25,12 @@ public abstract class DamageableEntity extends Entity {
 	private HPBar hpBar;
 	protected Map<Item, Double> drops = new HashMap<>();
 	
-	public DamageableEntity(String name, Image img, int hp, int mp, int attackDamageLow, int attackDamageHigh) {
-		this(name, img, 0, 0, hp, mp, attackDamageLow, attackDamageHigh);
+	public DamageableEntity(String name, Image img, model.map.Map map, int hp, int mp, int attackDamageLow, int attackDamageHigh) {
+		this(name, img, map, 0, 0, hp, mp, attackDamageLow, attackDamageHigh);
 	}
 	
-	public DamageableEntity(String name, Image img, double x, double y, int hp, int mp, int attackDamageLow, int attackDamageHigh) {
-		super(name, img, x, y);
+	public DamageableEntity(String name, Image img, model.map.Map map, double x, double y, int hp, int mp, int attackDamageLow, int attackDamageHigh) {
+		super(name, img, map, x, y);
 		this.maxHp = hp;
 		this.hp = hp;
 		this.maxMp = mp;
@@ -69,7 +69,7 @@ public abstract class DamageableEntity extends Entity {
 		for (Map.Entry<Item, Double> i: drops.entrySet()) {
 			double rand = Math.random();
 			if (rand <= i.getValue()) {
-				loot.add(new ItemEntity(i.getKey(), x, y));
+				loot.add(new ItemEntity(i.getKey(), getMap(), x, y));
 			}
 		}
 		return loot;

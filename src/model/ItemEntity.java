@@ -1,6 +1,7 @@
 package model;
 
 import model.item.Item;
+import model.map.Map;
 
 public class ItemEntity extends Entity {
 
@@ -8,8 +9,8 @@ public class ItemEntity extends Entity {
 	private int age = 0;
 	private int maxAge = 3600;
 	
-	public ItemEntity(Item item, double x, double y) {
-		super(item.getName(), item.getImg(), x, y);
+	public ItemEntity(Item item, Map map, double x, double y) {
+		super(item.getName(), item.getImg(), map, x, y);
 		this.item = item;
 		this.velocityY = -10;
 	}
