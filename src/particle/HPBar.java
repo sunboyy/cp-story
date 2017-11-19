@@ -48,7 +48,7 @@ public class HPBar extends Particle {
 		gc.setTextBaseline(VPos.TOP);
 		gc.setFill(Color.BLACK);
 		gc.setFont(NAME_FONT);
-		gc.setGlobalAlpha(0.7);
+		gc.setGlobalAlpha(0.6);
 		gc.fillRoundRect(centerX-textWidth/2-4-mapX, entity.getY()+entity.getHeight()-mapY, textWidth+8, textHeight+8, 8, 8);
 		gc.setGlobalAlpha(1);
 		gc.setFill(Color.WHITE);

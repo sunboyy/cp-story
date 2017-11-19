@@ -186,9 +186,9 @@ public abstract class Map extends Rectangle {
 		gc.drawImage(backgroundImg, 0, 0);
 		gc.drawImage(img, -x, -y);
 		structure.render(gc);
+		GameManager.getInstance().getPlayer().render(gc);
 		for (Entity i : entities)
 			i.render(gc);
-		GameManager.getInstance().getPlayer().render(gc);
 		for (Portal i : portals)
 			i.render(gc);
 		for (Particle i : particles)

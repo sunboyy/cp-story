@@ -10,7 +10,7 @@ public abstract class Entity extends Rectangle {
 	
 	protected double velocityX;
 	protected double velocityY;
-	private Image img;
+	private Image image;
 	protected int facing = RIGHT;
 	private String name;
 	
@@ -21,7 +21,7 @@ public abstract class Entity extends Rectangle {
 	public Entity(String name, Image img, double x, double y) {
 		super(x, y, img.getWidth(), img.getHeight());
 		this.name = name;
-		this.img = img;
+		this.image = img;
 	}
 	
 	public void move(double x, double y) {
@@ -43,7 +43,7 @@ public abstract class Entity extends Rectangle {
 	}
 	
 	public void render(GraphicsContext gc) {
-		gc.drawImage(getImg(), x-GameManager.getInstance().getCurrentMap().x, y-GameManager.getInstance().getCurrentMap().y);
+		gc.drawImage(getImage(), x-GameManager.getInstance().getCurrentMap().x, y-GameManager.getInstance().getCurrentMap().y);
 	}
 	
 	// Getter
@@ -63,8 +63,8 @@ public abstract class Entity extends Rectangle {
 		return name;
 	}
 
-	public Image getImg() {
-		return img;
+	public Image getImage() {
+		return image;
 	}
 
 	// Setter
@@ -76,9 +76,8 @@ public abstract class Entity extends Rectangle {
 		this.velocityY = velocityY;
 	}
 	
-	
-	public void setImg(Image img) {
-		this.img = img;
+	public void setImage(Image img) {
+		this.image = img;
 	}
 	
 	public String toString() {

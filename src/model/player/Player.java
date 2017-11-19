@@ -13,12 +13,11 @@ import model.ItemEntity;
 import model.Rectangle;
 import model.item.Item;
 import model.item.UsableItem;
-import model.map.Portal;
 
 public abstract class Player extends DamageableEntity {
 	
-	private Image imgL;
-	private Image imgR;
+	private Image imageL;
+	private Image imageR;
 	private boolean isJumping = false;
 	private double attackRange = 50;
 	private Rectangle attackArea;
@@ -26,8 +25,6 @@ public abstract class Player extends DamageableEntity {
 	private int maxAttackTick = 30;
 	private int damageTick = 60;
 	private int maxDamageTick = 60;
-	private int warpTick = 60;
-	private int maxWarpTick = 60;
 	private List<Item> inventory = new ArrayList<>();
 	private int maxInventorySlots = 10;
 	
@@ -38,8 +35,8 @@ public abstract class Player extends DamageableEntity {
 	public Player(String name, Image imgL, Image imgR, double x, double y, int atkLow, int atkHigh) {
 		super(name, imgR, x, y, Constants.LEVEL_HP[1], Constants.LEVEL_MP[1], Constants.LEVEL_ATTACK_LOW[1], Constants.LEVEL_ATTACK_HIGH[1]);
 		attackArea = new Rectangle(x, y, width, height);
-		this.imgL = imgL;
-		this.imgR = imgR;
+		this.imageL = imgL;
+		this.imageR = imgR;
 	}
 	
 	public void jump() {
@@ -71,12 +68,12 @@ public abstract class Player extends DamageableEntity {
 		//TODO
 		if (KeyInput.pressingKey(KeyCode.LEFT)) {
 			facing = LEFT;
-			setImg(imgL);
+			setImage(imageL);
 			GameManager.getInstance().getCurrentMap().pushAccX(GameManager.getInstance().getPlayer(), -0.5);
 		}
 		if (KeyInput.pressingKey(KeyCode.RIGHT)) {
 			facing = RIGHT;
-			setImg(imgR);
+			setImage(imageR);
 			GameManager.getInstance().getCurrentMap().pushAccX(GameManager.getInstance().getPlayer(), 0.5);
 		};
 		if (KeyInput.pressingKey(KeyCode.SPACE)) {
@@ -97,7 +94,7 @@ public abstract class Player extends DamageableEntity {
 			}
 		}
 		if (KeyInput.pressingKey(KeyCode.UP)) {
-			warp();
+			GameManager.getInstance().warp();
 		}
 		while (KeyInput.digitAvailable()) {
 			int digit = KeyInput.pollDigitKey();
@@ -112,23 +109,12 @@ public abstract class Player extends DamageableEntity {
 				}
 			}
 		}
-		if (warpTick < maxWarpTick) warpTick++;
 		if (attackTick < maxAttackTick) attackTick++;
 		if (damageTick < maxDamageTick) damageTick++;
 		else if (GameManager.getInstance().getCurrentMap().collideDamageableEntity(this) != null) {
 			damage(GameManager.getInstance().getCurrentMap().collideDamageableEntity(this).getAttackDamage());
 			System.out.println(this);
 			damageTick = 0;
-		}
-	}
-	
-	public void warp() {
-		Portal portal = GameManager.getInstance().getCurrentMap().collidePortal(this);
-		if (warpTick >= maxWarpTick && portal != null) {
-			GameManager.getInstance().setCurrentMap(portal.getDestination());
-			x = portal.getXDest()-width/2;
-			y = portal.getYDest()-height;
-			warpTick = 0;
 		}
 	}
 	

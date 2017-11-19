@@ -25,6 +25,8 @@ public class GameManager {
 	private List<Map> maps = new ArrayList<>();
 	private Player player;
 	private Map currentMap;
+	private int warpTick = 60;
+	private int maxWarpTick = 60;
 	
 	public GameManager() {
 		generateMap();
@@ -46,6 +48,18 @@ public class GameManager {
 	public void render(GraphicsContext gc) {
 		currentMap.render(gc);
 		gc.strokeRect(player.getAttackArea().getX()-currentMap.getX(), player.getAttackArea().getY()-currentMap.getY(), player.getAttackArea().getWidth(), player.getAttackArea().getHeight());
+		
+		if (isWarping()) {
+			double alpha = 2.*warpTick/maxWarpTick;
+			if (warpTick >= maxWarpTick/2) {
+				alpha = 2-alpha;
+			}
+			gc.setGlobalAlpha(alpha);
+			gc.setFill(Color.BLACK);
+			gc.fillRect(0, 0, Constants.MAP_WIDTH, Constants.MAP_HEIGHT);
+			gc.setGlobalAlpha(1);
+		}
+		
 		//TODO Render Status bar
 		
 		// Temporarily show experience
@@ -79,8 +93,16 @@ public class GameManager {
 	}
 	
 	public void update() {
+		if (isWarping()) {
+			warpTick++;
+			if (warpTick == maxWarpTick/2) {
+				moveOfWarp();
+			}
+		}
+		else {
+			player.update();
+		}
 		currentMap.update();
-		player.update();
 	}
 	
 	private void generateMap() {
@@ -92,6 +114,33 @@ public class GameManager {
 	private void bindPortal() {
 		maps.get(0).getPortals().add(new Portal(1000, 810, maps.get(1), 100, 690));
 		maps.get(1).getPortals().add(new Portal(100, 690, maps.get(0), 1000, 810));
+	}
+	
+	public boolean isWarping() {
+		return warpTick < maxWarpTick;
+	}
+	
+	public boolean shouldWarp() {
+		Portal portal = currentMap.collidePortal(player);
+		if (!isWarping() && portal != null) {
+			return true;
+		}
+		else return false;
+	}
+	
+	public void warp() {
+		if (shouldWarp()) {
+			warpTick = 0;
+		}
+	}
+	
+	private void moveOfWarp() {
+		Portal portal = currentMap.collidePortal(player);
+		if (isWarping() && portal != null) {
+			currentMap = portal.getDestination();
+			player.x = portal.getXDest()-player.width/2;
+			player.y = portal.getYDest()-player.height;
+		}
 	}
 	
 	public void setPlayer(Player p) {
