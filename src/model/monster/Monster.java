@@ -19,7 +19,7 @@ public class Monster extends DamageableEntity {
 		super(name, imgL, imgR, map, x, y, hp, mp, atkLow, atkHigh);
 		this.level = level;
 		this.experience = experience;
-		aiThread = new Thread(this::monsterAi);
+		startThread();
 	}
 	
 	public boolean isAggressive() {
@@ -49,6 +49,13 @@ public class Monster extends DamageableEntity {
 					e.printStackTrace();
 				}
 			}
+		}
+	}
+	
+	public void startThread() {
+		if (aiThread == null || !aiThread.isAlive()) {
+			aiThread = new Thread(this::monsterAi);
+			aiThread.start();
 		}
 	}
 	

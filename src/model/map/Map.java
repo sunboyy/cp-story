@@ -4,6 +4,7 @@ import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
+import java.util.concurrent.CopyOnWriteArrayList;
 
 import constants.Constants;
 import constants.Images;
@@ -32,7 +33,7 @@ public abstract class Map extends Rectangle {
 
 	private List<Class<? extends Monster>> monsterTypes = new ArrayList<>();
 	private List<Portal> portals = new ArrayList<>();
-	private List<Entity> entities = new ArrayList<>();
+	private List<Entity> entities = new CopyOnWriteArrayList<>();
 	private List<Particle> particles = new ArrayList<>();
 	private MapStructure structure;
 
@@ -213,7 +214,6 @@ public abstract class Map extends Rectangle {
 		double randX = Math.random() * 200 + 100;
 		Monster m = monsterTypes.get(rand).getConstructor(Map.class, double.class, double.class).newInstance(this, randX, 550);
 		entities.add(m);
-		m.getAiThread().start();
 	}
 
 	public double getFriction(Entity e) {
