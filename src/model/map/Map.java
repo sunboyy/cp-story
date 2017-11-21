@@ -199,8 +199,8 @@ public abstract class Map extends Rectangle {
 		Iterator<Entity> itEntity = entities.iterator();
 		while (itEntity.hasNext()) {
 			Entity entity = itEntity.next();
+			entity.update();
 			if (entity instanceof ItemEntity) {
-				((ItemEntity) entity).update();
 				if (((ItemEntity) entity).isExpired()) {
 					itEntity.remove();
 				}
@@ -212,7 +212,7 @@ public abstract class Map extends Rectangle {
 			InvocationTargetException, NoSuchMethodException, SecurityException {
 		int rand = (int) Math.floor(Math.random() * monsterTypes.size());
 		double randX = Math.random() * 200 + 100;
-		Monster m = monsterTypes.get(rand).getConstructor(Map.class, double.class, double.class).newInstance(this, randX, 550);
+		Monster m = monsterTypes.get(rand).getConstructor(Map.class, double.class, double.class).newInstance(this, randX, 620);
 		entities.add(m);
 	}
 
