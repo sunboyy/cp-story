@@ -5,8 +5,9 @@ import javafx.scene.image.Image;
 public class Images {
 
 	public static final Image beachBackground = new Image("background.png");
-	public static final Image gardenBackground = new Image("garden-background.jpg",1300,900,false,false);
-	public static final Image defaultBackground = new Image("default-background.jpg");
+	public static final Image defaultBackground = new Image("background/bg_default.jpg");
+	public static final Image gardenBackground = new Image("background/bg_garden.jpg",1300,900,false,false);
+	public static final Image skycafeBackground = new Image("background/bg_sky-cafe.jpg",1300,900,false,false);
 	
 	public static final Image beachForeground = new Image("foreground.png");
 	

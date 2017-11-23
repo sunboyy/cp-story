@@ -15,9 +15,9 @@ import model.item.Item;
 import model.map.Garden;
 import model.map.Map;
 import model.map.Portal;
+import model.map.SkyCafe;
 import model.monster.Monster;
 import model.player.Player;
-import testui.TestMap;
 
 public class GameManager {
 	
@@ -111,8 +111,8 @@ public class GameManager {
 	}
 	
 	private void generateMap() {
+		maps.add(new SkyCafe());
 		maps.add(new Garden());
-		maps.add(new TestMap());
 		currentMap = maps.get(0);
 	}
 	
