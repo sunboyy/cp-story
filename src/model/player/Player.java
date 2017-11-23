@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import constants.Constants;
+import constants.Sounds;
 import input.KeyInput;
 import javafx.scene.image.Image;
 import javafx.scene.input.KeyCode;
@@ -63,9 +64,13 @@ public abstract class Player extends DamageableEntity {
 		if (e == null) return;
 		e.damage(getAttackDamage());
 		if (e.isDead()) {
+			Sounds.deadSound.play();
 			addExperience(e.getExperience());
 			GameManager.getInstance().getCurrentMap().getEntities().remove(e);
 			GameManager.getInstance().getCurrentMap().getEntities().addAll(e.spawnLoot());
+		}
+		else {
+			Sounds.punchSound.play();
 		}
 		attackTick = 0;
 	}
