@@ -73,13 +73,13 @@ public abstract class Player extends DamageableEntity {
 	public void setMove(int direction) {
 		if(isCrying) {
 			if(walkTick%10<5 && isWalking) {
-				setImage(imgWalkAndCry.get(direction));
+				setFacing(direction,imgWalkAndCry.get(direction));
 			} else {
 				setFacing(direction, imgCrying.get(direction));
 			}
 		} else if (isWalking) {
 			if(walkTick%10<5) {
-				setImage(imgWalking.get(direction));
+				setFacing(direction,imgWalking.get(direction));
 			} else {
 				setFacing(direction);
 			}
