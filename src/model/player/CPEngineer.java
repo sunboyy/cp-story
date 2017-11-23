@@ -10,7 +10,7 @@ public class CPEngineer extends Player {
 	}
 	
 	public CPEngineer(String name, Map map, double x, double y) {
-		super(name, Images.cpEngPlayerL,Images.cpEngPlayerR, map, x, y, 40, 70);
+		super(name, Images.cpEngPlayerL,Images.cpEngPlayerR, Images.cpEngPlayerWalkL, Images.cpEngPlayerWalkR, map, x, y, 40, 70);
 	}
 	
 }

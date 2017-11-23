@@ -17,9 +17,13 @@ import model.map.Map;
 
 public abstract class Player extends DamageableEntity {
 	
+	private Image imgWalkingL,imgWalkingR;
+	private boolean isWalking = false;
 	private boolean isJumping = false;
 	private double attackRange = 50;
 	private Rectangle attackArea;
+	private int walkTick = 30;
+	private int maxWalkTick = 60;
 	private int attackTick = 30;
 	private int maxAttackTick = 30;
 	private int damageTick = 60;
@@ -27,14 +31,16 @@ public abstract class Player extends DamageableEntity {
 	private List<Item> inventory = new ArrayList<>();
 	private int maxInventorySlots = 10;
 	
-	public Player(String name, Image imgL, Image imgR, Map map, int atkLow, int atkHigh) {
-		this(name, imgL, imgR, map, 0, 0, atkLow, atkHigh);
+	public Player(String name, Image imgL, Image imgWalkingL, Image imgWalkingR, Image imgR, Map map, int atkLow, int atkHigh) {
+		this(name, imgL, imgR, imgWalkingL, imgWalkingR, map, 0, 0, atkLow, atkHigh);
 	}
 	
-	public Player(String name, Image imgL, Image imgR, Map map, double x, double y, int atkLow, int atkHigh) {
+	public Player(String name, Image imgL, Image imgR, Image imgWalkingL, Image imgWalkingR, Map map, double x, double y, int atkLow, int atkHigh) {
 		super(name, imgL, imgR, map, x, y, Constants.LEVEL_HP[1], Constants.LEVEL_MP[1], Constants.LEVEL_ATTACK_LOW[1], Constants.LEVEL_ATTACK_HIGH[1]);
 		attackArea = new Rectangle(x, y, width, height);
 		this.maxVelocityX = 4;
+		this.imgWalkingL = imgWalkingL;
+		this.imgWalkingR = imgWalkingR;
 	}
 	
 	public void jump() {
@@ -66,12 +72,24 @@ public abstract class Player extends DamageableEntity {
 		//TODO
 		if (KeyInput.pressingKey(KeyCode.LEFT)) {
 			setFacing(LEFT);
+			setWalking(true);
+			if(walkTick%10<5&&isWalking()) {
+				setImage(imgWalkingL);
+			}
 			GameManager.getInstance().getCurrentMap().pushAccX(GameManager.getInstance().getPlayer(), -0.5);
 		}
-		if (KeyInput.pressingKey(KeyCode.RIGHT)) {
+		
+		else if (KeyInput.pressingKey(KeyCode.RIGHT)) {
 			setFacing(RIGHT);
+			setWalking(true);
+			if(walkTick%10<5&&isWalking()) {
+				setImage(imgWalkingR);
+			}
 			GameManager.getInstance().getCurrentMap().pushAccX(GameManager.getInstance().getPlayer(), 0.5);
-		};
+		} else {
+			setWalking(false);
+			setFacing(this.facing);
+		}
 		if (KeyInput.pressingKey(KeyCode.SPACE)) {
 			if (KeyInput.pressingKey(KeyCode.DOWN) && GameManager.getInstance().shouldJumpDown()) jumpDown();
 			else jump();
@@ -105,6 +123,7 @@ public abstract class Player extends DamageableEntity {
 				}
 			}
 		}
+		walkTick = isWalking() ? (walkTick + 1)%maxWalkTick : 0; 
 		if (attackTick < maxAttackTick) attackTick++;
 		if (damageTick < maxDamageTick) damageTick++;
 		else if (GameManager.getInstance().getCurrentMap().collideDamageableEntity(this) != null) {
@@ -149,6 +168,10 @@ public abstract class Player extends DamageableEntity {
 		return isJumping;
 	}
 	
+	public boolean isWalking() {
+		return isWalking;
+	}
+	
 	public double getAttackRange() {
 		return attackRange;
 	}
@@ -180,6 +203,10 @@ public abstract class Player extends DamageableEntity {
 
 	public int getExperience() {
 		return experience;
+	}
+	
+	public void setWalking(boolean isWalking) {
+		this.isWalking = isWalking;
 	}
 
 }
