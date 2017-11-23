@@ -1,5 +1,6 @@
 package model.monster;
 
+import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
 import model.DamageableEntity;
 import model.GameManager;
@@ -8,6 +9,7 @@ import model.map.Map;
 public class Monster extends DamageableEntity {
 	
 	private Thread aiThread;
+	private int age = 0;
 	private int aggressiveTick = 300;
 	private int maxAggressiveTick = 300;
 	
@@ -19,7 +21,7 @@ public class Monster extends DamageableEntity {
 		super(name, imgL, imgR, map, x, y, hp, mp, atkLow, atkHigh);
 		this.level = level;
 		this.experience = experience;
-		aiThread = new Thread(this::monsterAi);
+		startThread();
 	}
 	
 	public boolean isAggressive() {
@@ -28,7 +30,7 @@ public class Monster extends DamageableEntity {
 	
 	private void monsterAi() {
 		while (!isDead() && GameManager.getInstance().isGameRunning() && getMap() == GameManager.getInstance().getCurrentMap()) {
-			int delay = (int) Math.floor(Math.random()*8000)+500;
+			int delay = (int) Math.floor(Math.random()*8000);
 			try {
 				Thread.sleep(delay);
 			} catch (InterruptedException e) {
@@ -49,6 +51,28 @@ public class Monster extends DamageableEntity {
 					e.printStackTrace();
 				}
 			}
+		}
+	}
+	
+	public void update() {
+		if (age < 30) age++;
+	}
+	
+	public void render(GraphicsContext gc) {
+		if (age < 30) {
+			gc.setGlobalAlpha(age/30.);
+			super.render(gc);
+			gc.setGlobalAlpha(1);
+		}
+		else {
+			super.render(gc);
+		}
+	}
+	
+	public void startThread() {
+		if (aiThread == null || !aiThread.isAlive()) {
+			aiThread = new Thread(this::monsterAi);
+			aiThread.start();
 		}
 	}
 	

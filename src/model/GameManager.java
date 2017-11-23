@@ -148,7 +148,7 @@ public class GameManager {
 			player.setMap(portal.getDestination());
 			for (Entity i: currentMap.getEntities()) {
 				if (i instanceof Monster) {
-					((Monster) i).getAiThread().start();
+					((Monster) i).startThread();
 				}
 			}
 		}
