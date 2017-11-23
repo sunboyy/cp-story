@@ -1,7 +1,6 @@
 package ui;
 
 import constants.Images;
-import javafx.animation.AnimationTimer;
 import javafx.event.EventHandler;
 import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;

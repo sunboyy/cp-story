@@ -111,14 +111,14 @@ public class GameManager {
 	}
 	
 	private void generateMap() {
-		maps.add(new SkyCafe());
 		maps.add(new Garden());
+		maps.add(new SkyCafe());
 		currentMap = maps.get(0);
 	}
 	
 	private void bindPortal() {
-		maps.get(0).getPortals().add(new Portal(1000, 810, maps.get(1), 100, 690));
-		maps.get(1).getPortals().add(new Portal(100, 690, maps.get(0), 1000, 810));
+		maps.get(0).getPortals().add(new Portal(1000, 810, maps.get(1), 100, 810));
+		maps.get(1).getPortals().add(new Portal(100, 810, maps.get(0), 1000, 810));
 	}
 	
 	public boolean isWarping() {
