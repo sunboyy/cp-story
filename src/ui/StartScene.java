@@ -1,32 +1,76 @@
 package ui;
 
+import constants.Images;
+import javafx.animation.AnimationTimer;
 import javafx.event.EventHandler;
 import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
-import javafx.scene.control.Button;
+import javafx.scene.canvas.GraphicsContext;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.StackPane;
+import javafx.scene.layout.Pane;
+import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 
 public class StartScene extends Scene {
 	
-	private StackPane root;
+	private Pane root;
+	private Stage stage;
 	
 	public StartScene(Stage stage) {
-		super(new StackPane(), 1000, 600);
-		root = (StackPane) getRoot();
+		super(new Pane(), 1000, 600);
+		root = (Pane) getRoot();
+		this.stage = stage;
 		
 		Canvas canvas = new Canvas(1000, 600);
-		Button btnPlay = new Button("Play");
+		GraphicsContext gc = canvas.getGraphicsContext2D();
+		gc.drawImage(Images.startscreen, 0, 0);
+		
+		ImageView btnPlay = new ImageView(Images.playbutton);
+		btnPlay.setLayoutX(180);
+		btnPlay.setLayoutY(336);
+		btnPlay.setPickOnBounds(false);
+		addBtnPlayEventHandler(btnPlay);
 		
 		root.getChildren().addAll(canvas,btnPlay);
 		
-		btnPlay.setOnMouseClicked(new EventHandler<MouseEvent>(){
+	}
+	
+	private void addBtnPlayEventHandler(ImageView btn) {
+		
+		btn.setOnMouseClicked(new EventHandler<MouseEvent>() {
 			@Override
 			public void handle(MouseEvent event) {
+				// TODO Auto-generated method stub
+				btn.setImage(Images.playbutton);
 				stage.setScene(new GameScene());
 			}
 		});
+		
+		btn.setOnMouseEntered(new EventHandler<MouseEvent>() {
+			@Override
+			public void handle(MouseEvent event) {
+				// TODO Auto-generated method stub
+				btn.setImage(Images.playbutton_highlight);
+				Canvas canvas = new Canvas(300,300);
+				GraphicsContext gc = canvas.getGraphicsContext2D();
+				gc.setFill(Color.WHITE);
+				gc.fillRect(0, 0, 200, 5);
+				canvas.setLayoutX(220);
+				canvas.setLayoutY(420);
+				root.getChildren().add(canvas);
+			}
+		});
+		
+		btn.setOnMouseExited(new EventHandler<MouseEvent>() {
+			@Override
+			public void handle(MouseEvent event) {
+				// TODO Auto-generated method stub
+				btn.setImage(Images.playbutton);
+				root.getChildren().remove(2);
+			}
+		});
+		
 	}
 	
 }

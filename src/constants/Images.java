@@ -3,6 +3,10 @@ package constants;
 import javafx.scene.image.Image;
 
 public class Images {
+	
+	public static final Image startscreen = new Image("startscreen.jpg");
+	public static final Image playbutton = new Image("playbutton.png");
+	public static final Image playbutton_highlight = new Image("playbutton_highlight.png");
 
 	public static final Image beachBackground = new Image("background.png");
 	public static final Image defaultBackground = new Image("background/bg_default.jpg");
