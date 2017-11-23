@@ -113,13 +113,12 @@ public abstract class Entity extends Rectangle {
 	}
 	
 	public void setFacing(int facing) {
-		this.facing = facing;
-		if(facing==LEFT) {
-			this.image = imageL;
-		} else {
-			this.image = imageR;
-		}
+		setFacing(facing, facing==LEFT ? imageL : imageR);
 	}
-
+	
+	public void setFacing(int facing, Image img) {
+		this.facing = facing;
+		this.setImage(img);
+	}
 }
 

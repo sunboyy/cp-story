@@ -17,9 +17,10 @@ import model.map.Map;
 
 public abstract class Player extends DamageableEntity {
 	
-	private Image imgWalkingL,imgWalkingR;
+	private List<Image> imgWalking,imgCrying,imgWalkAndCry;
 	private boolean isWalking = false;
 	private boolean isJumping = false;
+	private boolean isCrying = false;
 	private double attackRange = 50;
 	private Rectangle attackArea;
 	private int walkTick = 30;
@@ -31,16 +32,17 @@ public abstract class Player extends DamageableEntity {
 	private List<Item> inventory = new ArrayList<>();
 	private int maxInventorySlots = 10;
 	
-	public Player(String name, Image imgL, Image imgWalkingL, Image imgWalkingR, Image imgR, Map map, int atkLow, int atkHigh) {
-		this(name, imgL, imgR, imgWalkingL, imgWalkingR, map, 0, 0, atkLow, atkHigh);
+	public Player(String name, Image imgL, Image imgR, List<Image> imgWalking, List<Image> imgCrying, List<Image> imgWalkAndCry, Map map, int atkLow, int atkHigh) {
+		this(name, imgL, imgR, imgWalking,imgCrying,imgWalkAndCry, map, 0, 0, atkLow, atkHigh);
 	}
 	
-	public Player(String name, Image imgL, Image imgR, Image imgWalkingL, Image imgWalkingR, Map map, double x, double y, int atkLow, int atkHigh) {
+	public Player(String name, Image imgL, Image imgR, List<Image> imgWalking, List<Image> imgCrying, List<Image> imgWalkAndCry, Map map, double x, double y, int atkLow, int atkHigh) {
 		super(name, imgL, imgR, map, x, y, Constants.LEVEL_HP[1], Constants.LEVEL_MP[1], Constants.LEVEL_ATTACK_LOW[1], Constants.LEVEL_ATTACK_HIGH[1]);
 		attackArea = new Rectangle(x, y, width, height);
 		this.maxVelocityX = 4;
-		this.imgWalkingL = imgWalkingL;
-		this.imgWalkingR = imgWalkingR;
+		this.imgWalking = imgWalking;
+		this.imgCrying = imgCrying;
+		this.imgWalkAndCry = imgWalkAndCry;
 	}
 	
 	public void jump() {
@@ -68,27 +70,39 @@ public abstract class Player extends DamageableEntity {
 		attackTick = 0;
 	}
 	
+	public void setMove(int direction) {
+		if(isCrying) {
+			if(walkTick%10<5 && isWalking) {
+				setImage(imgWalkAndCry.get(direction));
+			} else {
+				setFacing(direction, imgCrying.get(direction));
+			}
+		} else if (isWalking) {
+			if(walkTick%10<5) {
+				setImage(imgWalking.get(direction));
+			} else {
+				setFacing(direction);
+			}
+		} else {
+			setFacing(direction);
+		}
+	}
+	
 	public void update() {
 		//TODO
+		isCrying = GameManager.getInstance().getPlayer().getHp() < 0.2*GameManager.getInstance().getPlayer().getMaxHp();
 		if (KeyInput.pressingKey(KeyCode.LEFT)) {
-			setFacing(LEFT);
 			setWalking(true);
-			if(walkTick%10<5&&isWalking()) {
-				setImage(imgWalkingL);
-			}
+			setMove(LEFT);
 			GameManager.getInstance().getCurrentMap().pushAccX(GameManager.getInstance().getPlayer(), -0.5);
 		}
-		
 		else if (KeyInput.pressingKey(KeyCode.RIGHT)) {
-			setFacing(RIGHT);
 			setWalking(true);
-			if(walkTick%10<5&&isWalking()) {
-				setImage(imgWalkingR);
-			}
+			setMove(RIGHT);
 			GameManager.getInstance().getCurrentMap().pushAccX(GameManager.getInstance().getPlayer(), 0.5);
 		} else {
 			setWalking(false);
-			setFacing(this.facing);
+			setMove(this.facing);
 		}
 		if (KeyInput.pressingKey(KeyCode.SPACE)) {
 			if (KeyInput.pressingKey(KeyCode.DOWN) && GameManager.getInstance().shouldJumpDown()) jumpDown();

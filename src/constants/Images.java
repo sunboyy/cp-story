@@ -16,9 +16,13 @@ public class Images {
 	public static final Image monsterProgmethL = new Image(ClassLoader.getSystemResource("monster/progmethL.png").toString());
 	
 	public static final Image cpEngPlayerL = new Image("player/CPPlayerL.png",77.25,110,true,false);
-	public static final Image cpEngPlayerWalkL = new Image("player/CPPlayerWalkL.png",77.25,110,true,false);
+	public static final Image cpEngPlayerWalkL = new Image("player/CPPlayerLWalk.png",77.25,110,true,false);
+	public static final Image cpEngPlayerCryL = new Image("player/CPPlayerLCry.png",77.25,110,true,false);
+	public static final Image cpEngPlayerWalkCryL = new Image("player/CPPlayerLWalkCry.png",77.25,110,true,false);
 	public static final Image cpEngPlayerR = new Image("player/CPPlayerR.png",77.25,110,true,false);
-	public static final Image cpEngPlayerWalkR = new Image("player/CPPlayerWalkR.png",77.25,110,true,false); 
+	public static final Image cpEngPlayerWalkR = new Image("player/CPPlayerRWalk.png",77.25,110,true,false); 
+	public static final Image cpEngPlayerCryR = new Image("player/CPPlayerRCry.png",77.25,110,true,false);
+	public static final Image cpEngPlayerWalkCryR = new Image("player/CPPlayerRWalkCry.png",77.25,110,true,false);
 	
 	public static final Image redPotionItem = new Image("item/redpotion.png");
 	

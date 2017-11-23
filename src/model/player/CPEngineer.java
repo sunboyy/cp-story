@@ -1,5 +1,8 @@
 package model.player;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+
 import constants.Images;
 import model.map.Map;
 
@@ -10,7 +13,11 @@ public class CPEngineer extends Player {
 	}
 	
 	public CPEngineer(String name, Map map, double x, double y) {
-		super(name, Images.cpEngPlayerL,Images.cpEngPlayerR, Images.cpEngPlayerWalkL, Images.cpEngPlayerWalkR, map, x, y, 40, 70);
+		super(name, Images.cpEngPlayerL,Images.cpEngPlayerR
+				, new ArrayList<>(Arrays.asList(Images.cpEngPlayerWalkL, Images.cpEngPlayerWalkR))
+				, new ArrayList<>(Arrays.asList(Images.cpEngPlayerCryL, Images.cpEngPlayerCryR))
+				, new ArrayList<>(Arrays.asList(Images.cpEngPlayerWalkCryL, Images.cpEngPlayerWalkCryR))
+				, map, x, y, 40, 70);
 	}
 	
 }
