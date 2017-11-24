@@ -20,4 +20,10 @@ public class Main extends Application {
 		stage.setScene(new StartScene(stage));
 		stage.show();
 	}
+	
+	@Override
+	public void stop() throws Exception {
+		GameManager.getInstance().stopGame();
+		super.stop();
+	}
 }

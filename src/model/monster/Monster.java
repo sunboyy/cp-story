@@ -29,12 +29,13 @@ public class Monster extends DamageableEntity {
 	}
 	
 	private void monsterAi() {
-		while (!isDead() && GameManager.getInstance().isGameRunning() && getMap() == GameManager.getInstance().getCurrentMap()) {
+		while (GameManager.getInstance().isGameRunning() && !isDead() && getMap() == GameManager.getInstance().getCurrentMap()) {
 			int delay = (int) Math.floor(Math.random()*8000);
 			try {
 				Thread.sleep(delay);
 			} catch (InterruptedException e) {
-				e.printStackTrace();
+				System.out.println("Monster AI thread interrupted");
+				break;
 			}
 			int direction = (int) Math.floor(Math.random()*2)*2-1;
 			int tick = (int) (30+Math.floor(Math.random()*240));
@@ -48,7 +49,7 @@ public class Monster extends DamageableEntity {
 				try {
 					Thread.sleep(1000/60);
 				} catch (InterruptedException e) {
-					e.printStackTrace();
+					System.out.println("Monster AI thread interrupted");
 				}
 			}
 		}

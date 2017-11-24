@@ -155,11 +155,12 @@ public class GameManager {
 	}
 	
 	private void monsterGen() {
-		while (isGameRunning) {
+		while (true) {
 			try {
 				Thread.sleep(5000);
 			} catch (InterruptedException e) {
-				e.printStackTrace();
+				System.out.println("Monster generator thread interrupted.");
+				break;
 			}
 			if (currentMap.getEntities().size() < 20 && !isWarping()) {
 				try {
@@ -187,13 +188,19 @@ public class GameManager {
 	public static GameManager getInstance() {
 		return instance;
 	}
-
+	
 	public boolean isGameRunning() {
 		return isGameRunning;
 	}
 
 	public void stopGame() {
-		this.isGameRunning = false;
+		isGameRunning = false;
+		monsterGenThread.interrupt();
+		for (Entity i: currentMap.getEntities()) {
+			if (i instanceof Monster) {
+				((Monster) i).getAiThread().interrupt();
+			}
+		}
 	}
 	
 }
