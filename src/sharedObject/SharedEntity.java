@@ -3,16 +3,18 @@ package sharedObject;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
+import java.util.concurrent.CopyOnWriteArrayList;
 
 import model.Entity;
 import model.GameManager;
 import model.map.Map;
+import model.monster.Monster;
 
 public class SharedEntity {
 	
 	private static SharedEntity instance = new SharedEntity();
 	
-	private List<Entity> entities = new ArrayList<>();
+	private List<Entity> entities = new CopyOnWriteArrayList<>();
 	
 	public List<Entity> getEntitiesOfMap(Map map) {
 		List<Entity> list = new ArrayList<>();
@@ -26,6 +28,16 @@ public class SharedEntity {
 	
 	public List<Entity> getEntitiesOfCurrentMap() {
 		return getEntitiesOfMap(GameManager.getInstance().getCurrentMap());
+	}
+	
+	public List<Monster> getMonsterOfCurrentMap() {
+		List<Monster> list = new ArrayList<>();
+		for (Entity i: entities) {
+			if (i.getMap() == GameManager.getInstance().getCurrentMap() && i instanceof Monster) {
+				list.add((Monster) i);
+			}
+		}
+		return list;
 	}
 	
 	public void add(Entity e) {

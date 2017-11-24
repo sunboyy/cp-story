@@ -1,10 +1,11 @@
 package model;
 
-import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
 import java.util.List;
 
 import constants.Constants;
+import controller.MonsterAi;
+import controller.MonsterGen;
 import javafx.geometry.VPos;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.paint.Color;
@@ -16,9 +17,7 @@ import model.map.Garden;
 import model.map.Map;
 import model.map.Portal;
 import model.map.SkyCafe;
-import model.monster.Monster;
 import model.player.Player;
-import sharedObject.SharedEntity;
 
 public class GameManager {
 	
@@ -30,13 +29,14 @@ public class GameManager {
 	private Map currentMap;
 	private int warpTick = 60;
 	private int maxWarpTick = 60;
-	private Thread monsterGenThread;
+	private MonsterGen monsterGen;
+	private MonsterAi monsterAi;
 	
 	public GameManager() {
 		generateMap();
 		bindPortal();
-		monsterGenThread = new Thread(this::monsterGen);
-		monsterGenThread.start();
+		monsterGen = new MonsterGen();
+		monsterAi = new MonsterAi();
 	}
 
 	public List<Map> getMaps() {
@@ -147,30 +147,6 @@ public class GameManager {
 			player.x = portal.getXDest()-player.width/2;
 			player.y = portal.getYDest()-player.height;
 			player.setMap(portal.getDestination());
-			for (Entity i: SharedEntity.getInstance().getEntitiesOfMap(currentMap)) {
-				if (i instanceof Monster) {
-					((Monster) i).startThread();
-				}
-			}
-		}
-	}
-	
-	private void monsterGen() {
-		while (true) {
-			try {
-				Thread.sleep(5000);
-			} catch (InterruptedException e) {
-				System.out.println("Monster generator thread interrupted.");
-				break;
-			}
-			if (SharedEntity.getInstance().getEntitiesOfMap(currentMap).size() < 20 && !isWarping()) {
-				try {
-					currentMap.spawnRandom();
-				} catch (InstantiationException | IllegalAccessException | IllegalArgumentException
-						| InvocationTargetException | NoSuchMethodException | SecurityException e) {
-					e.printStackTrace();
-				}
-			}
 		}
 	}
 	
@@ -196,12 +172,8 @@ public class GameManager {
 
 	public void stopGame() {
 		isGameRunning = false;
-		monsterGenThread.interrupt();
-		for (Entity i: SharedEntity.getInstance().getEntitiesOfMap(currentMap)) {
-			if (i instanceof Monster) {
-				((Monster) i).getAiThread().interrupt();
-			}
-		}
+		monsterGen.interrupt();
+		monsterAi.interrupt();
 	}
 	
 }
