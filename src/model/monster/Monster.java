@@ -10,6 +10,8 @@ public class Monster extends DamageableEntity {
 	
 	private Thread aiThread;
 	private int age = 0;
+	private int aiDelay;
+	private int walkTick;
 	private int aggressiveTick = 300;
 	private int maxAggressiveTick = 300;
 	
@@ -30,26 +32,26 @@ public class Monster extends DamageableEntity {
 	
 	private void monsterAi() {
 		while (GameManager.getInstance().isGameRunning() && !isDead() && getMap() == GameManager.getInstance().getCurrentMap()) {
-			int delay = (int) Math.floor(Math.random()*8000);
+			aiDelay = (int) Math.floor(Math.random()*8000);
 			try {
-				Thread.sleep(delay);
+				Thread.sleep(aiDelay);
 			} catch (InterruptedException e) {
 				System.out.println("Monster AI thread interrupted");
 				break;
 			}
-			int direction = (int) Math.floor(Math.random()*2)*2-1;
-			int tick = (int) (30+Math.floor(Math.random()*240));
-			for (int i=0; i<tick; i++) {
+			setFacing((int) Math.floor(Math.random()*2)*2-1);
+			walkTick = (int) (30+Math.floor(Math.random()*240));
+			while (walkTick > 0) {
+				walkTick--;
 				if (x <= 0 || x + width >= getMap().getWidth()) {
-					direction *= -1;
+					setFacing(-getFacing());
 				}
-				if (direction < 0)	setFacing(LEFT);
-				else	setFacing(RIGHT);
-				GameManager.getInstance().getCurrentMap().pushAccX(this, direction*0.5);
+				GameManager.getInstance().getCurrentMap().pushAccX(this, facing*0.5);
 				try {
 					Thread.sleep(1000/60);
 				} catch (InterruptedException e) {
 					System.out.println("Monster AI thread interrupted");
+					break;
 				}
 			}
 		}

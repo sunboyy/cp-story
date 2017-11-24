@@ -79,13 +79,13 @@ public abstract class Player extends DamageableEntity {
 	public void setMove(int direction) {
 		if(isCrying) {
 			if(walkTick%10<5 && isWalking) {
-				setFacing(direction,imgWalkAndCry.get(direction));
+				setFacing(direction, imgWalkAndCry.get((direction+1)/2));
 			} else {
-				setFacing(direction, imgCrying.get(direction));
+				setFacing(direction, imgCrying.get((direction+1)/2));
 			}
 		} else if (isWalking) {
 			if(walkTick%10<5) {
-				setFacing(direction,imgWalking.get(direction));
+				setFacing(direction,imgWalking.get((direction+1)/2));
 			} else {
 				setFacing(direction);
 			}
@@ -96,16 +96,16 @@ public abstract class Player extends DamageableEntity {
 	
 	public void update() {
 		//TODO
-		isCrying = GameManager.getInstance().getPlayer().getHp() < 0.2*GameManager.getInstance().getPlayer().getMaxHp();
+		isCrying = getHp() < 0.2*getMaxHp();
 		if (KeyInput.pressingKey(KeyCode.LEFT)) {
 			setWalking(true);
 			setMove(LEFT);
-			GameManager.getInstance().getCurrentMap().pushAccX(GameManager.getInstance().getPlayer(), -0.5);
+			GameManager.getInstance().getCurrentMap().pushAccX(this, -0.5);
 		}
 		else if (KeyInput.pressingKey(KeyCode.RIGHT)) {
 			setWalking(true);
 			setMove(RIGHT);
-			GameManager.getInstance().getCurrentMap().pushAccX(GameManager.getInstance().getPlayer(), 0.5);
+			GameManager.getInstance().getCurrentMap().pushAccX(this, 0.5);
 		} else {
 			setWalking(false);
 			setMove(this.facing);
@@ -222,10 +222,6 @@ public abstract class Player extends DamageableEntity {
 	// Setter
 	public void setJumping(boolean isJumping) {
 		this.isJumping = isJumping;
-	}
-
-	public int getExperience() {
-		return experience;
 	}
 	
 	public void setWalking(boolean isWalking) {

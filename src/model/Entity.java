@@ -6,7 +6,7 @@ import model.map.Map;
 
 public abstract class Entity extends Rectangle {
 
-	public static final int LEFT = 0;
+	public static final int LEFT = -1;
 	public static final int RIGHT = 1;
 	
 	protected double velocityX;
