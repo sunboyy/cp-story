@@ -18,6 +18,7 @@ import model.map.Portal;
 import model.map.SkyCafe;
 import model.monster.Monster;
 import model.player.Player;
+import sharedObject.SharedEntity;
 
 public class GameManager {
 	
@@ -146,7 +147,7 @@ public class GameManager {
 			player.x = portal.getXDest()-player.width/2;
 			player.y = portal.getYDest()-player.height;
 			player.setMap(portal.getDestination());
-			for (Entity i: currentMap.getEntities()) {
+			for (Entity i: SharedEntity.getInstance().getEntitiesOfMap(currentMap)) {
 				if (i instanceof Monster) {
 					((Monster) i).startThread();
 				}
@@ -162,7 +163,7 @@ public class GameManager {
 				System.out.println("Monster generator thread interrupted.");
 				break;
 			}
-			if (currentMap.getEntities().size() < 20 && !isWarping()) {
+			if (SharedEntity.getInstance().getEntitiesOfMap(currentMap).size() < 20 && !isWarping()) {
 				try {
 					currentMap.spawnRandom();
 				} catch (InstantiationException | IllegalAccessException | IllegalArgumentException
@@ -196,7 +197,7 @@ public class GameManager {
 	public void stopGame() {
 		isGameRunning = false;
 		monsterGenThread.interrupt();
-		for (Entity i: currentMap.getEntities()) {
+		for (Entity i: SharedEntity.getInstance().getEntitiesOfMap(currentMap)) {
 			if (i instanceof Monster) {
 				((Monster) i).getAiThread().interrupt();
 			}

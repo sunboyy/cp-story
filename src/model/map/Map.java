@@ -4,7 +4,6 @@ import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
-import java.util.concurrent.CopyOnWriteArrayList;
 
 import constants.Constants;
 import constants.Images;
@@ -18,6 +17,7 @@ import model.Rectangle;
 import model.monster.Monster;
 import model.player.Player;
 import particle.Particle;
+import sharedObject.SharedEntity;
 
 public abstract class Map extends Rectangle {
 
@@ -33,7 +33,6 @@ public abstract class Map extends Rectangle {
 
 	private List<Class<? extends Monster>> monsterTypes = new ArrayList<>();
 	private List<Portal> portals = new ArrayList<>();
-	private List<Entity> entities = new CopyOnWriteArrayList<>();
 	private List<Particle> particles = new ArrayList<>();
 	private MapStructure structure;
 
@@ -66,7 +65,7 @@ public abstract class Map extends Rectangle {
 	}
 
 	public void motionAll() {
-		for (Entity i : entities) {
+		for (Entity i : SharedEntity.getInstance().getEntitiesOfMap(this)) {
 			motion(i);
 		}
 	}
@@ -143,7 +142,7 @@ public abstract class Map extends Rectangle {
 	}
 
 	public Entity collideEntity(Rectangle r) {
-		for (Entity i : entities) {
+		for (Entity i : SharedEntity.getInstance().getEntitiesOfMap(this)) {
 			if (r.collideWith(i))
 				return i;
 		}
@@ -151,7 +150,7 @@ public abstract class Map extends Rectangle {
 	}
 
 	public DamageableEntity collideDamageableEntity(Rectangle r) {
-		for (Entity i : entities) {
+		for (Entity i : SharedEntity.getInstance().getEntitiesOfMap(this)) {
 			if (i instanceof DamageableEntity && r.collideWith(i)) {
 				return (DamageableEntity) i;
 			}
@@ -160,7 +159,7 @@ public abstract class Map extends Rectangle {
 	}
 	
 	public ItemEntity collideItemEntity(Rectangle r) {
-		for (Entity i: entities) {
+		for (Entity i: SharedEntity.getInstance().getEntitiesOfMap(this)) {
 			if (i instanceof ItemEntity && r.collideWith(i)) {
 				return (ItemEntity) i;
 			}
@@ -181,8 +180,9 @@ public abstract class Map extends Rectangle {
 		gc.drawImage(img, -x, -y);
 		structure.render(gc);
 		GameManager.getInstance().getPlayer().render(gc);
-		for (Entity i : entities)
+		for (Entity i : SharedEntity.getInstance().getEntitiesOfMap(this))
 			i.render(gc);
+//		SharedEntity.getInstance().print();
 		for (Portal i : portals)
 			i.render(gc);
 		for (Particle i : particles)
@@ -196,7 +196,7 @@ public abstract class Map extends Rectangle {
 				it.remove();
 			}
 		}
-		Iterator<Entity> itEntity = entities.iterator();
+		Iterator<Entity> itEntity = SharedEntity.getInstance().getEntitiesOfMap(this).iterator();
 		while (itEntity.hasNext()) {
 			Entity entity = itEntity.next();
 			entity.update();
@@ -213,7 +213,7 @@ public abstract class Map extends Rectangle {
 		int rand = (int) Math.floor(Math.random() * monsterTypes.size());
 		double randX = Math.random() * 200 + 100;
 		Monster m = monsterTypes.get(rand).getConstructor(Map.class, double.class, double.class).newInstance(this, randX, 620);
-		entities.add(m);
+		SharedEntity.getInstance().add(m);
 	}
 
 	public double getFriction(Entity e) {
@@ -226,10 +226,6 @@ public abstract class Map extends Rectangle {
 
 	public MapStructure getStructure() {
 		return structure;
-	}
-
-	public List<Entity> getEntities() {
-		return entities;
 	}
 
 	public double getMaxVelocityY() {

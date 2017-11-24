@@ -21,6 +21,7 @@ public abstract class Entity extends Rectangle {
 		super(x, y, img.getWidth(), img.getHeight());
 		this.name = name;
 		this.image = img;
+		this.map = map;
 		imageL = null;
 		imageR = null;
 	}

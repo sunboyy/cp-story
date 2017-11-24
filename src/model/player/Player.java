@@ -15,6 +15,7 @@ import model.Rectangle;
 import model.item.Item;
 import model.item.UsableItem;
 import model.map.Map;
+import sharedObject.SharedEntity;
 
 public abstract class Player extends DamageableEntity {
 	
@@ -66,8 +67,8 @@ public abstract class Player extends DamageableEntity {
 		if (e.isDead()) {
 			Sounds.deadSound.play();
 			addExperience(e.getExperience());
-			GameManager.getInstance().getCurrentMap().getEntities().remove(e);
-			GameManager.getInstance().getCurrentMap().getEntities().addAll(e.spawnLoot());
+			SharedEntity.getInstance().remove(e);
+			SharedEntity.getInstance().addAll(e.spawnLoot());
 		}
 		else {
 			Sounds.punchSound.play();
@@ -123,7 +124,7 @@ public abstract class Player extends DamageableEntity {
 			ItemEntity itemEntity = GameManager.getInstance().getCurrentMap().collideItemEntity(this);
 			if (itemEntity != null) {
 				if (collectItem(itemEntity.getItem()))
-					GameManager.getInstance().getCurrentMap().getEntities().remove(itemEntity);
+					SharedEntity.getInstance().remove(itemEntity);
 			}
 		}
 		if (KeyInput.pressingKey(KeyCode.UP)) {
@@ -141,6 +142,9 @@ public abstract class Player extends DamageableEntity {
 					}
 				}
 			}
+		}
+		if (KeyInput.pressingKey(KeyCode.P)) {
+			SharedEntity.getInstance().print();
 		}
 		walkTick = isWalking() ? (walkTick + 1)%maxWalkTick : 0; 
 		if (attackTick < maxAttackTick) attackTick++;

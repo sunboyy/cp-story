@@ -7,6 +7,6 @@ public class Sounds {
 	public static AudioClip deadSound = new AudioClip(ClassLoader.getSystemResource("audio/effects/splat.wav").toString());
 	
 	static {
-		punchSound.setVolume(0.5);
+		punchSound.setVolume(0.25);
 	}
 }

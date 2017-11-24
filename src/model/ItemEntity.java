@@ -26,5 +26,9 @@ public class ItemEntity extends Entity {
 	public boolean isExpired() {
 		return age >= maxAge;
 	}
+	
+	public String toString() {
+		return String.format("%s [Item: %s]", getClass().getSimpleName(), item.getClass().getSimpleName());
+	}
 
 }
