@@ -2,8 +2,9 @@ package model.item;
 
 import constants.Images;
 import model.GameManager;
+import model.IUsable;
 
-public class RedPotion extends UsableItem {
+public class RedPotion extends Item implements IUsable {
 
 	public RedPotion() {
 		super("Red Potion", Images.redPotionItem);

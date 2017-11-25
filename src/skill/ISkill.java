@@ -1,8 +1,9 @@
 package skill;
 
-public interface ISkill {
+import model.IUsable;
+
+public interface ISkill extends IUsable {
 	public double getDamageMultiplier();
 	public double getAttackRange();
 	public int getMaxEntity();
-	public boolean use();
 }

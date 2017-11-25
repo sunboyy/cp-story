@@ -1,5 +1,7 @@
 package skill;
 
+import model.GameManager;
+
 public class NoSkill implements ISkill {
 
 	@Override
@@ -18,8 +20,8 @@ public class NoSkill implements ISkill {
 	}
 
 	@Override
-	public boolean use() {
-		return true;
+	public void use() {
+		GameManager.getInstance().getPlayer().attack(this, GameManager.getInstance().getCurrentMap().collideDamageableEntity(GameManager.getInstance().getPlayer().getAttackArea(this), getMaxEntity()));
 	}
 
 }

@@ -10,10 +10,10 @@ import javafx.scene.image.Image;
 import javafx.scene.input.KeyCode;
 import model.DamageableEntity;
 import model.GameManager;
+import model.IUsable;
 import model.ItemEntity;
 import model.Rectangle;
 import model.item.Item;
-import model.item.UsableItem;
 import model.map.Map;
 import sharedObject.SharedEntity;
 import skill.ISkill;
@@ -67,21 +67,19 @@ public abstract class Player extends DamageableEntity {
 	public void attack(ISkill skill, List<DamageableEntity> list) {
 		if (list == null) return;
 		if (attackTick < maxAttackTick) return;
-		if (skill.use()) {
-			for (DamageableEntity e: list) {
-				e.damage((int) (getAttackDamage() * skill.getDamageMultiplier()));
-				if (e.isDead()) {
-					Sounds.deadSound.play();
-					addExperience(e.getExperience());
-					SharedEntity.getInstance().remove(e);
-					SharedEntity.getInstance().addAll(e.spawnLoot());
-				}
-				else {
-					Sounds.punchSound.play();
-				}
+		for (DamageableEntity e: list) {
+			e.damage((int) (getAttackDamage() * skill.getDamageMultiplier()));
+			if (e.isDead()) {
+				Sounds.deadSound.play();
+				addExperience(e.getExperience());
+				SharedEntity.getInstance().remove(e);
+				SharedEntity.getInstance().addAll(e.spawnLoot());
 			}
-			attackTick = 0;
+			else {
+				Sounds.punchSound.play();
+			}
 		}
+		attackTick = 0;
 	}
 	
 	public void setMove(int direction) {
@@ -138,8 +136,8 @@ public abstract class Player extends DamageableEntity {
 				int index = (digit + 9) % 10;
 				if (inventory.size() > index) {
 					Item item = inventory.get(index);
-					if (item instanceof UsableItem) {
-						((UsableItem) item).use();
+					if (item instanceof IUsable) {
+						((IUsable) item).use();
 						if (item.getCount() <= 0) {
 							inventory.remove(item);
 						}
@@ -152,9 +150,7 @@ public abstract class Player extends DamageableEntity {
 				attack(skill, entities);
 			}
 			else if (key == KeyCode.Q && skills.size() > 1) {
-				ISkill skill = skills.get(1);
-				List<DamageableEntity> entities = GameManager.getInstance().getCurrentMap().collideDamageableEntity(getAttackArea(skill), skill.getMaxEntity());
-				attack(skill, entities);
+				skills.get(1).use();
 			}
 		}
 		if (KeyInput.pressingKey(KeyCode.P)) {

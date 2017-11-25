@@ -21,8 +21,10 @@ public class TestSkill implements ISkill {
 	}
 
 	@Override
-	public boolean use() {
-		return GameManager.getInstance().getPlayer().useMp(4);
+	public void use() {
+		if (GameManager.getInstance().getPlayer().useMp(4)) {
+			GameManager.getInstance().getPlayer().attack(this, GameManager.getInstance().getCurrentMap().collideDamageableEntity(GameManager.getInstance().getPlayer().getAttackArea(this), getMaxEntity()));
+		}
 	}
 
 }
