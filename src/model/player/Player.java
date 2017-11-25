@@ -61,17 +61,19 @@ public abstract class Player extends DamageableEntity {
 		}
 	}
 	
-	public void attack(DamageableEntity e) {
-		if (e == null) return;
-		e.damage(getAttackDamage());
-		if (e.isDead()) {
-			Sounds.deadSound.play();
-			addExperience(e.getExperience());
-			SharedEntity.getInstance().remove(e);
-			SharedEntity.getInstance().addAll(e.spawnLoot());
-		}
-		else {
-			Sounds.punchSound.play();
+	public void attack(List<DamageableEntity> list) {
+		if (list == null) return;
+		for (DamageableEntity e: list) {
+			e.damage(getAttackDamage());
+			if (e.isDead()) {
+				Sounds.deadSound.play();
+				addExperience(e.getExperience());
+				SharedEntity.getInstance().remove(e);
+				SharedEntity.getInstance().addAll(e.spawnLoot());
+			}
+			else {
+				Sounds.punchSound.play();
+			}
 		}
 		attackTick = 0;
 	}
@@ -115,9 +117,9 @@ public abstract class Player extends DamageableEntity {
 			else jump();
 		}
 		if (KeyInput.pressingKey(KeyCode.A)) {
-			DamageableEntity entity = GameManager.getInstance().getCurrentMap().collideDamageableEntity(getAttackArea());
-			if (attackTick >= maxAttackTick && entity != null) {
-				attack(entity);
+			List<DamageableEntity> entities = GameManager.getInstance().getCurrentMap().collideDamageableEntity(getAttackArea(), 1);
+			if (attackTick >= maxAttackTick) {
+				attack(entities);
 			}
 		}
 		if (KeyInput.pressingKey(KeyCode.C)) {
@@ -149,8 +151,8 @@ public abstract class Player extends DamageableEntity {
 		walkTick = isWalking() ? (walkTick + 1)%maxWalkTick : 0; 
 		if (attackTick < maxAttackTick) attackTick++;
 		if (damageTick < maxDamageTick) damageTick++;
-		else if (GameManager.getInstance().getCurrentMap().collideDamageableEntity(this) != null) {
-			damage(GameManager.getInstance().getCurrentMap().collideDamageableEntity(this).getAttackDamage());
+		else if (GameManager.getInstance().getCurrentMap().collideDamageableEntity(this, 1).size() != 0) {
+			damage(GameManager.getInstance().getCurrentMap().collideDamageableEntity(this, 1).get(0).getAttackDamage());
 			damageTick = 0;
 		}
 	}

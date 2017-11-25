@@ -149,13 +149,17 @@ public abstract class Map extends Rectangle {
 		return null;
 	}
 
-	public DamageableEntity collideDamageableEntity(Rectangle r) {
+	public List<DamageableEntity> collideDamageableEntity(Rectangle r, int limit) {
+		List<DamageableEntity> list = new ArrayList<>();
 		for (Entity i : SharedEntity.getInstance().getEntitiesOfMap(this)) {
 			if (i instanceof DamageableEntity && r.collideWith(i)) {
-				return (DamageableEntity) i;
+				list.add((DamageableEntity) i);
+			}
+			if (list.size() >= limit) {
+				break;
 			}
 		}
-		return null;
+		return list;
 	}
 	
 	public ItemEntity collideItemEntity(Rectangle r) {
