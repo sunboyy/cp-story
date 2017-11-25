@@ -75,8 +75,8 @@ public class GameManager {
 		gc.setTextAlign(TextAlignment.CENTER);
 		gc.setTextBaseline(VPos.BASELINE);
 		if (player.level < Constants.MAX_LEVEL) {
-			gc.fillText(String.format("Level %d: %d/%d (%.2f%%)", player.getLevel(), player.getExperience(), Constants.LEVEL_EXPERIENCE[player.level], 100.*player.getExperience()/Constants.LEVEL_EXPERIENCE[player.getLevel()]), Constants.MAP_WIDTH/2, Constants.MAP_HEIGHT-20);
-			gc.strokeText(String.format("Level %d: %d/%d (%.2f%%)", player.getLevel(), player.getExperience(), Constants.LEVEL_EXPERIENCE[player.level], 100.*player.getExperience()/Constants.LEVEL_EXPERIENCE[player.getLevel()]), Constants.MAP_WIDTH/2, Constants.MAP_HEIGHT-20);
+			gc.fillText(String.format("Level %d: %d/%d (%.2f%%) | HP: %d/%d | MP: %d/%d", player.getLevel(), player.getExperience(), Constants.LEVEL_EXPERIENCE[player.level], 100.*player.getExperience()/Constants.LEVEL_EXPERIENCE[player.getLevel()], player.getHp(), player.getMaxHp(), player.getMp(), player.getMaxMp()), Constants.MAP_WIDTH/2, Constants.MAP_HEIGHT-20);
+			gc.strokeText(String.format("Level %d: %d/%d (%.2f%%) | HP: %d/%d | MP: %d/%d", player.getLevel(), player.getExperience(), Constants.LEVEL_EXPERIENCE[player.level], 100.*player.getExperience()/Constants.LEVEL_EXPERIENCE[player.getLevel()], player.getHp(), player.getMaxHp(), player.getMp(), player.getMaxMp()), Constants.MAP_WIDTH/2, Constants.MAP_HEIGHT-20);
 		}
 		else {
 			gc.fillText(String.format("Level %d", player.getLevel()), Constants.MAP_WIDTH/2, Constants.MAP_HEIGHT-20);

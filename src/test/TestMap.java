@@ -1,4 +1,4 @@
-package testui;
+package test;
 
 import constants.Images;
 import javafx.scene.image.Image;

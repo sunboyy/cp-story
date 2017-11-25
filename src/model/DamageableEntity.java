@@ -80,6 +80,14 @@ public abstract class DamageableEntity extends Entity {
 		hpBar.render(gc);
 	}
 	
+	public boolean useMp(int usedMp) {
+		if (mp >= usedMp) {
+			mp -= usedMp;
+			return true;
+		}
+		return false;
+	}
+	
 	// Getter
 	public int getLevel() {
 		return level;

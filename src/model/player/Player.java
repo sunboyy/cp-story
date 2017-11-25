@@ -16,6 +16,8 @@ import model.item.Item;
 import model.item.UsableItem;
 import model.map.Map;
 import sharedObject.SharedEntity;
+import skill.ISkill;
+import skill.NoSkill;
 
 public abstract class Player extends DamageableEntity {
 	
@@ -23,7 +25,7 @@ public abstract class Player extends DamageableEntity {
 	private boolean isWalking = false;
 	private boolean isJumping = false;
 	private boolean isCrying = false;
-	private double attackRange = 50;
+	protected List<ISkill> skills = new ArrayList<>();
 	private Rectangle attackArea;
 	private int walkTick = 30;
 	private int maxWalkTick = 60;
@@ -45,6 +47,7 @@ public abstract class Player extends DamageableEntity {
 		this.imgWalking = imgWalking;
 		this.imgCrying = imgCrying;
 		this.imgWalkAndCry = imgWalkAndCry;
+		this.skills.add(new NoSkill());
 	}
 	
 	public void jump() {
@@ -61,21 +64,24 @@ public abstract class Player extends DamageableEntity {
 		}
 	}
 	
-	public void attack(List<DamageableEntity> list) {
+	public void attack(ISkill skill, List<DamageableEntity> list) {
 		if (list == null) return;
-		for (DamageableEntity e: list) {
-			e.damage(getAttackDamage());
-			if (e.isDead()) {
-				Sounds.deadSound.play();
-				addExperience(e.getExperience());
-				SharedEntity.getInstance().remove(e);
-				SharedEntity.getInstance().addAll(e.spawnLoot());
+		if (attackTick < maxAttackTick) return;
+		if (skill.use()) {
+			for (DamageableEntity e: list) {
+				e.damage((int) (getAttackDamage() * skill.getDamageMultiplier()));
+				if (e.isDead()) {
+					Sounds.deadSound.play();
+					addExperience(e.getExperience());
+					SharedEntity.getInstance().remove(e);
+					SharedEntity.getInstance().addAll(e.spawnLoot());
+				}
+				else {
+					Sounds.punchSound.play();
+				}
 			}
-			else {
-				Sounds.punchSound.play();
-			}
+			attackTick = 0;
 		}
-		attackTick = 0;
 	}
 	
 	public void setMove(int direction) {
@@ -97,7 +103,6 @@ public abstract class Player extends DamageableEntity {
 	}
 	
 	public void update() {
-		//TODO
 		isCrying = getHp() < 0.2*getMaxHp();
 		if (KeyInput.pressingKey(KeyCode.LEFT)) {
 			setWalking(true);
@@ -116,12 +121,6 @@ public abstract class Player extends DamageableEntity {
 			if (KeyInput.pressingKey(KeyCode.DOWN) && GameManager.getInstance().shouldJumpDown()) jumpDown();
 			else jump();
 		}
-		if (KeyInput.pressingKey(KeyCode.A)) {
-			List<DamageableEntity> entities = GameManager.getInstance().getCurrentMap().collideDamageableEntity(getAttackArea(), 1);
-			if (attackTick >= maxAttackTick) {
-				attack(entities);
-			}
-		}
 		if (KeyInput.pressingKey(KeyCode.C)) {
 			ItemEntity itemEntity = GameManager.getInstance().getCurrentMap().collideItemEntity(this);
 			if (itemEntity != null) {
@@ -132,17 +131,30 @@ public abstract class Player extends DamageableEntity {
 		if (KeyInput.pressingKey(KeyCode.UP)) {
 			GameManager.getInstance().warp();
 		}
-		while (KeyInput.digitAvailable()) {
-			int digit = KeyInput.pollDigitKey();
-			int index = (digit + 9) % 10;
-			if (GameManager.getInstance().getPlayer().getInventory().size() > index) {
-				Item item = GameManager.getInstance().getPlayer().getInventory().get(index);
-				if (item instanceof UsableItem) {
-					((UsableItem) item).use();
-					if (item.getCount() <= 0) {
-						inventory.remove(item);
+		while (KeyInput.pollAvailable()) {
+			KeyCode key = KeyInput.pollKey();
+			if (key.isDigitKey()) {
+				int digit = Integer.parseInt(key.toString().substring(5));
+				int index = (digit + 9) % 10;
+				if (inventory.size() > index) {
+					Item item = inventory.get(index);
+					if (item instanceof UsableItem) {
+						((UsableItem) item).use();
+						if (item.getCount() <= 0) {
+							inventory.remove(item);
+						}
 					}
 				}
+			}
+			else if (key == KeyCode.A && skills.size() > 0) {
+				ISkill skill = skills.get(0);
+				List<DamageableEntity> entities = GameManager.getInstance().getCurrentMap().collideDamageableEntity(getAttackArea(skill), skill.getMaxEntity());
+				attack(skill, entities);
+			}
+			else if (key == KeyCode.Q && skills.size() > 1) {
+				ISkill skill = skills.get(1);
+				List<DamageableEntity> entities = GameManager.getInstance().getCurrentMap().collideDamageableEntity(getAttackArea(skill), skill.getMaxEntity());
+				attack(skill, entities);
 			}
 		}
 		if (KeyInput.pressingKey(KeyCode.P)) {
@@ -197,24 +209,28 @@ public abstract class Player extends DamageableEntity {
 		return isWalking;
 	}
 	
-	public double getAttackRange() {
-		return attackRange;
+	public List<ISkill> getSkills() {
+		return skills;
 	}
 	
-	public Rectangle getAttackArea() {
+	public Rectangle getAttackArea(ISkill skill) {
 		if (facing == LEFT) {
-			attackArea.setX(x-attackRange);
+			attackArea.setX(x - skill.getAttackRange());
 			attackArea.setY(y);
-			attackArea.setWidth(width+attackRange);
+			attackArea.setWidth(width + skill.getAttackRange());
 			attackArea.setHeight(height);
 		}
 		else {
 			attackArea.setX(x);
 			attackArea.setY(y);
-			attackArea.setWidth(width+attackRange);
+			attackArea.setWidth(width + skill.getAttackRange());
 			attackArea.setHeight(height);
 		}
 		return attackArea;
+	}
+	
+	public Rectangle getAttackArea() {
+		return getAttackArea(skills.get(0));
 	}
 	
 	public List<Item> getInventory() {

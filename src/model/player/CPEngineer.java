@@ -5,6 +5,7 @@ import java.util.Arrays;
 
 import constants.Images;
 import model.map.Map;
+import test.TestSkill;
 
 public class CPEngineer extends Player {
 	
@@ -18,6 +19,7 @@ public class CPEngineer extends Player {
 				, new ArrayList<>(Arrays.asList(Images.cpEngPlayerCryL, Images.cpEngPlayerCryR))
 				, new ArrayList<>(Arrays.asList(Images.cpEngPlayerWalkCryL, Images.cpEngPlayerWalkCryR))
 				, map, x, y, 40, 70);
+		skills.add(new TestSkill());
 	}
 	
 }

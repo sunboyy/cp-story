@@ -13,9 +13,26 @@ public class KeyInput {
 	
 	private static Set<KeyCode> activeKeys = new HashSet<>();
 	private static Queue<KeyCode> triggerKeys = new ConcurrentLinkedQueue<>();
+	private static final Set<KeyCode> pollableKeys = new HashSet<>();
+	
+	static {
+		pollableKeys.add(KeyCode.DIGIT0);
+		pollableKeys.add(KeyCode.DIGIT1);
+		pollableKeys.add(KeyCode.DIGIT2);
+		pollableKeys.add(KeyCode.DIGIT3);
+		pollableKeys.add(KeyCode.DIGIT4);
+		pollableKeys.add(KeyCode.DIGIT5);
+		pollableKeys.add(KeyCode.DIGIT6);
+		pollableKeys.add(KeyCode.DIGIT7);
+		pollableKeys.add(KeyCode.DIGIT8);
+		pollableKeys.add(KeyCode.DIGIT9);
+		pollableKeys.add(KeyCode.C);
+		pollableKeys.add(KeyCode.A);
+		pollableKeys.add(KeyCode.Q);
+	}
 	
 	public static void addKey(KeyCode code) {
-		if (code.isDigitKey() && !activeKeys.contains(code)) {
+		if (pollableKeys.contains(code) && !activeKeys.contains(code)) {
 			triggerKeys.add(code);
 		}
 		activeKeys.add(code);
@@ -30,14 +47,14 @@ public class KeyInput {
 		return activeKeys.contains(code);
 	}
 	
-	public static int pollDigitKey() {
+	public static KeyCode pollKey() {
 		if (triggerKeys.size() == 0) {
-			return -1;
+			return null;
 		}
-		return Integer.parseInt(triggerKeys.poll().toString().substring(5));
+		return triggerKeys.poll();
 	}
 	
-	public static boolean digitAvailable() {
+	public static boolean pollAvailable() {
 		return triggerKeys.size() != 0;
 	}
 	
