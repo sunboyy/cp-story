@@ -12,7 +12,7 @@ import javafx.scene.text.TextAlignment;
 import model.DamageableEntity;
 import model.GameManager;
 
-public class HPBar extends Particle {
+public class HPBar implements IParticle {
 	
 	public static final int WIDTH = 80;
 	public static final int HEIGHT = 6;

@@ -8,7 +8,7 @@ import javafx.scene.text.FontWeight;
 import javafx.scene.text.TextAlignment;
 import model.GameManager;
 
-public class Damage extends Particle {
+public class Damage implements IParticle {
 	
 	public static final Font FONT = Font.font("Impact", FontWeight.BOLD, 36);
 	private int visibleTick = 0;

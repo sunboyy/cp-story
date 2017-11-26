@@ -13,7 +13,7 @@ public class RedPotion extends Item implements IUsable {
 	@Override
 	public void use() {
 		if (count > 0) {
-			GameManager.getInstance().getPlayer().heal(50);
+			GameManager.getInstance().getPlayer().healHp(50);
 			--count;
 		}
 	}

@@ -26,5 +26,5 @@ public class TestSkill implements ISkill {
 			GameManager.getInstance().getPlayer().attack(this, GameManager.getInstance().getCurrentMap().collideDamageableEntity(GameManager.getInstance().getPlayer().getAttackArea(this), getMaxEntity()));
 		}
 	}
-
+	
 }

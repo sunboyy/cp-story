@@ -1,8 +1,12 @@
 package skill;
 
 import model.GameManager;
+import particle.NormalAttack;
 
 public class NoSkill implements ISkill {
+	
+	int age = 0;
+	int maxAge = 30;
 
 	@Override
 	public double getDamageMultiplier() {
@@ -21,7 +25,9 @@ public class NoSkill implements ISkill {
 
 	@Override
 	public void use() {
-		GameManager.getInstance().getPlayer().attack(this, GameManager.getInstance().getCurrentMap().collideDamageableEntity(GameManager.getInstance().getPlayer().getAttackArea(this), getMaxEntity()));
+		if (GameManager.getInstance().getPlayer().attack(this, GameManager.getInstance().getCurrentMap().collideDamageableEntity(GameManager.getInstance().getPlayer().getAttackArea(this), getMaxEntity()))) {
+			GameManager.getInstance().getCurrentMap().getParticles().add(new NormalAttack());
+		}
 	}
 
 }

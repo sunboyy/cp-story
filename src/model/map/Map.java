@@ -16,7 +16,7 @@ import model.ItemEntity;
 import model.Rectangle;
 import model.monster.Monster;
 import model.player.Player;
-import particle.Particle;
+import particle.IParticle;
 import sharedObject.SharedEntity;
 
 public abstract class Map extends Rectangle {
@@ -33,7 +33,7 @@ public abstract class Map extends Rectangle {
 
 	private List<Class<? extends Monster>> monsterTypes = new ArrayList<>();
 	private List<Portal> portals = new ArrayList<>();
-	private List<Particle> particles = new ArrayList<>();
+	private List<IParticle> particles = new ArrayList<>();
 	private MapStructure structure;
 
 	@SafeVarargs
@@ -189,12 +189,12 @@ public abstract class Map extends Rectangle {
 //		SharedEntity.getInstance().print();
 		for (Portal i : portals)
 			i.render(gc);
-		for (Particle i : particles)
+		for (IParticle i : particles)
 			i.render(gc);
 	}
 
 	public void update() {
-		Iterator<Particle> it = particles.iterator();
+		Iterator<IParticle> it = particles.iterator();
 		while (it.hasNext()) {
 			if (it.next().isExpired()) {
 				it.remove();
@@ -236,7 +236,7 @@ public abstract class Map extends Rectangle {
 		return maxVelocityY;
 	}
 
-	public List<Particle> getParticles() {
+	public List<IParticle> getParticles() {
 		return particles;
 	}
 

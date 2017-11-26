@@ -55,9 +55,14 @@ public abstract class DamageableEntity extends Entity {
 		GameManager.getInstance().getCurrentMap().getParticles().add(new Damage(hp, this.x+this.width/2, this.y));
 	}
 	
-	public void heal(int hp) {
+	public void healHp(int hp) {
 		this.hp += hp;
 		if (this.hp > maxHp) this.hp = maxHp;
+	}
+	
+	public void healMp(int mp) {
+		this.mp += mp;
+		if (this.mp > maxMp) this.mp = maxMp;
 	}
 	
 	public boolean isDead() {
