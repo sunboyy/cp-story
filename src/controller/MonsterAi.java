@@ -13,18 +13,32 @@ public class MonsterAi extends Thread {
 			public void run() {
 				while (GameManager.getInstance().isGameRunning()) {
 					for (Monster m: SharedEntity.getInstance().getMonsterOfCurrentMap()) {
+						if (m.isAggressive()) {
+							
+						}
 						if (m.getAiDelay() <= 0 && m.getWalkTick() <= 0) {
-							m.setAiDelay((int) Math.floor(Math.random()*480));
-							if (m.getX() <= 0) {
-								m.setFutureFacing(Entity.RIGHT);
-							}
-							else if (m.getX() + m.getWidth() >= m.getMap().getWidth()) {
-								m.setFutureFacing(Entity.LEFT);
+							if (m.isAggressive()) {
+								if (m.getX() < GameManager.getInstance().getPlayer().getX()) {
+									m.setFutureFacing(Entity.RIGHT);
+								}
+								else {
+									m.setFutureFacing(Entity.LEFT);
+								}
+								m.setWalkTick(30);
 							}
 							else {
-								m.setFutureFacing((int) Math.floor(Math.random()*2)*2-1);
+								m.setAiDelay((int) Math.floor(Math.random()*480));
+								if (m.getX() <= 0) {
+									m.setFutureFacing(Entity.RIGHT);
+								}
+								else if (m.getX() + m.getWidth() >= m.getMap().getWidth()) {
+									m.setFutureFacing(Entity.LEFT);
+								}
+								else {
+									m.setFutureFacing((int) Math.floor(Math.random()*2)*2-1);
+								}
+								m.setWalkTick((int) (30+Math.floor(Math.random()*240)));
 							}
-							m.setWalkTick((int) (30+Math.floor(Math.random()*240)));
 						}
 					}
 					try {

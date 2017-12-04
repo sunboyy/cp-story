@@ -12,8 +12,7 @@ public class Monster extends DamageableEntity {
 	private int aiDelay;
 	private int walkTick;
 	private int futureFacing = RIGHT;
-	private int aggressiveTick = 300;
-	private int maxAggressiveTick = 300;
+	private int aggressiveTick = 0;
 	
 	public Monster(String name, Image imgL, Image imgR, Map map, int level, int hp, int mp, int atkLow, int atkHigh, int experience) {
 		this(name, imgL, imgR, map, 0, 0, level, hp, mp, atkLow, atkHigh, experience);
@@ -25,13 +24,22 @@ public class Monster extends DamageableEntity {
 		this.experience = experience;
 	}
 	
+	@Override
+	public void damage(int hp) {
+		super.damage(hp);
+		aggressiveTick = 300;
+		aiDelay = 0;
+		walkTick = 0;
+	}
+	
 	public boolean isAggressive() {
-		return aggressiveTick < maxAggressiveTick;
+		return aggressiveTick > 0;
 	}
 	
 	public void update() {
 		if (age < 30) age++;
 		if (aiDelay > 0) aiDelay--;
+		if (aggressiveTick > 0) aggressiveTick--;
 		if (aiDelay <= 0 && walkTick > 0) {
 			walkTick--;
 			setFacing(futureFacing);
