@@ -12,8 +12,9 @@ public class Constants {
 			275, 310, 350, 390, 435, 480, 530, 580, 635, 690};
 	public static final int[] LEVEL_MP = {0, 10, 12, 15, 20, 25, 30, 36, 42, 50, 58,
 			66, 76, 86, 98, 110, 125, 140, 155, 170, 185};
-	public static final int[] LEVEL_ATTACK_LOW = {0, 3, 4, 5, 6, 8, 10, 12, 14, 16, 18,
-			21, 24, 28, 32, 36, 40, 45, 50, 55, 60};
-	public static final int[] LEVEL_ATTACK_HIGH = {0, 6, 8, 10, 12, 14, 17, 20, 23, 27, 32,
-			37, 42, 48, 54, 60, 68, 76, 86, 98, 110};
+//	public static final int[] LEVEL_ATTACK_LOW = {0, 3, 4, 5, 6, 8, 10, 12, 14, 16, 18,
+//			21, 24, 28, 32, 36, 40, 45, 50, 55, 60};
+//	public static final int[] LEVEL_ATTACK_HIGH = {0, 6, 8, 10, 12, 14, 17, 20, 23, 27, 32,
+//			37, 42, 48, 54, 60, 68, 76, 86, 98, 110};
+
 }

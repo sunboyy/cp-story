@@ -5,6 +5,7 @@ import javafx.scene.image.Image;
 import model.DamageableEntity;
 import model.GameManager;
 import model.map.Map;
+import particle.HPBar;
 
 public class Monster extends DamageableEntity {
 	
@@ -13,6 +14,7 @@ public class Monster extends DamageableEntity {
 	private int walkTick;
 	private int futureFacing = RIGHT;
 	private int aggressiveTick = 0;
+	private HPBar hpBar;
 	
 	public Monster(String name, Image imgL, Image imgR, Map map, int level, int hp, int mp, int atkLow, int atkHigh, int experience) {
 		this(name, imgL, imgR, map, 0, 0, level, hp, mp, atkLow, atkHigh, experience);
@@ -22,11 +24,13 @@ public class Monster extends DamageableEntity {
 		super(name, imgL, imgR, map, x, y, hp, mp, atkLow, atkHigh);
 		this.level = level;
 		this.experience = experience;
+		this.hpBar = new HPBar(this);
 	}
 	
 	@Override
 	public void damage(int hp) {
 		super.damage(hp);
+		hpBar.resetVisible();
 		aggressiveTick = 300;
 		aiDelay = 0;
 		walkTick = 0;
@@ -84,6 +88,7 @@ public class Monster extends DamageableEntity {
 		else {
 			super.render(gc);
 		}
+		hpBar.render(gc);
 	}
 	
 	public int getExperience() {
