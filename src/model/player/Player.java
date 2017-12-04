@@ -2,6 +2,7 @@ package model.player;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Timer;
 
 import constants.Constants;
 import constants.Sounds;
@@ -21,10 +22,11 @@ import skill.NoSkill;
 
 public abstract class Player extends DamageableEntity {
 	
-	private List<Image> imgWalking,imgCrying,imgWalkAndCry;
+	private List<Image> imgWalking,imgCrying,imgWalkAndCry,imgAttack;
 	private boolean isWalking = false;
 	private boolean isJumping = false;
 	private boolean isCrying = false;
+	private boolean isAttack = false;
 	protected List<ISkill> skills = new ArrayList<>();
 	private Rectangle attackArea;
 	private int walkTick = 30;
@@ -36,17 +38,18 @@ public abstract class Player extends DamageableEntity {
 	private List<Item> inventory = new ArrayList<>();
 	private int maxInventorySlots = 10;
 	
-	public Player(String name, Image imgL, Image imgR, List<Image> imgWalking, List<Image> imgCrying, List<Image> imgWalkAndCry, Map map) {
-		this(name, imgL, imgR, imgWalking,imgCrying,imgWalkAndCry, map, 0, 0);
+	public Player(String name, Image imgL, Image imgR, List<Image> imgWalking, List<Image> imgCrying, List<Image> imgWalkAndCry, List<Image> imgAttack, Map map) {
+		this(name, imgL, imgR, imgWalking,imgCrying,imgWalkAndCry,imgAttack, map, 0, 0);
 	}
 	
-	public Player(String name, Image imgL, Image imgR, List<Image> imgWalking, List<Image> imgCrying, List<Image> imgWalkAndCry, Map map, double x, double y) {
+	public Player(String name, Image imgL, Image imgR, List<Image> imgWalking, List<Image> imgCrying, List<Image> imgWalkAndCry, List<Image> imgAttack, Map map, double x, double y) {
 		super(name, imgL, imgR, map, x, y, Constants.LEVEL_HP[1], Constants.LEVEL_MP[1], getAttackLow(1), getAttackHigh(1));
 		attackArea = new Rectangle(x, y, width, height);
 		this.maxVelocityX = 4;
 		this.imgWalking = imgWalking;
 		this.imgCrying = imgCrying;
 		this.imgWalkAndCry = imgWalkAndCry;
+		this.imgAttack = imgAttack;
 		this.skills.add(new NoSkill());
 	}
 	
@@ -146,6 +149,10 @@ public abstract class Player extends DamageableEntity {
 				}
 			}
 			else if (key == KeyCode.A && skills.size() > 0) {
+//				ISkill skill = skills.get(0);
+//				List<DamageableEntity> entities = GameManager.getInstance().getCurrentMap().collideDamageableEntity(getAttackArea(skill), skill.getMaxEntity());
+//				attack(skill, entities);
+				setFacing(this.facing,imgAttack.get(this.facing+1));
 				skills.get(0).use();
 			}
 			else if (key == KeyCode.Q && skills.size() > 1) {
