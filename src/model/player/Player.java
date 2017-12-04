@@ -36,12 +36,12 @@ public abstract class Player extends DamageableEntity {
 	private List<Item> inventory = new ArrayList<>();
 	private int maxInventorySlots = 10;
 	
-	public Player(String name, Image imgL, Image imgR, List<Image> imgWalking, List<Image> imgCrying, List<Image> imgWalkAndCry, Map map, int atkLow, int atkHigh) {
-		this(name, imgL, imgR, imgWalking,imgCrying,imgWalkAndCry, map, 0, 0, atkLow, atkHigh);
+	public Player(String name, Image imgL, Image imgR, List<Image> imgWalking, List<Image> imgCrying, List<Image> imgWalkAndCry, Map map) {
+		this(name, imgL, imgR, imgWalking,imgCrying,imgWalkAndCry, map, 0, 0);
 	}
 	
-	public Player(String name, Image imgL, Image imgR, List<Image> imgWalking, List<Image> imgCrying, List<Image> imgWalkAndCry, Map map, double x, double y, int atkLow, int atkHigh) {
-		super(name, imgL, imgR, map, x, y, Constants.LEVEL_HP[1], Constants.LEVEL_MP[1], Constants.LEVEL_ATTACK_LOW[1], Constants.LEVEL_ATTACK_HIGH[1]);
+	public Player(String name, Image imgL, Image imgR, List<Image> imgWalking, List<Image> imgCrying, List<Image> imgWalkAndCry, Map map, double x, double y) {
+		super(name, imgL, imgR, map, x, y, Constants.LEVEL_HP[1], Constants.LEVEL_MP[1], getAttackLow(1), getAttackHigh(1));
 		attackArea = new Rectangle(x, y, width, height);
 		this.maxVelocityX = 4;
 		this.imgWalking = imgWalking;
@@ -193,9 +193,17 @@ public abstract class Player extends DamageableEntity {
 			setHp(getMaxHp());
 			setMaxMp(Constants.LEVEL_MP[level]);
 			setMp(getMaxMp());
-			setAttackDamageHigh(Constants.LEVEL_ATTACK_HIGH[level]);
-			setAttackDamageLow(Constants.LEVEL_ATTACK_LOW[level]);
+			setAttackDamageHigh(getAttackHigh(level));
+			setAttackDamageLow(getAttackLow(level));
 		}
+	}
+	
+	public static int getAttackLow(int level) {
+		return (int) Math.floor(9.6 * Math.pow(2,(level/9.)));
+	}
+	
+	public static int getAttackHigh(int level) {
+		return (int) Math.floor(14.4 * Math.pow(2, (level/9.)));
 	}
 
 	// Getter
