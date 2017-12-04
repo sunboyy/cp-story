@@ -69,7 +69,7 @@ public abstract class Player extends DamageableEntity {
 	
 	public boolean attack(ISkill skill, List<DamageableEntity> list) {
 		if (list == null) return false;
-		if (attackTick < maxAttackTick) return false;
+		if (isAttack) return false;
 		for (DamageableEntity e: list) {
 			e.damage((int) (getAttackDamage() * skill.getDamageMultiplier()));
 			if (e.isDead()) {
@@ -101,6 +101,11 @@ public abstract class Player extends DamageableEntity {
 			}
 		} else {
 			setFacing(direction);
+		}
+		if(isAttack) {
+			setFacing(this.facing,imgAttack.get(this.facing+1));
+			isAttack = attackTick<maxAttackTick;
+			if(!isAttack) attackTick = 0;
 		}
 	}
 	
@@ -152,8 +157,8 @@ public abstract class Player extends DamageableEntity {
 //				ISkill skill = skills.get(0);
 //				List<DamageableEntity> entities = GameManager.getInstance().getCurrentMap().collideDamageableEntity(getAttackArea(skill), skill.getMaxEntity());
 //				attack(skill, entities);
-				setFacing(this.facing,imgAttack.get(this.facing+1));
 				skills.get(0).use();
+				isAttack = true;
 			}
 			else if (key == KeyCode.Q && skills.size() > 1) {
 				skills.get(1).use();
