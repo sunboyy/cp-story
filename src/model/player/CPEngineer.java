@@ -18,6 +18,8 @@ public class CPEngineer extends Player {
 				, new ArrayList<>(Arrays.asList(Images.cpEngPlayerWalkL, Images.cpEngPlayerWalkR))
 				, new ArrayList<>(Arrays.asList(Images.cpEngPlayerCryL, Images.cpEngPlayerCryR))
 				, new ArrayList<>(Arrays.asList(Images.cpEngPlayerWalkCryL, Images.cpEngPlayerWalkCryR))
+				, new ArrayList<>(Arrays.asList(Images.cpEngPlayerFightL1, Images.cpEngPlayerFightL2,
+						Images.cpEngPlayerFightR1, Images.cpEngPlayerFightR2))
 				, map, x, y, 40, 70);
 		skills.add(new TestSkill());
 	}

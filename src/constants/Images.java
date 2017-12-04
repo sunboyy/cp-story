@@ -17,17 +17,23 @@ public class Images {
 	public static final Image beachForeground = new Image("foreground.png");
 	
 	public static final Image orangeMushMonster = new Image("orangemush.gif");
-	public static final Image monsterProgmethR = new Image(ClassLoader.getSystemResource("images/monster/progmethR.png").toString());
-	public static final Image monsterProgmethL = new Image(ClassLoader.getSystemResource("images/monster/progmethL.png").toString());
+	public static final Image monsterProgmethR = new Image("images/monster/progmethR.png");
+	public static final Image monsterProgmethL = new Image("images/monster/progmethL.png");
 	
-	public static final Image cpEngPlayerL = new Image("player/CPPlayerL.png",77.25,110,true,false);
-	public static final Image cpEngPlayerWalkL = new Image("player/CPPlayerLWalk.png",77.25,110,true,false);
-	public static final Image cpEngPlayerCryL = new Image("player/CPPlayerLCry.png",77.25,110,true,false);
-	public static final Image cpEngPlayerWalkCryL = new Image("player/CPPlayerLWalkCry.png",77.25,110,true,false);
-	public static final Image cpEngPlayerR = new Image("player/CPPlayerR.png",77.25,110,true,false);
-	public static final Image cpEngPlayerWalkR = new Image("player/CPPlayerRWalk.png",77.25,110,true,false); 
-	public static final Image cpEngPlayerCryR = new Image("player/CPPlayerRCry.png",77.25,110,true,false);
-	public static final Image cpEngPlayerWalkCryR = new Image("player/CPPlayerRWalkCry.png",77.25,110,true,false);
+	
+	public static final Image cpEngPlayerL = new Image("images/player/CPPlayerL.png",77.25,110,true,false);
+	public static final Image cpEngPlayerWalkL = new Image("images/player/CPPlayerLWalk.png",77.25,110,true,false);
+	public static final Image cpEngPlayerCryL = new Image("images/player/CPPlayerLCry.png",77.25,110,true,false);
+	public static final Image cpEngPlayerWalkCryL = new Image("images/player/CPPlayerLWalkCry.png",77.25,110,true,false);
+	public static final Image cpEngPlayerFightL1 = new Image("images/player/CPPlayerFightL1.png",77.25,110,true,false);
+	public static final Image cpEngPlayerFightL2 = new Image("images/player/CPPlayerFightL2.png",77.25,110,true,false);
+	public static final Image cpEngPlayerR = new Image("images/player/CPPlayerR.png",77.25,110,true,false);
+	public static final Image cpEngPlayerWalkR = new Image("images/player/CPPlayerRWalk.png",77.25,110,true,false); 
+	public static final Image cpEngPlayerCryR = new Image("images/player/CPPlayerRCry.png",77.25,110,true,false);
+	public static final Image cpEngPlayerWalkCryR = new Image("images/player/CPPlayerRWalkCry.png",77.25,110,true,false);
+	public static final Image cpEngPlayerFightR1 = new Image("images/player/CPPlayerFightR1.png",77.25,110,true,false);
+	public static final Image cpEngPlayerFightR2 = new Image("images/player/CPPlayerFightR2.png",77.25,110,true,false);
+	
 	
 	public static final Image redPotionItem = new Image("images/item/redpotion.png");
 	public static final Image bluePotionItem = new Image("images/item/bluepotion.png");
