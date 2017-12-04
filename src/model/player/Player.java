@@ -146,9 +146,6 @@ public abstract class Player extends DamageableEntity {
 				}
 			}
 			else if (key == KeyCode.A && skills.size() > 0) {
-//				ISkill skill = skills.get(0);
-//				List<DamageableEntity> entities = GameManager.getInstance().getCurrentMap().collideDamageableEntity(getAttackArea(skill), skill.getMaxEntity());
-//				attack(skill, entities);
 				skills.get(0).use();
 			}
 			else if (key == KeyCode.Q && skills.size() > 1) {

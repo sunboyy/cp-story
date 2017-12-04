@@ -69,20 +69,9 @@ public class GameManager {
 		
 		StatusBar.render(gc);
 		
-		// Temporarily show experience
-		gc.setFill(Color.WHITE);
-		gc.setStroke(Color.BLACK);
-		gc.setFont(Font.font("Helvetica", FontWeight.BOLD, 30));
-		gc.setTextAlign(TextAlignment.CENTER);
-		gc.setTextBaseline(VPos.BASELINE);
-		if (player.level < Constants.MAX_LEVEL) {
-			gc.fillText(String.format("%d/%d (%.2f%%)", player.getExperience(), Constants.LEVEL_EXPERIENCE[player.level], 100.*player.getExperience()/Constants.LEVEL_EXPERIENCE[player.getLevel()], player.getHp(), player.getMaxHp(), player.getMp(), player.getMaxMp()), Constants.MAP_WIDTH/2, Constants.MAP_HEIGHT-20);
-			gc.strokeText(String.format("%d/%d (%.2f%%)", player.getExperience(), Constants.LEVEL_EXPERIENCE[player.level], 100.*player.getExperience()/Constants.LEVEL_EXPERIENCE[player.getLevel()], player.getHp(), player.getMaxHp(), player.getMp(), player.getMaxMp()), Constants.MAP_WIDTH/2, Constants.MAP_HEIGHT-20);
-		}
-		
 		// Temporarily show inventory
 		List<Item> inventory = player.getInventory();
-		gc.setFont(Font.font("Helvetica", FontWeight.BOLD, 24));
+		gc.setFont(Font.font("Tahoma", FontWeight.BOLD, 24));
 		gc.setTextAlign(TextAlignment.RIGHT);
 		gc.setTextBaseline(VPos.CENTER);
 		for (int i=0; i<inventory.size(); i++) {
