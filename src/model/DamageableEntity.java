@@ -9,7 +9,7 @@ import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
 import model.item.Item;
 import particle.Damage;
-import particle.HPBar;
+import particle.DisplayName;
 
 public abstract class DamageableEntity extends Entity {
 	
@@ -22,8 +22,8 @@ public abstract class DamageableEntity extends Entity {
 	private int attackDamageLow = 4;
 	private int attackDamageHigh = 8;
 	private int defense = 5;
-	private HPBar hpBar;
 	protected Map<Item, Double> drops = new HashMap<>();
+	private DisplayName displayName;
 	
 	public DamageableEntity(String name, Image imgL, Image imgR, model.map.Map map, int hp, int mp, int attackDamageLow, int attackDamageHigh) {
 		this(name, imgL, imgR, map, 0, 0, hp, mp, attackDamageLow, attackDamageHigh);
@@ -37,7 +37,7 @@ public abstract class DamageableEntity extends Entity {
 		this.mp = mp;
 		this.attackDamageLow = attackDamageLow;
 		this.attackDamageHigh = attackDamageHigh;
-		hpBar = new HPBar(this);
+		this.displayName = new DisplayName(this);
 	}
 	
 //	public DamageableEntity(String name,int level,int hp,int mp,int attack,int defense) {
@@ -51,8 +51,8 @@ public abstract class DamageableEntity extends Entity {
 	
 	public void damage(int hp) {
 		this.hp -= hp;
-		hpBar.resetVisible();
 		GameManager.getInstance().getCurrentMap().getParticles().add(new Damage(hp, this.x+this.width/2, this.y));
+		displayName.resetVisible();
 	}
 	
 	public void healHp(int hp) {
@@ -80,17 +80,17 @@ public abstract class DamageableEntity extends Entity {
 		return loot;
 	}
 	
-	public void render(GraphicsContext gc) {
-		super.render(gc);
-		hpBar.render(gc);
-	}
-	
 	public boolean useMp(int usedMp) {
 		if (mp >= usedMp) {
 			mp -= usedMp;
 			return true;
 		}
 		return false;
+	}
+	
+	public void render(GraphicsContext gc) {
+		super.render(gc);
+		displayName.render(gc);
 	}
 	
 	// Getter
