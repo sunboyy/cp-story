@@ -9,6 +9,7 @@ import constants.Constants;
 import constants.Images;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
+import javafx.util.Pair;
 import model.DamageableEntity;
 import model.Entity;
 import model.GameManager;
@@ -18,6 +19,7 @@ import model.monster.Monster;
 import model.player.Player;
 import particle.IParticle;
 import sharedObject.SharedEntity;
+import utility.Random;
 
 public abstract class Map extends Rectangle {
 
@@ -186,7 +188,6 @@ public abstract class Map extends Rectangle {
 		GameManager.getInstance().getPlayer().render(gc);
 		for (Entity i : SharedEntity.getInstance().getEntitiesOfMap(this))
 			i.render(gc);
-//		SharedEntity.getInstance().print();
 		for (Portal i : portals)
 			i.render(gc);
 		for (IParticle i : particles)
@@ -215,8 +216,17 @@ public abstract class Map extends Rectangle {
 	public void spawnRandom() throws InstantiationException, IllegalAccessException, IllegalArgumentException,
 			InvocationTargetException, NoSuchMethodException, SecurityException {
 		int randMonster = (int) Math.floor(Math.random() * monsterTypes.size());
-		double randX = Math.random() * 200 + 100;
-		Monster m = monsterTypes.get(randMonster).getConstructor(Map.class, double.class, double.class).newInstance(this, randX, 620);
+		
+		List<Pair<StructureItem, Double>> list = new ArrayList<>();
+		for (StructureItem item: structure) {
+			if (item.isSpawnable())
+				list.add(new Pair<StructureItem, Double>(item, item.getWidth()));
+		}
+		Pair<StructureItem, Double> randStructure = Random.weightedRandomInList(list);
+		double randX = randStructure.getKey().getX()+randStructure.getValue();
+		double randY = randStructure.getKey().getY();
+		Monster m = monsterTypes.get(randMonster).getConstructor(Map.class, double.class, double.class).newInstance(this, randX, randY);
+		m.move(0, -m.getHeight());
 		SharedEntity.getInstance().add(m);
 	}
 

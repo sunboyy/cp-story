@@ -44,7 +44,10 @@ public class MapStructure extends ArrayList<StructureItem> {
 		
 		for (StructureItem i: this) {
 			gc.setFill(i.isPassable() ? Color.YELLOW : Color.RED);
+			gc.setStroke(i.isSpawnable() ? Color.PINK : Color.GREEN);
+			gc.setLineWidth(2);
 			gc.fillRect(i.getX()-map.getX(), i.getY()-map.getY(), i.getWidth(), i.getHeight());
+			gc.strokeRect(i.getX()-map.getX(), i.getY()-map.getY(), i.getWidth(), i.getHeight());
 		}
 	}
 	
