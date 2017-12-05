@@ -207,6 +207,14 @@ public abstract class Player extends DamageableEntity {
 		}
 	}
 	
+	public boolean canUseMp(int mp) {
+		return this.getMp() >= mp;
+	}
+	
+	public boolean canAttack() {
+		return !isAttack;
+	}
+	
 	public static int getAttackLow(int level) {
 		return (int) Math.floor(9.6 * Math.pow(2,(level/9.)));
 	}
@@ -214,7 +222,7 @@ public abstract class Player extends DamageableEntity {
 	public static int getAttackHigh(int level) {
 		return (int) Math.floor(14.4 * Math.pow(2, (level/9.)));
 	}
-
+	
 	// Getter
 	public boolean isJumping() {
 		return isJumping;

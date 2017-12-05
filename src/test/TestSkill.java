@@ -1,6 +1,7 @@
 package test;
 
 import model.GameManager;
+import model.player.Player;
 import skill.ISkill;
 
 public class TestSkill implements ISkill {
@@ -22,8 +23,10 @@ public class TestSkill implements ISkill {
 
 	@Override
 	public void use() {
-		if (GameManager.getInstance().getPlayer().useMp(4)) {
-			GameManager.getInstance().getPlayer().attack(this, GameManager.getInstance().getCurrentMap().collideDamageableEntity(GameManager.getInstance().getPlayer().getAttackArea(this), getMaxEntity()));
+		Player player = GameManager.getInstance().getPlayer();
+		if (player.canUseMp(4) && player.canAttack()) {
+			player.useMp(4);
+			player.attack(this, GameManager.getInstance().getCurrentMap().collideDamageableEntity(player.getAttackArea(this), getMaxEntity()));
 		}
 	}
 	

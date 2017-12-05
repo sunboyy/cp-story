@@ -214,9 +214,9 @@ public abstract class Map extends Rectangle {
 
 	public void spawnRandom() throws InstantiationException, IllegalAccessException, IllegalArgumentException,
 			InvocationTargetException, NoSuchMethodException, SecurityException {
-		int rand = (int) Math.floor(Math.random() * monsterTypes.size());
+		int randMonster = (int) Math.floor(Math.random() * monsterTypes.size());
 		double randX = Math.random() * 200 + 100;
-		Monster m = monsterTypes.get(rand).getConstructor(Map.class, double.class, double.class).newInstance(this, randX, 620);
+		Monster m = monsterTypes.get(randMonster).getConstructor(Map.class, double.class, double.class).newInstance(this, randX, 620);
 		SharedEntity.getInstance().add(m);
 	}
 
