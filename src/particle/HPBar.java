@@ -29,6 +29,7 @@ public class HPBar implements IParticle {
 		gc.fillRect(startX-mapX, entity.getY()-5-HEIGHT-mapY, WIDTH, HEIGHT);
 		gc.setFill(Color.RED);
 		gc.fillRect(startX-mapX, entity.getY()-5-HEIGHT-mapY, WIDTH * entity.getHp() / entity.getMaxHp(), HEIGHT);
+		gc.setStroke(Color.BLACK);
 		gc.setLineWidth(1);
 		gc.strokeRect(startX-mapX, entity.getY()-5-HEIGHT-mapY, WIDTH, HEIGHT);
 		visibleTick++;

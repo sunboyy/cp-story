@@ -1,5 +1,6 @@
 package model;
 
+import javafx.scene.canvas.GraphicsContext;
 import model.item.Item;
 import model.map.Map;
 
@@ -27,8 +28,21 @@ public class ItemEntity extends Entity {
 		return age >= maxAge;
 	}
 	
+	@Override
+	public void render(GraphicsContext gc) {
+		if (isExpired()) return;
+		if (age + 20 > maxAge) {
+			gc.setGlobalAlpha((maxAge-age)/20.);
+			super.render(gc);
+			gc.setGlobalAlpha(1);
+		}
+		else {
+			super.render(gc);
+		}
+	}
+	
 	public String toString() {
-		return String.format("%s [Item: %s]", getClass().getSimpleName(), item.getClass().getSimpleName());
+		return String.format("%s [Item: %s, Age: %d]", getClass().getSimpleName(), item.getClass().getSimpleName(), age);
 	}
 
 }

@@ -31,7 +31,7 @@ public abstract class Map extends Rectangle {
 
 	protected double gravity = 0.55;
 	protected double groundFriction = 0.4;
-	protected double airFriction = 0.1;
+	protected double airFriction = 0.05;
 	protected double maxVelocityY = 6;
 	protected boolean allowMultipleJumps = false;
 
@@ -203,16 +203,22 @@ public abstract class Map extends Rectangle {
 				it.remove();
 			}
 		}
-		Iterator<Entity> itEntity = SharedEntity.getInstance().getEntitiesOfMap(this).iterator();
-		while (itEntity.hasNext()) {
-			Entity entity = itEntity.next();
-			entity.update();
-			if (entity instanceof ItemEntity) {
-				if (((ItemEntity) entity).isExpired()) {
-					itEntity.remove();
-				}
+		for (Entity i: SharedEntity.getInstance().getEntitiesOfMap(this)) {
+			i.update();
+			if (i instanceof ItemEntity && ((ItemEntity) i).isExpired()) {
+				SharedEntity.getInstance().remove(i);
 			}
 		}
+//		Iterator<Entity> itEntity = SharedEntity.getInstance().getEntitiesOfMap(this).iterator();
+//		while (itEntity.hasNext()) {
+//			Entity entity = itEntity.next();
+//			entity.update();
+//			if (entity instanceof ItemEntity) {
+//				if (((ItemEntity) entity).isExpired()) {
+//					itEntity.remove();
+//				}
+//			}
+//		}
 	}
 
 	public void spawnRandom() {

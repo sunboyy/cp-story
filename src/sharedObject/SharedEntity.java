@@ -52,15 +52,15 @@ public class SharedEntity {
 		entities.remove(e);
 	}
 	
+	public static SharedEntity getInstance() {
+		return instance;
+	}
+	
 	public void print() {
 		System.out.println();
 		for (Entity i: entities) {
-			System.out.println(i+" "+i.getMap());
+			System.out.println(i);
 		}
-	}
-	
-	public static SharedEntity getInstance() {
-		return instance;
 	}
 	
 }

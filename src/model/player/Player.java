@@ -6,6 +6,7 @@ import java.util.Timer;
 
 import constants.Constants;
 import constants.Sounds;
+import controller.MonsterGen;
 import input.KeyInput;
 import javafx.scene.image.Image;
 import javafx.scene.input.KeyCode;
@@ -114,12 +115,18 @@ public abstract class Player extends DamageableEntity {
 		if (KeyInput.pressingKey(KeyCode.LEFT)) {
 			setWalking(true);
 			setMove(LEFT);
-			GameManager.getInstance().getCurrentMap().pushAccX(this, -0.5);
+			if (GameManager.getInstance().getCurrentMap().isOnFloor(this))
+				GameManager.getInstance().getCurrentMap().pushAccX(this, -0.5);
+			else
+				GameManager.getInstance().getCurrentMap().pushAccX(this, -0.2);
 		}
 		else if (KeyInput.pressingKey(KeyCode.RIGHT)) {
 			setWalking(true);
 			setMove(RIGHT);
-			GameManager.getInstance().getCurrentMap().pushAccX(this, 0.5);
+			if (GameManager.getInstance().getCurrentMap().isOnFloor(this))
+				GameManager.getInstance().getCurrentMap().pushAccX(this, 0.5);
+			else
+				GameManager.getInstance().getCurrentMap().pushAccX(this, 0.2);
 		} else {
 			setWalking(false);
 			setMove(this.facing);
@@ -138,6 +145,17 @@ public abstract class Player extends DamageableEntity {
 		if (KeyInput.pressingKey(KeyCode.UP)) {
 			GameManager.getInstance().warp();
 		}
+		// Development Cheat
+		if (KeyInput.pressingKey(KeyCode.A) && KeyInput.pressingKey(KeyCode.S) && KeyInput.pressingKey(KeyCode.D) && KeyInput.pressingKey(KeyCode.F)) {
+			maxAttackTick = 4;
+			skills.get(0).use();
+			isAttack = true;
+			MonsterGen.setDelay(50);
+		}
+		else {
+			maxAttackTick = 30;
+			MonsterGen.setDelay(2000);
+		}
 		while (KeyInput.pollAvailable()) {
 			KeyCode key = KeyInput.pollKey();
 			if (key.isDigitKey()) {
@@ -154,9 +172,6 @@ public abstract class Player extends DamageableEntity {
 				}
 			}
 			else if (key == KeyCode.A && skills.size() > 0) {
-//				ISkill skill = skills.get(0);
-//				List<DamageableEntity> entities = GameManager.getInstance().getCurrentMap().collideDamageableEntity(getAttackArea(skill), skill.getMaxEntity());
-//				attack(skill, entities);
 				skills.get(0).use();
 				isAttack = true;
 			}
