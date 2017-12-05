@@ -1,7 +1,5 @@
 package controller;
 
-import java.lang.reflect.InvocationTargetException;
-
 import model.GameManager;
 import sharedObject.SharedEntity;
 
@@ -19,12 +17,7 @@ public class MonsterGen extends Thread {
 						break;
 					}
 					if (SharedEntity.getInstance().getEntitiesOfCurrentMap().size() < 20 && !GameManager.getInstance().isWarping()) {
-						try {
-							GameManager.getInstance().getCurrentMap().spawnRandom();
-						} catch (InstantiationException | IllegalAccessException | IllegalArgumentException
-								| InvocationTargetException | NoSuchMethodException | SecurityException e) {
-							e.printStackTrace();
-						}
+						GameManager.getInstance().getCurrentMap().spawnRandom();
 					}
 				}
 			}

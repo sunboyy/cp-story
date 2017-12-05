@@ -6,9 +6,11 @@ import javafx.util.Pair;
 
 public class Random {
 
-	public static <T> Pair<T,Double> weightedRandomInList(List<Pair<T,Double>> list) {
+	public static <T> Pair<T,Double> weightedRandomInList(List<Pair<T,Double>> list) throws ListEmptyException, NegativeWeightedRandomException {
+		if (list.size() == 0) throw new ListEmptyException();
 		double sum = 0;
 		for (Pair<T,Double> i: list) {
+			if (i.getValue() < 0) throw new NegativeWeightedRandomException();
 			sum += i.getValue();
 		}
 		double rand = sum * Math.random();

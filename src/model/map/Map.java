@@ -19,6 +19,8 @@ import model.monster.Monster;
 import model.player.Player;
 import particle.IParticle;
 import sharedObject.SharedEntity;
+import utility.ListEmptyException;
+import utility.NegativeWeightedRandomException;
 import utility.Random;
 
 public abstract class Map extends Rectangle {
@@ -213,21 +215,28 @@ public abstract class Map extends Rectangle {
 		}
 	}
 
-	public void spawnRandom() throws InstantiationException, IllegalAccessException, IllegalArgumentException,
-			InvocationTargetException, NoSuchMethodException, SecurityException {
+	public void spawnRandom() {
 		int randMonster = (int) Math.floor(Math.random() * monsterTypes.size());
-		
-		List<Pair<StructureItem, Double>> list = new ArrayList<>();
-		for (StructureItem item: structure) {
-			if (item.isSpawnable())
-				list.add(new Pair<StructureItem, Double>(item, item.getWidth()));
+		try {
+			Monster m = monsterTypes.get(randMonster).getConstructor(Map.class, double.class, double.class).newInstance(this, 0, 0);
+			List<Pair<StructureItem, Double>> list = new ArrayList<>();
+			for (StructureItem item: structure) {
+				if (item.isSpawnable() && item.getWidth() >= m.getWidth())
+					list.add(new Pair<StructureItem, Double>(item, item.getWidth()-m.getWidth()));
+			}
+			Pair<StructureItem, Double> randStructure = Random.weightedRandomInList(list);
+			double randX = randStructure.getKey().getX()+randStructure.getValue();
+			double randY = randStructure.getKey().getY()-m.getHeight();
+			m.move(randX, randY);
+			SharedEntity.getInstance().add(m);	
+		} catch (InstantiationException | IllegalAccessException | IllegalArgumentException | InvocationTargetException
+				| NoSuchMethodException | SecurityException e) {
+			System.out.println("map.Map.spawnRandom Error: No constructor");
+		} catch (ListEmptyException e) {
+			System.out.println("map.Map.spawnRandom Error: No structure to spawn");
+		} catch (NegativeWeightedRandomException e) {
+			System.out.println("map.Map.spawnRandom Error: Negative area of spawn");
 		}
-		Pair<StructureItem, Double> randStructure = Random.weightedRandomInList(list);
-		double randX = randStructure.getKey().getX()+randStructure.getValue();
-		double randY = randStructure.getKey().getY();
-		Monster m = monsterTypes.get(randMonster).getConstructor(Map.class, double.class, double.class).newInstance(this, randX, randY);
-		m.move(0, -m.getHeight());
-		SharedEntity.getInstance().add(m);
 	}
 
 	public double getFriction(Entity e) {

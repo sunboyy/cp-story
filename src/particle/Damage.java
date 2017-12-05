@@ -30,6 +30,7 @@ public class Damage implements IParticle {
 		gc.setFill(Color.ORANGE);
 		gc.setTextAlign(TextAlignment.CENTER);
 		gc.setTextBaseline(VPos.BASELINE);
+		gc.setLineWidth(1);
 		gc.fillText(hp+"", x-GameManager.getInstance().getCurrentMap().getX(), y-GameManager.getInstance().getCurrentMap().getY());
 		gc.setStroke(Color.BLACK);
 		gc.strokeText(hp+"", x-GameManager.getInstance().getCurrentMap().getX(), y-GameManager.getInstance().getCurrentMap().getY());
