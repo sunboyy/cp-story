@@ -9,17 +9,17 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
-import javafx.stage.Stage;
+import main.Main;
 
 public class StartScene extends Scene {
 	
 	private Pane root;
-	private Stage stage;
+	private Scene createCharacterScene;
 	
-	public StartScene(Stage stage) {
+	public StartScene() {
 		super(new Pane(), 1000, 600);
 		root = (Pane) getRoot();
-		this.stage = stage;
+		createCharacterScene = new CreateCharacterScene();
 		
 		Canvas canvas = new Canvas(1000, 600);
 		GraphicsContext gc = canvas.getGraphicsContext2D();
@@ -42,7 +42,7 @@ public class StartScene extends Scene {
 			public void handle(MouseEvent event) {
 				// TODO Auto-generated method stub
 				btn.setImage(Images.playbutton);
-				stage.setScene(new GameScene());
+				Main.getStage().setScene(createCharacterScene);
 			}
 		});
 		

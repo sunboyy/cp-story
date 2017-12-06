@@ -15,6 +15,10 @@ public class GameScene extends Scene {
 	private StackPane root;
 	
 	public GameScene() {
+		this("JoeToken");
+	}
+	
+	public GameScene(String name) {
 		super(new StackPane(), 1000, 600);
 		root = (StackPane)getRoot();
 		
@@ -23,7 +27,7 @@ public class GameScene extends Scene {
 		
 		KeyInput.bindScene(this);
 		
-		GameManager.getInstance().setPlayer(new CPEngineer("Joetoken", GameManager.getInstance().getCurrentMap(), 500,550));
+		GameManager.getInstance().setPlayer(new CPEngineer(name, GameManager.getInstance().getCurrentMap(), 500,550));
 		
 		KeyFrame kf = new KeyFrame(Duration.seconds(1./60), e -> {
 			GameManager.getInstance().getCurrentMap().motion(GameManager.getInstance().getPlayer());

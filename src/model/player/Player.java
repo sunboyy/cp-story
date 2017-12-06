@@ -177,6 +177,7 @@ public abstract class Player extends DamageableEntity {
 			}
 			else if (key == KeyCode.Q && skills.size() > 1) {
 				skills.get(1).use();
+				isAttack = true;
 			}
 		}
 		if (KeyInput.pressingKey(KeyCode.P)) {
