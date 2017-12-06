@@ -10,7 +10,7 @@ import model.GameManager;
 
 public class Damage implements IParticle {
 	
-	public static final Font FONT = Font.font("Impact", FontWeight.BOLD, 36);
+	public static final Font TEXT_FONT = Font.font("Impact", FontWeight.BOLD, 36);
 	private int visibleTick = 0;
 	private int maxVisibleTick = 60;
 	
@@ -25,15 +25,22 @@ public class Damage implements IParticle {
 	}
 	
 	public void render(GraphicsContext gc) {
+		String text;
+		if (hp > 0) {
+			text = hp+"";
+		}
+		else {
+			text = "MISS";
+		}
 		gc.setGlobalAlpha(1-(visibleTick+0.0)/maxVisibleTick);
-		gc.setFont(FONT);
+		gc.setFont(TEXT_FONT);
 		gc.setFill(Color.ORANGE);
 		gc.setTextAlign(TextAlignment.CENTER);
 		gc.setTextBaseline(VPos.BASELINE);
 		gc.setLineWidth(1);
-		gc.fillText(hp+"", x-GameManager.getInstance().getCurrentMap().getX(), y-GameManager.getInstance().getCurrentMap().getY());
+		gc.fillText(text, x-GameManager.getInstance().getCurrentMap().getX(), y-GameManager.getInstance().getCurrentMap().getY());
 		gc.setStroke(Color.BLACK);
-		gc.strokeText(hp+"", x-GameManager.getInstance().getCurrentMap().getX(), y-GameManager.getInstance().getCurrentMap().getY());
+		gc.strokeText(text, x-GameManager.getInstance().getCurrentMap().getX(), y-GameManager.getInstance().getCurrentMap().getY());
 		y -= 0.5;
 		visibleTick++;
 		gc.setGlobalAlpha(1);

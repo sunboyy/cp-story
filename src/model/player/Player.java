@@ -273,6 +273,7 @@ public abstract class Player extends DamageableEntity {
 		for (Buff i: buffs) {
 			multiplier += i.getAttackMultiplier();
 		}
+		if (multiplier <= 0) return 0;
 		return (int) (super.getAttackDamage() * multiplier);
 	}
 	
