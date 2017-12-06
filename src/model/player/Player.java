@@ -17,6 +17,7 @@ import model.ItemEntity;
 import model.Rectangle;
 import model.item.Item;
 import model.map.Map;
+import particle.LevelUp;
 import sharedObject.SharedEntity;
 import skill.ISkill;
 import skill.NoSkill;
@@ -221,6 +222,7 @@ public abstract class Player extends DamageableEntity {
 			setAttackDamageHigh(getAttackHigh(level));
 			setAttackDamageLow(getAttackLow(level));
 			Sounds.levelUpSound.play();
+			GameManager.getInstance().getCurrentMap().getParticles().add(new LevelUp());
 		}
 	}
 	

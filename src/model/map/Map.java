@@ -209,16 +209,6 @@ public abstract class Map extends Rectangle {
 				SharedEntity.getInstance().remove(i);
 			}
 		}
-//		Iterator<Entity> itEntity = SharedEntity.getInstance().getEntitiesOfMap(this).iterator();
-//		while (itEntity.hasNext()) {
-//			Entity entity = itEntity.next();
-//			entity.update();
-//			if (entity instanceof ItemEntity) {
-//				if (((ItemEntity) entity).isExpired()) {
-//					itEntity.remove();
-//				}
-//			}
-//		}
 	}
 
 	public void spawnRandom() {
