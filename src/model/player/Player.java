@@ -219,6 +219,7 @@ public abstract class Player extends DamageableEntity {
 			setMp(getMaxMp());
 			setAttackDamageHigh(getAttackHigh(level));
 			setAttackDamageLow(getAttackLow(level));
+			Sounds.levelUpSound.play();
 		}
 	}
 	
