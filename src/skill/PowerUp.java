@@ -2,29 +2,16 @@ package skill;
 
 import model.GameManager;
 
-public class PowerUp implements ISkill {
+public class PowerUp extends Skill {
 
 	@Override
 	public void use() {
-		if (GameManager.getInstance().getPlayer().canUseMp(8)) {
-			GameManager.getInstance().getPlayer().useMp(8);
-			GameManager.getInstance().getPlayer().addBuff(new buff.PowerUp());
-		}
+		GameManager.getInstance().getPlayer().addBuff(new buff.PowerUp());
 	}
 
 	@Override
-	public double getDamageMultiplier() {
-		return 0;
-	}
-
-	@Override
-	public double getAttackRange() {
-		return 0;
-	}
-
-	@Override
-	public int getMaxEntity() {
-		return 0;
+	public int getMpUse() {
+		return 8;
 	}
 
 }

@@ -21,8 +21,9 @@ import model.item.Item;
 import model.map.Map;
 import particle.LevelUp;
 import sharedObject.SharedEntity;
-import skill.ISkill;
+import skill.AttackSkill;
 import skill.NoSkill;
+import skill.Skill;
 
 public abstract class Player extends DamageableEntity {
 	
@@ -31,7 +32,7 @@ public abstract class Player extends DamageableEntity {
 	private boolean isJumping = false;
 	private boolean isCrying = false;
 	private boolean isAttack = false;
-	protected List<ISkill> skills = new ArrayList<>();
+	protected List<Skill> skills = new ArrayList<>();
 	private Rectangle attackArea;
 	private int walkTick = 30;
 	private int maxWalkTick = 60;
@@ -72,7 +73,7 @@ public abstract class Player extends DamageableEntity {
 		}
 	}
 	
-	public boolean attack(ISkill skill, List<DamageableEntity> list) {
+	public boolean attack(AttackSkill skill, List<DamageableEntity> list) {
 		if (list == null) return false;
 		if (isAttack) return false;
 		for (DamageableEntity e: list) {
@@ -152,7 +153,7 @@ public abstract class Player extends DamageableEntity {
 		// Development Cheat
 		if (KeyInput.pressingKey(KeyCode.A) && KeyInput.pressingKey(KeyCode.S) && KeyInput.pressingKey(KeyCode.D) && KeyInput.pressingKey(KeyCode.F)) {
 			maxAttackTick = 4;
-			skills.get(0).use();
+			skills.get(0).activate();
 			isAttack = true;
 			MonsterGen.setDelay(50);
 		}
@@ -176,15 +177,15 @@ public abstract class Player extends DamageableEntity {
 				}
 			}
 			else if (key == KeyCode.A && skills.size() > 0) {
-				skills.get(0).use();
+				skills.get(0).activate();
 				isAttack = true;
 			}
 			else if (key == KeyCode.Q && skills.size() > 1) {
-				skills.get(1).use();
+				skills.get(1).activate();
 				isAttack = true;
 			}
 			else if (key == KeyCode.W && skills.size() > 2) {
-				skills.get(2).use();
+				skills.get(2).activate();
 			}
 		}
 		if (KeyInput.pressingKey(KeyCode.P)) {
@@ -284,11 +285,11 @@ public abstract class Player extends DamageableEntity {
 		return isWalking;
 	}
 	
-	public List<ISkill> getSkills() {
+	public List<Skill> getSkills() {
 		return skills;
 	}
 	
-	public Rectangle getAttackArea(ISkill skill) {
+	public Rectangle getAttackArea(AttackSkill skill) {
 		if (facing == LEFT) {
 			attackArea.setX(x - skill.getAttackRange());
 			attackArea.setY(y);
@@ -305,7 +306,7 @@ public abstract class Player extends DamageableEntity {
 	}
 	
 	public Rectangle getAttackArea() {
-		return getAttackArea(skills.get(0));
+		return getAttackArea((AttackSkill) skills.get(0));
 	}
 	
 	public List<Item> getInventory() {

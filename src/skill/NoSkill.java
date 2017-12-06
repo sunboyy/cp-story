@@ -1,10 +1,9 @@
 package skill;
 
 import model.GameManager;
-import model.player.Player;
 import particle.NormalAttack;
 
-public class NoSkill implements ISkill {
+public class NoSkill extends AttackSkill {
 	
 	int age = 0;
 	int maxAge = 30;
@@ -26,11 +25,8 @@ public class NoSkill implements ISkill {
 
 	@Override
 	public void use() {
-		Player player = GameManager.getInstance().getPlayer();
-		if (player.canAttack()) {
-			player.attack(this, GameManager.getInstance().getCurrentMap().collideDamageableEntity(player.getAttackArea(this), getMaxEntity()));
-			GameManager.getInstance().getCurrentMap().getParticles().add(new NormalAttack());
-		}
+		super.use();
+		GameManager.getInstance().getCurrentMap().getParticles().add(new NormalAttack());
 	}
 
 }

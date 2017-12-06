@@ -1,10 +1,8 @@
 package test;
 
-import model.GameManager;
-import model.player.Player;
-import skill.ISkill;
+import skill.AttackSkill;
 
-public class TestSkill implements ISkill {
+public class TestSkill extends AttackSkill {
 
 	@Override
 	public double getDamageMultiplier() {
@@ -20,14 +18,15 @@ public class TestSkill implements ISkill {
 	public int getMaxEntity() {
 		return 4;
 	}
+	
+	@Override
+	public int getMpUse() {
+		return 4;
+	}
 
 	@Override
 	public void use() {
-		Player player = GameManager.getInstance().getPlayer();
-		if (player.canUseMp(4) && player.canAttack()) {
-			player.useMp(4);
-			player.attack(this, GameManager.getInstance().getCurrentMap().collideDamageableEntity(player.getAttackArea(this), getMaxEntity()));
-		}
+		super.use();
 	}
 	
 }
