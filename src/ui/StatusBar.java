@@ -67,10 +67,13 @@ public class StatusBar {
 		gc.fillRoundRect(HP_MP_X, Constants.MAP_HEIGHT-HEIGHT+MP_Y, mpWidth, HP_MP_HEIGHT, 5, 5);
 		
 		// Temporary show skill
-		gc.setFill(Color.WHITE);
+		gc.setFill(Color.RED);
 		gc.fillRoundRect(360, Constants.MAP_HEIGHT-HEIGHT+10, 36, 36, 8, 8);
+		gc.setFill(Color.LIME);
 		gc.fillRoundRect(410, Constants.MAP_HEIGHT-HEIGHT+10, 36, 36, 8, 8);
+		gc.setFill(Color.BLUE);
 		gc.fillRoundRect(460, Constants.MAP_HEIGHT-HEIGHT+10, 36, 36, 8, 8);
+		gc.setFill(Color.YELLOW);
 		gc.fillRoundRect(510, Constants.MAP_HEIGHT-HEIGHT+10, 36, 36, 8, 8);
 		
 		drawText(gc);

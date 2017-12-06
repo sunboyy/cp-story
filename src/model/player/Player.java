@@ -314,6 +314,10 @@ public abstract class Player extends DamageableEntity {
 		return inventory;
 	}
 	
+	public List<Buff> getBuffs() {
+		return buffs;
+	}
+	
 	// Setter
 	public void setJumping(boolean isJumping) {
 		this.isJumping = isJumping;

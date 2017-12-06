@@ -9,14 +9,14 @@ public class Images {
 	public static final Image playbutton = new Image("playbutton.png");
 	public static final Image playbutton_highlight = new Image("playbutton_highlight.png");
 
-	public static final Image beachBackground = new Image("background.png");
+	public static final Image beachBackground = new Image("background.png"); // TODO Remove
 	public static final Image defaultBackground = new Image("images/background/bg_default.jpg");
 	public static final Image gardenBackground = new Image("images/background/bg_garden.jpg",1300,900,false,false);
 	public static final Image skycafeBackground = new Image("images/background/bg_sky-cafe.jpg",1300,900,false,false);
 	
-	public static final Image beachForeground = new Image("foreground.png");
+	public static final Image beachForeground = new Image("foreground.png"); // TODO Remove
 	
-	public static final Image orangeMushMonster = new Image("orangemush.gif");
+	public static final Image orangeMushMonster = new Image("orangemush.gif"); // TODO Remove
 	public static final Image monsterProgmethR = new Image("images/monster/progmethR.png");
 	public static final Image monsterProgmethL = new Image("images/monster/progmethL.png");
 	
@@ -41,6 +41,8 @@ public class Images {
 	public static final Image[] normalAttackSkill = new Image[10];
 	
 	public static final Image[] levelUpEffect = new Image[20];
+	
+	public static final Image powerUpBuff = new Image("sample_buff_image.png"); // TODO Remove
 	
 	static {
 		for (int i=0; i<normalAttackSkill.length; i++) {

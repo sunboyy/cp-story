@@ -1,9 +1,11 @@
 package buff;
 
+import constants.Images;
+
 public class PowerUp extends Buff {
 
 	public PowerUp() {
-		super(3600);
+		super(3600, Images.powerUpBuff);
 	}
 	
 	@Override
