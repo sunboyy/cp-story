@@ -2,34 +2,25 @@ package skill;
 
 import model.GameManager;
 
-public class AttackSkill extends Skill {
+public abstract class AttackSkill extends Skill {
 
+	private long lastUsed = 0;
+	
+	public abstract double getDamageMultiplier();
+	public abstract double getAttackRange();
+	public abstract int getMaxEntity();
+	public abstract int getCooldownTimeMillis();
+	
 	@Override
 	public boolean shouldUse() {
-		return super.shouldUse() && GameManager.getInstance().getPlayer().canAttack();
+		return super.shouldUse() && GameManager.getInstance().getPlayer().canAttack() && lastUsed + getCooldownTimeMillis() <= System.currentTimeMillis();
 	}
 	
 	@Override
 	public void use() {
 		GameManager.getInstance().getPlayer().attack(this, GameManager.getInstance().getCurrentMap()
 				.collideDamageableEntity(GameManager.getInstance().getPlayer().getAttackArea(this), getMaxEntity()));
-	}
-
-	public double getDamageMultiplier() {
-		return 1;
-	}
-
-	public double getAttackRange() {
-		return 40;
-	}
-
-	public int getMaxEntity() {
-		return 1;
-	}
-
-	@Override
-	public int getMpUse() {
-		return 0;
+		lastUsed = System.currentTimeMillis();
 	}
 
 }

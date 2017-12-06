@@ -40,7 +40,7 @@ public class Images {
 	
 	public static final Image[] normalAttackSkill = new Image[10];
 	
-	public static final Image[] levelUpEffect = new Image[21];
+	public static final Image[] levelUpEffect = new Image[20];
 	
 	static {
 		for (int i=0; i<normalAttackSkill.length; i++) {

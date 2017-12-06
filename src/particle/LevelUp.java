@@ -56,8 +56,16 @@ public class LevelUp implements IParticle {
 		gc.setTextAlign(TextAlignment.CENTER);
 		gc.setTextBaseline(VPos.BASELINE);
 		gc.setLineWidth(1);
-		gc.fillText("LEVEL UP", x, y);
-		gc.strokeText("LEVEL UP", x, y);
+		if (visibleTick >= 60) {
+			gc.setGlobalAlpha((maxVisibleTick-visibleTick)/60.);
+			gc.fillText("LEVEL UP", x, y);
+			gc.strokeText("LEVEL UP", x, y);
+			gc.setGlobalAlpha(1);
+		}
+		else {
+			gc.fillText("LEVEL UP", x, y);
+			gc.strokeText("LEVEL UP", x, y);
+		}
 		visibleTick++;
 	}
 

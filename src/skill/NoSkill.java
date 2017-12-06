@@ -24,6 +24,16 @@ public class NoSkill extends AttackSkill {
 	}
 
 	@Override
+	public int getMpUse() {
+		return 0;
+	}
+
+	@Override
+	public int getCooldownTimeMillis() {
+		return 0;
+	}
+
+	@Override
 	public void use() {
 		super.use();
 		GameManager.getInstance().getCurrentMap().getParticles().add(new NormalAttack());

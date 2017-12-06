@@ -25,6 +25,11 @@ public class TestSkill extends AttackSkill {
 	}
 
 	@Override
+	public int getCooldownTimeMillis() {
+		return 500;
+	}
+
+	@Override
 	public void use() {
 		super.use();
 	}
