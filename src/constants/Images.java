@@ -5,7 +5,7 @@ import javafx.scene.image.Image;
 
 public class Images {
 	
-	public static final Image startscreen = new Image("startscreen.jpg");
+	public static final Image startscreen = new Image("startscreen_withPlay.jpg");
 	public static final Image playbutton = new Image("playbutton.png");
 	public static final Image playbutton_highlight = new Image("playbutton_highlight.png");
 

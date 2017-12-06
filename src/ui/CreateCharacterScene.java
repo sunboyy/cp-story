@@ -11,6 +11,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
+import javafx.scene.paint.Color;
 import main.Main;
 
 public class CreateCharacterScene extends Scene {
@@ -24,21 +25,32 @@ public class CreateCharacterScene extends Scene {
 		
 		Canvas canvas = new Canvas(1000,600);
 		GraphicsContext gc = canvas.getGraphicsContext2D();
+		gc.setGlobalAlpha(0.2);
 		gc.drawImage(Images.startscreen, 0, 0);
-		
+		gc.setFill(Color.color(0, 0, 0, 1.0));
+		gc.fillRect(0, 0, canvas.getWidth(), canvas.getHeight());
+		gc.setGlobalAlpha(0.5);
+		gc.setFill(Color.color(1, 1, 1, 0.95));
+		gc.fillRoundRect(200, 150, 600, 300, 100, 100);
 	    txtBox = new TextField();
+	    txtBox.setMaxWidth(400);
+	    txtBox.setMinWidth(400);
 	    txtBox.setLayoutX(300);
-	    txtBox.setLayoutY(200);
-		Button btnBack = new Button("btnBack");
+	    txtBox.setLayoutY(230);
+	    txtBox.setStyle("-fx-background-color:white;"
+	    		+ "-fx-font-size:28px;"
+	    		+ "-fx-font-family:Consolas;"
+	    		+ "-fx-alignment:center;");
+		Button btnBack = new Button("Cancel");
 		btnBack.setLayoutX(300);
-		btnBack.setLayoutY(300);
-		Button btnStart = new Button("btnStart");
+		btnBack.setLayoutY(320);
+		Button btnStart = new Button("Start Game!");
 		btnStart.setLayoutX(600);
-		btnStart.setLayoutY(300);
+		btnStart.setLayoutY(320);
 		addEventHandler(btnBack);
 		addEventHandler(btnStart);
 		
-		root.getChildren().addAll(btnBack,btnStart,txtBox);
+		root.getChildren().addAll(canvas,txtBox,btnBack,btnStart);
 		
 	}
 	
@@ -49,9 +61,9 @@ public class CreateCharacterScene extends Scene {
 			public void handle(MouseEvent event) {
 				// TODO Auto-generated method stub
 				System.out.println(btn.getText());
-				if(btn.getText().equals("btnBack")) {
+				if(btn.getText().equals("Cancel")) {
 					Main.getStage().setScene(Main.getStartScene());
-				} else if(btn.getText().equals("btnStart")) {
+				} else if(btn.getText().equals("Start Game!")) {
 					String displayName = txtBox.getText();
 					if(displayName.equals("")||displayName.contains(" ")) {
 						Alert alert = new Alert(AlertType.INFORMATION,"Name must not be null or contains space. So your name is JoeToken :)!");
