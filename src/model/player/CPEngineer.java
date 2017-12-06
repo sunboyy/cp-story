@@ -5,6 +5,7 @@ import java.util.Arrays;
 
 import constants.Images;
 import model.map.Map;
+import skill.PowerUp;
 import test.TestSkill;
 
 public class CPEngineer extends Player {
@@ -22,6 +23,7 @@ public class CPEngineer extends Player {
 						Images.cpEngPlayerFightR1, Images.cpEngPlayerFightR2))
 				, map, x, y);
 		skills.add(new TestSkill());
+		skills.add(new PowerUp());
 	}
 	
 }

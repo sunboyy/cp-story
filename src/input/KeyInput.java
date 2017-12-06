@@ -13,26 +13,18 @@ public class KeyInput {
 	
 	private static Set<KeyCode> activeKeys = new HashSet<>();
 	private static Queue<KeyCode> triggerKeys = new ConcurrentLinkedQueue<>();
-	private static final Set<KeyCode> pollableKeys = new HashSet<>();
+	private static final Set<KeyCode> unpollableKeys = new HashSet<>();
 	
 	static {
-		pollableKeys.add(KeyCode.DIGIT0);
-		pollableKeys.add(KeyCode.DIGIT1);
-		pollableKeys.add(KeyCode.DIGIT2);
-		pollableKeys.add(KeyCode.DIGIT3);
-		pollableKeys.add(KeyCode.DIGIT4);
-		pollableKeys.add(KeyCode.DIGIT5);
-		pollableKeys.add(KeyCode.DIGIT6);
-		pollableKeys.add(KeyCode.DIGIT7);
-		pollableKeys.add(KeyCode.DIGIT8);
-		pollableKeys.add(KeyCode.DIGIT9);
-		pollableKeys.add(KeyCode.C);
-		pollableKeys.add(KeyCode.A);
-		pollableKeys.add(KeyCode.Q);
+		unpollableKeys.add(KeyCode.LEFT);
+		unpollableKeys.add(KeyCode.RIGHT);
+		unpollableKeys.add(KeyCode.UP);
+		unpollableKeys.add(KeyCode.DOWN);
+		unpollableKeys.add(KeyCode.SPACE);
 	}
 	
 	public static void addKey(KeyCode code) {
-		if (pollableKeys.contains(code) && !activeKeys.contains(code)) {
+		if (!unpollableKeys.contains(code) && !activeKeys.contains(code)) {
 			triggerKeys.add(code);
 		}
 		activeKeys.add(code);

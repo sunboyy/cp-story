@@ -1,9 +1,11 @@
 package model.player;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Timer;
 
+import buff.Buff;
 import constants.Constants;
 import constants.Sounds;
 import controller.MonsterGen;
@@ -38,6 +40,7 @@ public abstract class Player extends DamageableEntity {
 	private int damageTick = 60;
 	private int maxDamageTick = 60;
 	private List<Item> inventory = new ArrayList<>();
+	private List<Buff> buffs = new ArrayList<>();
 	private int maxInventorySlots = 10;
 	
 	public Player(String name, Image imgL, Image imgR, List<Image> imgWalking, List<Image> imgCrying, List<Image> imgWalkAndCry, List<Image> imgAttack, Map map) {
@@ -180,6 +183,9 @@ public abstract class Player extends DamageableEntity {
 				skills.get(1).use();
 				isAttack = true;
 			}
+			else if (key == KeyCode.W && skills.size() > 2) {
+				skills.get(2).use();
+			}
 		}
 		if (KeyInput.pressingKey(KeyCode.P)) {
 			SharedEntity.getInstance().print();
@@ -190,6 +196,14 @@ public abstract class Player extends DamageableEntity {
 		else if (GameManager.getInstance().getCurrentMap().collideDamageableEntity(this, 1).size() != 0) {
 			damage(GameManager.getInstance().getCurrentMap().collideDamageableEntity(this, 1).get(0).getAttackDamage());
 			damageTick = 0;
+		}
+		Iterator<Buff> it = buffs.iterator();
+		while (it.hasNext()) {
+			Buff buff = it.next();
+			buff.update();
+			if (buff.isExpired()) {
+				it.remove();
+			}
 		}
 	}
 	
@@ -226,6 +240,16 @@ public abstract class Player extends DamageableEntity {
 		}
 	}
 	
+	public void addBuff(Buff buff) {
+		for (Buff i: buffs) {
+			if (i.getClass().equals(buff.getClass())) {
+				i.refresh();
+				return;
+			}
+		}
+		buffs.add(buff);
+	}
+	
 	public boolean canUseMp(int mp) {
 		return this.getMp() >= mp;
 	}
@@ -240,6 +264,15 @@ public abstract class Player extends DamageableEntity {
 	
 	public static int getAttackHigh(int level) {
 		return (int) Math.floor(14.4 * Math.pow(2, (level/9.)));
+	}
+	
+	@Override
+	public int getAttackDamage() {
+		double multiplier = 1;
+		for (Buff i: buffs) {
+			multiplier += i.getAttackMultiplier();
+		}
+		return (int) (super.getAttackDamage() * multiplier);
 	}
 	
 	// Getter
