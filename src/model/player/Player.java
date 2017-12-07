@@ -3,12 +3,10 @@ package model.player;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
-import java.util.Timer;
 
 import buff.Buff;
 import constants.Constants;
 import constants.Sounds;
-import controller.MonsterGen;
 import input.KeyInput;
 import javafx.scene.image.Image;
 import javafx.scene.input.KeyCode;
@@ -31,7 +29,6 @@ public abstract class Player extends DamageableEntity {
 	private boolean isWalking = false;
 	private boolean isJumping = false;
 	private boolean isCrying = false;
-	private boolean isAttack = false;
 	protected List<Skill> skills = new ArrayList<>();
 	private Rectangle attackArea;
 	private int walkTick = 30;
@@ -74,7 +71,7 @@ public abstract class Player extends DamageableEntity {
 	
 	public boolean attack(AttackSkill skill, List<DamageableEntity> list) {
 		if (list == null) return false;
-		if (isAttack) return false;
+		if (!canAttack()) return false;
 		for (DamageableEntity e: list) {
 			e.damage((int) (getAttackDamage() * skill.getDamageMultiplier()));
 			if (e.isDead()) {
@@ -107,9 +104,8 @@ public abstract class Player extends DamageableEntity {
 		} else {
 			setFacing(direction);
 		}
-		if(isAttack) {
+		if(!canAttack()) {	// is attacking now !
 			setFacing(this.facing,imgAttack.get(this.facing+1));
-			isAttack = attackTick>0;
 		}
 	}
 	
@@ -150,7 +146,6 @@ public abstract class Player extends DamageableEntity {
 		}
 		if (KeyInput.pressingKey(KeyCode.E) && skills.size() > 3) {
 			skills.get(3).activate();
-			isAttack = true;
 		}
 		// Development Cheat
 		if (KeyInput.pressingKey(KeyCode.A) && KeyInput.pressingKey(KeyCode.S) && KeyInput.pressingKey(KeyCode.D) && KeyInput.pressingKey(KeyCode.F)) {
@@ -173,11 +168,9 @@ public abstract class Player extends DamageableEntity {
 			}
 			else if (key == KeyCode.A && skills.size() > 0) {
 				skills.get(0).activate();
-				isAttack = true;
 			}
 			else if (key == KeyCode.Q && skills.size() > 1) {
 				skills.get(1).activate();
-				isAttack = true;
 			}
 			else if (key == KeyCode.W && skills.size() > 2) {
 				skills.get(2).activate();
