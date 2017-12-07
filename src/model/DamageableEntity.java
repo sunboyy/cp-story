@@ -10,6 +10,7 @@ import javafx.scene.image.Image;
 import model.item.Item;
 import particle.Damage;
 import particle.DisplayName;
+import sharedObject.SharedEntity;
 
 public abstract class DamageableEntity extends Entity {
 	
@@ -40,19 +41,16 @@ public abstract class DamageableEntity extends Entity {
 		this.displayName = new DisplayName(this);
 	}
 	
-//	public DamageableEntity(String name,int level,int hp,int mp,int attack,int defense) {
-//		
-//		this.level = level;
-//		this.hp = hp;
-//		this.mp = mp;
-//		this.attack = attack;
-//		this.defense = defense;
-//	}
-	
 	public void damage(int hp) {
 		this.hp -= hp;
 		GameManager.getInstance().getCurrentMap().getParticles().add(new Damage(hp, this.x+this.width/2, this.y));
 		displayName.resetVisible();
+	}
+	
+	public void forceKill() {
+		damage(999999);
+		SharedEntity.getInstance().remove(this);
+		SharedEntity.getInstance().addAll(spawnLoot());
 	}
 	
 	public void healHp(int hp) {

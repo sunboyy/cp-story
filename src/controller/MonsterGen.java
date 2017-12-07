@@ -27,8 +27,4 @@ public class MonsterGen extends Thread {
 		start();
 	}
 	
-	public static void setDelay(int d) {
-		delay = d;
-	}
-	
 }

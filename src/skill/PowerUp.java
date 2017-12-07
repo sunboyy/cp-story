@@ -14,4 +14,9 @@ public class PowerUp extends Skill {
 		return 8;
 	}
 
+	@Override
+	public int getCooldownTimeMillis() {
+		return 0;
+	}
+
 }

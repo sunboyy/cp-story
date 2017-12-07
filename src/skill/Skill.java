@@ -5,16 +5,20 @@ import model.IUsable;
 
 public abstract class Skill implements IUsable {
 	
+	private long lastUsed = 0;
+	
 	public abstract int getMpUse();
+	public abstract int getCooldownTimeMillis();
 	
 	public boolean shouldUse() {
-		return GameManager.getInstance().getPlayer().canUseMp(getMpUse());
+		return GameManager.getInstance().getPlayer().canUseMp(getMpUse()) && lastUsed + getCooldownTimeMillis() <= System.currentTimeMillis();
 	}
 	
 	public void activate() {
 		if (shouldUse()) {
 			GameManager.getInstance().getPlayer().useMp(getMpUse());
 			use();
+			lastUsed = System.currentTimeMillis();
 		}
 	}
 	

@@ -152,14 +152,7 @@ public abstract class Player extends DamageableEntity {
 		}
 		// Development Cheat
 		if (KeyInput.pressingKey(KeyCode.A) && KeyInput.pressingKey(KeyCode.S) && KeyInput.pressingKey(KeyCode.D) && KeyInput.pressingKey(KeyCode.F)) {
-			maxAttackTick = 4;
-			skills.get(0).activate();
-			isAttack = true;
-			MonsterGen.setDelay(50);
-		}
-		else {
-			maxAttackTick = 30;
-			MonsterGen.setDelay(2000);
+			addExperience(10);
 		}
 		while (KeyInput.pollAvailable()) {
 			KeyCode key = KeyInput.pollKey();
@@ -186,6 +179,9 @@ public abstract class Player extends DamageableEntity {
 			}
 			else if (key == KeyCode.W && skills.size() > 2) {
 				skills.get(2).activate();
+			}
+			else if (key == KeyCode.E && skills.size() > 3) {
+				skills.get(3).activate();
 			}
 		}
 		if (KeyInput.pressingKey(KeyCode.P)) {
