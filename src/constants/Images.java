@@ -13,6 +13,7 @@ public class Images {
 	public static final Image defaultBackground = new Image("images/background/bg_default.jpg");
 	public static final Image gardenBackground = new Image("images/background/bg_garden.jpg",1300,900,false,false);
 	public static final Image skycafeBackground = new Image("images/background/bg_sky-cafe.jpg",1300,900,false,false);
+	public static final Image building4Background = new Image("images/background/bg_building4.jpg",1300,900,false,false);
 	
 	public static final Image beachForeground = new Image("foreground.png"); // TODO Remove
 	
@@ -29,12 +30,16 @@ public class Images {
 	public static final Image cpEngPlayerWalkCryL = new Image("images/player/CPPlayerLWalkCry.png",77.25,110,true,false);
 	public static final Image cpEngPlayerFightL1 = new Image("images/player/CPPlayerFightL1.png",77.25,110,true,false);
 	public static final Image cpEngPlayerFightL2 = new Image("images/player/CPPlayerFightL2.png",77.25,110,true,false);
+	public static final Image cpEngPlayerDeadL = new Image("images/player/CPPlayerLGhost.png",77.25,110,true,false);
+	public static final Image cpEngPlayerDeadFightL = new Image("images/player/CPPlayerFightLGhost.png",77.25,110,true,false);
 	public static final Image cpEngPlayerR = new Image("images/player/CPPlayerR.png",77.25,110,true,false);
 	public static final Image cpEngPlayerWalkR = new Image("images/player/CPPlayerRWalk.png",77.25,110,true,false); 
 	public static final Image cpEngPlayerCryR = new Image("images/player/CPPlayerRCry.png",77.25,110,true,false);
 	public static final Image cpEngPlayerWalkCryR = new Image("images/player/CPPlayerRWalkCry.png",77.25,110,true,false);
 	public static final Image cpEngPlayerFightR1 = new Image("images/player/CPPlayerFightR1.png",77.25,110,true,false);
 	public static final Image cpEngPlayerFightR2 = new Image("images/player/CPPlayerFightR2.png",77.25,110,true,false);
+	public static final Image cpEngPlayerDeadR = new Image("images/player/CPPlayerRGhost.png",77.25,110,true,false);
+	public static final Image cpEngPlayerDeadFightR = new Image("images/player/CPPlayerFightRGhost.png",77.25,110,true,false);
 	
 	
 	public static final Image redPotionItem = new Image("images/item/redpotion.png");
