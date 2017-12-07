@@ -49,21 +49,27 @@ public class StartScene extends Scene {
 	    nameField.setStyle("-fx-background-color:white;"
 	    		+ "-fx-font-size:28px;"
 	    		+ "-fx-font-family:Consolas;"
-	    		+ "-fx-alignment:center;");
+	    		+ "-fx-alignment:center;"
+	    		+ "-fx-border-width:2px;"
+	    		+ "-fx-border-color:black;"
+	    		+ "-fx-border-radius:5px;");
+	    nameField.setVisible(false);
 		backBtn = new Button("Back");
 		backBtn.setLayoutX(300);
 		backBtn.setLayoutY(320);
+		backBtn.setVisible(false);
 		addBackBtnHandler();
 		startBtn = new Button("Start Game!");
 		startBtn.setLayoutX(600);
 		startBtn.setLayoutY(320);
+		startBtn.setVisible(false);
 		addStartBtnHandler();
 		
 		KeyFrame kf = new KeyFrame(Duration.seconds(1./60), e -> {
-			if (page == 0) {
+			if (page == 0 || page == 2) {
 				animationTick--;
 			}
-			else {
+			else if (page == 1) {
 				animationTick++;
 			}
 			gc.drawImage(Images.startscreen, 0, 0);
@@ -76,15 +82,26 @@ public class StartScene extends Scene {
 			gc.setTextAlign(TextAlignment.CENTER);
 			gc.setFill(Color.BLACK);
 			gc.fillText("Enter your name:", Constants.MAP_WIDTH/2, 660-15*animationTick);
+			if (page == 2) {
+				gc.setGlobalAlpha(1-animationTick/30.);
+				gc.setFill(Color.BLACK);
+				gc.fillRect(0, 0, Constants.MAP_WIDTH, Constants.MAP_HEIGHT);
+				gc.setGlobalAlpha(1);
+			}
 			if (page == 1 && animationTick == 30) {
-				root.getChildren().addAll(nameField, backBtn, startBtn);
+				nameField.setVisible(true);
+				backBtn.setVisible(true);
+				startBtn.setVisible(true);
+			}
+			if (page == 2 && animationTick == 0) {
+				Main.getStage().setScene(Main.getGameScene());
 			}
 		});
 		screenloop = new Timeline();
 		screenloop.setCycleCount(30);
 		screenloop.getKeyFrames().add(kf);
 		
-		root.getChildren().add(canvas);
+		root.getChildren().addAll(canvas, nameField, backBtn, startBtn);
 		
 	}
 	
@@ -116,7 +133,9 @@ public class StartScene extends Scene {
 	
 	private void addBackBtnHandler() {
 		backBtn.setOnAction(e -> {
-			root.getChildren().removeAll(nameField, backBtn, startBtn);
+			nameField.setVisible(false);
+			backBtn.setVisible(false);
+			startBtn.setVisible(false);
 			page = 0;
 			screenloop.play();
 		});
@@ -126,11 +145,16 @@ public class StartScene extends Scene {
 		startBtn.setOnAction(e -> {
 			if (nameField.getText().trim().equals("")) {
 				Alert alert = new Alert(AlertType.INFORMATION, "The name must not be empty, so it will be Joetoken!");
+				alert.setHeaderText(null);
 				alert.setTitle("Name doesn't accepted");
 				alert.showAndWait();
 			}
+			nameField.setVisible(false);
+			backBtn.setVisible(false);
+			startBtn.setVisible(false);
 			Main.initializeGameScene(nameField.getText().trim());
-			Main.getStage().setScene(Main.getGameScene());
+			page = 2;
+			screenloop.play();
 		});
 	}
 
