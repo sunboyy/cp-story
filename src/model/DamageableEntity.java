@@ -73,7 +73,7 @@ public abstract class DamageableEntity extends Entity {
 		for (Map.Entry<Item, Double> i: drops.entrySet()) {
 			double rand = Math.random();
 			if (rand <= i.getValue()) {
-				loot.add(new ItemEntity(i.getKey(), getMap(), x, y));
+				loot.add(new ItemEntity(i.getKey(), getMap(), x+Math.random()*(width-i.getKey().getImg().getWidth()), y));
 			}
 		}
 		return loot;

@@ -8,6 +8,7 @@ import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 import javafx.scene.text.TextAlignment;
 import model.GameManager;
+import model.item.Item;
 import model.player.Player;
 
 public class StatusBar {
@@ -19,6 +20,8 @@ public class StatusBar {
 	public static final double HP_MP_X = 140;
 	public static final double HP_Y = 10;
 	public static final double MP_Y = 29;
+	public static final double ITEM_X = 645;
+	public static final double SKILL_ITEM_Y = 10;
 	
 	public static final Color BACKGROUND_COLOR = Color.color(0, 0, 0, .6);
 	public static final Color EXPERIENCE_COLOR = Color.LIME;
@@ -30,6 +33,7 @@ public class StatusBar {
 	public static final Font EXPERIENCE_FONT = Font.font("Tahoma", FontWeight.BOLD, 9);
 	public static final Font KEYBOARD_FONT = Font.font("Tahoma", 9);
 	public static final Font MESSAGE_FONT = Font.font("Tahoma", 14);
+	public static final Font ITEM_FONT = Font.font("Tahoma", 11);
 	
 	private static double hpWidth = 0;
 	private static double mpWidth = 0;
@@ -70,10 +74,30 @@ public class StatusBar {
 		// Temporary show skill
 		for (int i=1; i<=4; i++) {
 			gc.setFill(Color.WHITE);
-			gc.fillRect(310+50*i, Constants.MAP_HEIGHT-HEIGHT+10, 36, 36);
+			gc.fillRect(355+50*i, Constants.MAP_HEIGHT-HEIGHT+SKILL_ITEM_Y, 36, 36);
 			gc.setFill(Color.color(0, 0, 0, .5));
-			gc.fillRect(310+50*i, Constants.MAP_HEIGHT-HEIGHT+46-Math.ceil(36.*player.getSkills().get(i).getRemainingCooldownTimeMillis()/player.getSkills().get(i).getCooldownTimeMillis()),
+			gc.fillRect(355+50*i, Constants.MAP_HEIGHT-HEIGHT+SKILL_ITEM_Y+36-Math.ceil(36.*player.getSkills().get(i).getRemainingCooldownTimeMillis()/player.getSkills().get(i).getCooldownTimeMillis()),
 					36, Math.ceil(36.*player.getSkills().get(i).getRemainingCooldownTimeMillis()/player.getSkills().get(i).getCooldownTimeMillis()));
+		}
+		
+		// Item
+		for (int i=0; i<10; i++) {
+			gc.setFill(Color.WHITE);
+			gc.fillRoundRect(ITEM_X+i*35, Constants.MAP_HEIGHT-HEIGHT+SKILL_ITEM_Y, 30, 30, 6, 6);
+			if (player.getInventory()[i] != null) {
+				Item item = player.getInventory()[i];
+				gc.drawImage(item.getImg(), ITEM_X+2+i*35, Constants.MAP_HEIGHT-HEIGHT+SKILL_ITEM_Y+2);
+				if (item.getCount() > 1) {
+					gc.setFont(ITEM_FONT);
+					gc.setFill(Color.BLACK);
+					gc.setStroke(Color.WHITE);
+					gc.setLineWidth(4);
+					gc.setTextAlign(TextAlignment.LEFT);
+					gc.setTextBaseline(VPos.TOP);
+					gc.strokeText(item.getCount()+"", ITEM_X+i*35-1, Constants.MAP_HEIGHT-HEIGHT+SKILL_ITEM_Y-4);
+					gc.fillText(item.getCount()+"", ITEM_X+i*35-1, Constants.MAP_HEIGHT-HEIGHT+SKILL_ITEM_Y-4);
+				}
+			}
 		}
 		
 		drawText(gc);
@@ -114,10 +138,16 @@ public class StatusBar {
 		gc.setFont(KEYBOARD_FONT);
 		gc.setTextAlign(TextAlignment.RIGHT);
 		gc.setTextBaseline(VPos.TOP);
-		gc.fillText("Q", 359, Constants.MAP_HEIGHT-HEIGHT+10);
-		gc.fillText("W", 409, Constants.MAP_HEIGHT-HEIGHT+10);
-		gc.fillText("E", 459, Constants.MAP_HEIGHT-HEIGHT+10);
-		gc.fillText("R", 509, Constants.MAP_HEIGHT-HEIGHT+10);
+		gc.fillText("Q", 404, Constants.MAP_HEIGHT-HEIGHT+10);
+		gc.fillText("W", 454, Constants.MAP_HEIGHT-HEIGHT+10);
+		gc.fillText("E", 504, Constants.MAP_HEIGHT-HEIGHT+10);
+		gc.fillText("R", 554, Constants.MAP_HEIGHT-HEIGHT+10);
+		
+		// Item
+		gc.setTextAlign(TextAlignment.CENTER);
+		for (int i=1; i<=10; i++) {
+			gc.fillText(Integer.toString(i%10), ITEM_X-20+i*35, Constants.MAP_HEIGHT-HEIGHT+SKILL_ITEM_Y+30);
+		}
 		
 		// Message
 		gc.setFont(MESSAGE_FONT);

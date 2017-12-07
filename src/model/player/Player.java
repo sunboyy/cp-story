@@ -36,7 +36,7 @@ public abstract class Player extends DamageableEntity {
 	private int attackTick = 0;
 	private int damageTick = 60;
 	private int maxDamageTick = 60;
-	private List<Item> inventory = new ArrayList<>();
+	private Item[] inventory = new Item[10];
 	private List<Buff> buffs = new ArrayList<>();
 	private int maxInventorySlots = 10;
 	
@@ -160,12 +160,12 @@ public abstract class Player extends DamageableEntity {
 			if (key.isDigitKey()) {
 				int digit = Integer.parseInt(key.toString().substring(5));
 				int index = (digit + 9) % 10;
-				if (inventory.size() > index) {
-					Item item = inventory.get(index);
+				if (inventory[index] != null) {
+					Item item = inventory[index];
 					if (item instanceof IUsable) {
 						((IUsable) item).use();
 						if (item.getCount() <= 0) {
-							inventory.remove(item);
+							inventory[index] = null;
 						}
 					}
 				}
@@ -204,13 +204,17 @@ public abstract class Player extends DamageableEntity {
 	}
 	
 	public void collectItem(Item item) throws InventoryFullException {
-		for (Item i: inventory) {
-			if (i.sameType(item) && i.add(1)) {
+		int spaceIndex = -1;
+		for (int i=0; i<inventory.length; i++) {
+			if (inventory[i] == null && spaceIndex == -1) {
+				spaceIndex = i;
+			}
+			else if (inventory[i] != null && inventory[i].sameType(item) && inventory[i].add(1)) {
 				return;
 			}
 		}
-		if (inventory.size() + 1 <= maxInventorySlots) {
-			inventory.add(item);
+		if (spaceIndex != -1) {
+			inventory[spaceIndex] = item;
 			return;
 		}
 		throw new InventoryFullException();
@@ -305,7 +309,7 @@ public abstract class Player extends DamageableEntity {
 		return getAttackArea((AttackSkill) skills.get(0));
 	}
 	
-	public List<Item> getInventory() {
+	public Item[] getInventory() {
 		return inventory;
 	}
 	

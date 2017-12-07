@@ -82,21 +82,6 @@ public class GameManager {
 			gc.strokeText(player.getBuffs().get(i).getRemainingTime()+"", Constants.MAP_WIDTH-(40*(i+1))+2, 4);
 			gc.fillText(player.getBuffs().get(i).getRemainingTime()+"", Constants.MAP_WIDTH-(40*(i+1))+2, 4);
 		}
-		
-		// Temporarily show inventory
-		List<Item> inventory = player.getInventory();
-		gc.setFont(Font.font("Tahoma", FontWeight.BOLD, 24));
-		gc.setTextAlign(TextAlignment.RIGHT);
-		gc.setTextBaseline(VPos.CENTER);
-		gc.setLineWidth(1);
-		for (int i=0; i<inventory.size(); i++) {
-			gc.fillRect(Constants.MAP_WIDTH-55, 50+50*i, inventory.get(i).getImg().getWidth()+10, inventory.get(i).getImg().getHeight()+10);
-			if (inventory.get(i).getCount() > 1) {
-				gc.fillText(String.format("%dx", inventory.get(i).getCount()), Constants.MAP_WIDTH-60, 70+50*i);
-				gc.strokeText(String.format("%dx", inventory.get(i).getCount()), Constants.MAP_WIDTH-60, 70+50*i);
-			}
-			gc.drawImage(inventory.get(i).getImg(), Constants.MAP_WIDTH-50, 55+50*i);
-		}
 	}
 	
 	public void update() {
