@@ -39,4 +39,9 @@ public class NoSkill extends AttackSkill {
 		GameManager.getInstance().getCurrentMap().getParticles().add(new NormalAttack());
 	}
 
+	@Override
+	public int getCooldownTick() {
+		return 30;
+	}
+
 }

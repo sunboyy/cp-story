@@ -36,7 +36,7 @@ public abstract class Player extends DamageableEntity {
 	private Rectangle attackArea;
 	private int walkTick = 30;
 	private int maxWalkTick = 60;
-	private int attackTick = 30;
+	private int attackTick = 0;
 	private int damageTick = 60;
 	private int maxDamageTick = 60;
 	private List<Item> inventory = new ArrayList<>();
@@ -87,7 +87,7 @@ public abstract class Player extends DamageableEntity {
 				Sounds.punchSound.play();
 			}
 		}
-		attackTick = 30;
+		attackTick = skill.getCooldownTick();
 		return true;
 	}
 	

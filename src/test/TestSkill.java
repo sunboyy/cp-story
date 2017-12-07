@@ -33,5 +33,10 @@ public class TestSkill extends AttackSkill {
 	public void use() {
 		super.use();
 	}
-	
+
+	@Override
+	public int getCooldownTick() {
+		return 30;
+	}
+
 }
