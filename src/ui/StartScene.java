@@ -8,7 +8,6 @@ import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
-import javafx.scene.paint.Color;
 import main.Main;
 
 public class StartScene extends Scene {
@@ -31,7 +30,7 @@ public class StartScene extends Scene {
 		btnPlay.setPickOnBounds(false);
 		addBtnPlayEventHandler(btnPlay);
 		
-		root.getChildren().addAll(canvas,btnPlay);
+		root.getChildren().addAll(canvas, btnPlay);
 		
 	}
 	
@@ -51,13 +50,6 @@ public class StartScene extends Scene {
 			public void handle(MouseEvent event) {
 				// TODO Auto-generated method stub
 				btn.setImage(Images.playbutton_highlight);
-				Canvas canvas = new Canvas(300,300);
-				GraphicsContext gc = canvas.getGraphicsContext2D();
-				gc.setFill(Color.WHITE);
-				gc.fillRect(0, 0, 200, 5);
-				canvas.setLayoutX(220);
-				canvas.setLayoutY(420);
-				root.getChildren().add(canvas);
 			}
 		});
 		
@@ -66,7 +58,6 @@ public class StartScene extends Scene {
 			public void handle(MouseEvent event) {
 				// TODO Auto-generated method stub
 				btn.setImage(Images.playbutton);
-				root.getChildren().remove(2);
 			}
 		});
 		

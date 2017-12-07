@@ -17,7 +17,7 @@ import main.Main;
 public class CreateCharacterScene extends Scene {
 	
 	Pane root;
-	private TextField txtBox;
+	private TextField nameField;
 	
 	public CreateCharacterScene() {
 		super(new Pane(),1000,600);
@@ -32,12 +32,12 @@ public class CreateCharacterScene extends Scene {
 		gc.setGlobalAlpha(0.5);
 		gc.setFill(Color.color(1, 1, 1, 0.95));
 		gc.fillRoundRect(200, 150, 600, 300, 100, 100);
-	    txtBox = new TextField();
-	    txtBox.setMaxWidth(400);
-	    txtBox.setMinWidth(400);
-	    txtBox.setLayoutX(300);
-	    txtBox.setLayoutY(230);
-	    txtBox.setStyle("-fx-background-color:white;"
+	    nameField = new TextField();
+	    nameField.setMaxWidth(400);
+	    nameField.setMinWidth(400);
+	    nameField.setLayoutX(300);
+	    nameField.setLayoutY(230);
+	    nameField.setStyle("-fx-background-color:white;"
 	    		+ "-fx-font-size:28px;"
 	    		+ "-fx-font-family:Consolas;"
 	    		+ "-fx-alignment:center;");
@@ -50,7 +50,7 @@ public class CreateCharacterScene extends Scene {
 		addEventHandler(btnBack);
 		addEventHandler(btnStart);
 		
-		root.getChildren().addAll(canvas,txtBox,btnBack,btnStart);
+		root.getChildren().addAll(canvas,nameField,btnBack,btnStart);
 		
 	}
 	
@@ -64,14 +64,14 @@ public class CreateCharacterScene extends Scene {
 				if(btn.getText().equals("Cancel")) {
 					Main.getStage().setScene(Main.getStartScene());
 				} else if(btn.getText().equals("Start Game!")) {
-					String displayName = txtBox.getText();
+					String displayName = nameField.getText();
 					if(displayName.equals("")||displayName.contains(" ")) {
 						Alert alert = new Alert(AlertType.INFORMATION,"Name must not be null or contains space. So your name is JoeToken :)!");
 						alert.setTitle("Not Except Name");
 						alert.showAndWait();
 						Main.setGameScene(new GameScene());
 					} else {
-						Main.setGameScene(new GameScene(txtBox.getText()));
+						Main.setGameScene(new GameScene(nameField.getText()));
 					}
 					Main.getStage().setScene(Main.getGameScene());
 				}
