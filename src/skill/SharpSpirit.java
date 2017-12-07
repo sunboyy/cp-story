@@ -20,12 +20,12 @@ public class SharpSpirit extends Skill {
 
 	@Override
 	public int getMpUse() {
-		return 3;
+		return 30;
 	}
 
 	@Override
 	public int getCooldownTimeMillis() {
-		return 3000;
+		return 60000;
 	}
 
 }
