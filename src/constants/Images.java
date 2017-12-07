@@ -43,6 +43,7 @@ public class Images {
 	public static final Image[] normalAttackSkill = new Image[10];
 	
 	public static final Image[] levelUpEffect = new Image[20];
+	public static final Image[] gradeAEffect = new Image[2];
 	
 	public static final Image powerUpBuff = new Image("sample_buff_image.png"); // TODO Remove
 	
@@ -52,6 +53,9 @@ public class Images {
 		}
 		for (int i=0; i<levelUpEffect.length; i++) {
 			levelUpEffect[i] = new Image("images/effect/level_up/"+i+".png");
+		}
+		for (int i=0; i<gradeAEffect.length; i++) {
+			gradeAEffect[i] = new Image("images/effect/grade_a/"+i+".png");
 		}
 	}
 	
