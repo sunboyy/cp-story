@@ -148,6 +148,10 @@ public abstract class Player extends DamageableEntity {
 		if (KeyInput.pressingKey(KeyCode.UP)) {
 			GameManager.getInstance().warp();
 		}
+		if (KeyInput.pressingKey(KeyCode.E) && skills.size() > 3) {
+			skills.get(3).activate();
+			isAttack = true;
+		}
 		// Development Cheat
 		if (KeyInput.pressingKey(KeyCode.A) && KeyInput.pressingKey(KeyCode.S) && KeyInput.pressingKey(KeyCode.D) && KeyInput.pressingKey(KeyCode.F)) {
 			addExperience(10);
@@ -178,8 +182,8 @@ public abstract class Player extends DamageableEntity {
 			else if (key == KeyCode.W && skills.size() > 2) {
 				skills.get(2).activate();
 			}
-			else if (key == KeyCode.E && skills.size() > 3) {
-				skills.get(3).activate();
+			else if (key == KeyCode.R && skills.size() > 4) {
+				skills.get(4).activate();
 			}
 		}
 		if (KeyInput.pressingKey(KeyCode.P)) {
@@ -250,7 +254,7 @@ public abstract class Player extends DamageableEntity {
 	}
 	
 	public boolean canAttack() {
-		return !isAttack;
+		return attackTick <= 0;
 	}
 	
 	public static int getAttackLow(int level) {

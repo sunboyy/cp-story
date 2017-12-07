@@ -5,6 +5,7 @@ import java.util.Arrays;
 
 import constants.Images;
 import model.map.Map;
+import skill.PowerOfJoe;
 import skill.PowerUp;
 import skill.SharpSpirit;
 import test.TestSkill;
@@ -25,6 +26,7 @@ public class CPEngineer extends Player {
 				, map, x, y);
 		skills.add(new TestSkill());
 		skills.add(new PowerUp());
+		skills.add(new PowerOfJoe());
 		skills.add(new SharpSpirit());
 	}
 	
