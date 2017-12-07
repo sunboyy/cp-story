@@ -37,7 +37,6 @@ public abstract class Player extends DamageableEntity {
 	private int walkTick = 30;
 	private int maxWalkTick = 60;
 	private int attackTick = 30;
-	private int maxAttackTick = 30;
 	private int damageTick = 60;
 	private int maxDamageTick = 60;
 	private List<Item> inventory = new ArrayList<>();
@@ -88,7 +87,7 @@ public abstract class Player extends DamageableEntity {
 				Sounds.punchSound.play();
 			}
 		}
-		attackTick = 0;
+		attackTick = 30;
 		return true;
 	}
 	
@@ -110,8 +109,7 @@ public abstract class Player extends DamageableEntity {
 		}
 		if(isAttack) {
 			setFacing(this.facing,imgAttack.get(this.facing+1));
-			isAttack = attackTick<maxAttackTick;
-			if(!isAttack) attackTick = 0;
+			isAttack = attackTick>0;
 		}
 	}
 	
@@ -188,7 +186,7 @@ public abstract class Player extends DamageableEntity {
 			SharedEntity.getInstance().print();
 		}
 		walkTick = isWalking() ? (walkTick + 1)%maxWalkTick : 0; 
-		if (attackTick < maxAttackTick) attackTick++;
+		if (attackTick > 0) attackTick--;
 		if (damageTick < maxDamageTick) damageTick++;
 		else if (GameManager.getInstance().getCurrentMap().collideDamageableEntity(this, 1).size() != 0) {
 			damage(GameManager.getInstance().getCurrentMap().collideDamageableEntity(this, 1).get(0).getAttackDamage());
