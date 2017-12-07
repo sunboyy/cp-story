@@ -11,18 +11,30 @@ public abstract class Skill implements IUsable {
 	public abstract int getCooldownTimeMillis();
 	
 	public boolean shouldUse() {
-		return GameManager.getInstance().getPlayer().canUseMp(getMpUse()) && lastUsed + getCooldownTimeMillis() <= System.currentTimeMillis();
+		return true;
 	}
 	
 	public long getRemainingCooldownTimeMillis() {
 		return getCooldownTimeMillis()+lastUsed-System.currentTimeMillis();
 	}
 	
+	private void checkCooldown() throws CooldownException {
+		if (lastUsed + getCooldownTimeMillis() > System.currentTimeMillis())
+			throw new CooldownException();
+	}
+	
 	public void activate() {
 		if (shouldUse()) {
-			GameManager.getInstance().getPlayer().useMp(getMpUse());
-			use();
-			lastUsed = System.currentTimeMillis();
+			try {
+				checkCooldown();
+				GameManager.getInstance().getPlayer().useMp(getMpUse());
+				use();
+				lastUsed = System.currentTimeMillis();
+			} catch (CooldownException e) {
+				GameManager.getInstance().setMessage("Cannot use skill: Please wait for cooldown");
+			} catch (MpNotEnoughException e) {
+				GameManager.getInstance().setMessage("Cannot use skill: MP not enough");
+			}
 		}
 	}
 	

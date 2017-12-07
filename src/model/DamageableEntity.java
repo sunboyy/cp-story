@@ -11,6 +11,7 @@ import model.item.Item;
 import particle.Damage;
 import particle.DisplayName;
 import sharedObject.SharedEntity;
+import skill.MpNotEnoughException;
 
 public abstract class DamageableEntity extends Entity {
 	
@@ -78,12 +79,9 @@ public abstract class DamageableEntity extends Entity {
 		return loot;
 	}
 	
-	public boolean useMp(int usedMp) {
-		if (mp >= usedMp) {
-			mp -= usedMp;
-			return true;
-		}
-		return false;
+	public void useMp(int usedMp) throws MpNotEnoughException {
+		if (mp < usedMp) throw new MpNotEnoughException();
+		mp -= usedMp;
 	}
 	
 	public void render(GraphicsContext gc) {

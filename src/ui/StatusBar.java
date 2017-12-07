@@ -29,6 +29,7 @@ public class StatusBar {
 	public static final Font HP_MP_BAR_FONT = Font.font("Tahoma", FontWeight.BOLD, 12);
 	public static final Font EXPERIENCE_FONT = Font.font("Tahoma", FontWeight.BOLD, 9);
 	public static final Font KEYBOARD_FONT = Font.font("Tahoma", 9);
+	public static final Font MESSAGE_FONT = Font.font("Tahoma", 14);
 	
 	private static double hpWidth = 0;
 	private static double mpWidth = 0;
@@ -117,6 +118,16 @@ public class StatusBar {
 		gc.fillText("W", 409, Constants.MAP_HEIGHT-HEIGHT+10);
 		gc.fillText("E", 459, Constants.MAP_HEIGHT-HEIGHT+10);
 		gc.fillText("R", 509, Constants.MAP_HEIGHT-HEIGHT+10);
+		
+		// Message
+		gc.setFont(MESSAGE_FONT);
+		gc.setTextAlign(TextAlignment.LEFT);
+		gc.setTextBaseline(VPos.BOTTOM);
+		gc.setFill(Color.WHITE);
+		gc.setStroke(Color.BLACK);
+		gc.setLineWidth(2);
+		gc.strokeText(GameManager.getInstance().getMessage(), 20, Constants.MAP_HEIGHT-HEIGHT-5);
+		gc.fillText(GameManager.getInstance().getMessage(), 20, Constants.MAP_HEIGHT-HEIGHT-5);
 	}
 	
 }
