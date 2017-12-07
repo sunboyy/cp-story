@@ -13,6 +13,7 @@ import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 import javafx.scene.text.TextAlignment;
 import model.item.Item;
+import model.map.Building4;
 import model.map.Garden;
 import model.map.Map;
 import model.map.Portal;
@@ -99,6 +100,7 @@ public class GameManager {
 	
 	private void generateMap() {
 		maps.add(new Garden());
+		maps.add(new Building4());
 		maps.add(new SkyCafe());
 		currentMap = maps.get(0);
 	}
@@ -106,6 +108,9 @@ public class GameManager {
 	private void bindPortal() {
 		maps.get(0).getPortals().add(new Portal(1000, 810, maps.get(1), 100, 810));
 		maps.get(1).getPortals().add(new Portal(100, 810, maps.get(0), 1000, 810));
+		maps.get(1).getPortals().add(new Portal(665, 635, maps.get(2), 110, 810));
+		maps.get(2).getPortals().add(new Portal(110, 810, maps.get(1), 665, 635));
+		maps.get(2).getPortals().add(new Portal(1240, 810, maps.get(1), 665, 635));
 	}
 	
 	public boolean isWarping() {
