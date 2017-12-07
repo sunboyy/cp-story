@@ -9,7 +9,7 @@ import ui.*;
 public class Main extends Application {
 	
 	private static Stage stage;
-	private static Scene startScene,gameScene;
+	private static Scene startScene, gameScene;
 
 	public static void main(String[] args) {
 		launch(args);
@@ -48,10 +48,9 @@ public class Main extends Application {
 	public static void setStartScene(Scene scene) {
 		startScene = scene;
 	}
-
-	public static void setGameScene(Scene scene) {
-		gameScene = scene;
-	}
 	
+	public static void initializeGameScene(String name) {
+		gameScene = new GameScene(name);
+	}
 	
 }

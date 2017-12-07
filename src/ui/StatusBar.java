@@ -123,7 +123,7 @@ public class StatusBar {
 		gc.setFont(MESSAGE_FONT);
 		gc.setTextAlign(TextAlignment.LEFT);
 		gc.setTextBaseline(VPos.BOTTOM);
-		gc.setFill(Color.WHITE);
+		gc.setFill(Color.PINK);
 		gc.setStroke(Color.BLACK);
 		gc.setLineWidth(2);
 		gc.strokeText(GameManager.getInstance().getMessage(), 20, Constants.MAP_HEIGHT-HEIGHT-5);
