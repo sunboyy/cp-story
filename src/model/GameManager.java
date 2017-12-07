@@ -32,6 +32,7 @@ public class GameManager {
 	private int maxWarpTick = 60;
 	private MonsterGen monsterGen;
 	private MonsterAi monsterAi;
+	private String message = "";
 	
 	public GameManager() {
 		generateMap();
@@ -174,6 +175,15 @@ public class GameManager {
 		isGameRunning = false;
 		monsterGen.interrupt();
 		monsterAi.interrupt();
+	}
+	
+	public String getMessage() {
+		return message;
+	}
+	
+	public void setMessage(String message) {
+		if (message == null) return;
+		this.message = message;
 	}
 	
 }

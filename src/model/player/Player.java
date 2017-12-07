@@ -137,8 +137,12 @@ public abstract class Player extends DamageableEntity {
 		if (KeyInput.pressingKey(KeyCode.C)) {
 			ItemEntity itemEntity = GameManager.getInstance().getCurrentMap().collideItemEntity(this);
 			if (itemEntity != null) {
-				if (collectItem(itemEntity.getItem()))
+				try {
+					collectItem(itemEntity.getItem());
 					SharedEntity.getInstance().remove(itemEntity);
+				} catch (InventoryFullException e) {
+					GameManager.getInstance().setMessage("Cannot collect item: Inventory full");
+				}
 			}
 		}
 		if (KeyInput.pressingKey(KeyCode.UP)) {
@@ -199,17 +203,17 @@ public abstract class Player extends DamageableEntity {
 		}
 	}
 	
-	public boolean collectItem(Item item) {
+	public void collectItem(Item item) throws InventoryFullException {
 		for (Item i: inventory) {
 			if (i.sameType(item) && i.add(1)) {
-				return true;
+				return;
 			}
 		}
 		if (inventory.size() + 1 <= maxInventorySlots) {
 			inventory.add(item);
-			return true;
+			return;
 		}
-		return false;
+		throw new InventoryFullException();
 	}
 	
 	public void addExperience(int experience) {
