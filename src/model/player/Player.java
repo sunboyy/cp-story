@@ -25,7 +25,7 @@ import skill.Skill;
 
 public abstract class Player extends DamageableEntity {
 	
-	private List<Image> imgWalking,imgCrying,imgWalkAndCry,imgAttack;
+	protected List<Image> imgWalking,imgCrying,imgWalkAndCry,imgAttack;
 	private boolean isWalking = false;
 	private boolean isJumping = false;
 	private boolean isCrying = false;
@@ -283,6 +283,14 @@ public abstract class Player extends DamageableEntity {
 	
 	public boolean isWalking() {
 		return isWalking;
+	}
+	
+	public boolean isCrying() {
+		return isCrying;
+	}
+	
+	public int getWalkTick() {
+		return walkTick;
 	}
 	
 	public List<Skill> getSkills() {
