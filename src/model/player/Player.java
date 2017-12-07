@@ -259,11 +259,11 @@ public abstract class Player extends DamageableEntity {
 	}
 	
 	public static int getAttackLow(int level) {
-		return (int) Math.floor(9.6 * Math.pow(2,(level/9.)));
+		return (int) Math.floor(13. * Math.pow(2,(level/7.)));
 	}
 	
 	public static int getAttackHigh(int level) {
-		return (int) Math.floor(14.4 * Math.pow(2, (level/9.)));
+		return (int) Math.floor(21. * Math.pow(2, (level/7.)));
 	}
 	
 	@Override
