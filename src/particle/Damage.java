@@ -17,11 +17,13 @@ public class Damage implements IParticle {
 	private double x;
 	private double y;
 	private int hp;
+	private boolean isOfMonster;
 	
-	public Damage(int hp, double x, double y) {
+	public Damage(int hp, double x, double y, boolean isOfMonster) {
 		this.hp = hp;
 		this.x = x;
 		this.y = y;
+		this.isOfMonster = isOfMonster;
 	}
 	
 	public void render(GraphicsContext gc) {
@@ -34,7 +36,12 @@ public class Damage implements IParticle {
 		}
 		gc.setGlobalAlpha(1-(visibleTick+0.0)/maxVisibleTick);
 		gc.setFont(TEXT_FONT);
-		gc.setFill(Color.ORANGE);
+		if (isOfMonster) {
+			gc.setFill(Color.ORANGE);
+		}
+		else {
+			gc.setFill(Color.ORCHID);
+		}
 		gc.setTextAlign(TextAlignment.CENTER);
 		gc.setTextBaseline(VPos.BASELINE);
 		gc.setLineWidth(1);

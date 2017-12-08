@@ -1,17 +1,19 @@
 package model;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
+import javafx.util.Pair;
 import model.item.Item;
+import model.monster.Monster;
 import particle.Damage;
 import particle.DisplayName;
 import sharedObject.SharedEntity;
 import skill.MpNotEnoughException;
+import utility.NegativeWeightedRandomException;
+import utility.Random;
 
 public abstract class DamageableEntity extends Entity {
 	
@@ -24,7 +26,7 @@ public abstract class DamageableEntity extends Entity {
 	private int attackDamageLow = 4;
 	private int attackDamageHigh = 8;
 	private int defense = 5;
-	protected Map<Item, Double> drops = new HashMap<>();
+	protected List<Pair<Item, Double>> drops = new ArrayList<>();
 	private DisplayName displayName;
 	
 	public DamageableEntity(String name, Image imgL, Image imgR, model.map.Map map, int hp, int mp, int attackDamageLow, int attackDamageHigh) {
@@ -44,14 +46,18 @@ public abstract class DamageableEntity extends Entity {
 	
 	public void damage(int hp) {
 		this.hp -= hp;
-		GameManager.getInstance().getCurrentMap().getParticles().add(new Damage(hp, this.x+this.width/2, this.y));
+		GameManager.getInstance().getCurrentMap().getParticles().add(new Damage(hp, this.x+this.width/2, this.y, (this instanceof Monster)));
 		displayName.resetVisible();
 	}
 	
 	public void forceKill() {
 		damage(999999);
 		SharedEntity.getInstance().remove(this);
-		SharedEntity.getInstance().addAll(spawnLoot());
+		try {
+			SharedEntity.getInstance().addAll(spawnLoot());
+		} catch (NegativeWeightedRandomException e) {
+			System.out.println("Error: Negative weight of random loot");
+		}
 	}
 	
 	public void healHp(int hp) {
@@ -68,15 +74,13 @@ public abstract class DamageableEntity extends Entity {
 		return hp <= 0;
 	}
 	
-	public List<ItemEntity> spawnLoot() {
-		List<ItemEntity> loot = new ArrayList<>();
-		for (Map.Entry<Item, Double> i: drops.entrySet()) {
-			double rand = Math.random();
-			if (rand <= i.getValue()) {
-				loot.add(new ItemEntity(i.getKey(), getMap(), x+Math.random()*(width-i.getKey().getImg().getWidth()), y));
-			}
+	public List<ItemEntity> spawnLoot() throws NegativeWeightedRandomException {
+		List<Item> loot = Random.multipleRandomInList(drops);
+		List<ItemEntity> lootEntity = new ArrayList<>();
+		for (Item i: loot) {
+			lootEntity.add(new ItemEntity(i, getMap(), x+Math.random()*(width-i.getImg().getWidth()), y));
 		}
-		return loot;
+		return lootEntity;
 	}
 	
 	public void useMp(int usedMp) throws MpNotEnoughException {
@@ -122,7 +126,7 @@ public abstract class DamageableEntity extends Entity {
 		return defense;
 	}
 	
-	public Map<Item, Double> getDrops() {
+	public List<Pair<Item, Double>> getDrops() {
 		return drops;
 	}
 

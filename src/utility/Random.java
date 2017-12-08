@@ -1,5 +1,6 @@
 package utility;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javafx.util.Pair;
@@ -21,6 +22,17 @@ public class Random {
 			rand -= i.getValue();
 		}
 		return null;
+	}
+	
+	public static <T> List<T> multipleRandomInList(List<Pair<T,Double>> list) throws NegativeWeightedRandomException {
+		List<T> out = new ArrayList<>();
+		for (Pair<T,Double> i: list) {
+			double rand = Math.random();
+			if (rand <= i.getValue()) {
+				out.add(i.getKey());
+			}
+		}
+		return out;
 	}
 	
 }

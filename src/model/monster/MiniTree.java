@@ -4,7 +4,9 @@ import java.util.ArrayList;
 import java.util.Arrays;
 
 import constants.Images;
+import javafx.util.Pair;
 import model.item.BluePotion;
+import model.item.Item;
 import model.item.RedPotion;
 import model.map.Map;
 
@@ -14,8 +16,8 @@ public class MiniTree extends Monster {
 		super("Mini Tree", 
 				new ArrayList<>(Arrays.asList(Images.monsterMiniTreeUp, Images.monsterMiniTreeDown,Images.monsterMiniTreeUp, Images.monsterMiniTreeDown)),
 				map, x, y, 2, 20, 0, 3, 8, 4);
-		drops.put(new RedPotion(), 0.4);
-		drops.put(new BluePotion(), 0.6);
+		drops.add(new Pair<Item, Double>(new RedPotion(), 0.4));
+		drops.add(new Pair<Item, Double>(new BluePotion(), 0.1));
 	}
 
 }

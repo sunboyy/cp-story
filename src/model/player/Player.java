@@ -22,6 +22,7 @@ import sharedObject.SharedEntity;
 import skill.AttackSkill;
 import skill.NoSkill;
 import skill.Skill;
+import utility.NegativeWeightedRandomException;
 
 public abstract class Player extends DamageableEntity {
 	
@@ -77,7 +78,11 @@ public abstract class Player extends DamageableEntity {
 				Sounds.deadSound.play();
 				addExperience(e.getExperience());
 				SharedEntity.getInstance().remove(e);
-				SharedEntity.getInstance().addAll(e.spawnLoot());
+				try {
+					SharedEntity.getInstance().addAll(e.spawnLoot());
+				} catch (NegativeWeightedRandomException e1) {
+					System.out.println("Error: Negative weight of random loot");
+				}
 			}
 			else {
 				Sounds.punchSound.play();
