@@ -5,8 +5,8 @@ import java.util.Collection;
 import java.util.List;
 import java.util.concurrent.CopyOnWriteArrayList;
 
+import controller.GameManager;
 import model.Entity;
-import model.GameManager;
 import model.map.Map;
 import model.monster.Monster;
 

@@ -1,9 +1,9 @@
 package controller;
 
 import model.Entity;
-import model.GameManager;
 import model.monster.Monster;
 import sharedObject.SharedEntity;
+import utility.Random;
 
 public class MonsterAi extends Thread {
 	
@@ -27,7 +27,7 @@ public class MonsterAi extends Thread {
 								m.setWalkTick(30);
 							}
 							else {
-								m.setAiDelay((int) Math.floor(Math.random()*480));
+								m.setAiDelay(Random.randInt(450));
 								if (m.getX() <= 0) {
 									m.setFutureFacing(Entity.RIGHT);
 								}
@@ -35,9 +35,9 @@ public class MonsterAi extends Thread {
 									m.setFutureFacing(Entity.LEFT);
 								}
 								else {
-									m.setFutureFacing((int) Math.floor(Math.random()*2)*2-1);
+									m.setFutureFacing((int) Random.randInt(2)*2-1);
 								}
-								m.setWalkTick((int) (30+Math.floor(Math.random()*240)));
+								m.setWalkTick(30 + Random.randInt(240));
 							}
 						}
 					}

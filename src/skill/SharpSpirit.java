@@ -1,7 +1,7 @@
 package skill;
 
 import constants.Sounds;
-import model.GameManager;
+import controller.GameManager;
 import model.monster.Monster;
 import particle.GradeA;
 import sharedObject.SharedEntity;

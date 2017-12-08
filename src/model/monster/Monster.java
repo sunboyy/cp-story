@@ -2,11 +2,11 @@ package model.monster;
 
 import java.util.List;
 
+import controller.GameManager;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
 import model.DamageableEntity;
 import model.Entity;
-import model.GameManager;
 import model.map.Map;
 import particle.HPBar;
 

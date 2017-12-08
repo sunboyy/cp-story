@@ -1,6 +1,6 @@
 package skill;
 
-import model.GameManager;
+import controller.GameManager;
 import particle.NormalAttack;
 
 public class NoSkill extends AttackSkill {

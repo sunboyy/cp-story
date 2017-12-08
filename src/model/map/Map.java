@@ -7,6 +7,7 @@ import java.util.List;
 
 import constants.Constants;
 import constants.Images;
+import controller.GameManager;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
 import javafx.scene.media.AudioClip;
@@ -15,7 +16,6 @@ import javafx.scene.media.MediaPlayer;
 import javafx.util.Pair;
 import model.DamageableEntity;
 import model.Entity;
-import model.GameManager;
 import model.ItemEntity;
 import model.Rectangle;
 import model.monster.Monster;
@@ -227,7 +227,7 @@ public abstract class Map extends Rectangle {
 	}
 
 	public void spawnRandom() {
-		int randMonster = (int) Math.floor(Math.random() * monsterTypes.size());
+		int randMonster = Random.randInt(monsterTypes.size());
 		try {
 			Monster m = monsterTypes.get(randMonster).getConstructor(Map.class, double.class, double.class).newInstance(this, 0, 0);
 			List<Pair<StructureItem, Double>> list = new ArrayList<>();

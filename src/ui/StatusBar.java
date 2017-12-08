@@ -1,13 +1,13 @@
 package ui;
 
 import constants.Constants;
+import controller.GameManager;
 import javafx.geometry.VPos;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 import javafx.scene.text.TextAlignment;
-import model.GameManager;
 import model.item.Item;
 import model.player.Player;
 
@@ -46,7 +46,7 @@ public class StatusBar {
 		gc.setFill(BACKGROUND_COLOR);
 		gc.fillRect(0, Constants.MAP_HEIGHT-HEIGHT, Constants.MAP_WIDTH, HEIGHT);
 		
-		expWidth = Math.ceil(Constants.MAP_WIDTH*player.getExperience()*0.2/Constants.LEVEL_EXPERIENCE[player.getLevel()] + 0.8*expWidth);
+		expWidth = Constants.MAP_WIDTH*player.getExperience()*0.2/Constants.LEVEL_EXPERIENCE[player.getLevel()] + 0.8*expWidth;
 		
 		// Experience bar
 		if (player.getLevel() < Constants.MAX_LEVEL) {
@@ -56,14 +56,8 @@ public class StatusBar {
 			gc.fillRect(0, Constants.MAP_HEIGHT-EXPERIENCE_HEIGHT, expWidth, EXPERIENCE_HEIGHT);
 		}
 		
-		hpWidth = Math.ceil(HP_MP_WIDTH*player.getHp()*0.2/player.getMaxHp() + 0.8*hpWidth);
-		mpWidth = Math.ceil(HP_MP_WIDTH*player.getMp()*0.2/player.getMaxMp() + 0.8*mpWidth);
-		if (Math.abs(HP_MP_WIDTH*player.getHp()-hpWidth) <= 3.5) {
-			hpWidth = HP_MP_WIDTH*player.getHp();
-		}
-		if (Math.abs(HP_MP_WIDTH*player.getMp()-mpWidth) <= 3.5) {
-			mpWidth = HP_MP_WIDTH*player.getMp();
-		}
+		hpWidth = HP_MP_WIDTH*player.getHp()*0.2/player.getMaxHp() + 0.8*hpWidth;
+		mpWidth = HP_MP_WIDTH*player.getMp()*0.2/player.getMaxMp() + 0.8*mpWidth;
 		
 		// HP bar
 		gc.setFill(Color.GRAY);

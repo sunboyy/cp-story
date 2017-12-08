@@ -1,5 +1,6 @@
 package model;
 
+import controller.GameManager;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
 import model.map.Map;

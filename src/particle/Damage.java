@@ -1,12 +1,12 @@
 package particle;
 
+import controller.GameManager;
 import javafx.geometry.VPos;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 import javafx.scene.text.TextAlignment;
-import model.GameManager;
 
 public class Damage implements IParticle {
 	

@@ -3,6 +3,7 @@ package model;
 import java.util.ArrayList;
 import java.util.List;
 
+import controller.GameManager;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
 import javafx.util.Pair;
@@ -119,7 +120,7 @@ public abstract class DamageableEntity extends Entity {
 	}
 
 	public int getAttackDamage() {
-		return (int) Math.floor(Math.random() * (attackDamageHigh-attackDamageLow)) + attackDamageLow;
+		return attackDamageLow + Random.randInt(attackDamageHigh-attackDamageLow);
 	}
 
 	public int getDefense() {

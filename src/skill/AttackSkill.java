@@ -1,6 +1,6 @@
 package skill;
 
-import model.GameManager;
+import controller.GameManager;
 
 public abstract class AttackSkill extends Skill {
 	

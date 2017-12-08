@@ -1,5 +1,6 @@
 package ui;
 
+import controller.GameManager;
 import input.KeyInput;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
@@ -7,7 +8,6 @@ import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.layout.StackPane;
 import javafx.util.Duration;
-import model.GameManager;
 import model.player.CPEngineer;
 
 public class GameScene extends Scene {

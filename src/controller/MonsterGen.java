@@ -1,6 +1,5 @@
 package controller;
 
-import model.GameManager;
 import sharedObject.SharedEntity;
 
 public class MonsterGen extends Thread {

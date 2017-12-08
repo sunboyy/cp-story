@@ -1,8 +1,8 @@
 package model.map;
 
+import controller.GameManager;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.paint.Color;
-import model.GameManager;
 import model.Rectangle;
 
 public class Portal extends Rectangle {

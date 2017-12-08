@@ -1,11 +1,9 @@
-package model;
+package controller;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import constants.Constants;
-import controller.MonsterAi;
-import controller.MonsterGen;
 import javafx.geometry.VPos;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.paint.Color;
@@ -139,8 +137,8 @@ public class GameManager {
 		if (isWarping() && portal != null) {
 			currentMap = portal.getDestination();
 			currentMap.warpIn();
-			player.x = portal.getXDest()-player.width/2;
-			player.y = portal.getYDest()-player.height;
+			player.setX(portal.getXDest()-player.getWidth()/2);
+			player.setY(portal.getYDest()-player.getHeight());
 			player.setMap(portal.getDestination());
 		}
 	}

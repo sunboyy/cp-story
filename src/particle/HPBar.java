@@ -1,9 +1,9 @@
 package particle;
 
+import controller.GameManager;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.paint.Color;
 import model.DamageableEntity;
-import model.GameManager;
 
 public class HPBar implements IParticle {
 	

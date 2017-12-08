@@ -1,6 +1,6 @@
 package skill;
 
-import model.GameManager;
+import controller.GameManager;
 import model.IUsable;
 
 public abstract class Skill implements IUsable {

@@ -1,10 +1,10 @@
 package particle;
 
 import constants.Images;
+import controller.GameManager;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
 import model.Entity;
-import model.GameManager;
 import model.map.Map;
 import model.player.Player;
 

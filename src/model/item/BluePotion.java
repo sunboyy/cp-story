@@ -1,7 +1,7 @@
 package model.item;
 
 import constants.Images;
-import model.GameManager;
+import controller.GameManager;
 import model.IUsable;
 
 public class BluePotion extends Item implements IUsable {

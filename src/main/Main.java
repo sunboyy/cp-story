@@ -1,9 +1,9 @@
 package main;
 
+import controller.GameManager;
 import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
-import model.GameManager;
 import ui.*;
 
 public class Main extends Application {
