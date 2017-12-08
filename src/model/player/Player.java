@@ -8,6 +8,10 @@ import buff.Buff;
 import constants.Constants;
 import constants.Sounds;
 import input.KeyInput;
+import javafx.application.Platform;
+import javafx.scene.control.Alert;
+import javafx.scene.control.ButtonType;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.image.Image;
 import javafx.scene.input.KeyCode;
 import model.DamageableEntity;
@@ -39,6 +43,7 @@ public abstract class Player extends DamageableEntity {
 	private int maxDamageTick = 60;
 	private Item[] inventory = new Item[10];
 	private List<Buff> buffs = new ArrayList<>();
+	private boolean isEverDead = false;
 	
 	public Player(String name, Image imgL, Image imgR, List<Image> imgWalking, List<Image> imgCrying, List<Image> imgWalkAndCry, List<Image> imgAttack, Map map) {
 		this(name, imgL, imgR, imgWalking,imgCrying,imgWalkAndCry,imgAttack, map, 0, 0);
@@ -278,6 +283,22 @@ public abstract class Player extends DamageableEntity {
 		}
 		if (multiplier <= 0) return 0;
 		return (int) (super.getAttackDamage() * multiplier);
+	}
+	
+	@Override
+	public void damage(int hp) {
+		super.damage(hp);
+		if (isDead() && !isEverDead) {
+			GameManager.getInstance().setGameRunning(false);
+			isEverDead = true;
+			Platform.runLater(() -> {
+				Alert alert = new Alert(AlertType.INFORMATION, "Oh oh! You have dead. But programmer has no life...", ButtonType.OK);
+				alert.setTitle("You have dead.");
+				alert.setHeaderText("You have dead.");
+				alert.showAndWait();
+				GameManager.getInstance().setGameRunning(true);
+			});
+		}
 	}
 	
 	// Getter
