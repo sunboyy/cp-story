@@ -15,6 +15,5 @@ public class Sounds {
 	static {
 		punchSound.setVolume(0.25);
 		tadaSound.setVolume(1.5);
-		gardenBgm.setCycleCount(AudioClip.INDEFINITE);
 	}
 }

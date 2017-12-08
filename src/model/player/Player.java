@@ -38,7 +38,6 @@ public abstract class Player extends DamageableEntity {
 	private int maxDamageTick = 60;
 	private Item[] inventory = new Item[10];
 	private List<Buff> buffs = new ArrayList<>();
-	private int maxInventorySlots = 10;
 	
 	public Player(String name, Image imgL, Image imgR, List<Image> imgWalking, List<Image> imgCrying, List<Image> imgWalkAndCry, List<Image> imgAttack, Map map) {
 		this(name, imgL, imgR, imgWalking,imgCrying,imgWalkAndCry,imgAttack, map, 0, 0);

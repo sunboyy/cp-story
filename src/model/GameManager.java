@@ -127,13 +127,13 @@ public class GameManager {
 	public void warp() {
 		if (shouldWarp()) {
 			warpTick = 0;
+			currentMap.warpOut();
 		}
 	}
 	
 	private void moveOfWarp() {
 		Portal portal = currentMap.collidePortal(player);
 		if (isWarping() && portal != null) {
-			currentMap.warpOut();
 			currentMap = portal.getDestination();
 			currentMap.warpIn();
 			player.x = portal.getXDest()-player.width/2;
