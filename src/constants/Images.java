@@ -54,8 +54,7 @@ public class Images {
 	public static final Image skillQcode = new Image("images/effect/iconSkillQcode.png");
 	public static final Image skillBuff = new Image("images/effect/iconSkillBuff.png");
 	public static final Image skillEcode = new Image("images/effect/iconSkillEcode.png");
-	public static final Image skillGradeA = new Image("images/effect/grade_a/iconSkillSpirit.png");
-	
+	public static final Image skillGradeA = new Image("images/effect/grade_a/iconSkillSpirit.png", 36, 36, true, false);
 	public static final Image powerUpBuff = new Image("sample_buff_image.png"); // TODO Remove
 	
 	static {
