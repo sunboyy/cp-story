@@ -53,34 +53,37 @@ public class GameManager {
 	}
 	
 	public void render(GraphicsContext gc) {
-		currentMap.render(gc);
-		gc.strokeRect(player.getAttackArea().getX()-currentMap.getX(), player.getAttackArea().getY()-currentMap.getY(), player.getAttackArea().getWidth(), player.getAttackArea().getHeight());
-		
-		if (isWarping()) {
-			double alpha = 2.*warpTick/maxWarpTick;
-			if (warpTick >= maxWarpTick/2) {
-				alpha = 2-alpha;
+		if (isGameRunning) {
+			currentMap.render(gc);
+			gc.strokeRect(player.getAttackArea().getX()-currentMap.getX(), player.getAttackArea().getY()-currentMap.getY(), player.getAttackArea().getWidth(), player.getAttackArea().getHeight());
+			
+			if (isWarping()) {
+				double alpha = 2.*warpTick/maxWarpTick;
+				if (warpTick >= maxWarpTick/2) {
+					alpha = 2-alpha;
+				}
+				gc.setGlobalAlpha(alpha);
+				gc.setFill(Color.BLACK);
+				gc.fillRect(0, 0, Constants.MAP_WIDTH, Constants.MAP_HEIGHT);
+				gc.setGlobalAlpha(1);
 			}
-			gc.setGlobalAlpha(alpha);
+			
+			// Render Buffs
 			gc.setFill(Color.BLACK);
-			gc.fillRect(0, 0, Constants.MAP_WIDTH, Constants.MAP_HEIGHT);
-			gc.setGlobalAlpha(1);
+			gc.setStroke(Color.WHITE);
+			gc.setFont(Font.font("Tahoma", 11));
+			gc.setTextAlign(TextAlignment.LEFT);
+			gc.setTextBaseline(VPos.TOP);
+			gc.setLineWidth(3);
+			for (int i=0; i<player.getBuffs().size(); i++) {
+				gc.drawImage(player.getBuffs().get(i).getImage(), Constants.MAP_WIDTH-(40*(i+1)), 4);
+				gc.strokeText(player.getBuffs().get(i).getRemainingTime()+"", Constants.MAP_WIDTH-(40*(i+1))+2, 4);
+				gc.fillText(player.getBuffs().get(i).getRemainingTime()+"", Constants.MAP_WIDTH-(40*(i+1))+2, 4);
+			}
 		}
 		
 		StatusBar.render(gc);
 		
-		// Render Buffs
-		gc.setFill(Color.BLACK);
-		gc.setStroke(Color.WHITE);
-		gc.setFont(Font.font("Tahoma", 11));
-		gc.setTextAlign(TextAlignment.LEFT);
-		gc.setTextBaseline(VPos.TOP);
-		gc.setLineWidth(3);
-		for (int i=0; i<player.getBuffs().size(); i++) {
-			gc.drawImage(player.getBuffs().get(i).getImage(), Constants.MAP_WIDTH-(40*(i+1)), 4);
-			gc.strokeText(player.getBuffs().get(i).getRemainingTime()+"", Constants.MAP_WIDTH-(40*(i+1))+2, 4);
-			gc.fillText(player.getBuffs().get(i).getRemainingTime()+"", Constants.MAP_WIDTH-(40*(i+1))+2, 4);
-		}
 	}
 	
 	public void update() {

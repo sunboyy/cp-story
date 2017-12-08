@@ -32,9 +32,9 @@ public class GameScene extends Scene {
 			if (GameManager.getInstance().isGameRunning()) {
 				GameManager.getInstance().getCurrentMap().motion(GameManager.getInstance().getPlayer());
 				GameManager.getInstance().getCurrentMap().motionAll();
-				GameManager.getInstance().render(canvas.getGraphicsContext2D());
 				GameManager.getInstance().update();
 			}
+			GameManager.getInstance().render(canvas.getGraphicsContext2D());
 		});
 		
 		Timeline gameloop = new Timeline();

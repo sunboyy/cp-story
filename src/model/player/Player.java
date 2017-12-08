@@ -41,9 +41,10 @@ public abstract class Player extends DamageableEntity {
 	private int attackTick = 0;
 	private int damageTick = 60;
 	private int maxDamageTick = 60;
+	private int expDropTick = 0;
 	private Item[] inventory = new Item[10];
 	private List<Buff> buffs = new ArrayList<>();
-	private boolean isEverDead = false;
+	private boolean hasEverDead = false;
 	
 	public Player(String name, Image imgL, Image imgR, List<Image> imgWalking, List<Image> imgCrying, List<Image> imgWalkAndCry, List<Image> imgAttack, Map map) {
 		this(name, imgL, imgR, imgWalking,imgCrying,imgWalkAndCry,imgAttack, map, 0, 0);
@@ -196,6 +197,16 @@ public abstract class Player extends DamageableEntity {
 			SharedEntity.getInstance().print();
 		}
 		walkTick = isWalking() ? (walkTick + 1)%maxWalkTick : 0; 
+		if (isDead()) {
+			if (expDropTick <= 0) {
+				experience--;
+				if (experience < 0) experience = 0;
+				expDropTick = 20;
+			}
+			else {
+				expDropTick--;
+			}
+		}
 		if (attackTick > 0) attackTick--;
 		if (damageTick < maxDamageTick) damageTick++;
 		else if (GameManager.getInstance().getCurrentMap().collideDamageableEntity(this, 1).size() != 0) {
@@ -288,11 +299,11 @@ public abstract class Player extends DamageableEntity {
 	@Override
 	public void damage(int hp) {
 		super.damage(hp);
-		if (isDead() && !isEverDead) {
+		if (isDead() && !hasEverDead) {
 			GameManager.getInstance().setGameRunning(false);
-			isEverDead = true;
+			hasEverDead = true;
 			Platform.runLater(() -> {
-				Alert alert = new Alert(AlertType.INFORMATION, "Oh oh! You have dead. But programmer has no life...", ButtonType.OK);
+				Alert alert = new Alert(AlertType.WARNING, "Oh oh! You have dead. You can still play with experience decreasing continuously. The experience will stop decreasing when HP is more than zero.\nProgrammers have no life...", ButtonType.OK);
 				alert.setTitle("You have dead.");
 				alert.setHeaderText("You have dead.");
 				alert.showAndWait();

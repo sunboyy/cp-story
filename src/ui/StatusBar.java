@@ -58,6 +58,12 @@ public class StatusBar {
 		
 		hpWidth = Math.ceil(HP_MP_WIDTH*player.getHp()*0.2/player.getMaxHp() + 0.8*hpWidth);
 		mpWidth = Math.ceil(HP_MP_WIDTH*player.getMp()*0.2/player.getMaxMp() + 0.8*mpWidth);
+		if (Math.abs(HP_MP_WIDTH*player.getHp()-hpWidth) <= 3.5) {
+			hpWidth = HP_MP_WIDTH*player.getHp();
+		}
+		if (Math.abs(HP_MP_WIDTH*player.getMp()-mpWidth) <= 3.5) {
+			mpWidth = HP_MP_WIDTH*player.getMp();
+		}
 		
 		// HP bar
 		gc.setFill(Color.GRAY);
