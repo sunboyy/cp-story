@@ -161,6 +161,10 @@ public class GameManager {
 	public boolean isGameRunning() {
 		return isGameRunning;
 	}
+	
+	public void setGameRunning(boolean isGameRunning) {
+		this.isGameRunning = isGameRunning;
+	}
 
 	public void stopGame() {
 		isGameRunning = false;

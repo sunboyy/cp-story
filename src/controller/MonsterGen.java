@@ -23,7 +23,7 @@ public class MonsterGen extends Thread {
 					}
 				}
 			}
-		});
+		}, "Monster Gen Thread");
 		start();
 	}
 	

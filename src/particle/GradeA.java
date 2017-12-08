@@ -14,7 +14,7 @@ public class GradeA implements IParticle {
 	public static final Font CENTER_FONT = Font.font("Arial Rounded MT Bold", 192);
 	
 	private int visibleTick = 0;
-	private int maxVisibleTick = 180;
+	private int maxVisibleTick = 240;
 	
 	@Override
 	public boolean isVisible() {
@@ -31,7 +31,7 @@ public class GradeA implements IParticle {
 		if (visibleTick + 30 >= maxVisibleTick) {
 			gc.setGlobalAlpha((maxVisibleTick-visibleTick)/30.);
 		}
-		gc.drawImage(Images.gradeAEffect[(visibleTick/15)%2], 0, 0);
+		gc.drawImage(Images.gradeAEffect[(visibleTick/12)%2], 0, 0);
 		gc.setFont(CENTER_FONT);
 		gc.setTextAlign(TextAlignment.CENTER);
 		gc.setTextBaseline(VPos.CENTER);

@@ -11,7 +11,7 @@ public class MonsterAi extends Thread {
 		super(new Runnable() {
 			@Override
 			public void run() {
-				while (GameManager.getInstance().isGameRunning()) {
+				while (true) {
 					for (Monster m: SharedEntity.getInstance().getMonsterOfCurrentMap()) {
 						if (m.isAggressive()) {
 							
@@ -49,7 +49,7 @@ public class MonsterAi extends Thread {
 					}
 				}
 			}
-		});
+		}, "Monster AI Thread");
 		start();
 	}
 	

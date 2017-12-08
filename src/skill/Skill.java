@@ -33,7 +33,7 @@ public abstract class Skill implements IUsable {
 			} catch (CooldownException e) {
 				GameManager.getInstance().setMessage("Cannot use skill: Please wait for cooldown");
 			} catch (MpNotEnoughException e) {
-				GameManager.getInstance().setMessage("Cannot use skill: MP not enough");
+				GameManager.getInstance().setMessage("Cannot use skill: Not enough MP");
 			}
 		}
 	}
