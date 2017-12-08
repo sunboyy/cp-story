@@ -30,11 +30,13 @@ public class GameScene extends Scene {
 		
 		KeyFrame kf = new KeyFrame(Duration.seconds(1./60), e -> {
 			if (GameManager.getInstance().isGameRunning()) {
-				GameManager.getInstance().getCurrentMap().motion(GameManager.getInstance().getPlayer());
-				GameManager.getInstance().getCurrentMap().motionAll();
-				GameManager.getInstance().update();
+				if (!GameManager.getInstance().isPausing()) {
+					GameManager.getInstance().getCurrentMap().motion(GameManager.getInstance().getPlayer());
+					GameManager.getInstance().getCurrentMap().motionAll();
+					GameManager.getInstance().update();
+				}
+				GameManager.getInstance().render(canvas.getGraphicsContext2D());
 			}
-			GameManager.getInstance().render(canvas.getGraphicsContext2D());
 		});
 		
 		Timeline gameloop = new Timeline();

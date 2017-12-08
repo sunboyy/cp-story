@@ -303,9 +303,9 @@ public abstract class Player extends DamageableEntity {
 			GameManager.getInstance().setGameRunning(false);
 			hasEverDead = true;
 			Platform.runLater(() -> {
-				Alert alert = new Alert(AlertType.WARNING, "Oh oh! You have dead. You can still play with experience decreasing continuously. The experience will stop decreasing when HP is more than zero.\nProgrammers have no life...", ButtonType.OK);
-				alert.setTitle("You have dead.");
-				alert.setHeaderText("You have dead.");
+				Alert alert = new Alert(AlertType.WARNING, "Uh oh! You are dead. You can still play with experience decreasing continuously. The experience will stop decreasing when HP is more than zero.\nProgrammers have no life...", ButtonType.OK);
+				alert.setTitle("You are dead.");
+				alert.setHeaderText("You are dead.");
 				alert.showAndWait();
 				GameManager.getInstance().setGameRunning(true);
 			});

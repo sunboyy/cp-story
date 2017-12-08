@@ -2,6 +2,7 @@ package ui;
 
 import constants.Constants;
 import constants.Images;
+import controller.GameManager;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.scene.Scene;
@@ -154,6 +155,7 @@ public class StartScene extends Scene {
 			startBtn.setVisible(false);
 			Main.initializeGameScene(nameField.getText().trim());
 			page = 2;
+			GameManager.getInstance().startGame();
 			screenloop.play();
 		});
 	}

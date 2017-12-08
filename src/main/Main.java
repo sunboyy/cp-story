@@ -29,7 +29,7 @@ public class Main extends Application {
 	
 	@Override
 	public void stop() throws Exception {
-		GameManager.getInstance().stopGame();
+		GameManager.getInstance().terminate();
 		super.stop();
 	}
 

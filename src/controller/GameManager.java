@@ -21,7 +21,8 @@ public class GameManager {
 	
 	private static final GameManager instance = new GameManager();
 	
-	private boolean isGameRunning = true;
+	private boolean isGameRunning = false;
+	private boolean isPausing = false;
 	private List<Map> maps = new ArrayList<>();
 	private Player player;
 	private Map currentMap;
@@ -51,9 +52,9 @@ public class GameManager {
 	}
 	
 	public void render(GraphicsContext gc) {
-		if (isGameRunning) {
+		
+		if (!isPausing) {
 			currentMap.render(gc);
-			gc.strokeRect(player.getAttackArea().getX()-currentMap.getX(), player.getAttackArea().getY()-currentMap.getY(), player.getAttackArea().getWidth(), player.getAttackArea().getHeight());
 			
 			if (isWarping()) {
 				double alpha = 2.*warpTick/maxWarpTick;
@@ -166,9 +167,24 @@ public class GameManager {
 	public void setGameRunning(boolean isGameRunning) {
 		this.isGameRunning = isGameRunning;
 	}
+	
+	public void startGame() {
+		isGameRunning = true;
+	}
 
 	public void stopGame() {
 		isGameRunning = false;
+	}
+	
+	public boolean isPausing() {
+		return isPausing;
+	}
+	
+	public void setPausing(boolean isPausing) {
+		this.isPausing = isPausing;
+	}
+	
+	public void terminate() {
 		monsterGen.interrupt();
 		monsterAi.interrupt();
 	}
