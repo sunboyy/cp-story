@@ -9,6 +9,7 @@ import constants.Constants;
 import constants.Images;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
+import javafx.scene.media.AudioClip;
 import javafx.util.Pair;
 import model.DamageableEntity;
 import model.Entity;
@@ -39,19 +40,21 @@ public abstract class Map extends Rectangle {
 	private List<Portal> portals = new ArrayList<>();
 	private List<IParticle> particles = new ArrayList<>();
 	private MapStructure structure;
+	private AudioClip bgm;
 
 	@SafeVarargs
-	public Map(Image img, Class<? extends Monster>... monsterTypes) {
+	public Map(Image img, AudioClip bgm, Class<? extends Monster>... monsterTypes) {
 		super(0, 0, img.getWidth(), img.getHeight());
 		this.img = img;
+		this.bgm = bgm;
 		structure = new MapStructure(this);
 		for (Class<? extends Monster> i : monsterTypes)
 			this.monsterTypes.add(i);
 	}
 
 	@SafeVarargs
-	public Map(Image img, Image bgImg, Class<? extends Monster>... monsterTypes) {
-		this(img,monsterTypes);
+	public Map(Image img, Image bgImg, AudioClip bgm, Class<? extends Monster>... monsterTypes) {
+		this(img, bgm, monsterTypes);
 		this.backgroundImg = bgImg;
 	}
 
@@ -181,6 +184,14 @@ public abstract class Map extends Rectangle {
 				return i;
 		}
 		return null;
+	}
+	
+	public void warpIn() {
+		bgm.play();
+	}
+	
+	public void warpOut() {
+		bgm.stop();
 	}
 
 	public void render(GraphicsContext gc) {

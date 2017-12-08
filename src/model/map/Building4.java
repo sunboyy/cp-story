@@ -1,12 +1,13 @@
 package model.map;
 
 import constants.Images;
+import constants.Sounds;
 import model.monster.ProgMeth;
 
 public class Building4 extends Map {
 
 	public Building4() {
-		super(Images.building4Background, ProgMeth.class);
+		super(Images.building4Background, Sounds.gardenBgm, ProgMeth.class);
 		getStructure().addAll(new StructureItem(0, 812, 1500, 5,true,false),
 				new StructureItem(901, 451, 350, 5, true),
 				

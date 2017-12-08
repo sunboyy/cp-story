@@ -1,6 +1,7 @@
 package test;
 
 import constants.Images;
+import constants.Sounds;
 import javafx.scene.image.Image;
 import model.map.Map;
 import model.map.StructureItem;
@@ -8,7 +9,7 @@ import model.map.StructureItem;
 public class TestMap extends Map {
 	
 	public TestMap() {
-		super(new Image("foreground.png"), Images.beachBackground, TestMonster.class);
+		super(new Image("foreground.png"), Images.beachBackground, Sounds.gardenBgm, TestMonster.class);
 		getStructure().addAll(new StructureItem(0, 695, 1500, 5, true, false),
 				new StructureItem(640, 620, 50, 5, false),
 				new StructureItem(570, 550, 50, 5, false),

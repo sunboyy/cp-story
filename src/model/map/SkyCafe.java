@@ -1,12 +1,13 @@
 package model.map;
 
 import constants.Images;
+import constants.Sounds;
 import model.monster.ProgMeth;
 
 public class SkyCafe extends Map {
 
 	public SkyCafe() {
-		super(Images.skycafeBackground, ProgMeth.class);
+		super(Images.skycafeBackground, Sounds.gardenBgm, ProgMeth.class);
 		getStructure().addAll(new StructureItem(0, 812, 1500, 5, true, false),
 				new StructureItem(333, 715, 628, 5, true),
 				

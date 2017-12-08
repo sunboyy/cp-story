@@ -10,9 +10,7 @@ import javafx.geometry.VPos;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
-import javafx.scene.text.FontWeight;
 import javafx.scene.text.TextAlignment;
-import model.item.Item;
 import model.map.Building4;
 import model.map.Garden;
 import model.map.Map;
@@ -103,6 +101,7 @@ public class GameManager {
 		maps.add(new Building4());
 		maps.add(new SkyCafe());
 		currentMap = maps.get(0);
+		currentMap.warpIn();
 	}
 	
 	private void bindPortal() {
@@ -134,7 +133,9 @@ public class GameManager {
 	private void moveOfWarp() {
 		Portal portal = currentMap.collidePortal(player);
 		if (isWarping() && portal != null) {
+			currentMap.warpOut();
 			currentMap = portal.getDestination();
+			currentMap.warpIn();
 			player.x = portal.getXDest()-player.width/2;
 			player.y = portal.getYDest()-player.height;
 			player.setMap(portal.getDestination());
