@@ -1,12 +1,13 @@
 package skill;
 
+import buff.PowerUpBuff;
 import controller.GameManager;
 
 public class PowerUp extends Skill {
 
 	@Override
 	public void use() {
-		GameManager.getInstance().getPlayer().addBuff(new buff.PowerUp());
+		GameManager.getInstance().getPlayer().addBuff(new PowerUpBuff());
 	}
 
 	@Override

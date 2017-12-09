@@ -3,12 +3,11 @@ package model.map;
 import constants.Images;
 import constants.Sounds;
 import model.monster.MiniTree;
-import model.monster.ProgMeth;
 
 public class Garden extends Map {
 	
 	public Garden() {
-		super(Images.gardenBackground, Sounds.gardenBgm, ProgMeth.class, MiniTree.class);
+		super(Images.gardenBackground, Sounds.gardenBgm, MiniTree.class);
 		getStructure().addAll(new StructureItem(0, 815, 1500, 5, true, false),
 				new StructureItem(735, 720, 60, 5, false),
 				new StructureItem(815, 645, 65, 5, false),

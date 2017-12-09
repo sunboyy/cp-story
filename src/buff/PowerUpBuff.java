@@ -2,9 +2,9 @@ package buff;
 
 import constants.Images;
 
-public class PowerUp extends Buff {
+public class PowerUpBuff extends Buff {
 
-	public PowerUp() {
+	public PowerUpBuff() {
 		super(3600, Images.skillPowerUp);
 	}
 	

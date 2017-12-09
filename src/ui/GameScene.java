@@ -8,7 +8,6 @@ import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.layout.StackPane;
 import javafx.util.Duration;
-import model.player.CPEngineer;
 
 public class GameScene extends Scene {
 	

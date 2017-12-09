@@ -6,7 +6,7 @@ import model.monster.Monster;
 import particle.GradeA;
 import sharedObject.SharedEntity;
 
-public class SharpSpirit extends Skill {
+public class GradeAForSure extends Skill {
 
 	@Override
 	public void use() {

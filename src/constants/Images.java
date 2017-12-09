@@ -49,7 +49,7 @@ public class Images {
 	public static final Image skillMultiKill = new Image("images/skill/multikill.png");
 	public static final Image skillPowerUp = new Image("images/skill/powerup.png");
 	public static final Image skillPowerOfJoe = new Image("images/skill/powerofjoe.png");
-	public static final Image skillGradeA = new Image("images/skill/spiritofsharp.png", 36, 36, true, false);
+	public static final Image skillGradeA = new Image("images/skill/grade_a.png", 36, 36, true, false);
 	
 	static {
 		for (int i=0; i<normalAttackEffect.length; i++) {

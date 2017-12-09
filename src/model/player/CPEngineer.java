@@ -9,7 +9,7 @@ import javafx.scene.image.Image;
 import model.map.Map;
 import skill.PowerOfJoe;
 import skill.PowerUp;
-import skill.SharpSpirit;
+import skill.GradeAForSure;
 import skill.MultiKill;
 
 public class CPEngineer extends Player {
@@ -33,7 +33,7 @@ public class CPEngineer extends Player {
 		skills.add(new MultiKill());
 		skills.add(new PowerUp());
 		skills.add(new PowerOfJoe());
-		skills.add(new SharpSpirit());
+		skills.add(new GradeAForSure());
 	}
 	
 	@Override
