@@ -1,5 +1,7 @@
 package skill;
 
+import controller.GameManager;
+
 public class MultiKill extends AttackSkill {
 
 	@Override
@@ -30,6 +32,7 @@ public class MultiKill extends AttackSkill {
 	@Override
 	public void use() {
 		super.use();
+		GameManager.getInstance().getCurrentMap().getParticles().add(new particle.MultiKill());
 	}
 
 	@Override
