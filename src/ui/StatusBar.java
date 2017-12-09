@@ -163,6 +163,15 @@ public class StatusBar {
 		gc.setLineWidth(2);
 		gc.strokeText(GameManager.getInstance().getMessage(), 20, Constants.WINDOW_HEIGHT-HEIGHT-5);
 		gc.fillText(GameManager.getInstance().getMessage(), 20, Constants.WINDOW_HEIGHT-HEIGHT-5);
+		
+		// Time
+		long elapsedTime = (System.currentTimeMillis()-GameManager.getInstance().getStartTimeMillis())/1000;
+		gc.setTextAlign(TextAlignment.CENTER);
+		gc.setTextBaseline(VPos.TOP);
+		gc.setFill(Color.WHITE);
+		gc.setFont(HP_MP_LABEL_FONT);
+		gc.strokeText(String.format("%02d:%02d:%02d", elapsedTime/3600, (elapsedTime/60)%60, elapsedTime%60), Constants.WINDOW_WIDTH/2, 20);
+		gc.fillText(String.format("%02d:%02d:%02d", elapsedTime/3600, (elapsedTime/60)%60, elapsedTime%60), Constants.WINDOW_WIDTH/2, 20);
 	}
 	
 }

@@ -162,9 +162,9 @@ public abstract class Player extends DamageableEntity {
 		if (KeyInput.pressingKey(KeyCode.E) && skills.size() > 3) {
 			skills.get(3).activate();
 		}
-		// Development Cheat
+		// TODO Remove
 		if (KeyInput.pressingKey(KeyCode.A) && KeyInput.pressingKey(KeyCode.S) && KeyInput.pressingKey(KeyCode.D) && KeyInput.pressingKey(KeyCode.F)) {
-			addExperience(100);
+			addExperience(50);
 		}
 		while (KeyInput.pollAvailable()) {
 			KeyCode key = KeyInput.pollKey();

@@ -91,9 +91,7 @@ public class GameManager {
 				gc.fillText(player.getBuffs().get(i).getRemainingTime()+"", Constants.WINDOW_WIDTH-(40*(i+1))+2, 4);
 			}
 		}
-		
 		StatusBar.render(gc);
-		
 	}
 	
 	public void update() {
@@ -188,11 +186,12 @@ public class GameManager {
 		isGameRunning = false;
 		terminate();
 		long elapsedTimeMillis = System.currentTimeMillis()-startTimeMillis;
+		long elapsedTime = elapsedTimeMillis/1000;
 		KeyInput.clear();
 		SharedEntity.getInstance().clear();
 		Main.setStartScene(new StartScene());
 		Platform.runLater(() -> {
-			Alert alert = new Alert(AlertType.INFORMATION, String.format("Congratulations! You have reached level 20.\nTime spent: %.2f min\nScore: %d", elapsedTimeMillis/60000., (int) (1000000*Math.pow(2, -elapsedTimeMillis/500000.))), ButtonType.CLOSE);
+			Alert alert = new Alert(AlertType.INFORMATION, String.format("Congratulations! You have reached level 20.\nTime spent: %02d:%02d:%02d\nScore: %d", elapsedTime/3600, (elapsedTime/60)%60, elapsedTime%60, (int) (1000000*Math.pow(2, -elapsedTimeMillis/500000.))), ButtonType.CLOSE);
 			alert.setHeaderText(null);
 			alert.showAndWait();
 			Main.getStage().setScene(Main.getStartScene());
@@ -221,6 +220,10 @@ public class GameManager {
 	public void setMessage(String message) {
 		if (message == null) return;
 		this.message = message;
+	}
+	
+	public long getStartTimeMillis() {
+		return startTimeMillis;
 	}
 	
 }
