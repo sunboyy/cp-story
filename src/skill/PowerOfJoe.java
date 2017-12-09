@@ -1,6 +1,11 @@
 package skill;
 
+import controller.GameManager;
+
 public class PowerOfJoe extends AttackSkill {
+	
+	int age = 0;
+	int maxAge = 30;
 
 	@Override
 	public double getDamageMultiplier() {
@@ -31,5 +36,10 @@ public class PowerOfJoe extends AttackSkill {
 	public int getCooldownTimeMillis() {
 		return 0;
 	}
-
+	
+	@Override
+	public void use() {
+		super.use();
+		GameManager.getInstance().getCurrentMap().getParticles().add(new particle.PowerOfJoe());
+	}
 }
