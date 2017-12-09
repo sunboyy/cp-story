@@ -8,6 +8,7 @@ public class PowerUp extends Skill {
 	@Override
 	public void use() {
 		GameManager.getInstance().getPlayer().addBuff(new PowerUpBuff());
+		GameManager.getInstance().getCurrentMap().getParticles().add(new particle.PowerUp());
 	}
 
 	@Override
