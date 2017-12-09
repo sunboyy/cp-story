@@ -10,11 +10,11 @@ import model.Entity;
 import model.map.Map;
 import particle.HPBar;
 
-public class Monster extends DamageableEntity {
+public abstract class Monster extends DamageableEntity {
 	
 	private int age = 0;
-	private int aiDelay;
-	private int walkTick;
+	private int aiDelay = 0;
+	private int walkTick = 0;
 	private int futureFacing = RIGHT;
 	private int aggressiveTick = 0;
 	private HPBar hpBar;
@@ -54,42 +54,26 @@ public class Monster extends DamageableEntity {
 		if (aiDelay <= 0 && walkTick > 0) {
 			walkTick--;
 			int index = (futureFacing+1)*imgWalking.size()/4;
-			if(walkTick%30<15)	index = index + 1 >= (futureFacing==Entity.LEFT?imgWalking.size()/2:imgWalking.size()) ? index : index + 1;
-			setFacing(futureFacing,imgWalking.get(index));
+			if (walkTick%30<15) index = index + 1 >= (futureFacing==Entity.LEFT?imgWalking.size()/2:imgWalking.size()) ? index : index + 1;
+			setFacing(futureFacing, imgWalking.get(index));
 			GameManager.getInstance().getCurrentMap().pushAccX(this, facing*0.5);
 		} else {
 			setFacing(facing,imgWalking.get((facing+1)*imgWalking.size()/4));
 		}
 	}
 	
-	
 	public int getAiDelay() {
 		return aiDelay;
-	}
-
-	public void setAiDelay(int aiDelay) {
-		if (aiDelay < 0) return;
-		this.aiDelay = aiDelay;
 	}
 
 	public int getWalkTick() {
 		return walkTick;
 	}
 
-	public void setWalkTick(int walkTick) {
-		if (walkTick < 0) return;
-		this.walkTick = walkTick;
-	}
-
 	public int getFutureFacing() {
 		return futureFacing;
 	}
 
-	public void setFutureFacing(int futureFacing) {
-		if (futureFacing != LEFT && futureFacing != RIGHT) return;
-		this.futureFacing = futureFacing;
-	}
-	
 	@Override
 	public void render(GraphicsContext gc) {
 		if (age < 30) {
@@ -110,5 +94,21 @@ public class Monster extends DamageableEntity {
 	public List<Image> getImgWalking(){
 		return this.imgWalking;
 	}
+	
+	// Setter
+	public void setAiDelay(int aiDelay) {
+		if (aiDelay < 0) return;
+		this.aiDelay = aiDelay;
+	}
 
+	public void setWalkTick(int walkTick) {
+		if (walkTick < 0) return;
+		this.walkTick = walkTick;
+	}
+
+	public void setFutureFacing(int futureFacing) {
+		if (futureFacing != LEFT && futureFacing != RIGHT) return;
+		this.futureFacing = futureFacing;
+	}
+	
 }

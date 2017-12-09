@@ -76,17 +76,17 @@ public class StartScene extends Scene {
 			gc.drawImage(Images.startscreen, 0, 0);
 			gc.drawImage(Images.playbutton, 180, 336);
 			gc.setFill(Color.color(1, 1, 1, 0.6*animationTick/30));
-			gc.fillRect(0, 0, Constants.MAP_WIDTH, 600);
+			gc.fillRect(0, 0, Constants.WINDOW_WIDTH, 600);
 			gc.setFill(Color.color(1, 1, 1, 0.8));
 			gc.fillRoundRect(200, 600-15*animationTick, 600, 300, 100, 100);
 			gc.setFont(Font.font("Helvetica", 24));
 			gc.setTextAlign(TextAlignment.CENTER);
 			gc.setFill(Color.BLACK);
-			gc.fillText("Enter your name:", Constants.MAP_WIDTH/2, 660-15*animationTick);
+			gc.fillText("Enter your name:", Constants.WINDOW_WIDTH/2, 660-15*animationTick);
 			if (page == 2) {
 				gc.setGlobalAlpha(1-animationTick/30.);
 				gc.setFill(Color.BLACK);
-				gc.fillRect(0, 0, Constants.MAP_WIDTH, Constants.MAP_HEIGHT);
+				gc.fillRect(0, 0, Constants.WINDOW_WIDTH, Constants.WINDOW_HEIGHT);
 				gc.setGlobalAlpha(1);
 			}
 			if (page == 1 && animationTick == 30) {

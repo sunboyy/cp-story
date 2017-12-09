@@ -3,6 +3,8 @@ package utility;
 import java.util.ArrayList;
 import java.util.List;
 
+import exception.ListEmptyException;
+import exception.NegativeWeightedRandomException;
 import javafx.util.Pair;
 
 public class Random {

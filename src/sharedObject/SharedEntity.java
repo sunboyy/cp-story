@@ -12,7 +12,7 @@ import model.monster.Monster;
 
 public class SharedEntity {
 	
-	private static SharedEntity instance = new SharedEntity();
+	private static final SharedEntity instance = new SharedEntity();
 	
 	private List<Entity> entities = new CopyOnWriteArrayList<>();
 	
@@ -52,15 +52,12 @@ public class SharedEntity {
 		entities.remove(e);
 	}
 	
-	public static SharedEntity getInstance() {
-		return instance;
+	public void clear() {
+		entities.clear();
 	}
 	
-	public void print() {
-		System.out.println();
-		for (Entity i: entities) {
-			System.out.println(i);
-		}
+	public static SharedEntity getInstance() {
+		return instance;
 	}
 	
 }

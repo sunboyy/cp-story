@@ -5,14 +5,14 @@ import javafx.scene.image.Image;
 public abstract class Item {
 
 	private String name;
-	private Image img;
+	private Image image;
 	
 	protected int count;
 	protected int maxCount;
 	
 	public Item(String name, Image img) {
 		this.name = name;
-		this.img = img;
+		this.image = img;
 		this.count = 1;
 		this.maxCount = 50;
 	}
@@ -33,8 +33,8 @@ public abstract class Item {
 		return name;
 	}
 
-	public Image getImg() {
-		return img;
+	public Image getImage() {
+		return image;
 	}
 
 	public int getCount() {

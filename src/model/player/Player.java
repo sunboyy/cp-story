@@ -8,6 +8,8 @@ import buff.Buff;
 import constants.Constants;
 import constants.Sounds;
 import controller.GameManager;
+import exception.InventoryFullException;
+import exception.NegativeWeightedRandomException;
 import input.KeyInput;
 import javafx.application.Platform;
 import javafx.scene.control.Alert;
@@ -15,7 +17,6 @@ import javafx.scene.control.ButtonType;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.image.Image;
 import javafx.scene.input.KeyCode;
-import main.Main;
 import model.DamageableEntity;
 import model.IUsable;
 import model.ItemEntity;
@@ -27,8 +28,6 @@ import sharedObject.SharedEntity;
 import skill.AttackSkill;
 import skill.NoSkill;
 import skill.Skill;
-import ui.StartScene;
-import utility.NegativeWeightedRandomException;
 
 public abstract class Player extends DamageableEntity {
 	
@@ -124,7 +123,7 @@ public abstract class Player extends DamageableEntity {
 	public void update() {
 		isCrying = getHp() < 0.2*getMaxHp();
 		if (KeyInput.pressingKey(KeyCode.LEFT)) {
-			setWalking(true);
+			isWalking = true;
 			setMove(LEFT);
 			if (GameManager.getInstance().getCurrentMap().isOnFloor(this))
 				GameManager.getInstance().getCurrentMap().pushAccX(this, -0.5);
@@ -132,14 +131,14 @@ public abstract class Player extends DamageableEntity {
 				GameManager.getInstance().getCurrentMap().pushAccX(this, -0.2);
 		}
 		else if (KeyInput.pressingKey(KeyCode.RIGHT)) {
-			setWalking(true);
+			isWalking = true;
 			setMove(RIGHT);
 			if (GameManager.getInstance().getCurrentMap().isOnFloor(this))
 				GameManager.getInstance().getCurrentMap().pushAccX(this, 0.5);
 			else
 				GameManager.getInstance().getCurrentMap().pushAccX(this, 0.2);
 		} else {
-			setWalking(false);
+			isWalking = false;
 			setMove(this.facing);
 		}
 		if (KeyInput.pressingKey(KeyCode.SPACE)) {
@@ -195,9 +194,6 @@ public abstract class Player extends DamageableEntity {
 				skills.get(4).activate();
 			}
 		}
-		if (KeyInput.pressingKey(KeyCode.P)) {
-			SharedEntity.getInstance().print();
-		}
 		walkTick = isWalking() ? (walkTick + 1)%maxWalkTick : 0; 
 		if (isDead()) {
 			if (expDropTick <= 0) {
@@ -252,9 +248,9 @@ public abstract class Player extends DamageableEntity {
 			this.experience -= Constants.LEVEL_EXPERIENCE[level];
 			++level;
 			setMaxHp(Constants.LEVEL_HP[level]);
-			setHp(getMaxHp());
+			refillHp();
 			setMaxMp(Constants.LEVEL_MP[level]);
-			setMp(getMaxMp());
+			refillMp();
 			setAttackDamageHigh(getAttackHigh(level));
 			setAttackDamageLow(getAttackLow(level));
 			Sounds.levelUpSound.play();
@@ -377,10 +373,6 @@ public abstract class Player extends DamageableEntity {
 	
 	public void setJumping(boolean isJumping) {
 		this.isJumping = isJumping;
-	}
-	
-	public void setWalking(boolean isWalking) {
-		this.isWalking = isWalking;
 	}
 
 }

@@ -22,6 +22,7 @@ import model.map.Portal;
 import model.map.SkyCafe;
 import model.player.CPEngineer;
 import model.player.Player;
+import sharedObject.SharedEntity;
 import ui.StartScene;
 import ui.StatusBar;
 
@@ -73,7 +74,7 @@ public class GameManager {
 				}
 				gc.setGlobalAlpha(alpha);
 				gc.setFill(Color.BLACK);
-				gc.fillRect(0, 0, Constants.MAP_WIDTH, Constants.MAP_HEIGHT);
+				gc.fillRect(0, 0, Constants.WINDOW_WIDTH, Constants.WINDOW_HEIGHT);
 				gc.setGlobalAlpha(1);
 			}
 			
@@ -85,9 +86,9 @@ public class GameManager {
 			gc.setTextBaseline(VPos.TOP);
 			gc.setLineWidth(3);
 			for (int i=0; i<player.getBuffs().size(); i++) {
-				gc.drawImage(player.getBuffs().get(i).getImage(), Constants.MAP_WIDTH-(40*(i+1)), 4);
-				gc.strokeText(player.getBuffs().get(i).getRemainingTime()+"", Constants.MAP_WIDTH-(40*(i+1))+2, 4);
-				gc.fillText(player.getBuffs().get(i).getRemainingTime()+"", Constants.MAP_WIDTH-(40*(i+1))+2, 4);
+				gc.drawImage(player.getBuffs().get(i).getImage(), Constants.WINDOW_WIDTH-(40*(i+1)), 4);
+				gc.strokeText(player.getBuffs().get(i).getRemainingTime()+"", Constants.WINDOW_WIDTH-(40*(i+1))+2, 4);
+				gc.fillText(player.getBuffs().get(i).getRemainingTime()+"", Constants.WINDOW_WIDTH-(40*(i+1))+2, 4);
 			}
 		}
 		
@@ -188,6 +189,7 @@ public class GameManager {
 		terminate();
 		long elapsedTimeMillis = System.currentTimeMillis()-startTimeMillis;
 		KeyInput.clear();
+		SharedEntity.getInstance().clear();
 		Main.setStartScene(new StartScene());
 		Platform.runLater(() -> {
 			Alert alert = new Alert(AlertType.INFORMATION, String.format("Congratulations! You have reached level 20.\nTime spent: %.2f min\nScore: %d", elapsedTimeMillis/60000., (int) (1000000*Math.pow(2, -elapsedTimeMillis/500000.))), ButtonType.CLOSE);

@@ -18,6 +18,7 @@ public class Portal extends Rectangle {
 		this.yDest = yDest;
 	}
 	
+	// TODO Change to image
 	public void render(GraphicsContext gc) {
 		gc.setGlobalAlpha(0.5);
 		gc.setFill(Color.CYAN);

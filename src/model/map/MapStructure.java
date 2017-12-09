@@ -40,8 +40,8 @@ public class MapStructure extends ArrayList<StructureItem> {
 		for (StructureItem i: items) add(i);
 	}
 	
+	// TODO Remove Render
 	public void render(GraphicsContext gc) {
-		
 		for (StructureItem i: this) {
 			gc.setFill(i.isPassable() ? Color.YELLOW : Color.RED);
 			gc.setStroke(i.isSpawnable() ? Color.PINK : Color.GREEN);

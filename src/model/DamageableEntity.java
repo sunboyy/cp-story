@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import controller.GameManager;
+import exception.MpNotEnoughException;
+import exception.NegativeWeightedRandomException;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
 import javafx.util.Pair;
@@ -12,8 +14,6 @@ import model.monster.Monster;
 import particle.Damage;
 import particle.DisplayName;
 import sharedObject.SharedEntity;
-import skill.MpNotEnoughException;
-import utility.NegativeWeightedRandomException;
 import utility.Random;
 
 public abstract class DamageableEntity extends Entity {
@@ -26,7 +26,6 @@ public abstract class DamageableEntity extends Entity {
 	private int mp;
 	private int attackDamageLow = 4;
 	private int attackDamageHigh = 8;
-	private int defense = 5;
 	protected List<Pair<Item, Double>> drops = new ArrayList<>();
 	private DisplayName displayName;
 	
@@ -71,6 +70,14 @@ public abstract class DamageableEntity extends Entity {
 		if (this.mp > maxMp) this.mp = maxMp;
 	}
 	
+	public void refillHp() {
+		this.hp = this.maxHp;
+	}
+	
+	public void refillMp() {
+		this.mp = this.maxMp;
+	}
+	
 	public boolean isDead() {
 		return hp <= 0;
 	}
@@ -79,7 +86,7 @@ public abstract class DamageableEntity extends Entity {
 		List<Item> loot = Random.multipleRandomInList(drops);
 		List<ItemEntity> lootEntity = new ArrayList<>();
 		for (Item i: loot) {
-			lootEntity.add(new ItemEntity(i, getMap(), x+Math.random()*(width-i.getImg().getWidth()), y));
+			lootEntity.add(new ItemEntity(i, getMap(), x+Math.random()*(width-i.getImage().getWidth()), y));
 		}
 		return lootEntity;
 	}
@@ -122,46 +129,26 @@ public abstract class DamageableEntity extends Entity {
 	public int getAttackDamage() {
 		return attackDamageLow + Random.randInt(attackDamageHigh-attackDamageLow);
 	}
-
-	public int getDefense() {
-		return defense;
-	}
 	
 	public List<Pair<Item, Double>> getDrops() {
 		return drops;
 	}
 
 	// Setter
-	public void setLevel(int level) {
-		this.level = level;
-	}
-	
-	public void setMaxHp(int maxHp) {
+	protected void setMaxHp(int maxHp) {
 		this.maxHp = maxHp;
 	}
-
-	public void setHp(int hp) {
-		this.hp = hp;
-	}
 	
-	public void setMaxMp(int maxMp) {
+	protected void setMaxMp(int maxMp) {
 		this.maxMp = maxMp;
 	}
 
-	public void setMp(int mp) {
-		this.mp = mp;
-	}
-
-	public void setAttackDamageLow(int attackDamageLow) {
+	protected void setAttackDamageLow(int attackDamageLow) {
 		this.attackDamageLow = attackDamageLow;
 	}
 
-	public void setAttackDamageHigh(int attackDamageHigh) {
+	protected void setAttackDamageHigh(int attackDamageHigh) {
 		this.attackDamageHigh = attackDamageHigh;
-	}
-
-	public void setDefense(int defense) {
-		this.defense = defense;
 	}
 	
 	public String toString() {

@@ -18,7 +18,7 @@ public abstract class Entity extends Rectangle {
 	protected String name;
 	private Map map;
 	
-	public Entity(String name,Image img, Map map, double x, double y) {
+	public Entity(String name, Image img, Map map, double x, double y) {
 		super(x, y, img.getWidth(), img.getHeight());
 		this.name = name;
 		this.image = img;
@@ -102,10 +102,6 @@ public abstract class Entity extends Rectangle {
 		this.velocityY = velocityY;
 	}
 	
-	public void setImage(Image img) {
-		this.image = img;
-	}
-	
 	public void setMap(Map map) {
 		this.map = map;
 	}
@@ -120,7 +116,7 @@ public abstract class Entity extends Rectangle {
 	
 	public void setFacing(int facing, Image img) {
 		this.facing = facing;
-		this.setImage(img);
+		this.image = img;
 	}
 }
 

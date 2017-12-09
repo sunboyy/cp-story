@@ -11,7 +11,7 @@ public class ItemEntity extends Entity {
 	private int maxAge = 3600;
 	
 	public ItemEntity(Item item, Map map, double x, double y) {
-		super(item.getName(), item.getImg(), map, x, y);
+		super(item.getName(), item.getImage(), map, x, y);
 		this.item = item;
 		this.velocityY = -6;
 	}

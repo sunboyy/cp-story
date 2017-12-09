@@ -38,16 +38,16 @@ public class CPEngineer extends Player {
 	
 	@Override
 	public void setMove(int direction) {
-		if(isDead()) {
+		if (isDead()) {
 			setFacing(direction, imgWalkDead.get((direction+1)/2));
-		} else if(isCrying()) {
+		} else if (isCrying()) {
 			if(getWalkTick()%10<5 && isWalking()) {
 				setFacing(direction, imgWalkAndCry.get((direction+1)/2));
 			} else {
 				setFacing(direction, imgCrying.get((direction+1)/2));
 			}
 		} else if (isWalking()) {
-			if(getWalkTick()%10<5) {
+			if (getWalkTick()%10<5) {
 				setFacing(direction,imgWalking.get((direction+1)/2));
 			} else {
 				setFacing(direction);
@@ -55,8 +55,8 @@ public class CPEngineer extends Player {
 		} else {
 			setFacing(direction);
 		}
-		if(!canAttack()) {	// is attacking now !
-			if(isDead()) {
+		if (!canAttack()) { // is attacking now
+			if (isDead()) {
 				setFacing(this.facing, imgFightDead.get((this.facing+1)/2));
 			} else {
 				setFacing(this.facing,imgAttack.get(this.facing+1));

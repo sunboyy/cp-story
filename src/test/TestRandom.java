@@ -7,9 +7,9 @@ import java.util.List;
 
 import org.junit.Test;
 
+import exception.ListEmptyException;
+import exception.NegativeWeightedRandomException;
 import javafx.util.Pair;
-import utility.ListEmptyException;
-import utility.NegativeWeightedRandomException;
 import utility.Random;
 
 public class TestRandom {

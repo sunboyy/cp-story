@@ -21,6 +21,7 @@ public class KeyInput {
 		unpollableKeys.add(KeyCode.UP);
 		unpollableKeys.add(KeyCode.DOWN);
 		unpollableKeys.add(KeyCode.SPACE);
+		unpollableKeys.add(KeyCode.E);
 	}
 	
 	public static void addKey(KeyCode code) {
@@ -28,7 +29,6 @@ public class KeyInput {
 			triggerKeys.add(code);
 		}
 		activeKeys.add(code);
-		
 	}
 	
 	public static void removeKey(KeyCode code) {

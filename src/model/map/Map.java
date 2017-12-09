@@ -7,6 +7,8 @@ import java.util.List;
 
 import constants.Constants;
 import controller.GameManager;
+import exception.ListEmptyException;
+import exception.NegativeWeightedRandomException;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
 import javafx.scene.media.AudioClip;
@@ -22,8 +24,6 @@ import model.player.Player;
 import particle.IParticle;
 import sharedObject.SharedEntity;
 import utility.AudioPlayer;
-import utility.ListEmptyException;
-import utility.NegativeWeightedRandomException;
 import utility.Random;
 
 public abstract class Map extends Rectangle {
@@ -31,11 +31,10 @@ public abstract class Map extends Rectangle {
 	private Image img;
 	private double movementSpeed = 3.9;
 
-	protected double gravity = 0.55;
-	protected double groundFriction = 0.4;
-	protected double airFriction = 0.05;
-	protected double maxVelocityY = 6;
-	protected boolean allowMultipleJumps = false;
+	private double gravity = 0.55;
+	private double groundFriction = 0.4;
+	private double airFriction = 0.05;
+	private double maxVelocityY = 6;
 
 	private List<Class<? extends Monster>> monsterTypes = new ArrayList<>();
 	private List<Portal> portals = new ArrayList<>();
@@ -76,11 +75,11 @@ public abstract class Map extends Rectangle {
 	private void moveMap() {
 		// Move map by object inside
 		Player player = GameManager.getInstance().getPlayer();
-		if (player.getX() > Constants.MAP_WIDTH + x - player.getWidth() - 200)
+		if (player.getX() > Constants.WINDOW_WIDTH + x - player.getWidth() - 200)
 			x += movementSpeed;
 		else if (player.getX() < x + 200)
 			x -= movementSpeed;
-		if (player.getY() > Constants.MAP_HEIGHT + y - player.getHeight() - 150)
+		if (player.getY() > Constants.WINDOW_HEIGHT + y - player.getHeight() - 150)
 			y += movementSpeed;
 		else if (player.getY() < y + 150)
 			y -= movementSpeed;
@@ -88,12 +87,12 @@ public abstract class Map extends Rectangle {
 		// Map boundary
 		if (x < 0)
 			x = 0;
-		else if (x > width - Constants.MAP_WIDTH)
-			x = width - Constants.MAP_WIDTH;
+		else if (x > width - Constants.WINDOW_WIDTH)
+			x = width - Constants.WINDOW_WIDTH;
 		if (y < 0)
 			y = 0;
-		else if (y > height - Constants.MAP_HEIGHT)
-			y = height - Constants.MAP_HEIGHT;
+		else if (y > height - Constants.WINDOW_HEIGHT)
+			y = height - Constants.WINDOW_HEIGHT;
 	}
 
 	private void moveEntity(Entity e) {
@@ -142,14 +141,6 @@ public abstract class Map extends Rectangle {
 		if (structure.collideWith(e) != null)
 			return true;
 		return false;
-	}
-
-	public Entity collideEntity(Rectangle r) {
-		for (Entity i : SharedEntity.getInstance().getEntitiesOfMap(this)) {
-			if (r.collideWith(i))
-				return i;
-		}
-		return null;
 	}
 
 	public List<DamageableEntity> collideDamageableEntity(Rectangle r, int limit) {

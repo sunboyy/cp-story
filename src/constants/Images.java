@@ -39,11 +39,10 @@ public class Images {
 	public static final Image cpEngPlayerDeadR = new Image("images/player/CPPlayerRGhost.png",77.25,110,true,false);
 	public static final Image cpEngPlayerDeadFightR = new Image("images/player/CPPlayerFightRGhost.png",77.25,110,true,false);
 	
-	
 	public static final Image redPotionItem = new Image("images/item/redpotion.png");
 	public static final Image bluePotionItem = new Image("images/item/bluepotion.png");
 	
-	public static final Image[] normalAttackSkill = new Image[10];
+	public static final Image[] normalAttackEffect = new Image[10];
 	public static final Image[] levelUpEffect = new Image[20];
 	public static final Image[] gradeAEffect = new Image[2];
 	
@@ -53,8 +52,8 @@ public class Images {
 	public static final Image skillGradeA = new Image("images/skill/spiritofsharp.png", 36, 36, true, false);
 	
 	static {
-		for (int i=0; i<normalAttackSkill.length; i++) {
-			normalAttackSkill[i] = new Image("images/effect/attack/"+i+".png");
+		for (int i=0; i<normalAttackEffect.length; i++) {
+			normalAttackEffect[i] = new Image("images/effect/attack/"+i+".png");
 		}
 		for (int i=0; i<levelUpEffect.length; i++) {
 			levelUpEffect[i] = new Image("images/effect/level_up/"+i+".png");

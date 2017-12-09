@@ -1,4 +1,4 @@
-package model.player;
+package exception;
 
 public class InventoryFullException extends Exception {
 

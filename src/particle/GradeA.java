@@ -38,8 +38,8 @@ public class GradeA implements IParticle {
 		gc.setFill(Color.CYAN);
 		gc.setStroke(Color.BLACK);
 		gc.setLineWidth(5);
-		gc.strokeText("A", Constants.MAP_WIDTH/2, Constants.MAP_HEIGHT/2);
-		gc.fillText("A", Constants.MAP_WIDTH/2, Constants.MAP_HEIGHT/2);
+		gc.strokeText("A", Constants.WINDOW_WIDTH/2, Constants.WINDOW_HEIGHT/2);
+		gc.fillText("A", Constants.WINDOW_WIDTH/2, Constants.WINDOW_HEIGHT/2);
 		if (visibleTick + 30 >= maxVisibleTick) {
 			gc.setGlobalAlpha(1);
 		}
