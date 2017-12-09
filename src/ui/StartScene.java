@@ -153,9 +153,9 @@ public class StartScene extends Scene {
 			nameField.setVisible(false);
 			backBtn.setVisible(false);
 			startBtn.setVisible(false);
-			Main.initializeGameScene(nameField.getText().trim());
 			page = 2;
 			GameManager.getInstance().startGame();
+			GameManager.getInstance().getPlayer().setName(nameField.getText().trim());
 			screenloop.play();
 		});
 	}

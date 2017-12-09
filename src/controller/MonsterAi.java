@@ -14,7 +14,13 @@ public class MonsterAi extends Thread {
 				while (true) {
 					for (Monster m: SharedEntity.getInstance().getMonsterOfCurrentMap()) {
 						if (m.isAggressive()) {
-							
+							if (m.getX() < GameManager.getInstance().getPlayer().getX()) {
+								m.setFutureFacing(Entity.RIGHT);
+							}
+							else {
+								m.setFutureFacing(Entity.LEFT);
+							}
+							m.setWalkTick(30);
 						}
 						if (m.getAiDelay() <= 0 && m.getWalkTick() <= 0) {
 							if (m.isAggressive()) {
@@ -27,7 +33,7 @@ public class MonsterAi extends Thread {
 								m.setWalkTick(30);
 							}
 							else {
-								m.setAiDelay(Random.randInt(450));
+								m.setAiDelay(Random.randInt(420));
 								if (m.getX() <= 0) {
 									m.setFutureFacing(Entity.RIGHT);
 								}

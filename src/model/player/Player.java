@@ -15,6 +15,7 @@ import javafx.scene.control.ButtonType;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.image.Image;
 import javafx.scene.input.KeyCode;
+import main.Main;
 import model.DamageableEntity;
 import model.IUsable;
 import model.ItemEntity;
@@ -26,6 +27,7 @@ import sharedObject.SharedEntity;
 import skill.AttackSkill;
 import skill.NoSkill;
 import skill.Skill;
+import ui.StartScene;
 import utility.NegativeWeightedRandomException;
 
 public abstract class Player extends DamageableEntity {
@@ -163,7 +165,7 @@ public abstract class Player extends DamageableEntity {
 		}
 		// Development Cheat
 		if (KeyInput.pressingKey(KeyCode.A) && KeyInput.pressingKey(KeyCode.S) && KeyInput.pressingKey(KeyCode.D) && KeyInput.pressingKey(KeyCode.F)) {
-			addExperience(10);
+			addExperience(100);
 		}
 		while (KeyInput.pollAvailable()) {
 			KeyCode key = KeyInput.pollKey();
@@ -257,6 +259,10 @@ public abstract class Player extends DamageableEntity {
 			setAttackDamageLow(getAttackLow(level));
 			Sounds.levelUpSound.play();
 			GameManager.getInstance().getCurrentMap().getParticles().add(new LevelUp());
+			if (level >= Constants.MAX_LEVEL) {
+				GameManager.getInstance().stopGame();
+				break;
+			}
 		}
 	}
 	
@@ -303,6 +309,7 @@ public abstract class Player extends DamageableEntity {
 			GameManager.getInstance().setPausing(true);
 			hasEverDead = true;
 			Platform.runLater(() -> {
+				KeyInput.clear();
 				Alert alert = new Alert(AlertType.WARNING, "Uh oh! You are dead. You can still play with experience decreasing continuously. The experience will stop decreasing when HP is more than zero.\nProgrammers have no life...", ButtonType.OK);
 				alert.setTitle("You are dead.");
 				alert.setHeaderText("You are dead.");
@@ -362,6 +369,12 @@ public abstract class Player extends DamageableEntity {
 	}
 	
 	// Setter
+	public void setName(String name) {
+		if (name != null && !name.trim().equals("")) {
+			this.name = name;
+		}
+	}
+	
 	public void setJumping(boolean isJumping) {
 		this.isJumping = isJumping;
 	}

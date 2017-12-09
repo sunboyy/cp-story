@@ -6,7 +6,6 @@ import java.util.Iterator;
 import java.util.List;
 
 import constants.Constants;
-import constants.Images;
 import controller.GameManager;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
@@ -30,7 +29,6 @@ import utility.Random;
 public abstract class Map extends Rectangle {
 
 	private Image img;
-	private Image backgroundImg = Images.defaultBackground;
 	private double movementSpeed = 3.9;
 
 	protected double gravity = 0.55;
@@ -54,12 +52,6 @@ public abstract class Map extends Rectangle {
 		structure = new MapStructure(this);
 		for (Class<? extends Monster> i : monsterTypes)
 			this.monsterTypes.add(i);
-	}
-
-	@SafeVarargs
-	public Map(Image img, Image bgImg, AudioClip bgm, Class<? extends Monster>... monsterTypes) {
-		this(img, bgm, monsterTypes);
-		this.backgroundImg = bgImg;
 	}
 
 	public void motion(Entity e) {
@@ -199,7 +191,6 @@ public abstract class Map extends Rectangle {
 	}
 
 	public void render(GraphicsContext gc) {
-		gc.drawImage(backgroundImg, 0, 0);
 		gc.drawImage(img, -x, -y);
 		structure.render(gc);
 		GameManager.getInstance().getPlayer().render(gc);

@@ -9,7 +9,8 @@ import ui.*;
 public class Main extends Application {
 	
 	private static Stage stage;
-	private static Scene startScene, gameScene;
+	private static Scene startScene;
+	private static Scene gameScene = new GameScene();
 
 	public static void main(String[] args) {
 		launch(args);
@@ -19,9 +20,6 @@ public class Main extends Application {
 	public void start(Stage inputStage) throws Exception {
 		stage = inputStage;
 		startScene = new StartScene();
-		stage.setOnCloseRequest(e -> {
-			GameManager.getInstance().stopGame();
-		});
 		stage.setTitle("CP Story");
 		stage.setScene(startScene);
 		stage.show();
@@ -47,10 +45,6 @@ public class Main extends Application {
 
 	public static void setStartScene(Scene scene) {
 		startScene = scene;
-	}
-	
-	public static void initializeGameScene(String name) {
-		gameScene = new GameScene(name);
 	}
 	
 }

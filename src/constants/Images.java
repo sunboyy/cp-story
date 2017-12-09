@@ -9,7 +9,6 @@ public class Images {
 	public static final Image playbutton = new Image("playbutton.png");
 	public static final Image playbutton_highlight = new Image("playbutton_highlight.png");
 
-	public static final Image defaultBackground = new Image("images/background/bg_default.jpg");
 	public static final Image gardenBackground = new Image("images/background/bg_garden.jpg",1300,900,false,false);
 	public static final Image skycafeBackground = new Image("images/background/bg_sky-cafe.jpg",1300,900,false,false);
 	public static final Image building4Background = new Image("images/background/bg_building4.jpg",1300,900,false,false);

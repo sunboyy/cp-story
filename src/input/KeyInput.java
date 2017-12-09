@@ -39,6 +39,10 @@ public class KeyInput {
 		return activeKeys.contains(code);
 	}
 	
+	public static void clear() {
+		activeKeys.clear();
+	}
+	
 	public static KeyCode pollKey() {
 		if (triggerKeys.size() == 0) {
 			return null;

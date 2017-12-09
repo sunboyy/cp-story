@@ -15,7 +15,7 @@ public abstract class Entity extends Rectangle {
 	private Image image, imageL, imageR;
 	protected double maxVelocityX = 2;
 	protected int facing;
-	private String name;
+	protected String name;
 	private Map map;
 	
 	public Entity(String name,Image img, Map map, double x, double y) {

@@ -4,22 +4,30 @@ import java.util.ArrayList;
 import java.util.List;
 
 import constants.Constants;
+import input.KeyInput;
+import javafx.application.Platform;
 import javafx.geometry.VPos;
 import javafx.scene.canvas.GraphicsContext;
+import javafx.scene.control.Alert;
+import javafx.scene.control.ButtonType;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.TextAlignment;
+import main.Main;
 import model.map.Building4;
 import model.map.Garden;
 import model.map.Map;
 import model.map.Portal;
 import model.map.SkyCafe;
+import model.player.CPEngineer;
 import model.player.Player;
+import ui.StartScene;
 import ui.StatusBar;
 
 public class GameManager {
 	
-	private static final GameManager instance = new GameManager();
+	private static GameManager instance = new GameManager();
 	
 	private boolean isGameRunning = false;
 	private boolean isPausing = false;
@@ -31,12 +39,14 @@ public class GameManager {
 	private MonsterGen monsterGen;
 	private MonsterAi monsterAi;
 	private String message = "";
+	private long startTimeMillis;
 	
 	public GameManager() {
 		generateMap();
 		bindPortal();
 		monsterGen = new MonsterGen();
 		monsterAi = new MonsterAi();
+		player = new CPEngineer("Joetoken", currentMap, 500, 550);
 	}
 
 	public List<Map> getMaps() {
@@ -103,7 +113,6 @@ public class GameManager {
 		maps.add(new Building4());
 		maps.add(new SkyCafe());
 		currentMap = maps.get(0);
-		currentMap.warpIn();
 	}
 	
 	private void bindPortal() {
@@ -170,10 +179,24 @@ public class GameManager {
 	
 	public void startGame() {
 		isGameRunning = true;
+		startTimeMillis = System.currentTimeMillis();
+		currentMap.warpIn();
 	}
 
 	public void stopGame() {
 		isGameRunning = false;
+		terminate();
+		long elapsedTimeMillis = System.currentTimeMillis()-startTimeMillis;
+		KeyInput.clear();
+		Main.setStartScene(new StartScene());
+		Platform.runLater(() -> {
+			Alert alert = new Alert(AlertType.INFORMATION, String.format("Congratulations! You have reached level 20.\nTime spent: %.2f min\nScore: %d", elapsedTimeMillis/60000., (int) (1000000*Math.pow(2, -elapsedTimeMillis/500000.))), ButtonType.CLOSE);
+			alert.setHeaderText(null);
+			alert.showAndWait();
+			Main.getStage().setScene(Main.getStartScene());
+			instance = new GameManager();
+			currentMap.warpOut();
+		});
 	}
 	
 	public boolean isPausing() {

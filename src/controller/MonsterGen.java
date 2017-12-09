@@ -4,7 +4,7 @@ import sharedObject.SharedEntity;
 
 public class MonsterGen extends Thread {
 	
-	private static int delay = 2000;
+	private static int delay = 1500;
 
 	public MonsterGen() {
 		super(new Runnable() {
@@ -17,7 +17,7 @@ public class MonsterGen extends Thread {
 						System.out.println("MonsterGen thread has been interrupted.");
 						break;
 					}
-					if (GameManager.getInstance().isGameRunning() && SharedEntity.getInstance().getMonsterOfCurrentMap().size() < 20 && !GameManager.getInstance().isWarping()) {
+					if (GameManager.getInstance().isGameRunning() && SharedEntity.getInstance().getMonsterOfCurrentMap().size() < 25 && !GameManager.getInstance().isWarping()) {
 						GameManager.getInstance().getCurrentMap().spawnRandom();
 					}
 				}
