@@ -25,7 +25,7 @@ public class SharpSpirit extends Skill {
 
 	@Override
 	public int getCooldownTimeMillis() {
-		return 60000;
+		return 120000;
 	}
 
 }

@@ -73,9 +73,9 @@ public class StatusBar {
 		gc.fillRoundRect(HP_MP_X, Constants.MAP_HEIGHT-HEIGHT+MP_Y, mpWidth, HP_MP_HEIGHT, 5, 5);
 		
 		// Temporary show skill
-		gc.drawImage(Images.skillQcode, 405, Constants.MAP_HEIGHT-HEIGHT+SKILL_ITEM_Y);
-		gc.drawImage(Images.skillBuff, 455, Constants.MAP_HEIGHT-HEIGHT+SKILL_ITEM_Y);
-		gc.drawImage(Images.skillEcode, 505, Constants.MAP_HEIGHT-HEIGHT+SKILL_ITEM_Y);
+		gc.drawImage(Images.skillMultiKill, 405, Constants.MAP_HEIGHT-HEIGHT+SKILL_ITEM_Y);
+		gc.drawImage(Images.skillPowerUp, 455, Constants.MAP_HEIGHT-HEIGHT+SKILL_ITEM_Y);
+		gc.drawImage(Images.skillPowerOfJoe, 505, Constants.MAP_HEIGHT-HEIGHT+SKILL_ITEM_Y);
 		gc.drawImage(Images.skillGradeA, 555, Constants.MAP_HEIGHT-HEIGHT+SKILL_ITEM_Y);
 		for (int i=1; i<=4; i++) {
 			//gc.setFill(Color.WHITE);

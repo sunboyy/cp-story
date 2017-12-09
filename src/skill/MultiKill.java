@@ -1,8 +1,6 @@
-package test;
+package skill;
 
-import skill.AttackSkill;
-
-public class TestSkill extends AttackSkill {
+public class MultiKill extends AttackSkill {
 
 	@Override
 	public double getDamageMultiplier() {

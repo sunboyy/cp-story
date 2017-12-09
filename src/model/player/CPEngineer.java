@@ -10,7 +10,7 @@ import model.map.Map;
 import skill.PowerOfJoe;
 import skill.PowerUp;
 import skill.SharpSpirit;
-import test.TestSkill;
+import skill.MultiKill;
 
 public class CPEngineer extends Player {
 	
@@ -30,7 +30,7 @@ public class CPEngineer extends Player {
 				, map, x, y);
 		imgWalkDead = new ArrayList<>(Arrays.asList(Images.cpEngPlayerDeadL,Images.cpEngPlayerDeadR));
 		imgFightDead = new ArrayList<>(Arrays.asList(Images.cpEngPlayerDeadFightL,Images.cpEngPlayerDeadFightR));
-		skills.add(new TestSkill());
+		skills.add(new MultiKill());
 		skills.add(new PowerUp());
 		skills.add(new PowerOfJoe());
 		skills.add(new SharpSpirit());

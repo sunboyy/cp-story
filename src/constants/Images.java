@@ -9,13 +9,10 @@ public class Images {
 	public static final Image playbutton = new Image("playbutton.png");
 	public static final Image playbutton_highlight = new Image("playbutton_highlight.png");
 
-	public static final Image beachBackground = new Image("background.png"); // TODO Remove
 	public static final Image defaultBackground = new Image("images/background/bg_default.jpg");
 	public static final Image gardenBackground = new Image("images/background/bg_garden.jpg",1300,900,false,false);
 	public static final Image skycafeBackground = new Image("images/background/bg_sky-cafe.jpg",1300,900,false,false);
 	public static final Image building4Background = new Image("images/background/bg_building4.jpg",1300,900,false,false);
-	
-	public static final Image beachForeground = new Image("foreground.png"); // TODO Remove
 	
 	public static final Image monsterProgmethR = new Image("images/monster/progmethR.png");
 	public static final Image monsterProgmethL = new Image("images/monster/progmethL.png");
@@ -48,14 +45,13 @@ public class Images {
 	public static final Image bluePotionItem = new Image("images/item/bluepotion.png");
 	
 	public static final Image[] normalAttackSkill = new Image[10];
-	
 	public static final Image[] levelUpEffect = new Image[20];
 	public static final Image[] gradeAEffect = new Image[2];
-	public static final Image skillQcode = new Image("images/effect/iconSkillQcode.png");
-	public static final Image skillBuff = new Image("images/effect/iconSkillBuff.png");
-	public static final Image skillEcode = new Image("images/effect/iconSkillEcode.png");
-	public static final Image skillGradeA = new Image("images/effect/grade_a/iconSkillSpirit.png", 36, 36, true, false);
-	public static final Image powerUpBuff = new Image("sample_buff_image.png"); // TODO Remove
+	
+	public static final Image skillMultiKill = new Image("images/skill/multikill.png");
+	public static final Image skillPowerUp = new Image("images/skill/powerup.png");
+	public static final Image skillPowerOfJoe = new Image("images/skill/powerofjoe.png");
+	public static final Image skillGradeA = new Image("images/skill/spiritofsharp.png", 36, 36, true, false);
 	
 	static {
 		for (int i=0; i<normalAttackSkill.length; i++) {
