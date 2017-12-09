@@ -15,7 +15,7 @@ public class Node extends Monster {
 		super("Node",
 				new ArrayList<>(Arrays.asList(Images.monsterNodeL,Images.monsterNodeLWalk,
 						Images.monsterNodeR,Images.monsterNodeRWalk)),
-						map, x, y, 10, 100, 50, 20, 40, 30);
+						map, x, y, 10, 120, 50, 10, 20, 17);
 		drops.add(new Pair<Item, Double>(new RedPotion(), 0.6));
 	}
 	

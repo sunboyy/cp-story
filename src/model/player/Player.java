@@ -201,7 +201,7 @@ public abstract class Player extends DamageableEntity {
 			if (expDropTick <= 0) {
 				experience--;
 				if (experience < 0) experience = 0;
-				expDropTick = 20;
+				expDropTick = 15;
 			}
 			else {
 				expDropTick--;
@@ -300,14 +300,14 @@ public abstract class Player extends DamageableEntity {
 	public void damage(int hp) {
 		super.damage(hp);
 		if (isDead() && !hasEverDead) {
-			GameManager.getInstance().setGameRunning(false);
+			GameManager.getInstance().setPausing(true);
 			hasEverDead = true;
 			Platform.runLater(() -> {
 				Alert alert = new Alert(AlertType.WARNING, "Uh oh! You are dead. You can still play with experience decreasing continuously. The experience will stop decreasing when HP is more than zero.\nProgrammers have no life...", ButtonType.OK);
 				alert.setTitle("You are dead.");
 				alert.setHeaderText("You are dead.");
 				alert.showAndWait();
-				GameManager.getInstance().setGameRunning(true);
+				GameManager.getInstance().setPausing(false);
 			});
 		}
 	}

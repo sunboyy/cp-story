@@ -16,7 +16,7 @@ public class ProgMeth extends Monster {
 		super("Prog Meth", 
 				new ArrayList<>(Arrays.asList(Images.monsterProgmethL, Images.monsterProgmethR)), 
 				map, x, y, 6, 65, 0, 6, 12, 10);
-		drops.add(new Pair<Item, Double>(new RedPotion(), 0.6));
+		drops.add(new Pair<Item, Double>(new RedPotion(), 0.5));
 		drops.add(new Pair<Item, Double>(new BluePotion(), 0.2));
 	}
 }
