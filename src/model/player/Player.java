@@ -165,7 +165,7 @@ public abstract class Player extends DamageableEntity {
 		if (KeyInput.pressingKey(KeyCode.A) && KeyInput.pressingKey(KeyCode.S) && KeyInput.pressingKey(KeyCode.D) && KeyInput.pressingKey(KeyCode.F)) {
 			addExperience(30);
 		}
-		while (KeyInput.pollAvailable()) {
+		while (KeyInput.isPollAvailable()) {
 			KeyCode key = KeyInput.pollKey();
 			if (key.isDigitKey()) {
 				int digit = Integer.parseInt(key.toString().substring(5));

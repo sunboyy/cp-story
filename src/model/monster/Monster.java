@@ -37,7 +37,7 @@ public abstract class Monster extends DamageableEntity {
 	public void damage(int hp) {
 		super.damage(hp);
 		hpBar.resetVisible();
-		aggressiveTick = 300;
+		aggressiveTick = 360;
 		aiDelay = 0;
 		walkTick = 0;
 	}
