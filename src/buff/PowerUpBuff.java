@@ -5,7 +5,7 @@ import constants.Images;
 public class PowerUpBuff extends Buff {
 
 	public PowerUpBuff() {
-		super(3600, Images.skillPowerUp);
+		super(90000, Images.skillPowerUp);
 	}
 	
 	@Override

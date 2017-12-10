@@ -5,7 +5,7 @@ import constants.Images;
 public class FastLearnBuff extends Buff {
 
 	public FastLearnBuff() {
-		super(3600, Images.fastLearnBuff);
+		super(60000, Images.fastLearnBuff);
 	}
 
 	@Override

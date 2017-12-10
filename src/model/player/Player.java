@@ -163,7 +163,7 @@ public abstract class Player extends DamageableEntity {
 		}
 		// TODO Remove
 		if (KeyInput.pressingKey(KeyCode.A) && KeyInput.pressingKey(KeyCode.S) && KeyInput.pressingKey(KeyCode.D) && KeyInput.pressingKey(KeyCode.F)) {
-			addExperience(50);
+			addExperience(30);
 		}
 		while (KeyInput.pollAvailable()) {
 			KeyCode key = KeyInput.pollKey();
@@ -211,7 +211,6 @@ public abstract class Player extends DamageableEntity {
 		Iterator<Buff> it = buffs.iterator();
 		while (it.hasNext()) {
 			Buff buff = it.next();
-			buff.update();
 			if (buff.isExpired()) {
 				it.remove();
 			}

@@ -4,32 +4,29 @@ import javafx.scene.image.Image;
 
 public abstract class Buff {
 	
-	private int age = 0;
-	private int maxAge;
+	private long startTimeMillis;
+	private long buffTimeMillis;
 	private Image image;
 	
-	public Buff(int age, Image image) {
-		this.maxAge = age;
+	public Buff(long buffTimeMillis, Image image) {
+		this.buffTimeMillis = buffTimeMillis;
 		this.image = image;
+		this.startTimeMillis = System.currentTimeMillis();
 	}
 	
 	public abstract double getAttackMultiplier();
 	public abstract double getExperienceMultiplier();
 	
-	public void update() {
-		age++;
-	}
-	
 	public void refresh() {
-		age = 0;
+		startTimeMillis = System.currentTimeMillis();
 	}
 	
 	public boolean isExpired() {
-		return age >= maxAge;
+		return System.currentTimeMillis() >= startTimeMillis+buffTimeMillis;
 	}
 	
 	public int getRemainingTime() {
-		return (maxAge-age)/60;
+		return (int) (startTimeMillis+buffTimeMillis-System.currentTimeMillis())/1000;
 	}
 	
 	public Image getImage() {

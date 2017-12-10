@@ -4,10 +4,10 @@ import buff.FastLearnBuff;
 import constants.Images;
 import controller.GameManager;
 
-public class FastLearn extends Item {
+public class FastLearnScroll extends Item {
 
-	public FastLearn() {
-		super("Fast Learn", Images.fastLearnItem);
+	public FastLearnScroll() {
+		super("Fast Learn Scroll", Images.fastLearnItem);
 		maxCount = 1;
 	}
 
