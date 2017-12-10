@@ -18,7 +18,6 @@ import javafx.scene.control.Alert.AlertType;
 import javafx.scene.image.Image;
 import javafx.scene.input.KeyCode;
 import model.DamageableEntity;
-import model.IUsable;
 import model.ItemEntity;
 import model.Rectangle;
 import model.item.Item;
@@ -173,11 +172,9 @@ public abstract class Player extends DamageableEntity {
 				int index = (digit + 9) % 10;
 				if (inventory[index] != null) {
 					Item item = inventory[index];
-					if (item instanceof IUsable) {
-						((IUsable) item).use();
-						if (item.getCount() <= 0) {
-							inventory[index] = null;
-						}
+					item.activate();
+					if (item.getCount() <= 0) {
+						inventory[index] = null;
 					}
 				}
 			}
@@ -243,7 +240,11 @@ public abstract class Player extends DamageableEntity {
 			this.experience = 0;
 			return;
 		}
-		this.experience += experience;
+		double multiplier = 1;
+		for (Buff i: buffs) {
+			multiplier += i.getExperienceMultiplier();
+		}
+		this.experience += multiplier*experience;
 		while (Constants.LEVEL_EXPERIENCE[level] <= this.experience) {
 			this.experience -= Constants.LEVEL_EXPERIENCE[level];
 			++level;

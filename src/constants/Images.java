@@ -41,12 +41,14 @@ public class Images {
 	
 	public static final Image redPotionItem = new Image("images/item/redpotion.png");
 	public static final Image bluePotionItem = new Image("images/item/bluepotion.png");
+	public static final Image fastLearnItem = new Image("images/item/fastlearn.png");
 	
 	public static final Image[] normalAttackEffect = new Image[10];
 	public static final Image[] levelUpEffect = new Image[20];
 	public static final Image[] powerUpEffect = new Image[16];
 	public static final Image[] gradeAEffect = new Image[2];
 	
+	public static final Image fastLearnBuff = new Image("images/skill/fastlearnbuff.png");
 	public static final Image skillMultiKill = new Image("images/skill/multikill.png");
 	public static final Image skillPowerUp = new Image("images/skill/powerup.png");
 	public static final Image skillPowerOfJoe = new Image("images/skill/powerofjoe.png");

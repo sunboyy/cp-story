@@ -1,8 +1,9 @@
 package model.item;
 
 import javafx.scene.image.Image;
+import model.IUsable;
 
-public abstract class Item {
+public abstract class Item implements IUsable {
 
 	private String name;
 	private Image image;
@@ -43,6 +44,14 @@ public abstract class Item {
 
 	public int getMaxCount() {
 		return maxCount;
+	}
+	
+	@Override
+	public void activate() {
+		if (count > 0) {
+			use();
+			--count;
+		}
 	}
 	
 }

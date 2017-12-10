@@ -14,6 +14,7 @@ public abstract class Buff {
 	}
 	
 	public abstract double getAttackMultiplier();
+	public abstract double getExperienceMultiplier();
 	
 	public void update() {
 		age++;

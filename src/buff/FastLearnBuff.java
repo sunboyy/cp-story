@@ -2,20 +2,20 @@ package buff;
 
 import constants.Images;
 
-public class PowerUpBuff extends Buff {
+public class FastLearnBuff extends Buff {
 
-	public PowerUpBuff() {
-		super(3600, Images.skillPowerUp);
+	public FastLearnBuff() {
+		super(3600, Images.fastLearnBuff);
 	}
-	
+
 	@Override
 	public double getAttackMultiplier() {
-		return 0.5;
+		return 0;
 	}
 
 	@Override
 	public double getExperienceMultiplier() {
-		return 0;
+		return 0.5;
 	}
 
 }

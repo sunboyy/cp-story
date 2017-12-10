@@ -2,9 +2,8 @@ package model.item;
 
 import constants.Images;
 import controller.GameManager;
-import model.IUsable;
 
-public class BluePotion extends Item implements IUsable {
+public class BluePotion extends Item {
 
 	public BluePotion() {
 		super("Blue Potion", Images.bluePotionItem);
@@ -12,10 +11,7 @@ public class BluePotion extends Item implements IUsable {
 
 	@Override
 	public void use() {
-		if (count > 0) {
-			GameManager.getInstance().getPlayer().healMp(20);
-			--count;
-		}
+		GameManager.getInstance().getPlayer().healMp(20);
 	}
 
 }
