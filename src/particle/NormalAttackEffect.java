@@ -8,7 +8,7 @@ import model.Entity;
 import model.map.Map;
 import model.player.Player;
 
-public class NormalAttack implements IParticle {
+public class NormalAttackEffect implements IParticle {
 
 	int age = 0;
 	int maxAge = 30;

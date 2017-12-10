@@ -25,7 +25,7 @@ import model.map.Map;
 import particle.LevelUp;
 import sharedObject.SharedEntity;
 import skill.AttackSkill;
-import skill.NoSkill;
+import skill.NotmalAttack;
 import skill.Skill;
 
 public abstract class Player extends DamageableEntity {
@@ -58,7 +58,7 @@ public abstract class Player extends DamageableEntity {
 		this.imgCrying = imgCrying;
 		this.imgWalkAndCry = imgWalkAndCry;
 		this.imgAttack = imgAttack;
-		this.skills.add(new NoSkill());
+		this.skills.add(new NotmalAttack());
 	}
 	
 	public void jump() {

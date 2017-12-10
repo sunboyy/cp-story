@@ -1,9 +1,9 @@
 package skill;
 
 import controller.GameManager;
-import particle.NormalAttack;
+import particle.NormalAttackEffect;
 
-public class NoSkill extends AttackSkill {
+public class NotmalAttack extends AttackSkill {
 	
 	int age = 0;
 	int maxAge = 30;
@@ -36,7 +36,7 @@ public class NoSkill extends AttackSkill {
 	@Override
 	public void use() {
 		super.use();
-		GameManager.getInstance().getCurrentMap().getParticles().add(new NormalAttack());
+		GameManager.getInstance().getCurrentMap().getParticles().add(new NormalAttackEffect());
 	}
 
 	@Override
