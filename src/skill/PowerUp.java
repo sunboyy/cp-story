@@ -1,6 +1,7 @@
 package skill;
 
 import buff.PowerUpBuff;
+import constants.Sounds;
 import controller.GameManager;
 
 public class PowerUp extends Skill {
@@ -9,6 +10,7 @@ public class PowerUp extends Skill {
 	public void use() {
 		GameManager.getInstance().getPlayer().addBuff(new PowerUpBuff());
 		GameManager.getInstance().getCurrentMap().getParticles().add(new particle.PowerUp());
+		Sounds.fireSound.play();
 	}
 
 	@Override

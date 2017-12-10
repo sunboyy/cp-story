@@ -44,6 +44,7 @@ public class Images {
 	
 	public static final Image[] normalAttackEffect = new Image[10];
 	public static final Image[] levelUpEffect = new Image[20];
+	public static final Image[] powerUpEffect = new Image[16];
 	public static final Image[] gradeAEffect = new Image[2];
 	
 	public static final Image skillMultiKill = new Image("images/skill/multikill.png");
@@ -57,6 +58,9 @@ public class Images {
 		}
 		for (int i=0; i<levelUpEffect.length; i++) {
 			levelUpEffect[i] = new Image("images/effect/level_up/"+i+".png");
+		}
+		for (int i=0; i<powerUpEffect.length; i++) {
+			powerUpEffect[i] = new Image("images/effect/powerup/"+i+".png", 97, 283, true, true);
 		}
 		for (int i=0; i<gradeAEffect.length; i++) {
 			gradeAEffect[i] = new Image("images/effect/grade_a/"+i+".png");

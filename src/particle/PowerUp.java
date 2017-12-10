@@ -10,7 +10,7 @@ import model.player.Player;
 public class PowerUp implements IParticle {
 	
 	int age = 0;
-	int maxAge = 60;
+	int maxAge = 90;
 	
 	@Override
 	public boolean isVisible() {
@@ -26,9 +26,11 @@ public class PowerUp implements IParticle {
 	public void render(GraphicsContext gc) {
 		Player player = GameManager.getInstance().getPlayer();
 		Map map = GameManager.getInstance().getCurrentMap();
-		Image img = Images.skillPowerUp;
-		gc.setGlobalAlpha((-1./maxAge)*age + 1);
-		gc.drawImage(img, player.getX() - map.getX() + player.getWidth()/2 - img.getWidth()/2 - 20, player.getY()-map.getY()-82,72,72);
+		if (age > 60) {
+			gc.setGlobalAlpha((maxAge-age)/30.);
+		}
+		Image img = Images.powerUpEffect[(age/4)%16];
+		gc.drawImage(img, player.getX()-map.getX()+player.getWidth()/2-img.getWidth()/2, player.getY()+5-map.getY()+player.getHeight()-img.getHeight());
 		gc.setGlobalAlpha(1);
 		age++;
 	}
