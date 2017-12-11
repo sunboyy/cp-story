@@ -25,7 +25,7 @@ import model.map.Map;
 import particle.LevelUp;
 import sharedObject.SharedEntity;
 import skill.AttackSkill;
-import skill.NoSkill;
+import skill.NotmalAttack;
 import skill.Skill;
 
 public abstract class Player extends DamageableEntity {
@@ -58,7 +58,7 @@ public abstract class Player extends DamageableEntity {
 		this.imgCrying = imgCrying;
 		this.imgWalkAndCry = imgWalkAndCry;
 		this.imgAttack = imgAttack;
-		this.skills.add(new NoSkill());
+		this.skills.add(new NotmalAttack());
 	}
 	
 	public void jump() {
@@ -163,9 +163,9 @@ public abstract class Player extends DamageableEntity {
 		}
 		// TODO Remove
 		if (KeyInput.pressingKey(KeyCode.A) && KeyInput.pressingKey(KeyCode.S) && KeyInput.pressingKey(KeyCode.D) && KeyInput.pressingKey(KeyCode.F)) {
-			addExperience(50);
+			addExperience(30);
 		}
-		while (KeyInput.pollAvailable()) {
+		while (KeyInput.isPollAvailable()) {
 			KeyCode key = KeyInput.pollKey();
 			if (key.isDigitKey()) {
 				int digit = Integer.parseInt(key.toString().substring(5));
@@ -211,7 +211,6 @@ public abstract class Player extends DamageableEntity {
 		Iterator<Buff> it = buffs.iterator();
 		while (it.hasNext()) {
 			Buff buff = it.next();
-			buff.update();
 			if (buff.isExpired()) {
 				it.remove();
 			}

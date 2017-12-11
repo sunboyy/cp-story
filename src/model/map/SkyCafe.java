@@ -7,7 +7,7 @@ import model.monster.Node;
 public class SkyCafe extends Map {
 
 	public SkyCafe() {
-		super(Images.skycafeBackground, Sounds.gardenBgm, Node.class);
+		super(Images.skycafeBackground, Sounds.skycafeBgm, Node.class);
 		getStructure().addAll(new StructureItem(0, 812, 1500, 5, true, false),
 				new StructureItem(333, 715, 628, 5, true),
 				

@@ -6,7 +6,7 @@ import controller.GameManager;
 public class RedPotion extends Item {
 
 	public RedPotion() {
-		super("Red Potion", Images.redPotionItem);
+		super("Red Potion", "Heals 50 HP.", Images.redPotionItem);
 	}
 
 	@Override

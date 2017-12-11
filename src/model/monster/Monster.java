@@ -8,7 +8,7 @@ import javafx.scene.image.Image;
 import model.DamageableEntity;
 import model.Entity;
 import model.map.Map;
-import particle.HPBar;
+import particle.HpBar;
 
 public abstract class Monster extends DamageableEntity {
 	
@@ -17,7 +17,7 @@ public abstract class Monster extends DamageableEntity {
 	private int walkTick = 0;
 	private int futureFacing = RIGHT;
 	private int aggressiveTick = 0;
-	private HPBar hpBar;
+	private HpBar hpBar;
 	private List<Image> imgWalking;
 	
 	public Monster(String name, List<Image> imgWalking, Map map, int level, int hp, int mp, int atkLow, int atkHigh, int experience) {
@@ -29,7 +29,7 @@ public abstract class Monster extends DamageableEntity {
 				, map, x, y, hp, mp, atkLow, atkHigh);
 		this.level = level;
 		this.experience = experience;
-		this.hpBar = new HPBar(this);
+		this.hpBar = new HpBar(this);
 		this.imgWalking = imgWalking;
 	}
 	
@@ -37,7 +37,7 @@ public abstract class Monster extends DamageableEntity {
 	public void damage(int hp) {
 		super.damage(hp);
 		hpBar.resetVisible();
-		aggressiveTick = 300;
+		aggressiveTick = 360;
 		aiDelay = 0;
 		walkTick = 0;
 	}
@@ -62,18 +62,6 @@ public abstract class Monster extends DamageableEntity {
 		}
 	}
 	
-	public int getAiDelay() {
-		return aiDelay;
-	}
-
-	public int getWalkTick() {
-		return walkTick;
-	}
-
-	public int getFutureFacing() {
-		return futureFacing;
-	}
-
 	@Override
 	public void render(GraphicsContext gc) {
 		if (age < 30) {
@@ -87,8 +75,16 @@ public abstract class Monster extends DamageableEntity {
 		hpBar.render(gc);
 	}
 	
-	public int getExperience() {
-		return experience;
+	public int getAiDelay() {
+		return aiDelay;
+	}
+
+	public int getWalkTick() {
+		return walkTick;
+	}
+
+	public int getFutureFacing() {
+		return futureFacing;
 	}
 	
 	public List<Image> getImgWalking(){

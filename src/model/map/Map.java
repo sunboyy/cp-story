@@ -48,7 +48,7 @@ public abstract class Map extends Rectangle {
 		this.img = img;
 		this.bgm = new MediaPlayer(new Media(bgm.getSource()));
 		this.bgm.setCycleCount(MediaPlayer.INDEFINITE);
-		structure = new MapStructure(this);
+		structure = new MapStructure();
 		for (Class<? extends Monster> i : monsterTypes)
 			this.monsterTypes.add(i);
 	}
@@ -183,7 +183,6 @@ public abstract class Map extends Rectangle {
 
 	public void render(GraphicsContext gc) {
 		gc.drawImage(img, -x, -y);
-		structure.render(gc);
 		GameManager.getInstance().getPlayer().render(gc);
 		for (Entity i : SharedEntity.getInstance().getEntitiesOfMap(this))
 			i.render(gc);

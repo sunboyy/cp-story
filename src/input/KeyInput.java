@@ -13,25 +13,25 @@ public class KeyInput {
 	
 	private static Set<KeyCode> activeKeys = new HashSet<>();
 	private static Queue<KeyCode> triggerKeys = new ConcurrentLinkedQueue<>();
-	private static final Set<KeyCode> unpollableKeys = new HashSet<>();
+	private static final Set<KeyCode> UNPOLLABLE_KEYS = new HashSet<>();
 	
 	static {
-		unpollableKeys.add(KeyCode.LEFT);
-		unpollableKeys.add(KeyCode.RIGHT);
-		unpollableKeys.add(KeyCode.UP);
-		unpollableKeys.add(KeyCode.DOWN);
-		unpollableKeys.add(KeyCode.SPACE);
-		unpollableKeys.add(KeyCode.E);
+		UNPOLLABLE_KEYS.add(KeyCode.LEFT);
+		UNPOLLABLE_KEYS.add(KeyCode.RIGHT);
+		UNPOLLABLE_KEYS.add(KeyCode.UP);
+		UNPOLLABLE_KEYS.add(KeyCode.DOWN);
+		UNPOLLABLE_KEYS.add(KeyCode.SPACE);
+		UNPOLLABLE_KEYS.add(KeyCode.E);
 	}
 	
-	public static void addKey(KeyCode code) {
-		if (!unpollableKeys.contains(code) && !activeKeys.contains(code)) {
+	private static void addKey(KeyCode code) {
+		if (!UNPOLLABLE_KEYS.contains(code) && !activeKeys.contains(code)) {
 			triggerKeys.add(code);
 		}
 		activeKeys.add(code);
 	}
 	
-	public static void removeKey(KeyCode code) {
+	private static void removeKey(KeyCode code) {
 		activeKeys.remove(code);
 	}
 	
@@ -43,15 +43,15 @@ public class KeyInput {
 		activeKeys.clear();
 	}
 	
+	public static boolean isPollAvailable() {
+		return triggerKeys.size() != 0;
+	}
+	
 	public static KeyCode pollKey() {
 		if (triggerKeys.size() == 0) {
 			return null;
 		}
 		return triggerKeys.poll();
-	}
-	
-	public static boolean pollAvailable() {
-		return triggerKeys.size() != 0;
 	}
 	
 	public static void bindScene(Scene scene) {

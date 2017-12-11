@@ -15,7 +15,7 @@ public class PowerUp extends Skill {
 
 	@Override
 	public int getMpUse() {
-		return 8;
+		return 12;
 	}
 
 	@Override

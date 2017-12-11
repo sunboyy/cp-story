@@ -21,6 +21,7 @@ public class GameScene extends Scene {
 		root.getChildren().add(canvas);
 		
 		KeyInput.bindScene(this);
+		setOnMouseMoved(e -> Tooltip.update(e.getX(), e.getY()));
 		
 		KeyFrame kf = new KeyFrame(Duration.seconds(1./60), e -> {
 			if (GameManager.getInstance().isGameRunning()) {
