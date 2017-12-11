@@ -5,7 +5,7 @@ import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.paint.Color;
 import model.DamageableEntity;
 
-public class HPBar implements IParticle {
+public class HpBar implements IParticle {
 	
 	public static final int WIDTH = 80;
 	public static final int HEIGHT = 6;
@@ -13,7 +13,7 @@ public class HPBar implements IParticle {
 	private int visibleTick = 180;
 	private int maxVisibleTick = 180;
 	
-	public HPBar(DamageableEntity entity) {
+	public HpBar(DamageableEntity entity) {
 		this.entity = entity;
 	}
 	

@@ -7,7 +7,7 @@ import controller.GameManager;
 public class FastLearnScroll extends Item {
 
 	public FastLearnScroll() {
-		super("Fast Learn Scroll", Images.fastLearnItem);
+		super("Fast Learn Scroll", "+50% exp gain rate for 60s", Images.fastLearnItem);
 		maxCount = 1;
 	}
 

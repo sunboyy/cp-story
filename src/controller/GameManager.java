@@ -25,6 +25,7 @@ import model.player.Player;
 import sharedObject.SharedEntity;
 import ui.StartScene;
 import ui.StatusBar;
+import ui.Tooltip;
 
 public class GameManager {
 	
@@ -92,6 +93,7 @@ public class GameManager {
 			}
 		}
 		StatusBar.render(gc);
+		Tooltip.render(gc);
 	}
 	
 	public void update() {
