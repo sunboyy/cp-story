@@ -1,6 +1,5 @@
 package particle;
 
-import constants.FontStream;
 import constants.Images;
 import controller.GameManager;
 import javafx.geometry.VPos;
@@ -13,7 +12,7 @@ import model.player.Player;
 
 public class LevelUp implements IParticle {
 
-	public static final Font LEVEL_UP_FONT = Font.loadFont(FontStream.ARIAL_ROUNDED_BOLD, 24);
+	public static final Font LEVEL_UP_FONT = Font.font("Gill Sans", 24);
 	public static final Color TEXT_COLOR = Color.color(1, 198./255, 2./255);
 	
 	private int visibleTick = 0;
@@ -58,13 +57,13 @@ public class LevelUp implements IParticle {
 		gc.setLineWidth(1);
 		if (visibleTick >= 60) {
 			gc.setGlobalAlpha((maxVisibleTick-visibleTick)/60.);
-			gc.fillText("LEVEL UP", x, y);
 			gc.strokeText("LEVEL UP", x, y);
+			gc.fillText("LEVEL UP", x, y);
 			gc.setGlobalAlpha(1);
 		}
 		else {
-			gc.fillText("LEVEL UP", x, y);
 			gc.strokeText("LEVEL UP", x, y);
+			gc.fillText("LEVEL UP", x, y);
 		}
 		visibleTick++;
 	}

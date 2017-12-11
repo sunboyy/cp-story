@@ -1,18 +1,18 @@
 package particle;
 
 import constants.Constants;
-import constants.FontStream;
 import constants.Images;
 import constants.Sounds;
 import javafx.geometry.VPos;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
+import javafx.scene.text.FontWeight;
 import javafx.scene.text.TextAlignment;
 
 public class GradeAEffect implements IParticle {
 
-	private static final Font CENTER_FONT = Font.loadFont(FontStream.ARIAL_ROUNDED_BOLD, 192);
+	private static final Font CENTER_FONT = Font.font("Gill Sans", FontWeight.BOLD, 192);
 	
 	private int visibleTick = 0;
 	private int maxVisibleTick = 240;
