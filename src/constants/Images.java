@@ -29,7 +29,6 @@ public class Images {
 	public static final Image cpEngPlayerCryL = new Image("images/player/CPPlayerLCry.png",77.25,110,true,false);
 	public static final Image cpEngPlayerWalkCryL = new Image("images/player/CPPlayerLWalkCry.png",77.25,110,true,false);
 	public static final Image cpEngPlayerFightL1 = new Image("images/player/CPPlayerFightL1.png",77.25,110,true,false);
-	public static final Image cpEngPlayerFightL2 = new Image("images/player/CPPlayerFightL2.png",77.25,110,true,false);
 	public static final Image cpEngPlayerDeadL = new Image("images/player/CPPlayerLGhost.png",77.25,110,true,false);
 	public static final Image cpEngPlayerDeadFightL = new Image("images/player/CPPlayerFightLGhost.png",77.25,110,true,false);
 	public static final Image cpEngPlayerR = new Image("images/player/CPPlayerR.png",77.25,110,true,false);
@@ -37,7 +36,6 @@ public class Images {
 	public static final Image cpEngPlayerCryR = new Image("images/player/CPPlayerRCry.png",77.25,110,true,false);
 	public static final Image cpEngPlayerWalkCryR = new Image("images/player/CPPlayerRWalkCry.png",77.25,110,true,false);
 	public static final Image cpEngPlayerFightR1 = new Image("images/player/CPPlayerFightR1.png",77.25,110,true,false);
-	public static final Image cpEngPlayerFightR2 = new Image("images/player/CPPlayerFightR2.png",77.25,110,true,false);
 	public static final Image cpEngPlayerDeadR = new Image("images/player/CPPlayerRGhost.png",77.25,110,true,false);
 	public static final Image cpEngPlayerDeadFightR = new Image("images/player/CPPlayerFightRGhost.png",77.25,110,true,false);
 	

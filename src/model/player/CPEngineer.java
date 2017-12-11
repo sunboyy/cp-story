@@ -25,8 +25,7 @@ public class CPEngineer extends Player {
 				, new ArrayList<>(Arrays.asList(Images.cpEngPlayerWalkL, Images.cpEngPlayerWalkR))
 				, new ArrayList<>(Arrays.asList(Images.cpEngPlayerCryL, Images.cpEngPlayerCryR))
 				, new ArrayList<>(Arrays.asList(Images.cpEngPlayerWalkCryL, Images.cpEngPlayerWalkCryR))
-				, new ArrayList<>(Arrays.asList(Images.cpEngPlayerFightL1, Images.cpEngPlayerFightL2,
-						Images.cpEngPlayerFightR1, Images.cpEngPlayerFightR2))
+				, new ArrayList<>(Arrays.asList(Images.cpEngPlayerFightL1, Images.cpEngPlayerFightR1))
 				, map, x, y);
 		imgWalkDead = new ArrayList<>(Arrays.asList(Images.cpEngPlayerDeadL,Images.cpEngPlayerDeadR));
 		imgFightDead = new ArrayList<>(Arrays.asList(Images.cpEngPlayerDeadFightL,Images.cpEngPlayerDeadFightR));
@@ -59,7 +58,7 @@ public class CPEngineer extends Player {
 			if (isDead()) {
 				setFacing(this.facing, imgFightDead.get((this.facing+1)/2));
 			} else {
-				setFacing(this.facing,imgAttack.get(this.facing+1));
+				setFacing(this.facing,imgAttack.get((this.facing+1)/2));
 			}
 		} 
 	}
