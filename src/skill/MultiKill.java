@@ -29,6 +29,11 @@ public class MultiKill extends AttackSkill {
 	public int getMaxEntity() {
 		return 4;
 	}
+
+	@Override
+	public int getCooldownTick() {
+		return 30;
+	}
 	
 	@Override
 	public int getMpUse() {
@@ -44,11 +49,6 @@ public class MultiKill extends AttackSkill {
 	public void use() {
 		super.use();
 		GameManager.getInstance().getCurrentMap().getParticles().add(new MultiKillEffect());
-	}
-
-	@Override
-	public int getCooldownTick() {
-		return 30;
 	}
 
 }

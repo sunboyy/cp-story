@@ -15,7 +15,7 @@ public class GradeAForSure extends Skill {
 
 	@Override
 	public String getDescription() {
-		return "Kill all monsters in the map";
+		return "40 MP, Kill all monsters";
 	}
 
 	@Override
@@ -30,7 +30,7 @@ public class GradeAForSure extends Skill {
 
 	@Override
 	public int getMpUse() {
-		return 30;
+		return 40;
 	}
 
 	@Override

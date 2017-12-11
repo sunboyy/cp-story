@@ -15,9 +15,6 @@ public class NotmalAttack extends AttackSkill {
 		return "";
 	}
 
-	int age = 0;
-	int maxAge = 30;
-
 	@Override
 	public double getDamageMultiplier() {
 		return 1;
