@@ -12,6 +12,7 @@ public class Sounds {
 	public static final AudioClip fireSound = new AudioClip(ClassLoader.getSystemResource("audio/effects/fire.mp3").toString());
 	
 	public static final AudioClip gardenBgm = new AudioClip(ClassLoader.getSystemResource("audio/bgm/garden.wav").toString());
+	public static final AudioClip building4Bgm = new AudioClip(ClassLoader.getSystemResource("audio/bgm/building4.wav").toString());
 	public static final AudioClip skycafeBgm = new AudioClip(ClassLoader.getSystemResource("audio/bgm/skycafe.wav").toString());
 	
 	static {

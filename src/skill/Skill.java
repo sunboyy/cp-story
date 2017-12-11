@@ -27,6 +27,7 @@ public abstract class Skill implements IUsable {
 			throw new CooldownException();
 	}
 	
+	@Override
 	public void activate() {
 		if (!shouldUse()) return;
 		try {
