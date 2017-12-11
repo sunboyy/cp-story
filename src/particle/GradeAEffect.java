@@ -9,7 +9,7 @@ import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.TextAlignment;
 
-public class GradeA implements IParticle {
+public class GradeAEffect implements IParticle {
 
 	public static final Font CENTER_FONT = Font.font("Arial Rounded MT Bold", 192);
 	

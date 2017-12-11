@@ -1,6 +1,7 @@
 package skill;
 
 import controller.GameManager;
+import particle.PowerOfJoeEffect;
 
 public class PowerOfJoe extends AttackSkill {
 	
@@ -40,6 +41,6 @@ public class PowerOfJoe extends AttackSkill {
 	@Override
 	public void use() {
 		super.use();
-		GameManager.getInstance().getCurrentMap().getParticles().add(new particle.PowerOfJoe());
+		GameManager.getInstance().getCurrentMap().getParticles().add(new PowerOfJoeEffect());
 	}
 }

@@ -3,7 +3,7 @@ package skill;
 import constants.Sounds;
 import controller.GameManager;
 import model.monster.Monster;
-import particle.GradeA;
+import particle.GradeAEffect;
 import sharedObject.SharedEntity;
 
 public class GradeAForSure extends Skill {
@@ -15,7 +15,7 @@ public class GradeAForSure extends Skill {
 			Sounds.deadSound.play();
 			GameManager.getInstance().getPlayer().addExperience(i.getExperience());
 		}
-		GameManager.getInstance().getCurrentMap().getParticles().add(new GradeA());
+		GameManager.getInstance().getCurrentMap().getParticles().add(new GradeAEffect());
 	}
 
 	@Override

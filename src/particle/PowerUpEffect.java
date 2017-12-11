@@ -7,7 +7,7 @@ import javafx.scene.image.Image;
 import model.map.Map;
 import model.player.Player;
 
-public class PowerUp implements IParticle {
+public class PowerUpEffect implements IParticle {
 	
 	int age = 0;
 	int maxAge = 90;

@@ -3,13 +3,14 @@ package skill;
 import buff.PowerUpBuff;
 import constants.Sounds;
 import controller.GameManager;
+import particle.PowerUpEffect;
 
 public class PowerUp extends Skill {
 
 	@Override
 	public void use() {
 		GameManager.getInstance().getPlayer().addBuff(new PowerUpBuff());
-		GameManager.getInstance().getCurrentMap().getParticles().add(new particle.PowerUp());
+		GameManager.getInstance().getCurrentMap().getParticles().add(new PowerUpEffect());
 		Sounds.fireSound.play();
 	}
 
