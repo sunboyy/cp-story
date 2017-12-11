@@ -13,6 +13,8 @@ public class Images {
 	public static final Image skycafeBackground = new Image("images/background/bg_sky-cafe.jpg",1300,900,false,false);
 	public static final Image building4Background = new Image("images/background/bg_building4.jpg",1300,900,false,false);
 	
+	public static final Image[] portal = new Image[3];
+	
 	public static final Image monsterProgmethR = new Image("images/monster/progmethR.png");
 	public static final Image monsterProgmethL = new Image("images/monster/progmethL.png");
 	public static final Image monsterMiniTreeUp = new Image("images/monster/MiniTree1.png");
@@ -66,6 +68,9 @@ public class Images {
 		}
 		for (int i=0; i<gradeAEffect.length; i++) {
 			gradeAEffect[i] = new Image("images/effect/grade_a/"+i+".png");
+		}
+		for(int i=0;i<portal.length;i++) {
+			portal[i] = new Image("images/Portal"+(i+1)+".png");
 		}
 	}
 	

@@ -1,12 +1,14 @@
 package model.map;
 
+import constants.Images;
 import controller.GameManager;
 import javafx.scene.canvas.GraphicsContext;
-import javafx.scene.paint.Color;
+import javafx.scene.image.Image;
 import model.Rectangle;
 
 public class Portal extends Rectangle {
-
+	
+	private int counter = 0;
 	private double xDest;
 	private double yDest;
 	private Map destination;
@@ -20,11 +22,10 @@ public class Portal extends Rectangle {
 	
 	// TODO Change to image
 	public void render(GraphicsContext gc) {
-		gc.setGlobalAlpha(0.5);
-		gc.setFill(Color.CYAN);
-		gc.fillOval(x-GameManager.getInstance().getCurrentMap().getX()-30, y-GameManager.getInstance().getCurrentMap().getY()-70, 60, 80);
-		gc.setFill(Color.BLUE);
-		gc.fillOval(x-GameManager.getInstance().getCurrentMap().getX(), y-GameManager.getInstance().getCurrentMap().getY(), width, height);
+		gc.setGlobalAlpha(0.7);
+		counter = counter >= 30 ? 0 : counter + 1;
+		Image img = Images.portal[(counter%30)/10];
+		gc.drawImage(img, x-GameManager.getInstance().getCurrentMap().getX() - img.getWidth()/2, y-GameManager.getInstance().getCurrentMap().getY() - img.getHeight()+10);
 		gc.setGlobalAlpha(1);
 	}
 
