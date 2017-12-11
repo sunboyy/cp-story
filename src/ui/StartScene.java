@@ -22,6 +22,8 @@ import main.Main;
 
 public class StartScene extends Scene {
 	
+	private static final Font LABEL_FONT = Font.font("Arial", 24);
+	
 	private Pane root;
 	private Canvas canvas;
 	private TextField nameField;
@@ -79,7 +81,7 @@ public class StartScene extends Scene {
 			gc.fillRect(0, 0, Constants.WINDOW_WIDTH, 600);
 			gc.setFill(Color.color(1, 1, 1, 0.8));
 			gc.fillRoundRect(200, 600-15*animationTick, 600, 300, 100, 100);
-			gc.setFont(Font.font("Helvetica", 24));
+			gc.setFont(LABEL_FONT);
 			gc.setTextAlign(TextAlignment.CENTER);
 			gc.setFill(Color.BLACK);
 			gc.fillText("Enter your name:", Constants.WINDOW_WIDTH/2, 660-15*animationTick);

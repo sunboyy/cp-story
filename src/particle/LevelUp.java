@@ -1,5 +1,6 @@
 package particle;
 
+import constants.FontStream;
 import constants.Images;
 import controller.GameManager;
 import javafx.geometry.VPos;
@@ -7,13 +8,12 @@ import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
-import javafx.scene.text.FontWeight;
 import javafx.scene.text.TextAlignment;
 import model.player.Player;
 
 public class LevelUp implements IParticle {
 
-	public static final Font LEVEL_UP_FONT = Font.font("Arial Rounded MT Bold", FontWeight.BOLD, 24);
+	public static final Font LEVEL_UP_FONT = Font.loadFont(FontStream.ARIAL_ROUNDED_BOLD, 24);
 	public static final Color TEXT_COLOR = Color.color(1, 198./255, 2./255);
 	
 	private int visibleTick = 0;
