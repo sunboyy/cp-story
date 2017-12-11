@@ -15,9 +15,6 @@ public class PowerOfJoe extends AttackSkill {
 		return "2 MP, -50% hit continuously";
 	}
 
-	int age = 0;
-	int maxAge = 30;
-
 	@Override
 	public double getDamageMultiplier() {
 		return 0.5;
