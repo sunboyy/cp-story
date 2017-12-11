@@ -20,11 +20,10 @@ public class Portal extends Rectangle {
 		this.yDest = yDest;
 	}
 	
-	// TODO Change to image
 	public void render(GraphicsContext gc) {
 		gc.setGlobalAlpha(0.7);
-		counter = counter >= 30 ? 0 : counter + 1;
-		Image img = Images.portal[(counter%30)/10];
+		counter = (counter+1) % 30;
+		Image img = Images.portal[counter/10];
 		gc.drawImage(img, x-GameManager.getInstance().getCurrentMap().getX() - img.getWidth()/2, y-GameManager.getInstance().getCurrentMap().getY() - img.getHeight()+10);
 		gc.setGlobalAlpha(1);
 	}

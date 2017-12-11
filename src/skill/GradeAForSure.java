@@ -9,6 +9,16 @@ import sharedObject.SharedEntity;
 public class GradeAForSure extends Skill {
 
 	@Override
+	public String getName() {
+		return "Grade A for sure";
+	}
+
+	@Override
+	public String getDescription() {
+		return "Kill all monsters in the map";
+	}
+
+	@Override
 	public void use() {
 		for (Monster i: SharedEntity.getInstance().getMonsterOfCurrentMap()) {
 			i.forceKill();

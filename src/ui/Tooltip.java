@@ -8,6 +8,7 @@ import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.TextAlignment;
 import model.item.Item;
+import skill.Skill;
 
 public class Tooltip {
 
@@ -24,6 +25,15 @@ public class Tooltip {
 	public static void update(double newX, double newY) {
 		x = newX;
 		y = newY;
+		for (int i=1;i<=4;i++) {
+			if (isMouseInSkill(i)) {
+				Skill skill = GameManager.getInstance().getPlayer().getSkills().get(i);
+				title = skill.getName();
+				description = skill.getDescription();
+				shouldShow = true;
+				return;
+			}
+		}
 		for (int i=0;i<10;i++) {
 			if (isMouseInInventory(i)) {
 				Item item = GameManager.getInstance().getPlayer().getInventory()[i];
@@ -36,6 +46,14 @@ public class Tooltip {
 			}
 		}
 		shouldShow = false;
+	}
+	
+	private static boolean isMouseInSkill(int i) {
+		double leftBound = 355+50*i;
+		double rightBound = leftBound + 36;
+		double topBound = Constants.WINDOW_HEIGHT-StatusBar.HEIGHT+StatusBar.SKILL_ITEM_Y;
+		double bottomBound = topBound + 36;
+		return (x >= leftBound) && (x < rightBound) && (y >= topBound) && (y < bottomBound);
 	}
 	
 	private static boolean isMouseInInventory(int i) {

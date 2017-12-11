@@ -4,7 +4,17 @@ import controller.GameManager;
 import particle.PowerOfJoeEffect;
 
 public class PowerOfJoe extends AttackSkill {
-	
+
+	@Override
+	public String getName() {
+		return "Power of Joe";
+	}
+
+	@Override
+	public String getDescription() {
+		return "2 MP, -50% hit continuously";
+	}
+
 	int age = 0;
 	int maxAge = 30;
 

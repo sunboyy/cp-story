@@ -9,6 +9,8 @@ public abstract class Skill implements IUsable {
 	
 	private long lastUsedTimeMillis = 0;
 	
+	public abstract String getName();
+	public abstract String getDescription();
 	public abstract int getMpUse();
 	public abstract int getCooldownTimeMillis();
 	

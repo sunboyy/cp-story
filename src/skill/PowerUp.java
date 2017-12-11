@@ -8,6 +8,16 @@ import particle.PowerUpEffect;
 public class PowerUp extends Skill {
 
 	@Override
+	public String getName() {
+		return "Power Up";
+	}
+
+	@Override
+	public String getDescription() {
+		return "12 MP, +50% attack for 90s";
+	}
+
+	@Override
 	public void use() {
 		GameManager.getInstance().getPlayer().addBuff(new PowerUpBuff());
 		GameManager.getInstance().getCurrentMap().getParticles().add(new PowerUpEffect());

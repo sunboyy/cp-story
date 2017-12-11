@@ -4,7 +4,17 @@ import controller.GameManager;
 import particle.NormalAttackEffect;
 
 public class NotmalAttack extends AttackSkill {
-	
+
+	@Override
+	public String getName() {
+		return "Normal Attack";
+	}
+
+	@Override
+	public String getDescription() {
+		return "";
+	}
+
 	int age = 0;
 	int maxAge = 30;
 

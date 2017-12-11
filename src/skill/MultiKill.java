@@ -6,6 +6,16 @@ import particle.MultiKillEffect;
 public class MultiKill extends AttackSkill {
 
 	@Override
+	public String getName() {
+		return "Multi Kill";
+	}
+
+	@Override
+	public String getDescription() {
+		return "4 MP, Hit 4 monsters +50%";
+	}
+
+	@Override
 	public double getDamageMultiplier() {
 		return 1.5;
 	}
