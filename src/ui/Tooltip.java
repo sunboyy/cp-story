@@ -26,7 +26,7 @@ public class Tooltip {
 		x = newX;
 		y = newY;
 		for (int i=1;i<=4;i++) {
-			if (isMouseInSkill(i)) {
+			if (isMouseOnSkill(i)) {
 				Skill skill = GameManager.getInstance().getPlayer().getSkills().get(i);
 				title = skill.getName();
 				description = skill.getDescription();
@@ -35,7 +35,7 @@ public class Tooltip {
 			}
 		}
 		for (int i=0;i<10;i++) {
-			if (isMouseInInventory(i)) {
+			if (isMouseOnItem(i)) {
 				Item item = GameManager.getInstance().getPlayer().getInventory()[i];
 				if (item != null) {
 					title = item.getName();
@@ -48,7 +48,7 @@ public class Tooltip {
 		shouldShow = false;
 	}
 	
-	private static boolean isMouseInSkill(int i) {
+	private static boolean isMouseOnSkill(int i) {
 		double leftBound = 355+50*i;
 		double rightBound = leftBound + 36;
 		double topBound = Constants.WINDOW_HEIGHT-StatusBar.HEIGHT+StatusBar.SKILL_ITEM_Y;
@@ -56,7 +56,7 @@ public class Tooltip {
 		return (x >= leftBound) && (x < rightBound) && (y >= topBound) && (y < bottomBound);
 	}
 	
-	private static boolean isMouseInInventory(int i) {
+	private static boolean isMouseOnItem(int i) {
 		double leftBound = StatusBar.ITEM_X+i*35;
 		double rightBound = leftBound + 30;
 		double topBound = Constants.WINDOW_HEIGHT-StatusBar.HEIGHT+StatusBar.SKILL_ITEM_Y;

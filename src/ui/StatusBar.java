@@ -15,14 +15,14 @@ import model.player.Player;
 public class StatusBar {
 	
 	public static final double HEIGHT = 60;
-	private static final double EXPERIENCE_HEIGHT = 5;
-	private static final double HP_MP_WIDTH = 200;
-	private static final double HP_MP_HEIGHT = 16;
-	private static final double HP_MP_X = 140;
-	private static final double HP_Y = 10;
-	private static final double MP_Y = 29;
-	public static final double ITEM_X = 645;
+	public static final double EXPERIENCE_HEIGHT = 5;
+	public static final double HP_MP_WIDTH = 200;
+	public static final double HP_MP_HEIGHT = 16;
+	public static final double HP_MP_X = 140;
+	public static final double HP_Y = 10;
+	public static final double MP_Y = 29;
 	public static final double SKILL_ITEM_Y = 10;
+	public static final double ITEM_X = 645;
 	
 	private static final Color BACKGROUND_COLOR = Color.color(0, 0, 0, .6);
 	private static final Color EXPERIENCE_COLOR = Color.LIME;
