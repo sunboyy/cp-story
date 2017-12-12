@@ -56,7 +56,7 @@ public abstract class Monster extends DamageableEntity {
 			int index = (futureFacing+1)*imgWalking.size()/4;
 			if (walkTick%30<15) index = index + 1 >= (futureFacing==Entity.LEFT?imgWalking.size()/2:imgWalking.size()) ? index : index + 1;
 			setFacing(futureFacing, imgWalking.get(index));
-			GameManager.getInstance().getCurrentMap().pushAccX(this, facing*0.5);
+			getMap().pushAccX(this, facing*0.5);
 		} else {
 			setFacing(facing,imgWalking.get((facing+1)*imgWalking.size()/4));
 		}
@@ -75,6 +75,7 @@ public abstract class Monster extends DamageableEntity {
 		hpBar.render(gc);
 	}
 	
+	// Getter
 	public int getAiDelay() {
 		return aiDelay;
 	}
@@ -85,10 +86,6 @@ public abstract class Monster extends DamageableEntity {
 
 	public int getFutureFacing() {
 		return futureFacing;
-	}
-	
-	public List<Image> getImgWalking(){
-		return this.imgWalking;
 	}
 	
 	// Setter
