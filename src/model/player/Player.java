@@ -75,9 +75,9 @@ public abstract class Player extends DamageableEntity {
 		}
 	}
 	
-	public boolean attack(AttackSkill skill, List<DamageableEntity> list) {
-		if (list == null) return false;
+	public boolean attack(AttackSkill skill) {
 		if (!canAttack()) return false;
+		List<DamageableEntity> list = GameManager.getInstance().getCurrentMap().collideDamageableEntity(getAttackArea(skill), skill.getMaxEntity());
 		for (DamageableEntity e: list) {
 			e.damage((int) (getAttackDamage() * skill.getDamageMultiplier()));
 			if (e.isDead()) {
@@ -121,6 +121,38 @@ public abstract class Player extends DamageableEntity {
 	
 	public void update() {
 		isCrying = getHp() < 0.2*getMaxHp();
+		updateByPressingKeys();
+		while (KeyInput.isPollAvailable()) {
+			KeyCode key = KeyInput.pollKey();
+			updateByPollKey(key);
+		}
+		walkTick = isWalking() ? (walkTick + 1)%maxWalkTick : 0; 
+		if (isDead()) {
+			if (expDropTick <= 0) {
+				experience--;
+				if (experience < 0) experience = 0;
+				expDropTick = 15;
+			}
+			else {
+				expDropTick--;
+			}
+		}
+		if (attackTick > 0) attackTick--;
+		if (damageTick < maxDamageTick) damageTick++;
+		else if (GameManager.getInstance().getCurrentMap().collideDamageableEntity(this, 1).size() != 0) {
+			damage(GameManager.getInstance().getCurrentMap().collideDamageableEntity(this, 1).get(0).getAttackDamage());
+			damageTick = 0;
+		}
+		Iterator<Buff> it = buffs.iterator();
+		while (it.hasNext()) {
+			Buff buff = it.next();
+			if (buff.isExpired()) {
+				it.remove();
+			}
+		}
+	}
+	
+	public void updateByPressingKeys() {
 		if (KeyInput.pressingKey(KeyCode.LEFT)) {
 			isWalking = true;
 			setMove(LEFT);
@@ -158,62 +190,26 @@ public abstract class Player extends DamageableEntity {
 		if (KeyInput.pressingKey(KeyCode.UP)) {
 			GameManager.getInstance().warp();
 		}
-		if (KeyInput.pressingKey(KeyCode.E) && skills.size() > 3) {
-			skills.get(3).activate();
-		}
 		// TODO Remove
 		if (KeyInput.pressingKey(KeyCode.A) && KeyInput.pressingKey(KeyCode.S) && KeyInput.pressingKey(KeyCode.D) && KeyInput.pressingKey(KeyCode.F)) {
 			addExperience(30);
 		}
-		while (KeyInput.isPollAvailable()) {
-			KeyCode key = KeyInput.pollKey();
-			if (key.isDigitKey()) {
-				int digit = Integer.parseInt(key.toString().substring(5));
-				int index = (digit + 9) % 10;
-				if (inventory[index] != null) {
-					Item item = inventory[index];
-					item.activate();
-					if (item.getCount() <= 0) {
-						inventory[index] = null;
-					}
+	}
+	
+	public void updateByPollKey(KeyCode key) {
+		if (key.isDigitKey()) {
+			int digit = Integer.parseInt(key.toString().substring(5));
+			int index = (digit + 9) % 10;
+			if (inventory[index] != null) {
+				Item item = inventory[index];
+				item.activate();
+				if (item.getCount() <= 0) {
+					inventory[index] = null;
 				}
 			}
-			else if (key == KeyCode.A && skills.size() > 0) {
-				skills.get(0).activate();
-			}
-			else if (key == KeyCode.Q && skills.size() > 1) {
-				skills.get(1).activate();
-			}
-			else if (key == KeyCode.W && skills.size() > 2) {
-				skills.get(2).activate();
-			}
-			else if (key == KeyCode.R && skills.size() > 4) {
-				skills.get(4).activate();
-			}
 		}
-		walkTick = isWalking() ? (walkTick + 1)%maxWalkTick : 0; 
-		if (isDead()) {
-			if (expDropTick <= 0) {
-				experience--;
-				if (experience < 0) experience = 0;
-				expDropTick = 15;
-			}
-			else {
-				expDropTick--;
-			}
-		}
-		if (attackTick > 0) attackTick--;
-		if (damageTick < maxDamageTick) damageTick++;
-		else if (GameManager.getInstance().getCurrentMap().collideDamageableEntity(this, 1).size() != 0) {
-			damage(GameManager.getInstance().getCurrentMap().collideDamageableEntity(this, 1).get(0).getAttackDamage());
-			damageTick = 0;
-		}
-		Iterator<Buff> it = buffs.iterator();
-		while (it.hasNext()) {
-			Buff buff = it.next();
-			if (buff.isExpired()) {
-				it.remove();
-			}
+		if (key == KeyCode.A) {
+			skills.get(0).activate();
 		}
 	}
 	

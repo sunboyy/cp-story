@@ -5,7 +5,9 @@ import java.util.Arrays;
 import java.util.List;
 
 import constants.Images;
+import input.KeyInput;
 import javafx.scene.image.Image;
+import javafx.scene.input.KeyCode;
 import model.map.Map;
 import skill.PowerOfJoe;
 import skill.PowerUp;
@@ -61,6 +63,28 @@ public class CPEngineer extends Player {
 				setFacing(this.facing,imgAttack.get((this.facing+1)/2));
 			}
 		} 
+	}
+	
+	@Override
+	public void updateByPressingKeys() {
+		super.updateByPressingKeys();
+		if (KeyInput.pressingKey(KeyCode.E)) {
+			skills.get(3).activate();
+		}
+	}
+	
+	@Override
+	public void updateByPollKey(KeyCode key) {
+		super.updateByPollKey(key);
+		if (key == KeyCode.Q) {
+			skills.get(1).activate();
+		}
+		else if (key == KeyCode.W) {
+			skills.get(2).activate();
+		}
+		else if (key == KeyCode.R) {
+			skills.get(4).activate();
+		}
 	}
 	
 }

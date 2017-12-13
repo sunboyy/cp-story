@@ -51,7 +51,7 @@ public abstract class DamageableEntity extends Entity {
 	}
 	
 	public void forceKill() {
-		damage(999999);
+		damage(99999);
 		SharedEntity.getInstance().remove(this);
 		try {
 			SharedEntity.getInstance().addAll(spawnLoot());

@@ -68,6 +68,19 @@ public abstract class Entity extends Rectangle {
 		gc.drawImage(getImage(), x-GameManager.getInstance().getCurrentMap().x, y-GameManager.getInstance().getCurrentMap().y);
 	}
 	
+	public String toString() {
+		return getClass().getSimpleName();
+	}
+	
+	public void setFacing(int facing) {
+		setFacing(facing, facing==LEFT ? imageL : imageR);
+	}
+	
+	public void setFacing(int facing, Image img) {
+		this.facing = facing;
+		this.image = img;
+	}
+	
 	// Getter
 	public int getFacing() {
 		return facing;
@@ -104,19 +117,6 @@ public abstract class Entity extends Rectangle {
 	
 	public void setMap(Map map) {
 		this.map = map;
-	}
-	
-	public String toString() {
-		return getClass().getSimpleName();
-	}
-	
-	public void setFacing(int facing) {
-		setFacing(facing, facing==LEFT ? imageL : imageR);
-	}
-	
-	public void setFacing(int facing, Image img) {
-		this.facing = facing;
-		this.image = img;
 	}
 }
 

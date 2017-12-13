@@ -235,10 +235,6 @@ public abstract class Map extends Rectangle {
 		return isOnFloor(e) ? groundFriction : airFriction;
 	}
 
-	public List<Class<? extends Monster>> getMonsterTypes() {
-		return monsterTypes;
-	}
-
 	public MapStructure getStructure() {
 		return structure;
 	}

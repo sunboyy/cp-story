@@ -16,8 +16,7 @@ public abstract class AttackSkill extends Skill {
 	
 	@Override
 	public void use() {
-		GameManager.getInstance().getPlayer().attack(this, GameManager.getInstance().getCurrentMap()
-				.collideDamageableEntity(GameManager.getInstance().getPlayer().getAttackArea(this), getMaxEntity()));
+		GameManager.getInstance().getPlayer().attack(this);
 	}
 
 }
