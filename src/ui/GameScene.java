@@ -11,11 +11,9 @@ import javafx.util.Duration;
 
 public class GameScene extends Scene {
 	
-	private StackPane root;
-	
 	public GameScene() {
 		super(new StackPane(), 1000, 600);
-		root = (StackPane)getRoot();
+		StackPane root = (StackPane)getRoot();
 		
 		Canvas canvas = new Canvas(1000, 600);
 		root.getChildren().add(canvas);

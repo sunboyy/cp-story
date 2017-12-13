@@ -9,8 +9,8 @@ import model.player.Player;
 
 public class PowerUpEffect implements IParticle {
 	
-	int age = 0;
-	int maxAge = 90;
+	private int age = 0;
+	private int maxAge = 90;
 	
 	@Override
 	public boolean isVisible() {

@@ -10,8 +10,8 @@ import model.player.Player;
 
 public class NormalAttackEffect implements IParticle {
 
-	int age = 0;
-	int maxAge = 30;
+	private int age = 0;
+	private int maxAge = 30;
 	
 	@Override
 	public boolean isVisible() {
