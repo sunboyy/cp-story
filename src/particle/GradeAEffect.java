@@ -7,11 +7,12 @@ import javafx.geometry.VPos;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
+import javafx.scene.text.FontWeight;
 import javafx.scene.text.TextAlignment;
 
 public class GradeAEffect implements IParticle {
 
-	public static final Font CENTER_FONT = Font.font("Arial Rounded MT Bold", 192);
+	private static final Font CENTER_FONT = Font.font("Gill Sans", FontWeight.BOLD, 192);
 	
 	private int visibleTick = 0;
 	private int maxVisibleTick = 240;

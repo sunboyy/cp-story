@@ -10,7 +10,7 @@ import javafx.scene.text.TextAlignment;
 
 public class Damage implements IParticle {
 	
-	public static final Font TEXT_FONT = Font.font("Impact", FontWeight.BOLD, 36);
+	private static final Font TEXT_FONT = Font.font("Impact", FontWeight.BOLD, 36);
 	private int visibleTick = 0;
 	private int maxVisibleTick = 60;
 	

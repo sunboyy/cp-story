@@ -19,9 +19,9 @@ public class MapStructure extends ArrayList<StructureItem> {
 		for (StructureItem i: items) add(i);
 	}
 	
-	public StructureItem collideWith(Entity other) {
+	public StructureItem collideWith(Entity entity) {
 		for (StructureItem i: this) {
-			if (i.collideWith(other)) return i;
+			if (i.collideWith(entity)) return i;
 		}
 		return null;
 	}

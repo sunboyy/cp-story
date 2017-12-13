@@ -15,7 +15,7 @@ import model.player.Player;
 
 public class DisplayName implements IParticle {
 	
-	public static final Font NAME_FONT = Font.font("Helvetica", FontWeight.BOLD, 12);
+	public static final Font NAME_FONT = Font.font("Arial", FontWeight.BOLD, 12);
 
 	private DamageableEntity entity;
 	private int visibleTick = 180;

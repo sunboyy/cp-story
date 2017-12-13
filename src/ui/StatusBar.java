@@ -29,6 +29,7 @@ public class StatusBar {
 	private static final Color HP_COLOR = Color.RED;
 	private static final Color MP_COLOR = Color.color(0, .7, 1);
 	
+	private static final Font LEVEL_FONT = Font.font("Arial", FontWeight.BOLD, 30);
 	private static final Font HP_MP_LABEL_FONT = Font.font("Tahoma", FontWeight.BOLD, 15);
 	private static final Font HP_MP_BAR_FONT = Font.font("Tahoma", FontWeight.BOLD, 12);
 	private static final Font EXPERIENCE_FONT = Font.font("Tahoma", FontWeight.BOLD, 9);
@@ -118,7 +119,7 @@ public class StatusBar {
 		}
 		
 		// Level
-		gc.setFont(Font.font("Helvetica", FontWeight.BOLD, 30));
+		gc.setFont(LEVEL_FONT);
 		gc.setTextAlign(TextAlignment.LEFT);
 		gc.setTextBaseline(VPos.CENTER);
 		gc.fillText(String.format("Lv. %d", player.getLevel()), 10, Constants.WINDOW_HEIGHT-HEIGHT/2);
