@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <class-diagram version="1.2.2" icons="true" automaticImage="PNG" always-add-relationships="false" generalizations="true" 
   realizations="true" associations="false" dependencies="false" nesting-relationships="true" router="FAN">  
-  <class id="1" language="java" name="constants.Sounds" project="cp-story" file="/cp-story/src/constants/Sounds.java" 
-    binary="false" corner="BOTTOM_RIGHT">    
+  <class id="1" language="java" name="constants.Sounds" project="2110215_Project_2017_CP_Story" 
+    file="/2110215_Project_2017_CP_Story/src/constants/Sounds.java" binary="false" corner="BOTTOM_RIGHT">    
     <position height="-1" width="-1" x="119" y="142"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
@@ -10,8 +10,8 @@
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="2" language="java" name="exception.InventoryFullException" project="cp-story" 
-    file="/cp-story/src/exception/InventoryFullException.java" binary="false" corner="BOTTOM_RIGHT">    
+  <class id="2" language="java" name="exception.InventoryFullException" project="2110215_Project_2017_CP_Story" 
+    file="/2110215_Project_2017_CP_Story/src/exception/InventoryFullException.java" binary="false" corner="BOTTOM_RIGHT">    
     <position height="-1" width="-1" x="362" y="106"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
@@ -19,8 +19,8 @@
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="3" language="java" name="skill.Skill" project="cp-story" file="/cp-story/src/skill/Skill.java" 
-    binary="false" corner="BOTTOM_RIGHT">    
+  <class id="3" language="java" name="skill.Skill" project="2110215_Project_2017_CP_Story" 
+    file="/2110215_Project_2017_CP_Story/src/skill/Skill.java" binary="false" corner="BOTTOM_RIGHT">    
     <position height="-1" width="-1" x="5096" y="151"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
@@ -28,8 +28,8 @@
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="4" language="java" name="model.DamageableEntity" project="cp-story" 
-    file="/cp-story/src/model/DamageableEntity.java" binary="false" corner="BOTTOM_RIGHT">    
+  <class id="4" language="java" name="model.DamageableEntity" project="2110215_Project_2017_CP_Story" 
+    file="/2110215_Project_2017_CP_Story/src/model/DamageableEntity.java" binary="false" corner="BOTTOM_RIGHT">    
     <position height="-1" width="-1" x="5582" y="1936"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
@@ -37,8 +37,8 @@
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="5" language="java" name="model.Rectangle" project="cp-story" file="/cp-story/src/model/Rectangle.java" 
-    binary="false" corner="BOTTOM_RIGHT">    
+  <class id="5" language="java" name="model.Rectangle" project="2110215_Project_2017_CP_Story" 
+    file="/2110215_Project_2017_CP_Story/src/model/Rectangle.java" binary="false" corner="BOTTOM_RIGHT">    
     <position height="-1" width="-1" x="6428" y="214"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
@@ -46,8 +46,8 @@
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="6" language="java" name="skill.GradeAForSure" project="cp-story" 
-    file="/cp-story/src/skill/GradeAForSure.java" binary="false" corner="BOTTOM_RIGHT">    
+  <class id="6" language="java" name="skill.GradeAForSure" project="2110215_Project_2017_CP_Story" 
+    file="/2110215_Project_2017_CP_Story/src/skill/GradeAForSure.java" binary="false" corner="BOTTOM_RIGHT">    
     <position height="-1" width="-1" x="4449" y="976"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
@@ -55,8 +55,8 @@
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="7" language="java" name="exception.ListEmptyException" project="cp-story" 
-    file="/cp-story/src/exception/ListEmptyException.java" binary="false" corner="BOTTOM_RIGHT">    
+  <class id="7" language="java" name="exception.ListEmptyException" project="2110215_Project_2017_CP_Story" 
+    file="/2110215_Project_2017_CP_Story/src/exception/ListEmptyException.java" binary="false" corner="BOTTOM_RIGHT">    
     <position height="-1" width="-1" x="605" y="79"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
@@ -64,8 +64,8 @@
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="8" language="java" name="model.Entity" project="cp-story" file="/cp-story/src/model/Entity.java" 
-    binary="false" corner="BOTTOM_RIGHT">    
+  <class id="8" language="java" name="model.Entity" project="2110215_Project_2017_CP_Story" 
+    file="/2110215_Project_2017_CP_Story/src/model/Entity.java" binary="false" corner="BOTTOM_RIGHT">    
     <position height="-1" width="-1" x="5905" y="1210"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
@@ -73,8 +73,8 @@
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="9" language="java" name="controller.MonsterAi" project="cp-story" 
-    file="/cp-story/src/controller/MonsterAi.java" binary="false" corner="BOTTOM_RIGHT">    
+  <class id="9" language="java" name="controller.MonsterAi" project="2110215_Project_2017_CP_Story" 
+    file="/2110215_Project_2017_CP_Story/src/controller/MonsterAi.java" binary="false" corner="BOTTOM_RIGHT">    
     <position height="-1" width="-1" x="773" y="70"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
@@ -82,8 +82,8 @@
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="10" language="java" name="model.monster.Monster" project="cp-story" 
-    file="/cp-story/src/model/monster/Monster.java" binary="false" corner="BOTTOM_RIGHT">    
+  <class id="10" language="java" name="model.monster.Monster" project="2110215_Project_2017_CP_Story" 
+    file="/2110215_Project_2017_CP_Story/src/model/monster/Monster.java" binary="false" corner="BOTTOM_RIGHT">    
     <position height="-1" width="-1" x="5355" y="2527"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
@@ -91,8 +91,8 @@
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="11" language="java" name="skill.PowerUp" project="cp-story" file="/cp-story/src/skill/PowerUp.java" 
-    binary="false" corner="BOTTOM_RIGHT">    
+  <class id="11" language="java" name="skill.PowerUp" project="2110215_Project_2017_CP_Story" 
+    file="/2110215_Project_2017_CP_Story/src/skill/PowerUp.java" binary="false" corner="BOTTOM_RIGHT">    
     <position height="-1" width="-1" x="4940" y="976"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
@@ -100,8 +100,8 @@
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="12" language="java" name="ui.StatusBar" project="cp-story" file="/cp-story/src/ui/StatusBar.java" 
-    binary="false" corner="BOTTOM_RIGHT">    
+  <class id="12" language="java" name="ui.StatusBar" project="2110215_Project_2017_CP_Story" 
+    file="/2110215_Project_2017_CP_Story/src/ui/StatusBar.java" binary="false" corner="BOTTOM_RIGHT">    
     <position height="-1" width="-1" x="960" y="304"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
@@ -109,8 +109,8 @@
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="13" language="java" name="constants.Images" project="cp-story" file="/cp-story/src/constants/Images.java" 
-    binary="false" corner="BOTTOM_RIGHT">    
+  <class id="13" language="java" name="constants.Images" project="2110215_Project_2017_CP_Story" 
+    file="/2110215_Project_2017_CP_Story/src/constants/Images.java" binary="false" corner="BOTTOM_RIGHT">    
     <position height="-1" width="-1" x="1198" y="439"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
@@ -118,8 +118,8 @@
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="14" language="java" name="model.item.FastLearnScroll" project="cp-story" 
-    file="/cp-story/src/model/item/FastLearnScroll.java" binary="false" corner="BOTTOM_RIGHT">    
+  <class id="14" language="java" name="model.item.FastLearnScroll" project="2110215_Project_2017_CP_Story" 
+    file="/2110215_Project_2017_CP_Story/src/model/item/FastLearnScroll.java" binary="false" corner="BOTTOM_RIGHT">    
     <position height="-1" width="-1" x="5334" y="940"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
@@ -127,8 +127,8 @@
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="15" language="java" name="model.ItemEntity" project="cp-story" file="/cp-story/src/model/ItemEntity.java" 
-    binary="false" corner="BOTTOM_RIGHT">    
+  <class id="15" language="java" name="model.ItemEntity" project="2110215_Project_2017_CP_Story" 
+    file="/2110215_Project_2017_CP_Story/src/model/ItemEntity.java" binary="false" corner="BOTTOM_RIGHT">    
     <position height="-1" width="-1" x="5934" y="1702"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
@@ -136,8 +136,8 @@
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="16" language="java" name="model.item.Item" project="cp-story" file="/cp-story/src/model/item/Item.java" 
-    binary="false" corner="BOTTOM_RIGHT">    
+  <class id="16" language="java" name="model.item.Item" project="2110215_Project_2017_CP_Story" 
+    file="/2110215_Project_2017_CP_Story/src/model/item/Item.java" binary="false" corner="BOTTOM_RIGHT">    
     <position height="-1" width="-1" x="5430" y="187"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
@@ -145,8 +145,8 @@
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="17" language="java" name="model.player.Player" project="cp-story" 
-    file="/cp-story/src/model/player/Player.java" binary="false" corner="BOTTOM_RIGHT">    
+  <class id="17" language="java" name="model.player.Player" project="2110215_Project_2017_CP_Story" 
+    file="/2110215_Project_2017_CP_Story/src/model/player/Player.java" binary="false" corner="BOTTOM_RIGHT">    
     <position height="-1" width="-1" x="5863" y="2779"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
@@ -154,8 +154,8 @@
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="18" language="java" name="particle.NormalAttackEffect" project="cp-story" 
-    file="/cp-story/src/particle/NormalAttackEffect.java" binary="false" corner="BOTTOM_RIGHT">    
+  <class id="18" language="java" name="particle.NormalAttackEffect" project="2110215_Project_2017_CP_Story" 
+    file="/2110215_Project_2017_CP_Story/src/particle/NormalAttackEffect.java" binary="false" corner="BOTTOM_RIGHT">    
     <position height="-1" width="-1" x="7431" y="115"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
@@ -163,8 +163,8 @@
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="19" language="java" name="skill.AttackSkill" project="cp-story" file="/cp-story/src/skill/AttackSkill.java" 
-    binary="false" corner="BOTTOM_RIGHT">    
+  <class id="19" language="java" name="skill.AttackSkill" project="2110215_Project_2017_CP_Story" 
+    file="/2110215_Project_2017_CP_Story/src/skill/AttackSkill.java" binary="false" corner="BOTTOM_RIGHT">    
     <position height="-1" width="-1" x="4668" y="985"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
@@ -172,8 +172,8 @@
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="20" language="java" name="ui.StartScene" project="cp-story" file="/cp-story/src/ui/StartScene.java" 
-    binary="false" corner="BOTTOM_RIGHT">    
+  <class id="20" language="java" name="ui.StartScene" project="2110215_Project_2017_CP_Story" 
+    file="/2110215_Project_2017_CP_Story/src/ui/StartScene.java" binary="false" corner="BOTTOM_RIGHT">    
     <position height="-1" width="-1" x="1453" y="187"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
@@ -181,8 +181,8 @@
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="21" language="java" name="exception.MpNotEnoughException" project="cp-story" 
-    file="/cp-story/src/exception/MpNotEnoughException.java" binary="false" corner="BOTTOM_RIGHT">    
+  <class id="21" language="java" name="exception.MpNotEnoughException" project="2110215_Project_2017_CP_Story" 
+    file="/2110215_Project_2017_CP_Story/src/exception/MpNotEnoughException.java" binary="false" corner="BOTTOM_RIGHT">    
     <position height="-1" width="-1" x="1701" y="79"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
@@ -190,8 +190,8 @@
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="22" language="java" name="buff.Buff" project="cp-story" file="/cp-story/src/buff/Buff.java" binary="false" 
-    corner="BOTTOM_RIGHT">    
+  <class id="22" language="java" name="buff.Buff" project="2110215_Project_2017_CP_Story" 
+    file="/2110215_Project_2017_CP_Story/src/buff/Buff.java" binary="false" corner="BOTTOM_RIGHT">    
     <position height="-1" width="-1" x="7199" y="151"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
@@ -199,8 +199,8 @@
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="23" language="java" name="model.map.Building4" project="cp-story" 
-    file="/cp-story/src/model/map/Building4.java" binary="false" corner="BOTTOM_RIGHT">    
+  <class id="23" language="java" name="model.map.Building4" project="2110215_Project_2017_CP_Story" 
+    file="/2110215_Project_2017_CP_Story/src/model/map/Building4.java" binary="false" corner="BOTTOM_RIGHT">    
     <position height="-1" width="-1" x="6131" y="1630"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
@@ -208,8 +208,8 @@
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="24" language="java" name="utility.Random" project="cp-story" file="/cp-story/src/utility/Random.java" 
-    binary="false" corner="BOTTOM_RIGHT">    
+  <class id="24" language="java" name="utility.Random" project="2110215_Project_2017_CP_Story" 
+    file="/2110215_Project_2017_CP_Story/src/utility/Random.java" binary="false" corner="BOTTOM_RIGHT">    
     <position height="-1" width="-1" x="2014" y="97"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
@@ -217,8 +217,8 @@
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="25" language="java" name="buff.PowerUpBuff" project="cp-story" file="/cp-story/src/buff/PowerUpBuff.java" 
-    binary="false" corner="BOTTOM_RIGHT">    
+  <class id="25" language="java" name="buff.PowerUpBuff" project="2110215_Project_2017_CP_Story" 
+    file="/2110215_Project_2017_CP_Story/src/buff/PowerUpBuff.java" binary="false" corner="BOTTOM_RIGHT">    
     <position height="-1" width="-1" x="7199" y="949"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
@@ -226,8 +226,8 @@
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="26" language="java" name="model.item.BluePotion" project="cp-story" 
-    file="/cp-story/src/model/item/BluePotion.java" binary="false" corner="BOTTOM_RIGHT">    
+  <class id="26" language="java" name="model.item.BluePotion" project="2110215_Project_2017_CP_Story" 
+    file="/2110215_Project_2017_CP_Story/src/model/item/BluePotion.java" binary="false" corner="BOTTOM_RIGHT">    
     <position height="-1" width="-1" x="5488" y="940"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
@@ -235,8 +235,8 @@
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="27" language="java" name="model.player.CPEngineer" project="cp-story" 
-    file="/cp-story/src/model/player/CPEngineer.java" binary="false" corner="BOTTOM_RIGHT">    
+  <class id="27" language="java" name="model.player.CPEngineer" project="2110215_Project_2017_CP_Story" 
+    file="/2110215_Project_2017_CP_Story/src/model/player/CPEngineer.java" binary="false" corner="BOTTOM_RIGHT">    
     <position height="-1" width="-1" x="5717" y="3370"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
@@ -244,8 +244,8 @@
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="28" language="java" name="particle.DisplayName" project="cp-story" 
-    file="/cp-story/src/particle/DisplayName.java" binary="false" corner="BOTTOM_RIGHT">    
+  <class id="28" language="java" name="particle.DisplayName" project="2110215_Project_2017_CP_Story" 
+    file="/2110215_Project_2017_CP_Story/src/particle/DisplayName.java" binary="false" corner="BOTTOM_RIGHT">    
     <position height="-1" width="-1" x="7665" y="142"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
@@ -253,8 +253,8 @@
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="29" language="java" name="main.Main" project="cp-story" file="/cp-story/src/main/Main.java" binary="false" 
-    corner="BOTTOM_RIGHT">    
+  <class id="29" language="java" name="main.Main" project="2110215_Project_2017_CP_Story" 
+    file="/2110215_Project_2017_CP_Story/src/main/Main.java" binary="false" corner="BOTTOM_RIGHT">    
     <position height="-1" width="-1" x="2317" y="160"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
@@ -262,8 +262,8 @@
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="30" language="java" name="particle.PowerUpEffect" project="cp-story" 
-    file="/cp-story/src/particle/PowerUpEffect.java" binary="false" corner="BOTTOM_RIGHT">    
+  <class id="30" language="java" name="particle.PowerUpEffect" project="2110215_Project_2017_CP_Story" 
+    file="/2110215_Project_2017_CP_Story/src/particle/PowerUpEffect.java" binary="false" corner="BOTTOM_RIGHT">    
     <position height="-1" width="-1" x="7899" y="115"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
@@ -271,8 +271,8 @@
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="31" language="java" name="model.map.Map" project="cp-story" file="/cp-story/src/model/map/Map.java" 
-    binary="false" corner="BOTTOM_RIGHT">    
+  <class id="31" language="java" name="model.map.Map" project="2110215_Project_2017_CP_Story" 
+    file="/2110215_Project_2017_CP_Story/src/model/map/Map.java" binary="false" corner="BOTTOM_RIGHT">    
     <position height="-1" width="-1" x="6268" y="1219"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
@@ -280,8 +280,8 @@
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="32" language="java" name="exception.CooldownException" project="cp-story" 
-    file="/cp-story/src/exception/CooldownException.java" binary="false" corner="BOTTOM_RIGHT">    
+  <class id="32" language="java" name="exception.CooldownException" project="2110215_Project_2017_CP_Story" 
+    file="/2110215_Project_2017_CP_Story/src/exception/CooldownException.java" binary="false" corner="BOTTOM_RIGHT">    
     <position height="-1" width="-1" x="2521" y="79"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
@@ -289,8 +289,8 @@
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="33" language="java" name="particle.MultiKillEffect" project="cp-story" 
-    file="/cp-story/src/particle/MultiKillEffect.java" binary="false" corner="BOTTOM_RIGHT">    
+  <class id="33" language="java" name="particle.MultiKillEffect" project="2110215_Project_2017_CP_Story" 
+    file="/2110215_Project_2017_CP_Story/src/particle/MultiKillEffect.java" binary="false" corner="BOTTOM_RIGHT">    
     <position height="-1" width="-1" x="8123" y="115"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
@@ -298,8 +298,8 @@
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="34" language="java" name="model.map.Portal" project="cp-story" file="/cp-story/src/model/map/Portal.java" 
-    binary="false" corner="BOTTOM_RIGHT">    
+  <class id="34" language="java" name="model.map.Portal" project="2110215_Project_2017_CP_Story" 
+    file="/2110215_Project_2017_CP_Story/src/model/map/Portal.java" binary="false" corner="BOTTOM_RIGHT">    
     <position height="-1" width="-1" x="6617" y="1003"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
@@ -307,8 +307,8 @@
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="35" language="java" name="particle.Damage" project="cp-story" file="/cp-story/src/particle/Damage.java" 
-    binary="false" corner="BOTTOM_RIGHT">    
+  <class id="35" language="java" name="particle.Damage" project="2110215_Project_2017_CP_Story" 
+    file="/2110215_Project_2017_CP_Story/src/particle/Damage.java" binary="false" corner="BOTTOM_RIGHT">    
     <position height="-1" width="-1" x="8363" y="160"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
@@ -316,8 +316,8 @@
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="36" language="java" name="model.monster.MiniTree" project="cp-story" 
-    file="/cp-story/src/model/monster/MiniTree.java" binary="false" corner="BOTTOM_RIGHT">    
+  <class id="36" language="java" name="model.monster.MiniTree" project="2110215_Project_2017_CP_Story" 
+    file="/2110215_Project_2017_CP_Story/src/model/monster/MiniTree.java" binary="false" corner="BOTTOM_RIGHT">    
     <position height="-1" width="-1" x="5033" y="3316"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
@@ -325,8 +325,8 @@
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="37" language="java" name="model.monster.Node" project="cp-story" 
-    file="/cp-story/src/model/monster/Node.java" binary="false" corner="BOTTOM_RIGHT">    
+  <class id="37" language="java" name="model.monster.Node" project="2110215_Project_2017_CP_Story" 
+    file="/2110215_Project_2017_CP_Story/src/model/monster/Node.java" binary="false" corner="BOTTOM_RIGHT">    
     <position height="-1" width="-1" x="5247" y="3316"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
@@ -334,8 +334,8 @@
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <interface id="38" language="java" name="particle.IParticle" project="cp-story" 
-    file="/cp-story/src/particle/IParticle.java" binary="false" corner="BOTTOM_RIGHT">    
+  <interface id="38" language="java" name="particle.IParticle" project="2110215_Project_2017_CP_Story" 
+    file="/2110215_Project_2017_CP_Story/src/particle/IParticle.java" binary="false" corner="BOTTOM_RIGHT">    
     <position height="-1" width="-1" x="8347" y="949"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
@@ -343,8 +343,8 @@
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </interface>  
-  <class id="39" language="java" name="skill.NotmalAttack" project="cp-story" 
-    file="/cp-story/src/skill/NotmalAttack.java" binary="false" corner="BOTTOM_RIGHT">    
+  <class id="39" language="java" name="skill.NotmalAttack" project="2110215_Project_2017_CP_Story" 
+    file="/2110215_Project_2017_CP_Story/src/skill/NotmalAttack.java" binary="false" corner="BOTTOM_RIGHT">    
     <position height="-1" width="-1" x="4220" y="1711"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
@@ -352,8 +352,8 @@
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="40" language="java" name="model.map.SkyCafe" project="cp-story" file="/cp-story/src/model/map/SkyCafe.java" 
-    binary="false" corner="BOTTOM_RIGHT">    
+  <class id="40" language="java" name="model.map.SkyCafe" project="2110215_Project_2017_CP_Story" 
+    file="/2110215_Project_2017_CP_Story/src/model/map/SkyCafe.java" binary="false" corner="BOTTOM_RIGHT">    
     <position height="-1" width="-1" x="6268" y="1630"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
@@ -361,8 +361,8 @@
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <interface id="41" language="java" name="model.IUsable" project="cp-story" file="/cp-story/src/model/IUsable.java" 
-    binary="false" corner="BOTTOM_RIGHT">    
+  <interface id="41" language="java" name="model.IUsable" project="2110215_Project_2017_CP_Story" 
+    file="/2110215_Project_2017_CP_Story/src/model/IUsable.java" binary="false" corner="BOTTOM_RIGHT">    
     <position height="-1" width="-1" x="5172" y="940"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
@@ -370,8 +370,8 @@
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </interface>  
-  <class id="42" language="java" name="particle.PowerOfJoeEffect" project="cp-story" 
-    file="/cp-story/src/particle/PowerOfJoeEffect.java" binary="false" corner="BOTTOM_RIGHT">    
+  <class id="42" language="java" name="particle.PowerOfJoeEffect" project="2110215_Project_2017_CP_Story" 
+    file="/2110215_Project_2017_CP_Story/src/particle/PowerOfJoeEffect.java" binary="false" corner="BOTTOM_RIGHT">    
     <position height="-1" width="-1" x="8604" y="115"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
@@ -379,8 +379,8 @@
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="43" language="java" name="model.monster.ProgMeth" project="cp-story" 
-    file="/cp-story/src/model/monster/ProgMeth.java" binary="false" corner="BOTTOM_RIGHT">    
+  <class id="43" language="java" name="model.monster.ProgMeth" project="2110215_Project_2017_CP_Story" 
+    file="/2110215_Project_2017_CP_Story/src/model/monster/ProgMeth.java" binary="false" corner="BOTTOM_RIGHT">    
     <position height="-1" width="-1" x="5464" y="3316"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
@@ -388,8 +388,8 @@
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="44" language="java" name="model.map.StructureItem" project="cp-story" 
-    file="/cp-story/src/model/map/StructureItem.java" binary="false" corner="BOTTOM_RIGHT">    
+  <class id="44" language="java" name="model.map.StructureItem" project="2110215_Project_2017_CP_Story" 
+    file="/2110215_Project_2017_CP_Story/src/model/map/StructureItem.java" binary="false" corner="BOTTOM_RIGHT">    
     <position height="-1" width="-1" x="6910" y="985"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
@@ -397,8 +397,8 @@
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="45" language="java" name="skill.MultiKill" project="cp-story" file="/cp-story/src/skill/MultiKill.java" 
-    binary="false" corner="BOTTOM_RIGHT">    
+  <class id="45" language="java" name="skill.MultiKill" project="2110215_Project_2017_CP_Story" 
+    file="/2110215_Project_2017_CP_Story/src/skill/MultiKill.java" binary="false" corner="BOTTOM_RIGHT">    
     <position height="-1" width="-1" x="4444" y="1711"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
@@ -406,8 +406,8 @@
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="46" language="java" name="buff.FastLearnBuff" project="cp-story" 
-    file="/cp-story/src/buff/FastLearnBuff.java" binary="false" corner="BOTTOM_RIGHT">    
+  <class id="46" language="java" name="buff.FastLearnBuff" project="2110215_Project_2017_CP_Story" 
+    file="/2110215_Project_2017_CP_Story/src/buff/FastLearnBuff.java" binary="false" corner="BOTTOM_RIGHT">    
     <position height="-1" width="-1" x="7438" y="949"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
@@ -415,8 +415,8 @@
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="47" language="java" name="input.KeyInput" project="cp-story" file="/cp-story/src/input/KeyInput.java" 
-    binary="false" corner="BOTTOM_RIGHT">    
+  <class id="47" language="java" name="input.KeyInput" project="2110215_Project_2017_CP_Story" 
+    file="/2110215_Project_2017_CP_Story/src/input/KeyInput.java" binary="false" corner="BOTTOM_RIGHT">    
     <position height="-1" width="-1" x="2757" y="160"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
@@ -424,8 +424,8 @@
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="48" language="java" name="ui.GameScene" project="cp-story" file="/cp-story/src/ui/GameScene.java" 
-    binary="false" corner="BOTTOM_RIGHT">    
+  <class id="48" language="java" name="ui.GameScene" project="2110215_Project_2017_CP_Story" 
+    file="/2110215_Project_2017_CP_Story/src/ui/GameScene.java" binary="false" corner="BOTTOM_RIGHT">    
     <position height="-1" width="-1" x="2965" y="70"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
@@ -433,8 +433,8 @@
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="49" language="java" name="controller.MonsterGen" project="cp-story" 
-    file="/cp-story/src/controller/MonsterGen.java" binary="false" corner="BOTTOM_RIGHT">    
+  <class id="49" language="java" name="controller.MonsterGen" project="2110215_Project_2017_CP_Story" 
+    file="/2110215_Project_2017_CP_Story/src/controller/MonsterGen.java" binary="false" corner="BOTTOM_RIGHT">    
     <position height="-1" width="-1" x="3111" y="70"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
@@ -442,8 +442,8 @@
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="50" language="java" name="particle.HpBar" project="cp-story" file="/cp-story/src/particle/HpBar.java" 
-    binary="false" corner="BOTTOM_RIGHT">    
+  <class id="50" language="java" name="particle.HpBar" project="2110215_Project_2017_CP_Story" 
+    file="/2110215_Project_2017_CP_Story/src/particle/HpBar.java" binary="false" corner="BOTTOM_RIGHT">    
     <position height="-1" width="-1" x="8828" y="151"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
@@ -451,8 +451,8 @@
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="51" language="java" name="skill.PowerOfJoe" project="cp-story" file="/cp-story/src/skill/PowerOfJoe.java" 
-    binary="false" corner="BOTTOM_RIGHT">    
+  <class id="51" language="java" name="skill.PowerOfJoe" project="2110215_Project_2017_CP_Story" 
+    file="/2110215_Project_2017_CP_Story/src/skill/PowerOfJoe.java" binary="false" corner="BOTTOM_RIGHT">    
     <position height="-1" width="-1" x="4668" y="1711"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
@@ -460,8 +460,8 @@
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="52" language="java" name="sharedObject.SharedEntity" project="cp-story" 
-    file="/cp-story/src/sharedObject/SharedEntity.java" binary="false" corner="BOTTOM_RIGHT">    
+  <class id="52" language="java" name="sharedObject.SharedEntity" project="2110215_Project_2017_CP_Story" 
+    file="/2110215_Project_2017_CP_Story/src/sharedObject/SharedEntity.java" binary="false" corner="BOTTOM_RIGHT">    
     <position height="-1" width="-1" x="3329" y="160"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
@@ -469,8 +469,8 @@
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="53" language="java" name="model.item.RedPotion" project="cp-story" 
-    file="/cp-story/src/model/item/RedPotion.java" binary="false" corner="BOTTOM_RIGHT">    
+  <class id="53" language="java" name="model.item.RedPotion" project="2110215_Project_2017_CP_Story" 
+    file="/2110215_Project_2017_CP_Story/src/model/item/RedPotion.java" binary="false" corner="BOTTOM_RIGHT">    
     <position height="-1" width="-1" x="5625" y="940"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
@@ -478,8 +478,8 @@
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="54" language="java" name="model.map.Garden" project="cp-story" file="/cp-story/src/model/map/Garden.java" 
-    binary="false" corner="BOTTOM_RIGHT">    
+  <class id="54" language="java" name="model.map.Garden" project="2110215_Project_2017_CP_Story" 
+    file="/2110215_Project_2017_CP_Story/src/model/map/Garden.java" binary="false" corner="BOTTOM_RIGHT">    
     <position height="-1" width="-1" x="6405" y="1630"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
@@ -487,8 +487,8 @@
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="55" language="java" name="ui.Tooltip" project="cp-story" file="/cp-story/src/ui/Tooltip.java" 
-    binary="false" corner="BOTTOM_RIGHT">    
+  <class id="55" language="java" name="ui.Tooltip" project="2110215_Project_2017_CP_Story" 
+    file="/2110215_Project_2017_CP_Story/src/ui/Tooltip.java" binary="false" corner="BOTTOM_RIGHT">    
     <position height="-1" width="-1" x="3592" y="178"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
@@ -496,8 +496,8 @@
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="56" language="java" name="constants.Constants" project="cp-story" 
-    file="/cp-story/src/constants/Constants.java" binary="false" corner="BOTTOM_RIGHT">    
+  <class id="56" language="java" name="constants.Constants" project="2110215_Project_2017_CP_Story" 
+    file="/2110215_Project_2017_CP_Story/src/constants/Constants.java" binary="false" corner="BOTTOM_RIGHT">    
     <position height="-1" width="-1" x="3818" y="124"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
@@ -505,8 +505,10 @@
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="57" language="java" name="exception.NegativeWeightedRandomException" project="cp-story" 
-    file="/cp-story/src/exception/NegativeWeightedRandomException.java" binary="false" corner="BOTTOM_RIGHT">    
+  <class id="57" language="java" name="exception.NegativeWeightedRandomException" 
+    project="2110215_Project_2017_CP_Story" 
+    file="/2110215_Project_2017_CP_Story/src/exception/NegativeWeightedRandomException.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
     <position height="-1" width="-1" x="4079" y="79"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
@@ -514,8 +516,8 @@
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="58" language="java" name="controller.GameManager" project="cp-story" 
-    file="/cp-story/src/controller/GameManager.java" binary="false" corner="BOTTOM_RIGHT">    
+  <class id="58" language="java" name="controller.GameManager" project="2110215_Project_2017_CP_Story" 
+    file="/2110215_Project_2017_CP_Story/src/controller/GameManager.java" binary="false" corner="BOTTOM_RIGHT">    
     <position height="-1" width="-1" x="4352" y="403"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
@@ -523,8 +525,8 @@
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="59" language="java" name="particle.GradeAEffect" project="cp-story" 
-    file="/cp-story/src/particle/GradeAEffect.java" binary="false" corner="BOTTOM_RIGHT">    
+  <class id="59" language="java" name="particle.GradeAEffect" project="2110215_Project_2017_CP_Story" 
+    file="/2110215_Project_2017_CP_Story/src/particle/GradeAEffect.java" binary="false" corner="BOTTOM_RIGHT">    
     <position height="-1" width="-1" x="9052" y="124"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
@@ -532,8 +534,8 @@
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="60" language="java" name="particle.LevelUp" project="cp-story" file="/cp-story/src/particle/LevelUp.java" 
-    binary="false" corner="BOTTOM_RIGHT">    
+  <class id="60" language="java" name="particle.LevelUp" project="2110215_Project_2017_CP_Story" 
+    file="/2110215_Project_2017_CP_Story/src/particle/LevelUp.java" binary="false" corner="BOTTOM_RIGHT">    
     <position height="-1" width="-1" x="9276" y="133"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
@@ -541,8 +543,8 @@
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="61" language="java" name="utility.AudioPlayer" project="cp-story" 
-    file="/cp-story/src/utility/AudioPlayer.java" binary="false" corner="BOTTOM_RIGHT">    
+  <class id="61" language="java" name="utility.AudioPlayer" project="2110215_Project_2017_CP_Story" 
+    file="/2110215_Project_2017_CP_Story/src/utility/AudioPlayer.java" binary="false" corner="BOTTOM_RIGHT">    
     <position height="-1" width="-1" x="4587" y="88"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
@@ -550,8 +552,8 @@
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="62" language="java" name="model.map.MapStructure" project="cp-story" 
-    file="/cp-story/src/model/map/MapStructure.java" binary="false" corner="BOTTOM_RIGHT">    
+  <class id="62" language="java" name="model.map.MapStructure" project="2110215_Project_2017_CP_Story" 
+    file="/2110215_Project_2017_CP_Story/src/model/map/MapStructure.java" binary="false" corner="BOTTOM_RIGHT">    
     <position height="-1" width="-1" x="4830" y="106"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
