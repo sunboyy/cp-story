@@ -6,6 +6,7 @@ import java.util.List;
 
 import buff.Buff;
 import constants.Constants;
+import constants.Images;
 import constants.Sounds;
 import controller.GameManager;
 import exception.InventoryFullException;
@@ -17,6 +18,7 @@ import javafx.scene.control.ButtonType;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.image.Image;
 import javafx.scene.input.KeyCode;
+import javafx.stage.Stage;
 import model.DamageableEntity;
 import model.ItemEntity;
 import model.Rectangle;
@@ -305,6 +307,7 @@ public abstract class Player extends DamageableEntity {
 				Alert alert = new Alert(AlertType.WARNING, "Uh oh! You are dead. You can still play with experience decreasing continuously. The experience will stop decreasing when HP is more than zero.\nProgrammers have no life...", ButtonType.OK);
 				alert.setTitle("You are dead.");
 				alert.setHeaderText("You are dead.");
+				((Stage)alert.getDialogPane().getScene().getWindow()).getIcons().add(Images.monsterProgmethR);
 				alert.showAndWait();
 				GameManager.getInstance().setPausing(false);
 			});

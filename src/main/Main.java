@@ -1,5 +1,6 @@
 package main;
 
+import constants.Images;
 import controller.GameManager;
 import javafx.application.Application;
 import javafx.scene.Scene;
@@ -22,6 +23,7 @@ public class Main extends Application {
 		startScene = new StartScene();
 		stage.setTitle("CP Story");
 		stage.setScene(startScene);
+		stage.getIcons().add(Images.monsterProgmethR);
 		stage.show();
 	}
 	

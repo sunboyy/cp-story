@@ -17,6 +17,7 @@ import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.TextAlignment;
+import javafx.stage.Stage;
 import javafx.util.Duration;
 import main.Main;
 
@@ -150,6 +151,7 @@ public class StartScene extends Scene {
 				Alert alert = new Alert(AlertType.INFORMATION, "The name must not be empty, so it will be Joetoken!");
 				alert.setHeaderText(null);
 				alert.setTitle("Name doesn't accepted");
+				((Stage)alert.getDialogPane().getScene().getWindow()).getIcons().add(Images.monsterProgmethR);
 				alert.showAndWait();
 			}
 			nameField.setVisible(false);

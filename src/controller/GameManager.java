@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import constants.Constants;
+import constants.Images;
 import input.KeyInput;
 import javafx.application.Platform;
 import javafx.geometry.VPos;
@@ -14,6 +15,7 @@ import javafx.scene.control.Alert.AlertType;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.TextAlignment;
+import javafx.stage.Stage;
 import main.Main;
 import model.map.Building4;
 import model.map.Garden;
@@ -195,6 +197,8 @@ public class GameManager {
 		Platform.runLater(() -> {
 			Alert alert = new Alert(AlertType.INFORMATION, String.format("Congratulations! You have reached level 20.\nTime spent: %02d:%02d:%02d\nScore: %d", elapsedTime/3600, (elapsedTime/60)%60, elapsedTime%60, (int) (1000000*Math.pow(2, -elapsedTimeMillis/500000.))), ButtonType.CLOSE);
 			alert.setHeaderText(null);
+			alert.setTitle("Congratulations!");
+			((Stage)alert.getDialogPane().getScene().getWindow()).getIcons().add(Images.monsterProgmethR);
 			alert.showAndWait();
 			Main.getStage().setScene(Main.getStartScene());
 			instance = new GameManager();
