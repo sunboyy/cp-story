@@ -192,10 +192,6 @@ public abstract class Player extends DamageableEntity {
 		if (KeyInput.pressingKey(KeyCode.UP)) {
 			GameManager.getInstance().warp();
 		}
-		// TODO Remove
-		if (KeyInput.pressingKey(KeyCode.A) && KeyInput.pressingKey(KeyCode.S) && KeyInput.pressingKey(KeyCode.D) && KeyInput.pressingKey(KeyCode.F)) {
-			addExperience(30);
-		}
 	}
 	
 	public void updateByPollKey(KeyCode key) {

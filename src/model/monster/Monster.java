@@ -2,7 +2,6 @@ package model.monster;
 
 import java.util.List;
 
-import controller.GameManager;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
 import model.DamageableEntity;
